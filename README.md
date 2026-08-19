@@ -52,7 +52,28 @@ python -m data.download_subtitles
 python -m data.build_knowledge_base
 ```
 
-### 3. Giải bài tập (Solver)
+### 3. Giải bài tập
+
+#### Cách 1: `/solve` — Giải tự động từ file PDF (Khuyến nghị)
+
+Mở Antigravity IDE (hoặc bất kỳ AI IDE nào hỗ trợ `.agents/workflows/`) và gõ:
+
+```
+/solve D:\Study\Cô Thương\...\[HW#02] Độ phức tạp....pdf
+```
+
+Chỉ cần **1 đường dẫn PDF**, hệ thống tự động chạy pipeline 4 bước:
+
+| Bước | Hành động | Chi tiết |
+|------|----------|----------|
+| **1. Extract** | Render PDF → ảnh PNG | Đọc đề bài chính xác từ ảnh |
+| **2. Search** | Tìm transcript buổi 1-5 | Xác định bài nào cô đã giải trên lớp |
+| **3. Solve** | Giải theo `@co-thuong-style` | Đúng ký hiệu, cách lập luận, format cô dạy |
+| **4. Output** | Tạo file `_solved.tex` | Cùng thư mục với PDF gốc |
+
+> ⚠️ Workflow này dựa trên transcript thực tế từ buổi giảng của cô, không phải AI đoán mò.
+
+#### Cách 2: CLI truyền thống (`solve.py`)
 
 **Giải nhanh một bài từ Terminal:**
 ```bash
@@ -82,19 +103,30 @@ python solve.py --model gemini-2.5-pro --problem "..."
 
 ```
 thuong-cho-tam-than-co-han/
+├── .agents/                                # AI Agent system
+│   ├── skills/
+│   │   ├── co-thuong-style/SKILL.md        # Quy tắc trình bày của cô (từ transcript)
+│   │   └── solve-homework/                 # Pipeline giải bài tập
+│   │       ├── SKILL.md
+│   │       └── scripts/render_pdf.py       # Render PDF → PNG
+│   ├── workflows/
+│   │   └── solve.md                        # /solve command
+│   └── rules/                              # Luật routing, code, protocol
 ├── data/
-│   ├── buoi1.vi.vtt, buoi1_clean.md, ... # Raw data (subtitle, transcript)
-│   ├── loi_giai_so_sanh_thuat_toan.tex   # Mẫu LaTeX của cô
+│   ├── buoi1.vi.vtt, buoi1_clean.md, ...   # Raw data (subtitle, transcript)
+│   ├── loi_giai_so_sanh_thuat_toan.tex     # Mẫu LaTeX
 │   ├── download_subtitles.py
 │   ├── build_knowledge_base.py
-│   └── knowledge_base.json               # DB đã parse
+│   └── knowledge_base.json                 # DB đã parse
+├── bai_tap/                                # Đề bài PDF + lời giải _solved.tex
 ├── core/
 │   ├── config.py
 │   ├── persona.py
 │   ├── latex_template.py
 │   └── solver.py
-├── solve.py                              # CLI
-├── config.json                           # Sinh ra sau khi chạy --setup
+├── solve.py                                # CLI
+├── config.json                             # Sinh ra sau khi chạy --setup (gitignored)
 ├── requirements.txt
 └── README.md
 ```
+
