@@ -1,0 +1,469 @@
+﻿\documentclass[12pt,a4paper]{article}
+
+% ===== PACKAGES =====
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\geometry{a4paper, margin=2.5cm}
+
+% ===== CUSTOM STYLES =====
+\definecolor{mainblue}{RGB}{0,90,160}
+\definecolor{darkgreen}{RGB}{0,120,60}
+\definecolor{resultbg}{RGB}{230,245,255}
+
+\newtcolorbox{resultbox}{
+  colback=resultbg, colframe=mainblue,
+  boxrule=0.8pt, arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries, title=Kết quả
+}
+
+\newtcolorbox{notebox}[1][]{
+  colback=yellow!8, colframe=orange!70!black,
+  boxrule=0.6pt, arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries, title={Lưu ý}, #1
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Phân tích \& Thiết kế Thuật toán}}
+\fancyhead[R]{\textit{GV: Huỳnh Thị Thanh Thương}}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Bài giải Bài 1: Sắp xếp các hàm theo bậc tăng trưởng}\\[6pt]
+\large (Order of Growth -- Có lập luận/giải thích)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+% ===== PHƯƠNG PHÁP =====
+\section*{Phương pháp giải (theo hướng dẫn của giảng viên)}
+
+Theo cô Thương hướng dẫn trong buổi 5, khi so sánh bậc tăng trưởng của các hàm:
+
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+  \item \textbf{Không đoán mò} --- phải có biến đổi toán học làm cơ sở.
+  \item \textbf{Đưa về cùng cơ số} --- nếu hai hàm đều ở dạng mũ nhưng khác cơ số, chuyển hết về cơ số nhỏ nhất (thường là $2$) rồi so phần mũ.
+  \item \textbf{Phân lớp (phân nhóm)} --- quy mỗi hàm về lớp độ phức tạp quen thuộc ($\Theta$ tương ứng), rồi chỉ cần so sánh giữa các lớp.
+  \item \textbf{Hệ số bỏ đi} --- trong cùng lớp, hệ số hằng là không đáng kể; chỉ giữ lại phần ``bậc'' cao nhất.
+  \item \textbf{Kết luận}: ghi rõ hàm thuộc lớp $O/\Theta$ nào (được \textbf{0.25 điểm/hàm} khi thi), không cần ghi đúng công thức gốc.
+\end{enumerate}
+
+\begin{notebox}
+Thứ tự các lớp cơ bản cần nhớ:
+\[
+  \underbrace{\Theta(1)}_{\text{hằng}} \prec
+  \underbrace{\Theta(\log n)}_{\text{logarit}} \prec
+  \underbrace{\Theta(n^c)}_{\text{đa thức}} \prec
+  \underbrace{\Theta(c^n)}_{\text{hàm mũ}} \prec
+  \underbrace{\Theta(n!)}_{\text{giai thừa}} \prec
+  \underbrace{\Theta(c^{c^n})}_{\text{siêu mũ}}
+\]
+Trong cùng lớp đa thức: so bậc. Trong cùng lớp mũ: đưa về cùng cơ số, so phần mũ.
+\end{notebox}
+
+% =========================================
+% NHÓM 1
+% =========================================
+\newpage
+\section{Nhóm 1 (Group 1 --- 7 hàm)}
+
+\textbf{Đề bài:} Sắp xếp các hàm sau theo bậc tăng trưởng từ thấp đến cao:
+\[
+  (n-2)!, \quad 5\lg(n+100)^{10}, \quad 2^{2n}, \quad 0.001n^4 + 3n^3 + 1, \quad \ln^2 n, \quad \sqrt[3]{n}, \quad 3^n.
+\]
+
+\subsection{Bước 1: Rút gọn và phân lớp từng hàm}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+  \item $5\lg(n+100)^{10}$
+
+  Theo tính chất logarit: $\lg(n+100)^{10} = 10\lg(n+100)$.
+
+  Vậy: $5\lg(n+100)^{10} = 50\lg(n+100)$.
+
+  Khi $n$ đủ lớn: $\lg(n+100) \approx \lg n$ (sai biệt không đáng kể).
+
+  $\Longrightarrow$ Hàm này thuộc lớp $\Theta(\log n)$.
+
+  \item $\ln^2 n$
+
+  Tức là $(\ln n)^2$. Đây là hàm logarit bình phương.
+
+  $\Longrightarrow$ Thuộc lớp $\Theta(\log^2 n)$.
+
+  \item $\sqrt[3]{n}$
+
+  Viết lại dưới dạng số mũ: $\sqrt[3]{n} = n^{1/3}$.
+
+  $\Longrightarrow$ Thuộc lớp $\Theta(n^{1/3})$ --- đây là lớp \textbf{đa thức}, bậc $1/3$.
+
+  \item $0.001n^4 + 3n^3 + 1$
+
+  Là đa thức bậc 4 theo $n$. Bỏ hệ số, bỏ các bậc thấp hơn, chỉ giữ bậc cao nhất.
+
+  $\Longrightarrow$ Thuộc lớp $\Theta(n^4)$.
+
+  \item $3^n$
+
+  \textbf{Chuyển về cơ số 2} (theo phương pháp cô hướng dẫn):
+  \[
+    3^n = \bigl(2^{\lg 3}\bigr)^n = 2^{n\lg 3} \approx 2^{1{,}585\,n}.
+  \]
+  Phần mũ xấp xỉ $O(n)$. $\Longrightarrow$ Thuộc lớp hàm mũ $\Theta(3^n)$.
+
+  \item $2^{2n}$
+
+  Rút gọn:
+  \[
+    2^{2n} = \bigl(2^2\bigr)^n = 4^n = 2^{2n}.
+  \]
+  \textbf{Chuyển về cơ số 2}: phần mũ là $2n$.
+
+  So với $3^n$ (phần mũ $\approx 1{,}585\,n$): ta có $2n > 1{,}585\,n$ nên $4^n > 3^n$.
+
+  $\Longrightarrow$ Thuộc lớp hàm mũ $\Theta(4^n)$.
+
+  \item $(n-2)!$
+
+  Đây là hàm giai thừa. Khi $n$ đủ lớn, $(n-2)!$ tăng nhanh hơn mọi hàm mũ.
+
+  $\Longrightarrow$ Thuộc lớp $\Theta((n-2)!) = \Theta(n!)$.
+
+\end{enumerate}
+
+\subsection{Bước 2: Lập luận so sánh giữa các lớp}
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item \textbf{Logarit $\prec$ Logarit bình phương:}
+    $\log n \prec \log^2 n$ (bậc 1 < bậc 2 của log).
+
+    $\Rightarrow 5\lg(n+100)^{10} \prec \ln^2 n$.
+
+  \item \textbf{Logarit $\prec$ Đa thức:}
+    Mọi hàm logarit (dù lũy thừa bao nhiêu) luôn tăng chậm hơn bất kỳ hàm đa thức nào (dù bậc nhỏ tới đâu).
+
+    $\Rightarrow \ln^2 n \prec \sqrt[3]{n}$.
+
+  \item \textbf{Đa thức bậc thấp $\prec$ Đa thức bậc cao:}
+    So bậc: $1/3 < 4$.
+
+    $\Rightarrow \sqrt[3]{n} \prec 0.001n^4 + 3n^3 + 1$.
+
+  \item \textbf{Đa thức $\prec$ Hàm mũ:}
+    Hàm đa thức (dù bậc cao tới đâu) luôn tăng chậm hơn hàm mũ.
+
+    $\Rightarrow n^4 \prec 3^n$.
+
+  \item \textbf{Hàm mũ cơ số nhỏ $\prec$ Hàm mũ cơ số lớn:}
+    Đưa về cùng cơ số 2: phần mũ $1{,}585\,n < 2n$ nên $3^n \prec 4^n$.
+
+    $\Rightarrow 3^n \prec 2^{2n}$.
+
+  \item \textbf{Hàm mũ $\prec$ Giai thừa:}
+    Hàm giai thừa tăng nhanh hơn bất kỳ hàm mũ nào.
+
+    $\Rightarrow 2^{2n} \prec (n-2)!$.
+\end{enumerate}
+
+\begin{resultbox}
+\textbf{Kết quả sắp xếp Nhóm 1} (từ thấp đến cao):
+\[
+  \boxed{
+    5\lg(n+100)^{10}
+    \;\prec\; \ln^2 n
+    \;\prec\; \sqrt[3]{n}
+    \;\prec\; 0.001n^4 + 3n^3 + 1
+    \;\prec\; 3^n
+    \;\prec\; 2^{2n}
+    \;\prec\; (n-2)!
+  }
+\]
+\end{resultbox}
+
+% =========================================
+% NHÓM 2
+% =========================================
+\newpage
+\section{Nhóm 2 (Group 2 --- 30 hàm, bài 3-3 CLRS)}
+
+\textbf{Đề bài:} Sắp xếp 30 hàm theo bậc tăng trưởng và phân thành các lớp tương đương
+($f \equiv g$ khi $f = \Theta(g)$).
+
+\textbf{Quy ước:} $\lg n = \log_2 n$, \; $\ln n = \log_e n$, \; $\lg^k n = (\lg n)^k$, \; $\lg\lg n = \lg(\lg n)$.
+
+\bigskip
+
+Chia 30 hàm thành \textbf{10 lớp tương đương}, sắp từ nhỏ đến lớn.
+
+% ----- LỚP 1 -----
+\subsection{Lớp 1: Hằng số --- $\Theta(1)$}
+
+\textbf{Các hàm:} $1$ \;\; và \;\; $n^{1/\lg n}$.
+
+\textbf{Lập luận cho $n^{1/\lg n}$:}
+
+Đặt $y = n^{1/\lg n}$. Lấy $\lg$ hai vế:
+\[
+  \lg y = \frac{1}{\lg n} \cdot \lg n = 1
+  \quad\Longrightarrow\quad y = 2^1 = 2.
+\]
+Vậy $n^{1/\lg n} = 2$ (hằng số) $\in \Theta(1)$.
+
+\begin{resultbox}
+$1 \;\equiv\; n^{1/\lg n}$
+\end{resultbox}
+
+% ----- LỚP 2 -----
+\subsection{Lớp 2: Logarit lặp --- $\Theta(\lg^* n)$ và lân cận}
+
+\textbf{Các hàm:} $\lg(\lg^* n)$, \;\; $\lg^* n$, \;\; $\lg^*(\lg n)$, \;\; $2^{\lg^* n}$.
+
+\textbf{Lập luận:}
+\begin{itemize}
+  \item $\lg^*(\lg n) = \lg^* n - 1 \in \Theta(\lg^* n)$.
+    Nên $\lg^* n \equiv \lg^*(\lg n)$.
+  \item $\lg(\lg^* n)$: lấy log của hàm log lặp $\Rightarrow$ tăng chậm hơn bản thân $\lg^* n$.
+  \item $2^{\lg^* n}$: hàm mũ của $\lg^* n$ $\Rightarrow$ tăng nhanh hơn $\lg^* n$.
+\end{itemize}
+
+\begin{resultbox}
+$\lg(\lg^* n)
+\;\prec\; \lg^* n \equiv \lg^*(\lg n)
+\;\prec\; 2^{\lg^* n}$
+\end{resultbox}
+
+% ----- LỚP 3 -----
+\subsection{Lớp 3: Log của log --- $\Theta(\lg\lg n)$}
+
+\textbf{Hàm:} $\ln\ln n$.
+
+\textbf{Lập luận:} $\ln\ln n = \Theta(\lg\lg n)$ (chỉ khác hệ số do đổi cơ số log).
+Lớn hơn $\lg^* n$ nhưng nhỏ hơn các hàm logarit chuẩn.
+
+% ----- LỚP 4 -----
+\subsection{Lớp 4: Logarit --- $\Theta(\log^k n)$}
+
+\textbf{Các hàm:} $\sqrt{\lg n}$, \;\; $\ln n$, \;\; $\lg^2 n$.
+
+\textbf{Lập luận:}
+\begin{itemize}
+  \item $\sqrt{\lg n} = (\lg n)^{1/2}$ --- logarit bậc $1/2$.
+  \item $\ln n = \Theta(\lg n)$ --- logarit bậc $1$ (chỉ khác hệ số cơ số).
+  \item $\lg^2 n = (\lg n)^2$ --- logarit bậc $2$.
+\end{itemize}
+So bậc: $1/2 < 1 < 2$.
+
+\begin{resultbox}
+$\sqrt{\lg n} \;\prec\; \ln n \;\prec\; \lg^2 n$
+\end{resultbox}
+
+% ----- LỚP 5 -----
+\subsection{Lớp 5: Siêu logarit / Tiền đa thức}
+
+\textbf{Hàm:} $2^{\sqrt{2\lg n}}$.
+
+\textbf{Lập luận:} Lấy $\lg$ hai vế: $\lg\bigl(2^{\sqrt{2\lg n}}\bigr) = \sqrt{2\lg n}$.
+
+So với $\lg^2 n = (\lg n)^2$: khi $n$ lớn, $\sqrt{2\lg n} \gg (\lg n)^2$? \textbf{Không} ---
+thực tế $\sqrt{\lg n}$ tăng chậm hơn $(\lg n)^2$. Tuy nhiên, hàm $2^{\sqrt{2\lg n}}$ tăng
+\textbf{nhanh hơn} mọi $\log^k n$ vì phần mũ đang tăng (dù chậm).
+
+So với đa thức $\sqrt{n}$: $\lg(\sqrt{n}) = \frac{1}{2}\lg n \gg \sqrt{2\lg n}$ khi $n$ lớn.
+
+$\Longrightarrow$ Nằm giữa lớp logarit và lớp đa thức.
+
+% ----- LỚP 6 -----
+\subsection{Lớp 6: Đa thức --- $\Theta(n^c)$}
+
+\textbf{Các hàm:} $(\sqrt{2})^{\lg n}$, \; $n$, \; $2^{\lg n}$, \; $\lg(n!)$, \; $n\lg n$, \; $n^2$, \; $4^{\lg n}$, \; $n^3$.
+
+\textbf{Lập luận chi tiết:}
+
+\begin{enumerate}[label=(\roman*)]
+  \item $(\sqrt{2})^{\lg n}$:
+
+  Chuyển về cơ số 2:
+  $(\sqrt{2})^{\lg n} = (2^{1/2})^{\lg n} = 2^{\frac{1}{2}\lg n} = (2^{\lg n})^{1/2} = n^{1/2} = \sqrt{n}$.
+
+  $\Longrightarrow \Theta(n^{1/2})$.
+
+  \item $2^{\lg n}$:
+
+  Theo định nghĩa: $2^{\lg n} = 2^{\log_2 n} = n$.
+
+  $\Longrightarrow \Theta(n)$. Vậy $n \equiv 2^{\lg n}$.
+
+  \item $\lg(n!)$:
+
+  Theo công thức Stirling (như cô nhắc trong buổi 5):
+  \[
+    \lg(n!) = \lg 1 + \lg 2 + \cdots + \lg n \leq n\lg n
+    \quad\Longrightarrow\quad \lg(n!) \in O(n\lg n).
+  \]
+  Chiều ngược lại cũng chứng minh được $\lg(n!) \in \Omega(n\lg n)$.
+
+  $\Longrightarrow \lg(n!) \in \Theta(n\lg n)$. Vậy $n\lg n \equiv \lg(n!)$.
+
+  \item $4^{\lg n}$:
+
+  Chuyển về cơ số 2:
+  $4^{\lg n} = (2^2)^{\lg n} = 2^{2\lg n} = (2^{\lg n})^2 = n^2$.
+
+  $\Longrightarrow \Theta(n^2)$. Vậy $n^2 \equiv 4^{\lg n}$.
+\end{enumerate}
+
+So bậc các đa thức: $1/2 < 1 < n\lg n < 2 < 3$.
+
+\begin{resultbox}
+$(\sqrt{2})^{\lg n}
+\;\prec\; n \equiv 2^{\lg n}
+\;\prec\; n\lg n \equiv \lg(n!)
+\;\prec\; n^2 \equiv 4^{\lg n}
+\;\prec\; n^3$
+\end{resultbox}
+
+% ----- LỚP 7 -----
+\subsection{Lớp 7: Siêu đa thức / Tiền hàm mũ}
+
+\textbf{Các hàm:} $(\lg n)!$, \;\; $n^{\lg\lg n}$, \;\; $(\lg n)^{\lg n}$.
+
+\textbf{Lập luận:}
+
+\begin{enumerate}[label=(\roman*)]
+  \item $(\lg n)^{\lg n}$:
+
+  Lấy $\lg$ hai vế: $\lg\bigl((\lg n)^{\lg n}\bigr) = \lg n \cdot \lg\lg n$.
+
+  \item $n^{\lg\lg n}$:
+
+  Lấy $\lg$ hai vế: $\lg\bigl(n^{\lg\lg n}\bigr) = \lg\lg n \cdot \lg n$.
+
+  $\Longrightarrow$ Hai hàm có cùng log $\Rightarrow$ $n^{\lg\lg n} \equiv (\lg n)^{\lg n}$.
+
+  \item $(\lg n)!$:
+
+  Áp dụng Stirling: $\lg\bigl((\lg n)!\bigr) \approx \lg n \cdot \lg\lg n$, nhưng có hệ số nhỏ hơn
+  khi phân tích kỹ. Nên $(\lg n)! \prec n^{\lg\lg n}$.
+\end{enumerate}
+
+\begin{resultbox}
+$(\lg n)! \;\prec\; n^{\lg\lg n} \equiv (\lg n)^{\lg n}$
+\end{resultbox}
+
+% ----- LỚP 8 -----
+\subsection{Lớp 8: Hàm mũ --- $\Theta(c^n)$}
+
+\textbf{Các hàm:} $(3/2)^n$, \;\; $2^n$, \;\; $n \cdot 2^n$, \;\; $e^n$.
+
+\textbf{Lập luận --- đưa về cùng cơ số 2:}
+
+\begin{enumerate}[label=(\roman*)]
+  \item $(3/2)^n = 2^{n\lg(3/2)} \approx 2^{0{,}585\,n}$. Phần mũ: $O(n)$, hệ số $\approx 0{,}585$.
+
+  \item $2^n$: Phần mũ đúng $n$, hệ số $= 1$.
+
+  \item $n \cdot 2^n$: Lấy $\lg$: $n + \lg n$. Phần chính vẫn là $n$ nhưng có thêm $\lg n$ $\Rightarrow$ lớn hơn $2^n$ một chút.
+
+  \item $e^n = 2^{n\lg e} \approx 2^{1{,}443\,n}$. Phần mũ: hệ số $\approx 1{,}443 > 1$.
+\end{enumerate}
+
+So phần mũ (hệ số): $0{,}585 < 1 < 1 + \frac{\lg n}{n} < 1{,}443$.
+
+\begin{resultbox}
+$(3/2)^n \;\prec\; 2^n \;\prec\; n \cdot 2^n \;\prec\; e^n$
+\end{resultbox}
+
+% ----- LỚP 9 -----
+\subsection{Lớp 9: Giai thừa --- $\Theta(n!)$}
+
+\textbf{Các hàm:} $n!$, \;\; $(n+1)!$.
+
+\textbf{Lập luận:}
+\begin{itemize}
+  \item $n!$ tăng nhanh hơn $e^n$ vì $\lg(n!) = \Theta(n\lg n)$ mà $\lg(e^n) = n\lg e = \Theta(n)$, và $n\lg n \gg n$.
+  \item $(n+1)! = (n+1) \cdot n!$ --- rõ ràng tăng nhanh hơn $n!$.
+\end{itemize}
+
+\begin{resultbox}
+$n! \;\prec\; (n+1)!$
+\end{resultbox}
+
+% ----- LỚP 10 -----
+\subsection{Lớp 10: Siêu hàm mũ (Double Exponential)}
+
+\textbf{Các hàm:} $2^{2^n}$, \;\; $2^{2^{n+1}}$.
+
+\textbf{Lập luận:}
+\[
+  2^{2^{n+1}} = 2^{2 \cdot 2^n} = \bigl(2^{2^n}\bigr)^2.
+\]
+Bình phương của $2^{2^n}$ rõ ràng lớn hơn rất nhiều so với bản thân nó.
+
+\begin{resultbox}
+$2^{2^n} \;\prec\; 2^{2^{n+1}}$
+\end{resultbox}
+
+% ===== TỔNG KẾT =====
+\newpage
+\section*{Tổng kết: Thứ tự hoàn chỉnh 30 hàm (Nhóm 2)}
+
+\begin{resultbox}
+\small
+\[
+\begin{aligned}
+  & \underbrace{1 \equiv n^{1/\lg n}}_{\Theta(1)}
+    \;\prec\; \lg(\lg^* n)
+    \;\prec\; \underbrace{\lg^* n \equiv \lg^*(\lg n)}_{\Theta(\lg^* n)}
+    \;\prec\; 2^{\lg^* n} \\[6pt]
+  & \;\prec\; \underbrace{\ln\ln n}_{\Theta(\lg\lg n)}
+    \;\prec\; \underbrace{\sqrt{\lg n}}_{\Theta(\lg^{1/2} n)}
+    \;\prec\; \underbrace{\ln n}_{\Theta(\lg n)}
+    \;\prec\; \underbrace{\lg^2 n}_{\Theta(\lg^2 n)}
+    \;\prec\; 2^{\sqrt{2\lg n}} \\[6pt]
+  & \;\prec\; \underbrace{(\sqrt{2})^{\lg n}}_{= \sqrt{n}}
+    \;\prec\; \underbrace{n \equiv 2^{\lg n}}_{\Theta(n)}
+    \;\prec\; \underbrace{n\lg n \equiv \lg(n!)}_{\Theta(n\lg n)}
+    \;\prec\; \underbrace{n^2 \equiv 4^{\lg n}}_{\Theta(n^2)}
+    \;\prec\; n^3 \\[6pt]
+  & \;\prec\; \underbrace{(\lg n)!}_{} 
+    \;\prec\; \underbrace{n^{\lg\lg n} \equiv (\lg n)^{\lg n}}_{} \\[6pt]
+  & \;\prec\; \underbrace{(3/2)^n}_{}
+    \;\prec\; 2^n
+    \;\prec\; n \cdot 2^n
+    \;\prec\; e^n \\[6pt]
+  & \;\prec\; n!
+    \;\prec\; (n+1)!
+    \;\prec\; 2^{2^n}
+    \;\prec\; 2^{2^{n+1}}
+\end{aligned}
+\]
+\end{resultbox}
+
+\bigskip
+
+\begin{notebox}[title={Mẹo khi đi thi (theo cô Thương)}]
+\begin{itemize}
+  \item Chỉ cần ghi hàm thuộc lớp $\Theta$ nào là đã được \textbf{0.25--0.5 điểm/hàm}.
+  \item Không cần ghi đúng công thức gốc --- ví dụ chỉ cần viết ``$\sum_{i=1}^{n} i^2 \in \Theta(n^3)$''.
+  \item Khi so sánh hai hàm mũ: \textbf{chuyển về cùng cơ số 2}, rồi so phần mũ.
+  \item Nếu không chắc đúng/sai $\Rightarrow$ dùng \textbf{phản chứng}: giả sử đúng, biến đổi tới mâu thuẫn.
+  \item Khi dùng giới hạn: $\displaystyle\lim_{n\to\infty}\frac{f(n)}{g(n)} = 0 \Rightarrow f \in O(g)$; $= c \neq 0 \Rightarrow f = \Theta(g)$; $= \infty \Rightarrow g \in O(f)$.
+\end{itemize}
+\end{notebox}
+
+

@@ -1,0 +1,100 @@
+# Thuong-cho-tam-than-co-han 🎓
+
+> Hệ thống AI tái tạo hành vi giải bài tập thuật toán theo phong cách **GV Huỳnh Thị Thanh Thương** — Môn Phân tích & Thiết kế Thuật toán.
+
+Dự án này sử dụng mô hình ngôn ngữ lớn (Google Gemini) kết hợp với kỹ thuật **Few-shot Prompting** và **Persona Prompting** để tạo ra các lời giải bài tập thuật toán bằng LaTeX, mô phỏng chính xác giọng điệu, cách lập luận và format trình bày của Cô Thương.
+
+---
+
+## 🏗 Kiến trúc hệ thống (Architecture)
+
+Hệ thống được thiết kế theo mô hình **Pipeline 3 lớp (3-Tier Pipeline)**, tập trung vào việc tiền xử lý dữ liệu để làm ngữ cảnh (context) cho LLM thay vì sử dụng RAG/Vector DB phức tạp do lượng dữ liệu hiện tại (5 buổi học) là tương đối nhỏ gọn.
+
+### 1. Lớp Dữ liệu (Data Layer) - `data/`
+Chịu trách nhiệm thu thập và cấu trúc hóa "hành vi" và "phong cách" của giảng viên:
+- **`download_subtitles.py`**: Tự động đồng bộ hóa với [Playlist YouTube bài giảng](https://youtube.com/playlist?list=PLapjV_I0Y4vU&si=3h00kxl1mFBHzblm). Script tải các auto-generated subtitle (`.vtt`), sau đó tự động clean timestamp, tag HTML để chuyển thành text thuần (`_clean.md`).
+- **`build_knowledge_base.py`**: Quét toàn bộ transcript (`.md`) và các bài mẫu LaTeX (`.tex`), chấm điểm mức độ liên quan (relevance score) dựa trên keyword để trích xuất các **Teaching Segments** (đoạn cô giảng/giải bài) và **LaTeX Examples**.
+- **`knowledge_base.json`**: Đầu ra của lớp dữ liệu. Một cơ sở dữ liệu tĩnh được LLM load trực tiếp vào RAM mỗi khi chạy.
+
+### 2. Lớp Cốt lõi AI (AI Core Layer) - `core/`
+Chịu trách nhiệm điều phối LLM và định hình kết quả đầu ra:
+- **`persona.py` (Bộ não)**: Chứa System Prompt cực kỳ chi tiết. Ép LLM xưng hô bình dân, lập luận từng bước (đưa về chuẩn → phân lớp → so sánh), cách cho điểm (0.25/0.5), và tuân thủ các công thức/mẹo mà cô hay dùng.
+- **`latex_template.py` (Khuôn đúc)**: Chứa Preamble cứng của LaTeX. Đảm bảo file `.tex` sinh ra luôn có đúng package, đúng định nghĩa màu sắc (`mainblue`), hộp kết quả (`resultbox`), và hộp lưu ý (`notebox`).
+- **`solver.py` (Động cơ)**: Đọc đề bài → Query Knowledge Base lấy ví dụ mẫu (Few-shot) → Ghép vào Persona → Gọi Gemini API → Parse kết quả LLM → Bọc vào LaTeX Template.
+
+### 3. Lớp Giao diện (Interface Layer) - `solve.py`
+Cung cấp CLI (Command Line Interface) cho người dùng cuối tương tác với hệ thống. Cho phép giải bài tập đơn lẻ, giải qua file, hoặc chạy chế độ tương tác (interactive).
+
+---
+
+## 🚀 Các lệnh cần biết (Commands)
+
+### 1. Cài đặt và cấu hình ban đầu
+Mở terminal tại thư mục project và chạy:
+
+```bash
+# 1. Cài đặt thư viện
+pip install -r requirements.txt
+
+# 2. Cấu hình API Key lần đầu (Nhập Google Gemini API Key khi được hỏi)
+python solve.py --setup
+```
+*(Bạn có thể lấy API Key miễn phí tại [Google AI Studio](https://aistudio.google.com/apikey))*
+
+### 2. Cập nhật dữ liệu (Data Pipeline)
+Khi playlist trên YouTube có video buổi học mới, bạn cần chạy 2 lệnh sau để hệ thống "học" thêm kiến thức mới:
+
+```bash
+# 1. Tải subtitle cho các video mới (bỏ qua video đã tải)
+python -m data.download_subtitles
+
+# 2. Build lại file knowledge_base.json để cập nhật vào não LLM
+python -m data.build_knowledge_base
+```
+
+### 3. Giải bài tập (Solver)
+
+**Giải nhanh một bài từ Terminal:**
+```bash
+python solve.py --problem "Sắp xếp các hàm sau theo bậc tăng trưởng: n², 2^n, n·log(n), n!" --output bai_giai.tex
+```
+*(Kết quả sẽ được lưu vào file `bai_giai.tex`. Bạn dùng `pdflatex bai_giai.tex` để biên dịch ra PDF)*
+
+**Giải bài từ một file text chứa đề dài:**
+```bash
+python solve.py --problem-file de_bai.txt --output bai_giai.tex
+```
+
+**Bật chế độ chat tương tác (Interactive Mode):**
+```bash
+# Thích hợp khi bạn muốn giải liên tục nhiều bài mà không cần gõ lệnh dài
+python solve.py --interactive
+```
+
+**Sử dụng model LLM khác (ví dụ cần thông minh hơn):**
+```bash
+python solve.py --model gemini-2.5-pro --problem "..."
+```
+
+---
+
+## 📁 Cây thư mục
+
+```
+thuong-cho-tam-than-co-han/
+├── data/
+│   ├── buoi1.vi.vtt, buoi1_clean.md, ... # Raw data (subtitle, transcript)
+│   ├── loi_giai_so_sanh_thuat_toan.tex   # Mẫu LaTeX của cô
+│   ├── download_subtitles.py
+│   ├── build_knowledge_base.py
+│   └── knowledge_base.json               # DB đã parse
+├── core/
+│   ├── config.py
+│   ├── persona.py
+│   ├── latex_template.py
+│   └── solver.py
+├── solve.py                              # CLI
+├── config.json                           # Sinh ra sau khi chạy --setup
+├── requirements.txt
+└── README.md
+```

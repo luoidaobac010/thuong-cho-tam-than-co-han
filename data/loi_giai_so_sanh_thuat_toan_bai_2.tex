@@ -1,0 +1,393 @@
+\documentclass[12pt,a4paper]{article}
+
+% ===== PACKAGES =====
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\geometry{a4paper, margin=2.5cm}
+
+% ===== CUSTOM STYLES =====
+\definecolor{mainblue}{RGB}{0,90,160}
+\definecolor{darkgreen}{RGB}{0,120,60}
+\definecolor{resultbg}{RGB}{230,245,255}
+
+\newtcolorbox{resultbox}{
+  colback=resultbg, colframe=mainblue,
+  boxrule=0.8pt, arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries, title=Kết quả
+}
+
+\newtcolorbox{notebox}[1][]{
+  colback=yellow!8, colframe=orange!70!black,
+  boxrule=0.6pt, arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries, title={Lưu ý}, #1
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Phân tích \& Thiết kế Thuật toán}}
+\fancyhead[R]{\textit{GV: Huỳnh Thị Thanh Thương}}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Bài giải Bài 2: Xác định $O$, $\Theta$, $\Omega$ và Phân lớp hàm}\\[6pt]
+\large (Có lập luận/giải thích theo hướng dẫn giảng viên)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+% =========================================
+% CÂU 1: Đúng / Sai
+% =========================================
+\section{Câu 1: Xác định đúng hay sai}
+
+\textbf{Đề bài:} Dùng định nghĩa không hình thức (informal) của $O$, $\Theta$, $\Omega$ để xác định các khẳng định sau đúng hay sai.
+
+\bigskip
+
+Trước hết, ta rút gọn hàm cần xét:
+\[
+  \frac{n(n+1)}{2} = \frac{n^2 + n}{2} \in \Theta(n^2).
+\]
+Bỏ hệ số $1/2$, bỏ bậc thấp $n$, phần chính là $n^2$. Vậy bậc tăng trưởng là $n^2$.
+
+\bigskip
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+
+  \item $\dfrac{n(n+1)}{2} \in O(n^3)$ \hfill \textcolor{darkgreen}{\textbf{ĐÚNG}} \\[4pt]
+  \textbf{Lập luận:} Ta đã biết $\frac{n(n+1)}{2} \in \Theta(n^2)$.
+  Mà $n^2 \prec n^3$ (bậc $2 < 3$), nên $n^2 \in O(n^3)$.
+
+  Theo tính chất bắc cầu: $\frac{n(n+1)}{2} \in O(n^2) \subseteq O(n^3)$.
+
+  (Như cô giảng trong buổi 4: một hàm có thể thuộc nhiều lớp $O$ --- $O(n^2)$, $O(n^3)$, $O(n^4)$,\ldots\ đều đúng.
+  Hàm bậc 2 bị chặn trên bởi $n^3$ là hiển nhiên.)
+
+  \bigskip
+
+  \item $\dfrac{n(n+1)}{2} \in O(n^2)$ \hfill \textcolor{darkgreen}{\textbf{ĐÚNG}} \\[4pt]
+  \textbf{Lập luận:} $\frac{n(n+1)}{2} = \frac{n^2 + n}{2} \leq \frac{n^2 + n^2}{2} = n^2$ với mọi $n \geq 1$.
+
+  Chọn $c = 1$, $n_0 = 1$: ta có $\frac{n(n+1)}{2} \leq 1 \cdot n^2$ với mọi $n \geq 1$.
+
+  $\Longrightarrow$ Theo định nghĩa $O$: $\frac{n(n+1)}{2} \in O(n^2)$. \checkmark
+
+  \bigskip
+
+  \item $\dfrac{n(n+1)}{2} \in \Theta(n^3)$ \hfill \textcolor{red}{\textbf{SAI}} \\[4pt]
+  \textbf{Lập luận (phản chứng --- theo cô hướng dẫn buổi 5):}
+
+  Giả sử khẳng định đúng, tức $\frac{n(n+1)}{2} \in \Theta(n^3)$.
+
+  Theo định nghĩa $\Theta$: $\exists\, c_1, c_2 > 0,\; n_0 \in \mathbb{N}$ sao cho:
+  \[
+    c_1 \cdot n^3 \leq \frac{n(n+1)}{2} \leq c_2 \cdot n^3 \quad \forall\, n \geq n_0.
+  \]
+
+  Xét vế trái, chia cả hai vế cho $n^2$ (với $n \geq 1$):
+  \[
+    c_1 \cdot n \leq \frac{n+1}{2}.
+  \]
+
+  Bất đẳng thức $c_1 \cdot n^3 \leq \frac{n^2+n}{2}$ suy ra:
+  \[
+    c_1 \leq \frac{n^2+n}{2n^3} = \frac{1}{2n} + \frac{1}{2n^2} \to 0 \quad \text{khi } n \to \infty.
+  \]
+
+  $\Longrightarrow$ Không tồn tại $c_1 > 0$ thỏa mãn với \textbf{mọi} $n \geq n_0$. \textbf{Mâu thuẫn!}
+
+  Vậy giả sử sai $\Rightarrow \frac{n(n+1)}{2} \notin \Theta(n^3)$.
+
+  \bigskip
+
+  \item $\dfrac{n(n+1)}{2} \in \Omega(n)$ \hfill \textcolor{darkgreen}{\textbf{ĐÚNG}} \\[4pt]
+  \textbf{Lập luận:} $\frac{n(n+1)}{2} = \frac{n^2+n}{2} \geq \frac{n}{2}$ với mọi $n \geq 0$.
+
+  Chọn $c = \frac{1}{2}$, $n_0 = 0$: ta có $\frac{n(n+1)}{2} \geq \frac{1}{2} \cdot n$ với mọi $n \geq 0$.
+
+  $\Longrightarrow$ Theo định nghĩa $\Omega$: $\frac{n(n+1)}{2} \in \Omega(n)$. \checkmark
+
+  (Bậc tăng trưởng $n^2$ lớn hơn $n$, nên hiển nhiên $n^2$ là chặn dưới của $\Omega(n)$.)
+
+\end{enumerate}
+
+\begin{resultbox}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llcl}
+  \textbf{a.} & $n(n+1)/2 \in O(n^3)$      & $\Longrightarrow$ & \textcolor{darkgreen}{\textbf{ĐÚNG}} (bậc 2 $<$ bậc 3) \\
+  \textbf{b.} & $n(n+1)/2 \in O(n^2)$      & $\Longrightarrow$ & \textcolor{darkgreen}{\textbf{ĐÚNG}} (cùng bậc, chặn trên chặt) \\
+  \textbf{c.} & $n(n+1)/2 \in \Theta(n^3)$ & $\Longrightarrow$ & \textcolor{red}{\textbf{SAI}} (phản chứng: $c_1 \to 0$) \\
+  \textbf{d.} & $n(n+1)/2 \in \Omega(n)$   & $\Longrightarrow$ & \textcolor{darkgreen}{\textbf{ĐÚNG}} (bậc 2 $>$ bậc 1) \\
+\end{tabular}
+\end{resultbox}
+
+% =========================================
+% CÂU 2: Phân lớp Θ
+% =========================================
+\newpage
+\section{Câu 2: Phân lớp $\Theta(g(n))$ cho từng hàm}
+
+\textbf{Đề bài:} Cho biết mỗi hàm sau thuộc lớp $\Theta(g(n))$ nào (chọn $g(n)$ đơn giản nhất). Chứng minh.
+
+\bigskip
+
+\begin{enumerate}[label=\textbf{\alph*.}]
+
+  % ----- (a) -----
+  \item $(n^2 + 1)^{10}$
+
+  \textbf{Phân lớp:} Khai triển theo bậc cao nhất:
+  \[
+    (n^2 + 1)^{10} = n^{20} + \underbrace{10n^{18} + \cdots + 1}_{\text{bậc thấp hơn}}.
+  \]
+  Bậc cao nhất theo $n$ là $n^{20}$. Bỏ hệ số, bỏ bậc thấp.
+
+  $\Longrightarrow \boxed{(n^2+1)^{10} \in \Theta(n^{20})}$
+
+  \textbf{Chứng minh bằng định nghĩa:}
+
+  \textit{Chặn trên} ($O$): $(n^2+1)^{10} \leq (n^2 + n^2)^{10} = (2n^2)^{10} = 2^{10} \cdot n^{20} = 1024\,n^{20}$,
+  với mọi $n \geq 1$.
+
+  Chọn $c_2 = 1024$, $n_0 = 1$.
+
+  \textit{Chặn dưới} ($\Omega$): $(n^2+1)^{10} \geq (n^2)^{10} = n^{20}$, với mọi $n \geq 0$.
+
+  Chọn $c_1 = 1$, $n_0 = 0$.
+
+  Vậy $c_1 n^{20} \leq (n^2+1)^{10} \leq c_2 n^{20}$ với $c_1=1$, $c_2=1024$, $n_0=1$. \checkmark
+
+  \bigskip
+
+  % ----- (b) -----
+  \item $\sqrt{10n^2 + 7n + 3}$
+
+  \textbf{Phân lớp:} Bên trong căn, bậc cao nhất là $10n^2$.
+  \[
+    \sqrt{10n^2 + 7n + 3} \approx \sqrt{10n^2} = \sqrt{10}\,n.
+  \]
+  Bỏ hệ số $\sqrt{10}$: bậc tăng trưởng là $n$.
+
+  $\Longrightarrow \boxed{\sqrt{10n^2 + 7n + 3} \in \Theta(n)}$
+
+  \textbf{Chứng minh:}
+
+  \textit{Chặn trên:} Với $n \geq 1$: $7n \leq 7n^2$ và $3 \leq 3n^2$. Vậy:
+  \[
+    10n^2 + 7n + 3 \leq 10n^2 + 7n^2 + 3n^2 = 20n^2.
+  \]
+  \[
+    \sqrt{10n^2 + 7n + 3} \leq \sqrt{20}\,n \approx 4{,}47\,n.
+  \]
+  Chọn $c_2 = 5$, $n_0 = 1$.
+
+  \textit{Chặn dưới:} $10n^2 + 7n + 3 \geq 10n^2$ (vì $7n + 3 > 0$ khi $n \geq 0$). Vậy:
+  \[
+    \sqrt{10n^2 + 7n + 3} \geq \sqrt{10}\,n \approx 3{,}16\,n.
+  \]
+  Chọn $c_1 = 3$, $n_0 = 1$.
+
+  Vậy $3n \leq \sqrt{10n^2+7n+3} \leq 5n$ với mọi $n \geq 1$. \checkmark
+
+  \bigskip
+
+  % ----- (c) -----
+  \item $2n\lg(n+2)^2 + (n+2)^2 \lg\dfrac{n}{2}$
+
+  \textbf{Phân lớp:} Rút gọn từng phần:
+
+  \textit{Phần 1:} $2n\lg(n+2)^2 = 2n \cdot 2\lg(n+2) = 4n\lg(n+2)$.
+
+  Khi $n$ đủ lớn: $\lg(n+2) \approx \lg n$. Vậy Phần 1 $\in \Theta(n\log n)$.
+
+  \textit{Phần 2:} $(n+2)^2\lg\frac{n}{2} = (n+2)^2(\lg n - \lg 2) = (n+2)^2(\lg n - 1)$.
+
+  Khi $n$ đủ lớn: $(n+2)^2 \approx n^2$ và $\lg n - 1 \approx \lg n$. Vậy Phần 2 $\in \Theta(n^2\log n)$.
+
+  \textit{Gộp lại (quy tắc cộng --- lấy max):}
+  \[
+    \max\bigl(\Theta(n\log n),\; \Theta(n^2\log n)\bigr) = \Theta(n^2\log n).
+  \]
+
+  $\Longrightarrow \boxed{2n\lg(n+2)^2 + (n+2)^2\lg\frac{n}{2} \in \Theta(n^2\lg n)}$
+
+  \textbf{Chứng minh (sketch):}
+
+  \textit{Chặn trên:} Với $n \geq 2$:
+  \begin{align*}
+    &4n\lg(n+2) + (n+2)^2(\lg n - 1) \\
+    &\leq 4n \cdot 2\lg n + (2n)^2 \cdot \lg n \quad (\text{vì } n+2 \leq 2n,\; \lg(n+2) \leq 2\lg n) \\
+    &= 8n\lg n + 4n^2\lg n = (8n + 4n^2)\lg n \leq 5n^2\lg n.
+  \end{align*}
+  Chọn $c_2 = 5$, $n_0$ đủ lớn.
+
+  \textit{Chặn dưới:} Chỉ cần lấy Phần 2:
+  \[
+    (n+2)^2(\lg n - 1) \geq n^2 \cdot \frac{1}{2}\lg n = \frac{1}{2}n^2\lg n, \quad \text{với } n \geq 4.
+  \]
+  Chọn $c_1 = \frac{1}{2}$, $n_0 = 4$. \checkmark
+
+  \bigskip
+
+  % ----- (d) -----
+  \item $2^{n+1} + 3^{n-1}$
+
+  \textbf{Phân lớp --- đưa về cùng cơ số 2:}
+
+  \begin{itemize}
+    \item $2^{n+1} = 2 \cdot 2^n$. Phần mũ: $n$, hệ số: $2$. Thuộc $\Theta(2^n)$.
+    \item $3^{n-1} = \frac{1}{3} \cdot 3^n = \frac{1}{3} \cdot 2^{n\lg 3} \approx \frac{1}{3} \cdot 2^{1{,}585\,n}$. Phần mũ: $1{,}585\,n$. Thuộc $\Theta(3^n)$.
+  \end{itemize}
+
+  So phần mũ: $n < 1{,}585\,n$ nên $2^n \prec 3^n$.
+
+  Quy tắc cộng (lấy max): $2^{n+1} + 3^{n-1} \in \Theta(3^n)$.
+
+  $\Longrightarrow \boxed{2^{n+1} + 3^{n-1} \in \Theta(3^n)}$
+
+  \textbf{Chứng minh:}
+
+  \textit{Chặn trên:} Với $n \geq 1$: $2^{n+1} \leq 3^n$ (vì $2^{n+1} = 2 \cdot 2^n \leq 2 \cdot 3^n$). Vậy:
+  \[
+    2^{n+1} + 3^{n-1} \leq 2 \cdot 3^n + \frac{1}{3} \cdot 3^n = \frac{7}{3} \cdot 3^n.
+  \]
+  Chọn $c_2 = \frac{7}{3}$, $n_0 = 1$.
+
+  \textit{Chặn dưới:} $2^{n+1} + 3^{n-1} \geq 3^{n-1} = \frac{1}{3} \cdot 3^n$.
+
+  Chọn $c_1 = \frac{1}{3}$, $n_0 = 1$.
+
+  Vậy $\frac{1}{3}\cdot 3^n \leq 2^{n+1} + 3^{n-1} \leq \frac{7}{3}\cdot 3^n$ với mọi $n \geq 1$. \checkmark
+
+  \bigskip
+
+  % ----- (e) -----
+  \item $\lfloor \log_2 n \rfloor$
+
+  \textbf{Phân lớp:} Hàm phần nguyên (floor) của $\log_2 n$.
+
+  Ta biết: $\log_2 n - 1 < \lfloor \log_2 n \rfloor \leq \log_2 n$, với mọi $n \geq 1$.
+
+  Vậy $\lfloor \log_2 n \rfloor$ xấp xỉ $\log_2 n$ (chỉ sai lệch tối đa 1 đơn vị --- không đáng kể khi $n$ lớn).
+
+  $\Longrightarrow \boxed{\lfloor \log_2 n \rfloor \in \Theta(\lg n)}$
+
+  \textbf{Chứng minh:}
+
+  \textit{Chặn trên:} $\lfloor \log_2 n \rfloor \leq \log_2 n = 1 \cdot \lg n$. Chọn $c_2 = 1$, $n_0 = 1$.
+
+  \textit{Chặn dưới:} $\lfloor \log_2 n \rfloor > \log_2 n - 1 \geq \frac{1}{2}\log_2 n$, với mọi $n \geq 4$ (vì $\lg n \geq 2$ khi $n \geq 4$).
+
+  Chọn $c_1 = \frac{1}{2}$, $n_0 = 4$. \checkmark
+
+\end{enumerate}
+
+\begin{resultbox}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+  \textbf{a.} & $(n^2+1)^{10}$      & $\in \Theta(n^{20})$ \\
+  \textbf{b.} & $\sqrt{10n^2+7n+3}$ & $\in \Theta(n)$ \\
+  \textbf{c.} & $2n\lg(n+2)^2 + (n+2)^2\lg\frac{n}{2}$ & $\in \Theta(n^2\lg n)$ \\
+  \textbf{d.} & $2^{n+1} + 3^{n-1}$ & $\in \Theta(3^n)$ \\
+  \textbf{e.} & $\lfloor\log_2 n\rfloor$ & $\in \Theta(\lg n)$ \\
+\end{tabular}
+\end{resultbox}
+
+% =========================================
+% CÂU 3: Chứng minh đa thức bậc k ∈ Θ(n^k)
+% =========================================
+\newpage
+\section{Câu 3: Chứng minh đa thức bậc $k$ thuộc $\Theta(n^k)$}
+
+\textbf{Đề bài:} Chứng minh rằng mọi đa thức bậc $k$:
+\[
+  p(n) = a_k n^k + a_{k-1} n^{k-1} + \cdots + a_1 n + a_0, \quad \text{với } a_k > 0,
+\]
+đều thuộc $\Theta(n^k)$.
+
+\bigskip
+
+\textbf{Cần chứng minh:} Tồn tại $c_1, c_2 > 0$ và $n_0 \in \mathbb{N}$ sao cho:
+\[
+  c_1 \cdot n^k \leq p(n) \leq c_2 \cdot n^k, \quad \forall\, n \geq n_0.
+\]
+
+\subsection*{Chứng minh chặn trên: $p(n) \in O(n^k)$}
+
+Với mọi $n \geq 1$, ta có $n^i \leq n^k$ khi $0 \leq i \leq k$. Do đó:
+\begin{align*}
+  p(n) &= a_k n^k + a_{k-1}n^{k-1} + \cdots + a_1 n + a_0 \\
+       &\leq |a_k| n^k + |a_{k-1}| n^k + \cdots + |a_1| n^k + |a_0| n^k \\
+       &= \Bigl(\sum_{i=0}^{k} |a_i|\Bigr) \cdot n^k.
+\end{align*}
+
+Chọn $c_2 = \displaystyle\sum_{i=0}^{k} |a_i|$, $n_0 = 1$.
+
+$\Longrightarrow p(n) \leq c_2 \cdot n^k$ với mọi $n \geq 1$. \checkmark
+
+\subsection*{Chứng minh chặn dưới: $p(n) \in \Omega(n^k)$}
+
+Chia cả hai vế cho $n^k$ (với $n \geq 1$):
+\[
+  \frac{p(n)}{n^k} = a_k + \frac{a_{k-1}}{n} + \frac{a_{k-2}}{n^2} + \cdots + \frac{a_0}{n^k}.
+\]
+
+Khi $n \to \infty$, các phần $\frac{a_i}{n^{k-i}} \to 0$ với mọi $i < k$. Nên:
+\[
+  \lim_{n\to\infty} \frac{p(n)}{n^k} = a_k > 0.
+\]
+
+Do giới hạn bằng $a_k > 0$, tồn tại $n_0$ đủ lớn sao cho:
+\[
+  \frac{p(n)}{n^k} \geq \frac{a_k}{2} > 0, \quad \forall\, n \geq n_0.
+\]
+
+Suy ra:
+\[
+  p(n) \geq \frac{a_k}{2} \cdot n^k, \quad \forall\, n \geq n_0.
+\]
+
+Chọn $c_1 = \dfrac{a_k}{2}$.
+
+$\Longrightarrow p(n) \geq c_1 \cdot n^k$ với mọi $n \geq n_0$. \checkmark
+
+\subsection*{Kết luận}
+
+\begin{resultbox}
+Từ hai phần trên, ta có:
+\[
+  \frac{a_k}{2} \cdot n^k \;\leq\; p(n) \;\leq\; \Bigl(\sum_{i=0}^{k}|a_i|\Bigr) \cdot n^k, \quad \forall\, n \geq n_0.
+\]
+Với $c_1 = \dfrac{a_k}{2} > 0$, \; $c_2 = \displaystyle\sum_{i=0}^{k}|a_i| > 0$, \; $n_0$ đủ lớn.
+
+Theo định nghĩa $\Theta$:
+\[
+  \boxed{p(n) = a_k n^k + a_{k-1}n^{k-1} + \cdots + a_0 \;\in\; \Theta(n^k).}
+\]
+\end{resultbox}
+
+\begin{notebox}[title={Ý nghĩa thực tiễn (theo cô Thương)}]
+Kết quả này xác nhận phương pháp ``ước lượng nhanh'' mà cô đã dạy:
+\begin{itemize}
+  \item Khi gặp một đa thức, chỉ cần nhìn \textbf{bậc cao nhất} theo $n$.
+  \item Bỏ hết hệ số và các bậc thấp hơn.
+  \item Kết luận ngay: $\Theta(n^k)$ --- với $k$ là bậc cao nhất.
+\end{itemize}
+Ví dụ: $0.001n^4 + 3n^3 + 1 \in \Theta(n^4)$ --- không cần biến đổi thêm!
+\end{notebox}
+
+\end{document}

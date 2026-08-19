@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+ENV/
+.venv/
+
+# Config (contains API keys)
+config.json
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.bcf
+*.cpt
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.log
+*.mw
+*.nlo
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# OS generated files
+.DS_Store
+Thumbs.db
