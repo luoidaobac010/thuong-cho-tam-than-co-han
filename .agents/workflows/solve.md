@@ -63,7 +63,7 @@ Tự động giải bài tập từ file PDF, theo **đúng phong cách cô Hu�
    - Ghi chú `% Cô giải bài này ở buổi X, dòng Y` trong LaTeX
 
    **Với bài cô CHƯA GIẢI:**
-   - Áp dụng phương pháp tổng quát từ skill (định nghĩa → biến đổi → chọn c,n₀ → ĐPCM)
+   - BẮT BUỘC áp dụng phương pháp chứng minh bằng định nghĩa hình thức khi xác định lớp O/Θ/Ω: chặn dưới (tìm $c_1$), chặn trên (tìm $c_2$), chọn $n_0$ kèm biến đổi bất đẳng thức để giải thích tại sao chọn được các hằng số đó. KHÔNG ĐƯỢC chỉ đưa ra kết quả (như Hạng chi phối) rồi kết luận luôn.
    - Dùng style và notation nhất quán với các bài cô đã giải
    - Ghi chú `% Bài này cô chưa giải trên lớp, áp dụng phương pháp chung`
 

@@ -440,6 +440,28 @@ Bỏ hệ số $1/2$, bỏ bậc thấp $n$, phần chính là $n^2$. Vậy bậ
 
   \textbf{Bước 2 --- Hạng chi phối:} $n^2\log n$ thống trị $n\log n$ (bậc đa thức cao hơn).
 
+  \textbf{Bước 3 --- Chứng minh $\Theta(n^2\lg n)$:}
+
+  Theo định nghĩa của $\Theta$, ta cần chỉ ra $\exists\, c_1, c_2 \in \mathbb{R}^+,\; n_0 \in \mathbb{N}$ sao cho:
+  \[
+    c_1 \cdot n^2\lg n \leq 4n\lg(n+2) + (n+2)^2(\lg n - 1) \leq c_2 \cdot n^2\lg n \quad \forall\, n \geq n_0.
+  \]
+
+  \textit{Cận dưới:} Với mọi $n \geq 4$, ta có $\lg n \geq 2 \Rightarrow \lg n - 1 \geq \frac{1}{2}\lg n$. Và $(n+2)^2 > n^2$, $4n\lg(n+2) > 0$. Suy ra:
+  \[
+    4n\lg(n+2) + (n+2)^2(\lg n - 1) \geq 0 + n^2 \cdot \frac{1}{2}\lg n = \frac{1}{2} n^2\lg n.
+  \]
+
+  \textit{Cận trên:} Với mọi $n \geq 2$, ta có $n+2 \leq 2n \Rightarrow \lg(n+2) \leq \lg(2n) = \lg n + 1 \leq 2\lg n$.
+  Đồng thời $(n+2)^2 \leq (2n)^2 = 4n^2$. Suy ra:
+  \begin{align*}
+    4n\lg(n+2) + (n+2)^2(\lg n - 1) &\leq 4n(2\lg n) + 4n^2(\lg n) \\
+    &= 8n\lg n + 4n^2\lg n \\
+    &\leq 8n^2\lg n + 4n^2\lg n = 12n^2\lg n.
+  \end{align*}
+
+  Suy ra chọn $c_1 = 1/2$, $c_2 = 12$, $n_0 = 4$. Theo định nghĩa của $\Theta$ ta có ĐPCM.
+
   \begin{resultbox}
   $2n\lg(n+2)^2 + (n+2)^2\lg\frac{n}{2} \in \Theta(n^2\lg n)$
   \end{resultbox}
