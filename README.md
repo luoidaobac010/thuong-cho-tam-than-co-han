@@ -1,4 +1,4 @@
-# Thuong-cho-tam-than-co-han 🎓
+# Thuong-cho-tam-than-co-han-de-vuot-qua-mon-thuat toán :3
 
 > Hệ thống AI tái tạo hành vi giải bài tập thuật toán theo phong cách **GV Huỳnh Thị Thanh Thương** — Môn Phân tích & Thiết kế Thuật toán.
 
