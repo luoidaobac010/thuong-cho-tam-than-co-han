@@ -137,3 +137,4 @@ Sau khi hoàn tất, tạo artifact tóm tắt:
 3. **Viết đầy đủ** — Thiếu ∃, ∈ ℝ⁺, ∀n ≥ n₀ = bị trừ điểm
 4. **Lập luận rồi mới kết luận** — Không "chọn c rồi viết luôn"
 5. **Hỏi user khi không chắc** — Nếu bài quá khác so với transcript, hỏi trước khi giải
+6. **KHÔNG văn vẻ kiểu AI (AI Slop)** — Tuyệt đối không dùng các từ như "Lập luận:", "Giải thích:", "Dựa vào định nghĩa...". Chỉ dùng biểu thức toán học cực kỳ ngắn gọn (VD: `Ta có: lg* n = 1 + lg*(lg n) \Rightarrow ...`). Tối giản chữ, tối đa công thức.

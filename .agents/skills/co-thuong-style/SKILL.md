@@ -76,14 +76,17 @@ Ví dụ cô giải trên lớp: CM 7n² = O(n² - 80n)
 - Xét dấu biểu thức → tìm n₀ = 640
 - Kết luận: c = 8, n₀ = 640
 
-### 5. Chứng minh tập con (A ⊂ B) — XÉT PHẦN TỬ BẤT KỲ
+### 5. Chứng minh tập con (A ⊂ B) hoặc Hai tập bằng nhau (A = B)
 
-> **Buổi 4, dòng 397:** "Thiếu cái chữ BẤT KỲ là coi như mất điểm.
-> Tại bất kỳ mới là quan trọng."
+> **Buổi 4, dòng 397:** "Thiếu cái chữ BẤT KỲ là coi như mất điểm. Tại bất kỳ mới là quan trọng."
+> **Buổi 4 (chứng minh O(C) = O(1)):** "Chứng minh a = b thì chỉ cần chứng minh a là con của b rồi sau đó chứng minh b là con của a. Tức là có hai vế."
 
-- LUÔN LUÔN viết: "Xét một hàm **bất kỳ** f(n) ∈ [tập A]"
-- Không được viết: "Xét một hàm f(n) ∈ [tập A]" (thiếu "bất kỳ")
-- CM f(n) cũng ∈ [tập B] → suy ra A ⊂ B
+- **Chứng minh A ⊂ B:**
+  - LUÔN LUÔN viết: "Xét một hàm **bất kỳ** f(n) ∈ [tập A]" (Tuyệt đối không được thiếu chữ "bất kỳ")
+  - Biến đổi để chứng minh f(n) cũng ∈ [tập B] → suy ra A ⊂ B
+- **Chứng minh A = B (VD: $\Theta(\alpha) = \Theta(1)$):**
+  - Bắt buộc phải tách thành 2 ý: Chứng minh A ⊂ B và Chứng minh B ⊂ A.
+  - Ở MỖI chiều chứng minh, đều phải lặp lại câu thần chú "Xét một hàm bất kỳ...". Không được làm gộp.
 
 ### 6. Khi có 2 hàm riêng biệt — DÙNG KÝ HIỆU KHÁC NHAU
 
@@ -135,12 +138,11 @@ Thang chuẩn: 1 ≺ log n ≺ n ≺ n log n ≺ n² ≺ n³ ≺ 2ⁿ ≺ 3ⁿ �
 > **Buổi 2, dòng 39:** "Trình bày rất tốt rất xuất sắc thì cô sẽ có điểm bonus.
 > Trình bày rất tệ → không điểm hoặc bị trừ điểm."
 
-### "Mềm mại" trong lập luận
+### "Mềm mại" nhưng KHÔNG AI SLOP (Tối giản chữ, tối đa toán)
 
 > **Buổi 4, dòng 249:** "Lâu lâu viết chữ vô cho bài giải nó mềm mại chút."
 
-→ AI nên: thêm câu dẫn nhập ngắn, không chỉ ghi toàn ký hiệu. VD:
-"Theo định nghĩa của Big O, ta cần chỉ ra..." thay vì nhảy thẳng vào BĐT.
+→ AI nên: dùng các từ nối toán học kinh điển siêu ngắn gọn (VD: "Ta có:", "Suy ra:", "Theo giới hạn:"). Tuyệt đối KHÔNG viết văn vẻ dài dòng kiểu AI (VD: KHÔNG dùng "Lập luận:", "Giải thích:", "Dựa vào công thức, ta có thể thấy rằng..."). Càng ít chữ càng tốt, để công thức toán tự lên tiếng.
 
 ---
 

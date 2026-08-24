@@ -1,0 +1,276 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+
+\begin{document}
+
+\begin{center}
+    \textbf{TRƯỜNG ĐẠI HỌC CNTT - ĐHQG TP.HCM} \\
+    \textbf{KHOA KHOA HỌC MÁY TÍNH} \\
+    \vspace{1.5cm}
+    \textbf{Môn học} \\
+    \textbf{Phân tích và thiết kế thuật toán} \\
+    \textbf{(Design and Analysis of Algorithms)} \\
+\end{center}
+
+\vfill
+\noindent
+\textbf{Assignment:} HW\#02 \\
+\textbf{Họ và Tên:} Đỗ Quốc Thắng \\
+\textbf{MSSV:} 26410111 \\
+\textbf{Ngày nộp bài:} 24/08/2026
+
+\newpage
+
+\section*{Bài 1: Sắp xếp hàm theo thứ tự tăng trưởng}
+
+\subsection*{Nhóm 1}
+% UNCOMMENT VÀ CHỈNH LẠI ĐƯỜNG DẪN ẢNH BÊN DƯỚI ĐỂ CHÈN ĐỀ BÀI
+% \includegraphics[max width=\textwidth]{../bai_tap/[HW#02] Độ phức tạp và các ký hiệu tiệm cận (cập nhật, thêm bài 9 theo yêu cầu của SV)_pages/page_1.png}
+
+\textbf{Giải:}
+\begin{itemize}
+    \item $T_1 = (n - 2)! = \Theta(n!)$
+    \item $T_2 = 5 \lg(n + 100)^{10} = 50 \lg(n + 100) = \Theta(\log n)$
+    \item $T_3 = 2^{2n} = 4^n = \Theta(4^n)$
+    \item $T_4 = 0.001n^4 + 3n^3 + 1 = \Theta(n^4)$
+    \item $T_5 = \ln^2 n = \Theta(\log^2 n)$
+    \item $T_6 = \sqrt[3]{n} = \Theta(n^{1/3})$
+    \item $T_7 = 3^n = \Theta(3^n)$
+\end{itemize}
+
+Dựa vào các lớp tiệm cận cơ bản:
+$$ T_2 < T_5 < T_6 < T_4 < T_7 < T_3 < T_1 $$
+
+
+\subsection*{Nhóm 2}
+% UNCOMMENT VÀ CHỈNH LẠI ĐƯỜNG DẪN ẢNH BÊN DƯỚI ĐỂ CHÈN ĐỀ BÀI
+% \includegraphics[max width=\textwidth]{../bai_tap/[HW#02] Độ phức tạp và các ký hiệu tiệm cận (cập nhật, thêm bài 9 theo yêu cầu của SV)_pages/page_2.png}
+
+\textbf{Giải:}
+
+\textbf{Lớp 1: Hằng số $\Theta(1)$}
+\begin{itemize}
+    \item $T_1 = 1 = \Theta(1)$
+    \item $T_2 = n^{1/\lg n}$. Ta có: $\lg(T_2) = \frac{1}{\lg n} \cdot \lg n = 1 \Rightarrow T_2 = 2^1 = 2 = \Theta(1)$
+\end{itemize}
+$\Rightarrow T_1 \equiv T_2$
+
+\textbf{Lớp 2: Logarit lặp $\Theta(\lg^* n)$}
+\begin{itemize}
+    \item $T_3 = \lg(\lg^* n) = \Theta(\lg(\lg^* n))$
+    \item $T_4 = \lg^* n = \Theta(\lg^* n)$
+    \item $T_5 = \lg^*(\lg n)$. Ta có: $\lg^* n = 1 + \lg^*(\lg n) \Rightarrow T_5 = \lg^* n - 1 = \Theta(\lg^* n)$
+    \item $T_6 = 2^{\lg^* n} = \Theta(2^{\lg^* n})$
+\end{itemize}
+$\Rightarrow T_3 < T_4 \equiv T_5 < T_6$
+
+\textbf{Lớp 3: Double logarit}
+\begin{itemize}
+    \item $T_7 = \lg \lg n = \Theta(\lg \lg n)$
+    \item $T_8 = \sqrt{\lg n} = \Theta(\sqrt{\lg n})$
+\end{itemize}
+$\Rightarrow T_7 < T_8$
+
+\textbf{Lớp 4: Logarit $\Theta(\log n)$}
+\begin{itemize}
+    \item $T_9 = \ln n = \Theta(\log n)$
+    \item $T_{10} = \lg n = \Theta(\log n)$
+\end{itemize}
+$\Rightarrow T_9 \equiv T_{10}$
+
+\textbf{Lớp 5: Logarit bình phương $\Theta(\log^2 n)$}
+\begin{itemize}
+    \item $T_{11} = \lg^2 n = \Theta(\log^2 n)$
+\end{itemize}
+
+\textbf{Lớp 6: Căn $\Theta(\sqrt{n})$}
+\begin{itemize}
+    \item $T_{12} = (\sqrt{2})^{\lg n} = 2^{(1/2)\lg n} = (2^{\lg n})^{1/2} = n^{1/2} = \sqrt{n} = \Theta(\sqrt{n})$
+    \item $T_{13} = \sqrt{n} = \Theta(\sqrt{n})$
+\end{itemize}
+$\Rightarrow T_{12} \equiv T_{13}$
+
+\textbf{Lớp 7: Tuyến tính $\Theta(n)$}
+\begin{itemize}
+    \item $T_{14} = n = \Theta(n)$
+    \item $T_{15} = 2^{\lg n} = n = \Theta(n)$
+\end{itemize}
+$\Rightarrow T_{14} \equiv T_{15}$
+
+\textbf{Lớp 8: $\Theta(n \log n)$}
+\begin{itemize}
+    \item $T_{16} = n \lg n = \Theta(n \log n)$
+    \item $T_{17} = \lg(n!) = \Theta(n \log n)$ (Stirling)
+\end{itemize}
+$\Rightarrow T_{16} \equiv T_{17}$
+
+\textbf{Lớp 9: Đa thức}
+\begin{itemize}
+    \item $T_{18} = 4^{\lg n} = (2^{\lg n})^2 = n^2 = \Theta(n^2)$
+    \item $T_{19} = n^2 = \Theta(n^2)$
+    \item $T_{20} = n^3 = \Theta(n^3)$
+    \item $T_{21} = (\lg n)^{\lg n}$. Có: $\lg(T_{21}) = \lg n \cdot \lg(\lg n)$
+    \item $T_{22} = n^{\lg \lg n}$. Có: $\lg(T_{22}) = \lg(\lg n) \cdot \lg n$. Do đó $T_{21} \equiv T_{22} = \Theta(n^{\lg \lg n})$
+\end{itemize}
+$\Rightarrow T_{18} \equiv T_{19} < T_{20} < T_{21} \equiv T_{22}$
+
+\textbf{Lớp 10: Mũ / Siêu mũ}
+\begin{itemize}
+    \item $T_{23} = (3/2)^n = \Theta((3/2)^n)$
+    \item $T_{24} = 2^n = \Theta(2^n)$
+    \item $T_{25} = 2^{n+1} = 2 \cdot 2^n = \Theta(2^n)$
+    \item $T_{26} = e^n = \Theta(e^n)$
+    \item $T_{27} = n! = \Theta(n!)$
+    \item $T_{28} = (n+1)! = (n+1) \cdot n! = \Theta((n+1)!)$
+    \item $T_{29} = 2^{2^n} = \Theta(2^{2^n})$
+    \item $T_{30} = 2^{2^{n+1}} = (2^{2^n})^2 = \Theta(2^{2^{n+1}})$
+\end{itemize}
+$\Rightarrow T_{23} < T_{24} \equiv T_{25} < T_{26} < T_{27} < T_{28} < T_{29} < T_{30}$
+
+\vspace{0.5cm}
+\textbf{Tổng hợp:} Lớp 1 $<$ Lớp 2 $<$ Lớp 3 $<$ Lớp 4 $<$ Lớp 5 $<$ Lớp 6 $<$ Lớp 7 $<$ Lớp 8 $<$ Lớp 9 $<$ Lớp 10
+
+\textbf{Kết quả sắp xếp:} \\
+$ (T_1 \equiv T_2) < T_3 < (T_4 \equiv T_5) < T_6 < T_7 < T_8 < (T_9 \equiv T_{10}) < T_{11} < (T_{12} \equiv T_{13}) < (T_{14} \equiv T_{15}) < (T_{16} \equiv T_{17}) < (T_{18} \equiv T_{19}) < T_{20} < (T_{21} \equiv T_{22}) < T_{23} < (T_{24} \equiv T_{25}) < T_{26} < T_{27} < T_{28} < T_{29} < T_{30} $
+
+
+\section*{Bài 2: Xác định $O, \Theta, \Omega$ và Phân lớp hàm}
+\subsection*{Câu 1}
+% UNCOMMENT VÀ CHỈNH LẠI ĐƯỜNG DẪN ẢNH BÊN DƯỚI ĐỂ CHÈN ĐỀ BÀI
+% \includegraphics[max width=\textwidth]{../bai_tap/[HW#02] Độ phức tạp và các ký hiệu tiệm cận (cập nhật, thêm bài 9 theo yêu cầu của SV)_pages/page_3.png}
+
+\textbf{Giải:}
+
+Ta có: $f(n) = \frac{n(n+1)}{2} = \frac{1}{2}n^2 + \frac{1}{2}n$. \\
+Với mọi $n \ge 1$, ta luôn có: $\frac{1}{2}n^2 \le \frac{1}{2}n^2 + \frac{1}{2}n \le \frac{1}{2}n^2 + \frac{1}{2}n^2 = n^2$. \\
+Do đó: $\frac{1}{2}n^2 \le f(n) \le n^2, \quad \forall n \ge 1$.
+\begin{enumerate}
+    \item[a.] $f(n) \in O(n^3)$: \textbf{ĐÚNG} \\
+    Vì $f(n) \le n^2 \le n^3, \forall n \ge 1$. Theo định nghĩa Big O $\Rightarrow$ thỏa mãn với $c = 1, n_0 = 1$.
+    
+    \item[b.] $f(n) \in O(n^2)$: \textbf{ĐÚNG} \\
+    Vì $f(n) \le n^2, \forall n \ge 1$. Theo định nghĩa Big O $\Rightarrow$ thỏa mãn với $c = 1, n_0 = 1$.
+    
+    \item[c.] $f(n) \in \Theta(n^3)$: \textbf{SAI} \\
+    Giả sử $f(n) \in \Theta(n^3) \Rightarrow f(n) \in \Omega(n^3)$. \\
+    Theo định nghĩa $\Omega \Rightarrow \exists c \in \mathbb{R}^+, n_0 \in \mathbb{N}$ sao cho $f(n) \ge c \cdot n^3, \forall n \ge n_0$. \\
+    Mà ta có $f(n) \le n^2, \forall n \ge 1$. Do đó: \\
+    $c \cdot n^3 \le n^2, \forall n \ge \max(1, n_0) \Rightarrow c \le \frac{1}{n}, \forall n \ge \max(1, n_0)$. \\
+    Mâu thuẫn vì khi $n \to \infty$ thì $\frac{1}{n} \to 0$, không thể chặn một hằng số $c > 0$. \\
+    Vậy giả sử ban đầu là sai $\Rightarrow f(n) \notin \Theta(n^3)$.
+    
+    \item[d.] $f(n) \in \Omega(n)$: \textbf{ĐÚNG} \\
+    Vì $f(n) \ge \frac{1}{2}n^2 \ge \frac{1}{2}n, \forall n \ge 1$. Theo định nghĩa $\Omega \Rightarrow$ thỏa mãn với $c = \frac{1}{2}, n_0 = 1$.
+\end{enumerate}
+
+\subsection*{Câu 2}
+% UNCOMMENT VÀ CHỈNH LẠI ĐƯỜNG DẪN ẢNH BÊN DƯỚI ĐỂ CHÈN ĐỀ BÀI
+% \includegraphics[max width=\textwidth]{../bai_tap/[HW#02] Độ phức tạp và các ký hiệu tiệm cận (cập nhật, thêm bài 9 theo yêu cầu của SV)_pages/page_4.png}
+
+\textbf{Giải:}
+\begin{enumerate}
+    \item[a.] $(n^2 + 1)^{10} = \Theta(n^{20})$ \quad (Lấy hạng tử bậc cao nhất: $(n^2)^{10} = n^{20}$)
+    \item[b.] $\sqrt{10n^2 + 7n + 3} = \Theta(n)$ \quad (Hạng tử chi phối trong căn là $n^2 \Rightarrow \sqrt{n^2} = n$)
+    \item[c.] $2n \lg(n+2)^2 + (n+2)^2 \lg(n/2) = 4n \lg(n+2) + (n+2)^2(\lg n - 1) = \Theta(n^2 \lg n)$ \quad (Hạng tử $n^2 \lg n$ chi phối $n \lg n$)
+    \item[d.] $2^{n+1} + 3^{n-1} = 2 \cdot 2^n + \frac{1}{3}3^n = \Theta(3^n)$ \quad (Hàm $3^n$ chi phối $2^n$)
+    \item[e.] $\lfloor\log_2 n\rfloor = \Theta(\log n)$ \quad ($\log_2 n - 1 < \lfloor\log_2 n\rfloor \le \log_2 n$)
+\end{enumerate}
+
+
+
+
+\section*{Bài 3: Chứng minh / Phản chứng}
+% UNCOMMENT VÀ CHỈNH LẠI ĐƯỜNG DẪN ẢNH BÊN DƯỚI ĐỂ CHÈN ĐỀ BÀI
+% \includegraphics[max width=\textwidth]{../bai_tap/[HW#02] Độ phức tạp và các ký hiệu tiệm cận (cập nhật, thêm bài 9 theo yêu cầu của SV)_pages/page_6.png}
+
+\textbf{Giải:}
+\begin{enumerate}
+    \item[a.] $t(n) \in O(g(n)) \Rightarrow g(n) \in \Omega(t(n))$: \textbf{ĐÚNG} \\
+    Giả sử $t(n) \in O(g(n))$. Theo định nghĩa Big O $\Rightarrow \exists c \in \mathbb{R}^+, n_0 \in \mathbb{N}$ sao cho:
+    $$t(n) \le c \cdot g(n), \quad \forall n \ge n_0$$
+    Vì $c > 0$, ta suy ra:
+    $$g(n) \ge \frac{1}{c} \cdot t(n), \quad \forall n \ge n_0$$
+    Chọn $c' = \frac{1}{c} \in \mathbb{R}^+$. Ta có $g(n) \ge c' \cdot t(n), \forall n \ge n_0$. \\
+    Theo định nghĩa của $\Omega$, suy ra $g(n) \in \Omega(t(n))$ (ĐPCM).
+    
+    \item[b.] $\Theta(\alpha) = \Theta(1)$ với $\alpha$ là hằng số thực dương: \textbf{ĐÚNG}
+    \begin{itemize}
+        \item \textbf{Chứng minh $\Theta(\alpha) \subset \Theta(1)$:} \\
+        Xét 1 hàm bất kỳ $f(n) \in \Theta(\alpha)$. Theo định nghĩa $\Theta \Rightarrow \exists c_1, c_2 \in \mathbb{R}^+, n_0 \in \mathbb{N}$ sao cho:
+        $$c_1 \cdot \alpha \le f(n) \le c_2 \cdot \alpha, \quad \forall n \ge n_0$$
+        $\Rightarrow f(n) \in \Theta(1) \Rightarrow \Theta(\alpha) \subset \Theta(1)$.
+        
+        \item \textbf{Chứng minh $\Theta(1) \subset \Theta(\alpha)$:} \\
+        Xét 1 hàm bất kỳ $f(n) \in \Theta(1)$. Theo định nghĩa $\Theta \Rightarrow \exists d_1, d_2 \in \mathbb{R}^+, n_1 \in \mathbb{N}$ sao cho:
+        $$d_1 \cdot 1 \le f(n) \le d_2 \cdot 1, \quad \forall n \ge n_1$$
+        $$\Rightarrow \frac{d_1}{\alpha} \cdot \alpha \le f(n) \le \frac{d_2}{\alpha} \cdot \alpha, \quad \forall n \ge n_1$$
+        $\Rightarrow f(n) \in \Theta(\alpha) \Rightarrow \Theta(1) \subset \Theta(\alpha)$.
+    \end{itemize}
+    Từ 2 chiều chứng minh $\Rightarrow \Theta(\alpha) = \Theta(1)$ (ĐPCM).
+    
+
+\end{enumerate}
+
+
+
+
+\section*{Bài 5: Tính tổng}
+
+\subsection*{Phần 1: Compute the following sums}
+
+\begin{enumerate}
+    \item[a.] $1 + 3 + 5 + 7 + \dots + 999$ \\
+    Cấp số cộng: $a_1 = 1$, $d = 2$, $a_n = 999$. \\
+    Số phần tử: $999 = 1 + (n-1) \cdot 2 \Rightarrow n = 500$. \\
+    $S = \frac{n(a_1 + a_n)}{2} = \frac{500 \times 1000}{2}$. \\
+    \textbf{Kết quả:} $S = 250,000$
+
+    \item[b.] $2 + 4 + 8 + 16 + \dots + 1024$ \\
+    Cấp số nhân: $a = 2$, $r = 2$, $a \cdot r^{n-1} = 1024 \Rightarrow 2^n = 1024 \Rightarrow n = 10$. \\
+    $S = \frac{a(r^n - 1)}{r - 1} = \frac{2(2^{10} - 1)}{1}$. \\
+    \textbf{Kết quả:} $S = 2046$
+
+    \item[c.] $\displaystyle\sum_{i=3}^{n+1} 1$ \\
+    Đếm: $i$ chạy từ $3$ đến $n+1$, có $(n+1) - 3 + 1 = n - 1$ phần tử. \\
+    \textbf{Kết quả:} $\displaystyle\sum_{i=3}^{n+1} 1 = n - 1$
+
+    \item[d.] $\displaystyle\sum_{i=3}^{n+1} i$ \\
+    Tách: $\displaystyle\sum_{i=3}^{n+1} i = \sum_{i=1}^{n+1} i - (1+2) = \frac{(n+1)(n+2)}{2} - 3$. \\
+    \textbf{Kết quả:} $\displaystyle\sum_{i=3}^{n+1} i = \frac{(n+4)(n-1)}{2}$
+
+    \item[e.] $\displaystyle\sum_{i=0}^{n-1} i(i+1)$ \\
+    Khai triển: $i(i+1) = i^2 + i$.
+    $$ \sum_{i=0}^{n-1}(i^2 + i) = \frac{(n-1)n(2n-1)}{6} + \frac{(n-1)n}{2} = \frac{(n-1)n(2n+2)}{6} $$
+    \textbf{Kết quả:} $\displaystyle\sum_{i=0}^{n-1} i(i+1) = \frac{n(n-1)(n+1)}{3}$
+
+    \item[f.] $\displaystyle\sum_{j=1}^{n} 3^{j+1}$ \\
+    $= 3\displaystyle\sum_{j=1}^{n} 3^j = 3 \cdot \frac{3(3^n - 1)}{2}$. \\
+    \textbf{Kết quả:} $\displaystyle\sum_{j=1}^{n} 3^{j+1} = \frac{9(3^n - 1)}{2}$
+
+
+\end{enumerate}
+
+\subsection*{Phần 2: Tìm bậc tăng trưởng $\Theta(g(n))$}
+
+\begin{enumerate}
+    \item[a.] $\displaystyle\sum_{i=0}^{n-1}(i^2+1)^2$ \\
+    Khai triển: $(i^2+1)^2 = i^4 + 2i^2 + 1$. Hạng chi phối: $\sum i^4 = \Theta(n^5)$. \\
+    \textbf{Kết quả:} $\displaystyle\sum_{i=0}^{n-1}(i^2+1)^2 \in \Theta(n^5)$
+
+    \item[b.] $\displaystyle\sum_{i=2}^{n-1}\lg i^2$ \\
+    $\lg i^2 = 2\lg i$. $\sum 2\lg i = \Theta(\lg(n!)) = \Theta(n\log n)$ (theo công thức Stirling). \\
+    \textbf{Kết quả:} $\displaystyle\sum_{i=2}^{n-1}\lg i^2 \in \Theta(n\log n)$
+
+    \item[c.] $\displaystyle\sum_{i=1}^{n}(i+1)2^{i-1}$ \\
+    Dạng $\sum i \cdot 2^i$ có dạng đóng $= \Theta(n \cdot 2^n)$. \\
+    \textbf{Kết quả:} $\displaystyle\sum_{i=1}^{n}(i+1)2^{i-1} \in \Theta(n \cdot 2^n)$
+
+
+\end{enumerate}
+
+\end{document}

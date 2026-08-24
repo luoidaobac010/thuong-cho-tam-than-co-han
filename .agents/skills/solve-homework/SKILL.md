@@ -58,6 +58,7 @@ Tạo file `<pdf_path>_solved.tex` cùng thư mục.
 
 ```latex
 \documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese]{babel}
 \usepackage{amsmath,amssymb,amsthm}
@@ -76,11 +77,24 @@ Tạo file `<pdf_path>_solved.tex` cùng thư mục.
 }
 
 \begin{document}
-\title{Lời giải ...}
-\author{Theo phong cách cô Huỳnh Thị Thanh Thương}
-\maketitle
+
+\begin{center}
+    \textbf{TRƯỜNG ĐẠI HỌC CNTT - ĐHQG TP.HCM} \\
+    \textbf{KHOA KHOA HỌC MÁY TÍNH} \\
+    \vspace{1.5cm}
+    \textbf{Môn học} \\
+    \textbf{Phân tích và thiết kế thuật toán} \\
+\end{center}
+
+\vfill
+\noindent
+\textbf{Assignment:} HW\#... \\
+\textbf{Họ và Tên:} ... \\
+\textbf{MSSV:} ...
+\newpage
 
 \section{Bài 1: ...}
+% Sử dụng \begin{itemize} và $$...$$ cho các bài chứng minh dài để dễ nhìn
 % Giải từng bài...
 
 \end{document}
@@ -94,3 +108,4 @@ Tạo file `<pdf_path>_solved.tex` cùng thư mục.
 4. Mỗi câu con = 1 `\subsection`
 5. Kết quả đóng khung trong `resultbox`
 6. Ghi chú phương pháp trong `notebox`
+7. **NO AI SLOP**: Tuyệt đối không dùng văn vẻ kiểu AI ("Lập luận:", "Giải thích:", "Dựa vào định nghĩa..."). Viết trực tiếp biểu thức toán học (VD: `Ta có: lg* n = 1 + lg*(lg n) \Rightarrow ...`). Tối giản chữ, tối đa công thức.
