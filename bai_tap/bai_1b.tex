@@ -1,0 +1,163 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\geometry{a4paper, margin=2.5cm}
+
+\definecolor{mainblue}{RGB}{0,90,160}
+\definecolor{darkgreen}{RGB}{0,120,60}
+\definecolor{resultbg}{RGB}{230,245,255}
+
+\newtcolorbox{resultbox}{
+  colback=resultbg, colframe=mainblue,
+  boxrule=0.8pt, arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries, title=Kết quả
+}
+
+\begin{document}
+
+\section*{Bài 1b (Bài 3-3 CLRS): Sắp xếp 30 hàm số theo bậc tăng trưởng}
+
+\textbf{Đề bài:} Sắp xếp 30 hàm số theo bậc tăng trưởng từ thấp đến cao và phân thành các lớp tương đương ($f \equiv g$ khi $f = \Theta(g)$).
+
+\textbf{Quy ước:} $\lg n = \log_2 n$, \; $\ln n = \log_e n$, \; $\lg^k n = (\lg n)^k$, \; $\lg\lg n = \lg(\lg n)$.
+
+\subsubsection*{Bước 1: Rút gọn và phân nhóm các hàm số}
+
+Để sắp xếp, ta chia 30 hàm số này thành 9 nhóm từ tăng trưởng chậm nhất đến nhanh nhất, sử dụng các phép biến đổi logarit, quy về cùng cơ số, và công thức Stirling.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+    % --- Nhóm 1 ---
+    \item \textbf{Nhóm Hằng số (Constant):} $1$ và $n^{1/\lg n}$
+    \begin{itemize}
+        \item Hàm $1$ hiển nhiên thuộc lớp hằng số $\Theta(1)$.
+        \item Xét hàm $n^{1/\lg n}$: Theo định nghĩa cơ bản của logarit, ta luôn có $n = 2^{\lg n}$. Thay cụm này vào biểu thức ban đầu, ta được:
+        \[
+        n^{1/\lg n} = \left(2^{\lg n}\right)^{1/\lg n}
+        \]
+        Áp dụng quy tắc lũy thừa $(a^x)^y = a^{x \cdot y}$, ta nhân hai số mũ với nhau:
+        \[
+        = 2^{\lg n \cdot \frac{1}{\lg n}} = 2^1 = 2
+        \]
+        Hàm số rút gọn lại chỉ bằng $2$. Vì đây là một con số cố định không đổi khi $n$ tăng, nên nó thuộc lớp $\Theta(1)$.
+        \item $\Longrightarrow$ Cả hai hàm đều thuộc cùng một lớp $\Theta(1)$.
+    \end{itemize}
+
+    % --- Nhóm 2 ---
+    \item \textbf{Nhóm Logarit lặp (Iterated Logarithm - Tăng siêu chậm):} $\lg(\lg^* n), \lg^* n, \lg^*(\lg n), 2^{\lg^* n}$
+    \begin{itemize}[noitemsep]
+        \item $\lg^* n$ là số lần lặp hàm $\lg$ để kết quả $\leq 1$. Nó tăng cực kỳ chậm.
+        \item $\lg^*(\lg n) = \lg^* n - 1$. Chỉ lệch nhau một hằng số $1$, nên $\lg^*(\lg n) \equiv \lg^* n \in \Theta(\lg^* n)$.
+        \item $\lg(\lg^* n)$: Hàm này bị lấy log thêm 1 lần nên tăng chậm hơn chính nó.
+        \item $2^{\lg^* n}$: Đây là hàm mũ của $\lg^* n$, nên tăng nhanh hơn.
+        \item Thứ tự trong nhóm: $\lg(\lg^* n) \prec \lg^* n \equiv \lg^*(\lg n) \prec 2^{\lg^* n}$.
+    \end{itemize}
+
+    % --- Nhóm 3 ---
+    \item \textbf{Nhóm Đa Logarit (Polylogarithmic):} $\ln\ln n, \sqrt{\lg n}, \ln n, \lg^2 n$
+    \begin{itemize}[noitemsep]
+        \item $\ln\ln n$: Chậm nhất trong nhóm này, nhưng vẫn nhanh hơn nhóm logarit lặp.
+        \item $\sqrt{\lg n} = (\lg n)^{0.5}$. Bậc 0.5.
+        \item $\ln n = \frac{\lg n}{\lg e} \in \Theta(\lg n)$. Bậc 1.
+        \item $\lg^2 n = (\lg n)^2$. Bậc 2.
+        \item Thứ tự: $\ln \ln n \prec \sqrt{\lg n} \prec \ln n \prec \lg^2 n$.
+    \end{itemize}
+
+    % --- Nhóm 4 ---
+    \item \textbf{Nhóm Cận đa thức:} $2^{\sqrt{2\lg n}}$
+    \begin{itemize}[noitemsep]
+        \item Lấy $\lg$ hàm này ta được $\sqrt{2\lg n}$. Nó tăng mạnh hơn mọi đa logarit $\lg^k n$ nhưng lại yếu hơn mọi đa thức $n^c$ (vì $\lg(n^c) = c\lg n \gg \sqrt{\lg n}$).
+    \end{itemize}
+
+    % --- Nhóm 5 ---
+    \item \textbf{Nhóm Đa thức (Polynomial):} $(\sqrt{2})^{\lg n}, n, 2^{\lg n}, n \lg n, \lg(n!), 4^{\lg n}, n^2, n^3$
+    \begin{itemize}[noitemsep]
+        \item $(\sqrt{2})^{\lg n} = n^{\lg \sqrt{2}} = n^{0.5} = \sqrt{n} \in \Theta(\sqrt{n})$.
+        \item $2^{\lg n} = n$. $\Longrightarrow 2^{\lg n} \equiv n \in \Theta(n)$. Bậc 1.
+        \item Theo Stirling, $\lg(n!) = \Theta(n\lg n)$. $\Longrightarrow \lg(n!) \equiv n\lg n$. Bậc 1 nhân thêm log.
+        \item $4^{\lg n} = n^{\lg 4} = n^2$. $\Longrightarrow 4^{\lg n} \equiv n^2 \in \Theta(n^2)$. Bậc 2.
+        \item $n^3 \in \Theta(n^3)$. Bậc 3.
+        \item Thứ tự: $\sqrt{n} \prec n \prec n\lg n \prec n^2 \prec n^3$.
+    \end{itemize}
+
+    % --- Nhóm 6 ---
+    \item \textbf{Nhóm Siêu đa thức / Cận mũ (Super-polynomial):} $(\lg n)!, (\lg n)^{\lg n}, n^{\lg\lg n}$
+    \begin{itemize}[noitemsep]
+        \item Ta có $a^{\log_b c} = c^{\log_b a}$. Do đó: $(\lg n)^{\lg n} = (2^{\lg\lg n})^{\lg n} = 2^{\lg n \cdot \lg\lg n} = (2^{\lg n})^{\lg\lg n} = n^{\lg\lg n}$. Vậy $(\lg n)^{\lg n} \equiv n^{\lg\lg n}$.
+        \item Xét $(\lg n)!$: Áp dụng công thức Stirling, $(\lg n)! \approx \sqrt{2\pi\lg n}\left(\frac{\lg n}{e}\right)^{\lg n} = \sqrt{2\pi\lg n} \frac{(\lg n)^{\lg n}}{n^{\lg e}}$. Hàm này bị chia cho $n^{1.44}$ nên tăng chậm hơn $(\lg n)^{\lg n}$.
+        \item Thứ tự: $(\lg n)! \prec n^{\lg\lg n} \equiv (\lg n)^{\lg n}$.
+    \end{itemize}
+
+    % --- Nhóm 7 ---
+    \item \textbf{Nhóm Hàm mũ (Exponential):} $(3/2)^n, 2^n, n \cdot 2^n, e^n$
+    \begin{itemize}[noitemsep]
+        \item Trong lớp hàm mũ, cơ số to hơn sẽ tăng nhanh hơn: $1.5 < 2 < e \approx 2.718$.
+        \item Hàm $n \cdot 2^n$ lớn hơn $2^n$ vì bị nhân thêm $n$, nhưng vẫn bé hơn mọi hàm mũ có cơ số $>2$ (như $e^n$).
+        \item Thứ tự: $(3/2)^n \prec 2^n \prec n \cdot 2^n \prec e^n$.
+    \end{itemize}
+
+    % --- Nhóm 8 ---
+    \item \textbf{Nhóm Giai thừa (Factorial):} $n!, (n+1)!$
+    \begin{itemize}[noitemsep]
+        \item Giai thừa luôn tăng nhanh hơn bất kỳ hàm mũ $c^n$ nào.
+        \item $(n+1)! = (n+1) \cdot n! \Longrightarrow$ tăng nhanh hơn $n!$.
+        \item Thứ tự: $n! \prec (n+1)!$.
+    \end{itemize}
+
+    % --- Nhóm 9 ---
+    \item \textbf{Nhóm Siêu mũ (Super-exponential):} $2^{2^n}, 2^{2^{n+1}}$
+    \begin{itemize}[noitemsep]
+        \item Hàm số mũ hai tầng. $2^{2^{n+1}} = 2^{2 \cdot 2^n} = (2^{2^n})^2$. Rõ ràng khi lấy bình phương, hàm này tăng khủng khiếp nhất.
+        \item Thứ tự: $2^{2^n} \prec 2^{2^{n+1}}$.
+    \end{itemize}
+
+\end{enumerate}
+
+\subsubsection*{Bước 2: Lập luận so sánh giữa các nhóm và Tổng kết}
+
+Bất đẳng thức tiệm cận cơ bản:
+\[
+    \text{Hằng số} \prec \text{Logarit lặp} \prec \text{Đa logarit} \prec \text{Đa thức} \prec \text{Siêu đa thức} \prec \text{Mũ} \prec \text{Giai thừa} \prec \text{Siêu mũ}
+\]
+
+Nối tất cả các nhóm trên lại theo đúng thứ tự, ta được danh sách 24 lớp tương đương. Mỗi dòng là một lớp cùng độ phức tạp $\Theta$, hàm ở dưới lớn hơn hàm ở trên.
+
+\begin{resultbox}
+\textbf{Kết quả phân lớp và sắp xếp từ thấp đến cao:}
+\begin{align*}
+  1 &\equiv n^{1/\lg n} \\
+    &\prec \lg(\lg^* n) \\
+    &\prec \lg^* n \equiv \lg^*(\lg n) \\
+    &\prec 2^{\lg^* n} \\
+    &\prec \ln \ln n \\
+    &\prec \sqrt{\lg n} \\
+    &\prec \ln n \equiv \lg n \\
+    &\prec \lg^2 n \\
+    &\prec 2^{\sqrt{2 \lg n}} \\
+    &\prec (\sqrt{2})^{\lg n} \equiv \sqrt{n} \\
+    &\prec n \equiv 2^{\lg n} \\
+    &\prec n\lg n \equiv \lg(n!) \\
+    &\prec n^2 \equiv 4^{\lg n} \\
+    &\prec n^3 \\
+    &\prec (\lg n)! \\
+    &\prec n^{\lg\lg n} \equiv (\lg n)^{\lg n} \\
+    &\prec (3/2)^n \\
+    &\prec 2^n \\
+    &\prec n \cdot 2^n \\
+    &\prec e^n \\
+    &\prec n! \\
+    &\prec (n+1)! \\
+    &\prec 2^{2^n} \\
+    &\prec 2^{2^{n+1}}
+\end{align*}
+\end{resultbox}
+
+\end{document}
