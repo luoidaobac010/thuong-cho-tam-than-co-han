@@ -1,0 +1,254 @@
+:root {
+    --bg-color: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --secondary: #ec4899;
+    --secondary-hover: #db2777;
+    --text: #f8fafc;
+    --cell-bg: rgba(255, 255, 255, 0.05);
+    --cell-hover: rgba(255, 255, 255, 0.15);
+    --cell-revealed: rgba(0, 0, 0, 0.4);
+    --cell-mine: #ef4444;
+    --cell-flag: #eab308;
+    --cell-safe: #22c55e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #3b82f6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.badge {
+    font-size: 1rem;
+    background: rgba(236, 72, 153, 0.2);
+    color: #fbcfe8;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 16px;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.stat-box .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn.primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.board-container {
+    overflow: auto;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    flex-grow: 1;
+}
+
+#game-board {
+    display: grid;
+    gap: 2px;
+    margin: 0 auto;
+    width: max-content;
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    background: var(--cell-bg);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.1s;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.cell:not(.revealed):hover {
+    background: var(--cell-hover);
+}
+
+.cell.revealed {
+    background: var(--cell-revealed);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    cursor: default;
+}
+
+.cell.mine {
+    background: var(--cell-mine);
+    color: white;
+    animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cell.flag {
+    color: var(--cell-flag);
+}
+
+.cell.safe {
+    background: var(--cell-safe);
+    color: white;
+}
+
+/* Colors for numbers */
+.num-1 { color: #3b82f6; } /* Blue */
+.num-2 { color: #22c55e; } /* Green */
+.num-3 { color: #ef4444; } /* Red */
+.num-4 { color: #a855f7; } /* Purple */
+.num-5 { color: #f97316; } /* Orange */
+.num-6 { color: #06b6d4; } /* Cyan */
+.num-7 { color: #14b8a6; } /* Teal */
+.num-8 { color: #f43f5e; } /* Rose */
+
+#message-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+#message-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#message-text {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.win-text {
+    color: #22c55e;
+}
+
+.lose-text {
+    color: #ef4444;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
