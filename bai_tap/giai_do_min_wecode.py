@@ -1,63 +1,19 @@
 import sys
 
-N, M = 0, 0
-A = []
-B = []
-current_sum = []
-unassigned = []
-found = False
+sys.setrecursionlimit(10**6)
 
-def xuat_loi_giai():
-    for row in B:
-        sys.stdout.write(" ".join(map(str, row)) + "\n")
-
-def Try(i):
-    global found
-    if found: return
-    
-    r = i // M
-    c = i % M
-    
-    for val in (0, 1):
-        B[r][c] = val
-        valid = True
-        updated = []
-        
-        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < N and 0 <= nc < M:
-                if val == 1:
-                    current_sum[nr][nc] += 1
-                unassigned[nr][nc] -= 1
-                updated.append((nr, nc))
-                
-                if current_sum[nr][nc] > A[nr][nc]:
-                    valid = False
-                    break
-                if current_sum[nr][nc] + unassigned[nr][nc] < A[nr][nc]:
-                    valid = False
-                    break
-                    
-        if valid:
-            if i + 1 < N * M:
-                Try(i + 1)
-            else:
-                found = True
-                xuat_loi_giai()
-                
-        for nr, nc in updated:
-            if val == 1:
-                current_sum[nr][nc] -= 1
-            unassigned[nr][nc] += 1
-
-if __name__ == '__main__':
+def solve():
     input_data = sys.stdin.read().split()
     if not input_data:
-        sys.exit()
+        return
         
     N = int(input_data[0])
     M = int(input_data[1])
     
+    if N == 0 or M == 0:
+        return
+        
+    A = []
     idx = 2
     for _ in range(N):
         row = []
@@ -67,25 +23,93 @@ if __name__ == '__main__':
         A.append(row)
         
     B = [[0] * M for _ in range(N)]
-    current_sum = [[0] * M for _ in range(N)]
-    unassigned = [[0] * M for _ in range(N)]
+    found = False
     
-    for r in range(N):
+    def check_and_fill():
+        for r in range(1, N):
+            for c in range(M):
+                val = A[r-1][c]
+                if r >= 2:
+                    val -= B[r-2][c]
+                if c > 0:
+                    val -= B[r-1][c-1]
+                if c < M - 1:
+                    val -= B[r-1][c+1]
+                if val < 0 or val > 1:
+                    return False
+                B[r][c] = val
+                
         for c in range(M):
-            count = 0
-            for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                if 0 <= r + dr < N and 0 <= c + dc < M:
-                    count += 1
-            unassigned[r][c] = count
+            sum_val = 0
+            if N >= 2:
+                sum_val += B[N-2][c]
+            if c > 0:
+                sum_val += B[N-1][c-1]
+            if c < M - 1:
+                sum_val += B[N-1][c+1]
+            if sum_val != A[N-1][c]:
+                return False
+        return True
+
+    def backtrack(c):
+        nonlocal found
+        if found:
+            return
             
-    possible = True
-    for r in range(N):
-        for c in range(M):
-            if unassigned[r][c] < A[r][c]:
-                possible = False
-                break
-        if not possible:
-            break
+        if c == M:
+            if check_and_fill():
+                found = True
+            return
             
-    if possible:
-        Try(0)
+        lo, hi = 0, 1
+        
+        if c >= 1:
+            base = A[0][c-1]
+            if c >= 2:
+                base -= B[0][c-2]
+                
+            if N == 1:
+                if base < 0 or base > 1:
+                    return
+                lo = hi = base
+            else:
+                lo = max(0, base - 1)
+                hi = min(1, base)
+                if lo > hi:
+                    return
+                    
+        for val in range(lo, hi + 1):
+            B[0][c] = val
+            ok = True
+            
+            max_r = min(c, N - 1)
+            for r in range(1, max_r + 1):
+                col = c - r
+                rv = A[r-1][col]
+                if r >= 2:
+                    rv -= B[r-2][col]
+                if col > 0:
+                    rv -= B[r-1][col-1]
+                rv -= B[r-1][col+1]
+                
+                if rv < 0 or rv > 1:
+                    ok = False
+                    break
+                else:
+                    B[r][col] = rv
+                    
+            if not ok:
+                continue
+                
+            backtrack(c + 1)
+            if found:
+                return
+
+    backtrack(0)
+    
+    if found:
+        for row in B:
+            sys.stdout.write(" ".join(map(str, row)) + "\n")
+
+if __name__ == '__main__':
+    solve()
