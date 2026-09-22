@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "Knowledge base for CoThuong-AI",
-    "data_dir": "D:\\Study\\Cô Thương\\cothuong-ai\\data"
+    "data_dir": "/Users/thangdo/www/thuong-cho-tam-than-co-han/data"
   },
   "teaching_segments": [
     {
@@ -6109,6 +6109,2549 @@
       "keywords_found": [
         "ví dụ",
         "tối ưu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 147,
+      "content": "một cái ngôn ngữ lập trình cụ thể hoặc là Python hoặc là C+ C++ nó có thành hàm thành câu lệnh bên trong là chương trình có thể chạy được. Vì theo bài giảng này của cô các bạn đã hiểu cái mô hình của quay lùi hết chưa? Chúng ta đối chiếu giữa một bên là cái mô hình tổng quát với một bên là ví dụ minh họa. Hi vọng là chúng ta thấy cái điểm nào là cái sự tương ứng bên kia. Bên đây có một cái dòng là for thì bên đây cũng có một dòng là for nó chi tiết nó rõ ràng hơn nó phù hợp hơn với bài toán giải. Rồi bên mô hình chung nó nói là anh hãy có",
+      "relevance_score": 5,
+      "keywords_found": [
+        "hàm",
+        "câu",
+        "ví dụ",
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 0,
+      "content": "Kind: captions Language: vi như là giới thiệu về bài toán tối ưu và các cái phương pháp giải cơ bản thì nó cũng nằm trong cái chương thiết kế thuật toán mà nó giống như là cái sự dạo đầu thôi. Còn cái thiết kế thực sự là phải học qua các cái chiến lược thiết kế thì nó mới đúng bài bản. Thì cái này nó cũng là chương 3 nhưng mà nó chưa đi vô cái chiến lược thiết kế. nó chỉ là giới thiệu cho mọi người biết về vấn đề mô hình hóa bài toán và một vài các cái cách tiếp cận đối với bài toán tối ưu ở dạng đơn giản là nó như",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "tối ưu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 6,
+      "content": "ban đầu. Ví dụ như là thuật toán for moskin. Vậy nó là cái góc, nó là cái nền tảng nó là cái cơ bản để sau này người ta nghiên cứu, phát triển và hình thành ra những cái thuật toán mới hơn, nâng cấp hơn. Cái thứ hai nữa là nó đơn giản, chúng ta có thể dễ dàng nắm bắt và hiểu được trong một cái thời gian ngắn. Và đáng lẽ cái thực toán cần phải được hướng dẫn đó là cái thực toán tên dày mới đúng nè. À simplex tức là thuật toán đơn hình thì nên dạy cái thuật toán này sẽ hay hơn tại vì nó nó hay và nó được ứng dụng phổ biến hơn. Nhưng mà do nó",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 7,
+      "content": "cũng khó nên khả năng là các bạn sẽ khó mà tiếp thu nên cô hướng dẫn cái thực toán đơn giản chứ còn khi mà dạy cho cái hệ tài năng hoặc là những cái lớp mà nó hơi đặc biệt một chút ví dụ lớp của cái ngành trí tuệ nhân tạo chẳng hạn thì cô hay dùng cái thuật toán đơn hình để giới thiệu hơn. Thực toán đơn hình đâ chờ chút nha. Đây thuộc toán đường hình cái tên nó là vậy ha. Simple algorithm gọi là thuậc toán đơn hình. Linear programming mình dịch là quy hoạch tiếng tính. Mọi người có đọc cái file này trước hết",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 11,
+      "content": "còn cố được chứ 4 năm chiều là không giải được. Do đó thành ra nếu dùng hình học thì phần lớn chúng ta chỉ áp dụng trường học có hai biến trên hai chiều. Còn cái phương pháp này là bao nhiêu chiều cũng được, bao nhiêu biến cũng được nên nó có tính tổng quát hơn. Có một cái câu chuyện khá thú vị về cái thuật toán nhưng mà chắc là các bạn à tìm hiểu thêm đi với cô thì cũng làm biến kể. Nói chung là hai cái ông này là hai cái nhà khoa học không có liên quan gì với nhau hết á. Hai người này không phải là cùng nhóm nghiên cứu, cũng không phải là cộng tác để phát minh ra cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 12,
+      "content": "thuật toán này mà hai người ở hai vùng miền khác nhau rồi không biết ý tưởng lớn gặp nhau á họ đưa ra cái phương pháp nó có ý tưởng như nhau tương tự nhau và không cách nào chứng minh là ông nào đạo ông nào hết. Nên cuối cùng người ta công nhận luôn cả hai đều là tác giả của cái thực toán này. Nó ra đời cổ điển lắm rồi. Chắc là đâu đó khoảng năm 1800 trăm mấy đó thì nó đã ra đời rồi nha. Cô thì không nhớ chính xác cái ngày tháng cho lắm. Cái cách thức thực hiện sẽ như sau. Cái thuật toán của nó vô cùng đơn giản là các bạn sẽ tiến hành",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "chứng minh"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 25,
+      "content": "&gt;&gt; Không phải em nghĩ là bạn ấy hiểu vì sao không bé hơn bằng 60 rồi nhưng mà bạn đang hỏi là vì sao lại bỏ cái x1 đi ấ ạ? &gt;&gt; Cái thực toán nó nói như vậy đó. người ta nghiên cứu cái thuực toán và hiển nhiên người ta cũng đã chứng minh là nếu anh làm theo cái quy trình của thuật toán này thì anh sẽ đạt được cái kết quả của bài toán một cách chính xác. Ừ. Cái người mà họ phát minh ra một cái thuậc toán thì lúc nào nó cũng có cả một cái bài chứng minh là tại sao thuậc toán này nó đúng và nó có thể áp dụng vận dụng được trong cái quá trình giải quyết vấn đề. Còn giờ nếu mà các bạn muốn cô",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "chứng minh"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 34,
+      "content": "này nè thì cái dấu bằng nó sẽ tương ứng là cái giá trị lớn nhất. Hình dung không? Nếu bất đẳng thức của mình nó ở kiểu là bé hơn bằng thì tới cái lúc mà mình tìm ra được Z và mình kết luận Z bằng một cái giá trị nào đó thì cái trường hợp bằng đó nó tương ứng là giá trị lớn nhất có thể có của Z. Và nó cũng thỏa luô cái điều kiện là nhu cầu của mình là tìm phương án cho lãi nhiều nhất. Hàm mục tiêu của mình là hàm đi tìm max nên nó là phù hợp. Thì mố các bạn cũng phải suy luận và biện luận như vậy. Ví dụ như trong cái tình huống là sau này",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 58,
+      "content": "chúng ta tìm thấy nó trước. Thì cái x2 là mình khử sau cùng thì mình đi tìm x2 trước ha. tìm bằng cách là em thế giá trị z b= 2300 vô cái hệ bất đẳng thức nào mà nó còn x2 á đây ví dụ như là khử x2 nó có cái bậc đ tẳng thức này không biết nãy đánh số chưa ta gọi là số 4 đ em thế thằng z vô trong đây làm bài bản nha phải thế vô chỗ nào có z chúng ta thế vô và tìm cho cô một cái cặp một cái cặp trạng thái theo cái kiểu là a bé hơn hoặc bằng x2 bé hơn hoặc bằng a chúng ta phải tìm ra được cái cặp này. Thì nếu mà tìm thấy được cái trạng thái này sẽ kết luận được x2 bằng với a.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "bậc",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 63,
+      "content": "rãi cho đến thời điểm hiện nay đó là thuật toán đơn hình. À nó là cái từ dịch ra từ simple cái chữ simple không biết sao ta dịch ra thành đên hình mới hay. Còn cái thực toán này tên là for re mode kin tên của hai nhà toán học hai nhà khoa học. Cô thì cô thấy phương pháp này rất là dễ không có gì khó hết á. Nhưng mà mỗi lần mà ra đề thi hỏi ý kiến mọi người là có thích cái này không để đưa vô đề thi cho các bạn kiếm điểm nó dễ. Nhưng mà phần",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 69,
+      "content": "hành nào đó trong cái cây này. Ví dụ đỉnh này là đỉnh hiện hành A. Cô gọi đỉnh hiện hành là đỉnh U tổng quát. Còn bây giờ đang là U là A. Đó. Thì khi đứng tại A, cái bước tiếp theo mình có nhiều sự lựa chọn. Ở mỗi bước có nhiều sự lựa chọn. Vậy giờ từ A tôi có thể đến B đến C đến D thì ở đây có ba sự lựa chọn. Giờ trong ba đứa này chọn cái nào? Thì lúc này trong ba đứa cũng chẳng biết đứa nào hay hơn mà chọn nên người ta không có cái cách nào để so sánh và lựa chọn cái nào là tốt nhất. Nên lúc này phải thử qua từng cái lựa chọn đó. Giờ",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "so sánh",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 90,
+      "content": "thì vừa nhìn vô cái hình mô hình hồi nãy với lại nhìn cái màn hình của cô để xem cách cô triển khai cái mô hình này ra như thế nào. Trong mô hình nó nói là anh hãy viết một cái hàm tên hàm đó đặt gì cũng được. Thì trong mô hình cô đặt tên là try đúng không? Try cho nó có ý nghĩa là hãy thử đi đó mạnh dạng thử đi rồi chấp nhận sai. Thì thay vì em đặt tên trang đặt tên khác nào cũng được. Ví dụ như tên phán vị hàng này sẽ có một cái tham số đầu vào thường hay gọi nó là y đó là một cái tham số y. Y này thường là giá trị in luôn. Ngoài",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 109,
+      "content": "Nắm được sơ bộ chưa? Cái bước trở lại này nó vẫn còn nằm trong cái phần thân của câu lệnh if nha. Vậy nếu điều kiện này đúng thì mình mới làm một cái nồi nồi bên dưới. Còn cái điều kiện này sai, nếu ngay cái điều kiện này mà nó sai luôn thì coi như nguyên cái câu lệnh này không thực hiện. Và chúng ta quay lại cái for chúng ta thử cái giá trị J nó phù hợp hơn. Rồi thì cái này là cái mô hình chung thôi. Mô hình mà nói chung chung nói tổng quát. Còn bây giờ ráp vô cái bài toán tìm hoán vị. Bài của mình là cái bài tìm hoán vị.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 112,
+      "content": "rồi đúng không? Thế thì giờ hoán vị biểu diễn là sao? Em có biết được hoán vị này có bao nhiêu thành phần không? Hoán vị đó là một bộ số là một dãy số có bao nhiêu thành phần? À theo ví dụ thì nó phải là có ba thành phần. Còn tổng quát lên là có thể là n thành phần. theo ví dụ sẽ là ba thành phần còn tổng quát sẽ là n rồi ha. Thế thì cái hàm hoán vị này nè nó là một cái hàm độc lập, nó là một cái hàm riêng biệt. Hàm này sẽ được sử dụng, sẽ được gọi tới từ một cái hàm nào đó khác. Ví dụ như gọi từ cái hàm chính là hàm main đi. Thì lần gọi hàm đầu tiên",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 124,
+      "content": "Và J chúng ta nên xét nó là chạy từ đâu tới đâu. Hiểu câu hỏi không? Đã nói cái bài toán mình tổng quát lên rồi. Bài toán mình tổng quát có nghĩa là a này có n phần tử. Nó là một cái bộ gồm có n giá trị. Còn cái ví dụ thì mới là 3. Còn bây giờ tổng quát lên là n. Rồi thì cái J này nè nó thử qua bao nhiêu giá trị? Hay nó khác hơn là cái dòng lập này lập qua bao nhiêu lần? Hay nói khác hơn nữa là tại mỗi bước các bạn có bao nhiêu sự lựa chọn? Có n sự lựa chọn đúng không? Thì n sự lựa chọn. Em muốn cái anh J này là",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 148,
+      "content": "một cái chỗ kiểm tra điều kiện. Thì bên đây chúng ta thể hiện nó thành một cái câu lệnh kiểm tra điều kiện rõ ràng hơn. Vậy tương ứng với lại từng cái bước xử lý trong cái mô hình này nó cũng có những cái câu lệnh rõ ràng đi kèm. Hiểu hết chưa? Vậy giờ hiểu rồi thì thêm ví dụ nữa đi cho nó hiểu hơn được nữa. À các bạn học thị hết chưa ta? Mọi người học đồ thị hết chưa? Một cấu trúc dữ liệu về giải thật là có học đồ thị rồi sao có người học rồi có người chưa học",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 157,
+      "content": "phiên bản thiết kế của mình nó khác nhau chứ không có nào giống cái nào cả. Bài trước đó thì lời giải chúng ta biết chính xác nó có bao nhiêu bước giải nhưng mà qua tới lời giải này, bài giải này lời giải thì không biết bao nhiêu thành phần thì coi như mình không biết nhưng mà các thành phần đó cũng sẽ được đánh dấu từ S1, S2 vân vân vân vân có bao nhiêu thì mình không biết. Rồi ok. Sau đó cái hàm file B của em nó là một cái hàm theo kiểu đệ quy nha. Và theo mô hình của mình cái đề Q nó cần có thêm một tham số gọi là y nữa. Cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "đệ quy",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 187,
+      "content": "thông thường là nó dạy đồ thị trên giấy thôi. là phần lớn mình học thực toán là mình chạy tay trên giấy thôi. Nhưng mà qua tới môn cấu trúc dữ liệu thì chắc chắn là có học đồ thị code trên máy. Hay cô lấy ví dụ nè. Cái đồ thị của mình á có thể ban đầu người ta nhập theo cái kiểu là đồ thị có tên. Mỗi cái đỉnh của đồ thị là có tên đàng hoàng. Ví dụ như tên A, tên B, tên C, tên U, IG giống vậy. Mà nó thậm chí nó không phải là chữ cái nữa mà nó là một cái chuỗi luôn. Đặt tên cho nguyên cái chuỗi đó. Ví dụ như giờ em mô hình hóa cái bản đồ thành cái đồ thị đi ha. Thì mỗi cái địa",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thực toán",
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 190,
+      "content": "được ánh xạ qua index. Index cho biết là cái thông tin của cái đỉnh này nó nằm trong cái dòng có index là mấy hoặc là cái cột có index là số nguyên mấy trong cái ma trần trè thì t j rồi s rồi g nó đều là index hết cho nó đều là số nguyên hết để các bạn so sánh cho nó dễ rồi bây giờ xem ha cái đề thi câu hỏi về nè cái này là cái đề thi đâu rồi Thì giờ mọi người muốn để cái đề nào? Cô đang có trên màn hình này là hai cái đề thi. Đây đề thi năm nào đó. Nếu như mình là sinh viên tham gia cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "so sánh",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 200,
+      "content": "em vẫn có thể đặt cái hàm tên là try giống như cái mô hình cũng được. Mà thấy cái chữ try này nhìn nó chán quá, nhìn nó khô khan quá thì mình đặt sao cho cái tên nó gần gũi hơn với cái bài toán này. Ví dụ như là điểm môn học. Mấy cái hàm chúng ta đặt tên là hàm điểm môn học. Input là cái gì? Output là cái gì? Hồi nãy những cái bài trước là cô không thèm hỏi luôn nhưng mà qua tới bài thầy là hỏi lại và mọi người thiết kế nó ổn không? Input là cái gì ta? Input là điểm đồ án là 1. Rồi chúng ta có thiết kế chính xác hơn",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 204,
+      "content": "cách ghi điểm còn đề người ta hỏi là tất cả các ghi nên ghi dùng từ ngữ cho đúng nha dùng từ sai là cũng bị mất điểm đó và hàm mi ghi cũng không đúng nữa nè. Output không phải là mãng chứa điểm cho từng cột mà phải là tất cả các cách ghi điểm. Trong đó mỗi cách ghi là một mãng chứa điểm cho từng cột thì ok. Hiểu không? Thái Tú với Hàm hiểu cái lỗi sai của mình không? Sau này đề thi của cô là cô che input và output và có một câu hỏi để các bạn phải tự thiết kế hai thành phần này mà làm sai thì bị trừ điểm. Đó",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 1,
+      "content": "thế nào. Cái bài toán đây là bài toán tối ưu này nó có cái yêu cầu là phải tính toán sao cho một cái mục tiêu nào đó đạt cực đại. Ví dụ như là phương án sản xuất đạt cái giá trị lãi là nhiều nhất thì cái cực trị này là hoặc là nhiều nhất hoặc là nhỏ nhất hoặc là lớn nhất gì đó. thì cái gì nó có yếu tố nhất? Có nghĩa là đây là bài toán tối ưu và nghiệm của bài toán nó là một cái bộ gồm có nhiều cái biến gọi là x1, x2 cho đến xn đó. Thì mấy cái biến này có thể nhận giá trị nguyên hoặc giá trị thực đều được. Nhưng mà cái lời",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 2,
+      "content": "giải của mình thì nó là một cái bộ gồm nhiều cái biến. Và khi mà chúng ta tìm ra được nghiệm, tức là tìm ra được cái giá trị cụ thể của các cái biến này thì cái dạng bài toán kiểu như vậy người ta gọi nó là bài toán tổ hợp. Hai yếu tố này kết hợp lại thì gọi là tối ưu tổ hợp hoặc là một cái tên gọi khác là bài toán quy hoạch tiến tính. Và cái cách tiếp cận để giải những bài toán này thì nó có ba hướng. Hoặc là các bạn dùng các cái phương pháp kỹ thuật của khoa học máy tính hoặc là mình dùng các cái thuật toán của bên lĩnh vực nghiên cứu về lý thuyết tối u. Rồi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 3,
+      "content": "hoặc là bằng hình học chẳng hạn thì tại khái là mình có ba cái thứ tiếp cận đó. Thì là giải bằng hình học cũng được hoặc là giải bằng các cái thuật toán của quy hoạch tuyến tính. hoặc là giải bằng các cái kỹ thuật của khoa học máy tính thì coi như là mình biết mỗi thứ một cái đại diện thôi ha. Thì phương pháp hình học nó cũng có nhiều kỹ thuật. Tuần rồi là chúng ta dùng phương pháp kỹ thuật vô cùng vô cùng đơn giản luôn. Đó là vẽ cái đồ thị của các cái bất đẳng thức. Đồ thị hàm số thì các bất đẳng thức nó có dấu bằng và mỗi cái dấu bằng như vậy thì nó đại diện giống như là một cái",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "hàm"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 5,
+      "content": "miền gọi là cái miền chấp nhận được. Mọi người còn nhớ bài không? Rồi sau đó là chúng ta chọn lựa ở trong cái miền chấp nhận được đó cái nghiệm nào là tối ưu nhất. Tuần trước là mình đã dừng lại đó. Còn hôm nay là các bạn sẽ học qua một cái thuật toán là đại diện cho cái hướng tiếp cận liên quan tới sử dụng các cái thuật toán của quy hoạch tiến tính. Thì tại sao cái thuật toán này được chọn để được hướng dẫn trên lớp là do nó đơn giản, nó cổ điển, nó đơn giản và gần như tất cả những cái thuật toán sau này là người ta phát triển dựa trên các cái thuật toán góc",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 8,
+      "content": "chưa? này tuần rồi cô có giới thiệu qua rồi khuyến nghị là nên đọc qua ở nhà nhờ chắc cô không ai rảnh rỗi đi mà đọc đâu ha kéo hoài không tới cái thuật toán đó ta rồi thì cái thuật toán đơn hình ở trong đây nó trình bày rất là rõ luôn nè có ví dụ đi kèm thì các bạn nên đọc qua. Thực tế là trên hệ chính Q á trên trường là cô hay giải cái thuật toán này nhưng mà giờ đối với lớp của mình thì chúng ta chọn cái thuật toán nó đơn giản hơn một chút. Vô luôn nha.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 9,
+      "content": "Nãy giờ câu giờ xem có các bạn nào vào trễ không thì chờ các bạn một chút. Giờ mình bắt đầu luôn là vừa phụ cô đâu đây? Mọi người chờ chút nhé. Cô đi lấy con chụp rồi đó. Phương pháp mà chúng ta đang học có tên là Form Moskin. Thì đây là tên của hai nhà khoa học, hai nhà toán học. Thì phương pháp này có lẽ là cổ điện nhất và nó dùng để giải các cái bài toán quy hoạch tiến tính tổng quát. Thì tổng quát có nghĩa là giải được nhiều cái dạng bài toán cụ thể. Thì đây là một cái bài toán cụ thể này. Còn tổng quát lên thì chúng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 27,
+      "content": "hiểu nó làm như thế nào, quy trình xử lý của nó ra sao và chúng ta áp dụng, vận dụng nó để giải quyết một cái bài toán cụ thể là làm như thế nào, bằng cái thức nào. Còn tại sao nó như vậy, tại sao nó đúng á thì nó là cái câu chuyện của những người trước đó họ đã chứng minh rồi. Mình coi như mình công nhận chuyện đó luôn đi ha. Thì đương nhiên nó có cái lý do là tại sao hai đứa này ghép lại và bỏ đi. Nhưng mà giờ giải thích thì nó hơi mất nhiều thời gian sợ các bạn. Cô cứ nói lòng chồng lặng cô không hiểu nữa đâu. Nó giống như cái kiểu là hồi xưa mình",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "chứng minh"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 60,
+      "content": "cái trạng thái là 25 bé hơn bằng x2 bé hơn bằng 25. Thì từ đó suy ra được x2 = 25. Còn nếu mà em không tìm ra được một cái cặp như vậy nghĩa là nãy giờ câu chuyện tính toán sai đó. cái phương pháp người ta chứng minh rồi là chắc chắn mình phải tìm ra được. Thực tế là cái hệ bất đẳng thức của mình nó rất là nhiều bất đẳng thức trong đó chứ không phải có hai ba bốn cái như vậy đâu. Người ta ra tới hàng chục hàng trăm luôn. Thì hiển nhiên trong quá trình thế vô thì nó cũng có rất là nhiều dạng. A bé hơn bằng x2, bé hơn bằng x2 rồi c",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "chứng minh"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 61,
+      "content": "bé hơn bằng x2. Nó có rất là nhiều kiểu như vậy nhưng mà em phải chọn đúng ra được một cái cặp là hai cái chặn của nó đều là giống nhau thì lúc đó mới suy ra được x2 bằng vậy. Có x2 và có z rồi thì thế cả x2 lẫn z vô cái hệ mà chỉ còn x1 cái hệ mà có x1. Ví dụ như mình thế vô cái hệ số 2 này đi. Lấy cả x2 lận z thế vô cái hệ số 2 và phải tìm ra được cho cô một cái cặp mà là ở dạng b b bé hơn bằng. X1 rồi sau đó X1 bé hơn bằng B nữa. Coi như X1 bị chặn bởi hai cái ngưỡng dưới ngưỡng trên bằng nhau thì lúc đó kết luận là X1 bằng với lại cái giá trị đó.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 62,
+      "content": "Nếu em thế vô ra X1 là mấy? Nó có kích thái cái gì bé hơn bằng x1 rồi x1 bé hơn bằng 60 đúng không? Vậy từ đây sẽ kết luận được x1 = 60. Xong. Phương pháp thuộc toán fora mingin nó có cái cách thức thực hiện như vậy. Mọi người còn thắc mắc gì nữa không? Có muốn hỏi gì không? &gt;&gt; Dễ ha. &gt;&gt; Nó là dễ nhất rồi. Còn các bạn muốn khó hơn thì cô có thể dạy thêm cho em vài cái thuật toán khác nữa. Một trong những cái thuật toán vô cùng vô cùng phổ biến và được sử dụng rộng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 64,
+      "content": "lớn là từ chối. Chắc là thấy tính toán nhiều nên sợ sai thì sai hết. Rồi xong cái thực toán nó như vậy nha. Có ai hỏi gì không? Không hỏi qua ha. Thì qua một cái phần nội dung mới là nó qua một cái chân trời mới luôn rồi liên quan tới thiết kế thuật toán. Thiết kế thuật toán thì chúng ta sẽ học những cái loại a chiến lược như sau. Đây là các cái chiến lược cần phải học trong môn này. Một cái nhóm để trị thì bao bao gồm ba đứa. Đây là một cái nhóm để trị ha. Nó có tới ba phương pháp cụ thể trong đây là chia",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 66,
+      "content": "phương pháp nó có cái ý tưởng cốt lỗi giống giống như nhau. Và cuối cùng là quy hoạch động thì tính ra là đếm số thì này là 1 2 3 bốn nhóm. Cả thảy là có bốn nhóm nhưng mà trong mỗi nhóm nó lại có nhiều cái kỹ thuật khác biệt nữa. Thì đếm thêm nữa thì chắc là cũng đâu có cái chục nhóm. Thì đi thi á cô chỉ chọn những cái đứa gọi là đại diện trong mọi nhóm này để hỏi thôi. Ví dụ như là chia trị, giảm để trị thì hỏi một câu hoặc là giảm hoặc là chia rồi tham lam rồi quay lui với quy hoạch động. Thì cái nào là quan trọng nhất và là phổ biến nhất thì chúng ta ưu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 80,
+      "content": "Thì thuậc toán là các bạn phải trình bày ra cho người khác hiểu từng bước xử lý bên trong nó như thế nào. Vậy thực toán nó là gì? Nó là cách giải quyết một bài toán. Nó là quy trình giải quyết một bài toán, trình tự các bước mà máy phải thi hành. Vậy là phải có bước một, bước hai, bước ba. Chúng ta phải liệt kê ra một trình tự gồm các bước xử lý theo tuần tự trên xuống dưới. Vậy là khi đã có ý rồi thì phải viết ra bên ngoài hoặc là diễn dịch hoặc là nói ra bên ngoài cho người khác họ đọc, họ hiểu giống như mình. Thì một trong những cái phương pháp biểu diễn cái thuật toán ra bên ngoài đó là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 82,
+      "content": "là một cái quá trình lập. Hoặc là một cái câu lệnh gán chúng ta có thể viết dưới dạng là một cái gì đó bằng một cái gì đó. Thì đây là cái cứu pháp gán của một cái ngôn ngữ lập trình. Thì chúng ta vay mượn cái cách thức thể hiện này hay nó gọi là mã giả. Còn cái mô hình chung nó chỉ là một cái định hướng cho em biết là cái mã giả nên có cấu trúc bên trong như thế nào, cái kiến trúc nó ra làm sao và khi em có được mô hình chung thì mọi thiết kế đằng sau của mình nó sẽ dễ dàng, nó trơn tru hơn. Còn khi mình không biết qua mô hình chung thì phải là mò mẫm một chút. Nếu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 89,
+      "content": "Ý tưởng cần phải được thể hiện ra bên ngoài dưới dạng là một thuật toán. thuật toán sẽ áp dụng cô chọn luôn cho em cái thuật toán quay lui. Và thuật toán khi đã biết trước cái mô hình quay lui thì mọi thứ nó sẽ trở nên đơn giản hơn một chút. Lại mô hình này mọi người chụp lại ghi nhớ lại đi. Ừ chụp lại đi nha để cô xóa bớt cho chụp. Rồi bắt đầu vô giờ viết cái mại giả trong đâu ta? Con muốn kiếm một cái giao diện nữa cho nó dễ trên một chút nà. Bây giờ mã giả viết là sao? Các bạn",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 95,
+      "content": "đứa còn lại là phải thử hết mọi cái trường hợp có thể xem xét luôn. Và do tôi phải thử nhiều nên phải có thêm một cái dòng lập. lần lượt thử qua các cái lựa chọn thì có bao nhiêu cái lựa chọn có thể xem xét là cái dòng lập này nó lập bấy nhiêu lần. Thì hồi nãy cái mô hình của ch của cô á mô hình chung á cô cho một cái giá trị J nó chạy từ 1 cho tới K. Ý muốn nói nữa là mình có K lựa chọn K khả năng có thể xem xét lựa chọn cho cái bước giải XY. Hình dung chưa? Ví dụ như giờ cái K này không phải là cái biến đi, nó là số 5 đi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 101,
+      "content": "quy ở đây. Trong cái lời gọi đệ quy, cái tham số được truyền vô là y + 1. Nghĩa là giờ chúng ta đi xác định cái bước giải tiếp theo là bước y + 1. Ok rồi ha. Rồi tiếp tục lúc mà chương trình nó bay vô cái hàm để nó làm việc thì cái tham số được xử lý là tham số y + 1. Rồi nó lại nhìn thấy một cái dòng lọc for có nghĩa là tại đó có nhiều phương án đi lựa chọn, có nhiều cái sự lựa chọn thì cũng lại là chọn một cái gì đó để đi tiếp. Thì quá trình này nó sẽ gọi đề quy liên tục liên tục gọi đến một lúc nào đó phải có điểm dần chứ không khéo là bị",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 104,
+      "content": "tức là giờ tôi đã tìm xong cái bước giải cuối cùng thì thôi thì không gọi đại quy nữa ha, không cần gọi đại quy nữa. Rồi lúc này lời giải đã hoàn chỉnh thì em muốn làm gì với lời giải đó thì tùy em. Ví dụ như mình xuất cái lời giải đó ra cho người ta xem chẳng hạn. Còn khi mà y nó vẫn còn nhỏ hơn n là lúc này vẫn còn là một cái bước giải trung gian ở bên trong thôi thì lại tiếp tục gọi điện Q. Ok chưa? Thì cái điều kiện dừng này đôi khi người ta hay viết nó ở phía đầu của cái hàm. Có nghĩa là em thích thì em phải có thể đưa cái điều kiện dần này",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 106,
+      "content": "kiện dừng thì em phải thực hiện thêm một lần gọi địa quy nữa thì tới cái lần gọi địa quy sau đó nó mới dần thì nó có một cái khoảng chi phí để chúng ta thực hiện lời gọi hàm và truyền mấy cái tham số vô cho hàm thì nó hơi phí. Nó hơi phí cái chi phí xử lý như vậy nên cô để cái điều kiện ở đây thì có cảm giác là nó sẽ bớt tốn ít chi phí hơn. Ai thích thì để phía đầu này cũng được. Rồi đó. Vậy tự thân cái hàm này khi nó làm việc thì nó sẽ liên tục gọi đệ quy, gọi cho đến một cái lúc nào đó tìm thấy được lời giải thì có thể là dừng luôn không làm gì thêm nữa. Nhưng mà nếu có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 113,
+      "content": "đến hàm hoán vị, cái tham số truyền vô theo em là tham số gì? Hiểu hỏi không? Cái hàm của mình là một là một cái hàm độc lập. Nó là một cái hàm rời, nó là một cái hàm à riêng biệt như vậy. Và khi nó riêng biệt, nó độc lập như vậy thì chương trình chưa có làm việc với nó liền đâu. Nó phải được gọi từ đâu đó. Ví dụ như trong cái hàm main trong chương trình chính chúng ta gọi đến cái hàm hoán vị lần đầu tiên thì khi gọi tới lần đầu tiên phải có truyền tham số vô. Theo em nó là tham số gì?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 114,
+      "content": "À đúng rồi, nó sẽ là tham số 1 hoặc là 0. Thì tùy theo cái cách mà mình quy ước thành phần đầu tiên trong lời giải nó là x0 hay x1. Vậ nếu ta quy ước thành phần đầu tiên nó là S1 thì chỗ này tham số đầu tiên em truyền vô nó là số 1. Thành phần thứ hai sẽ là S2. Thành phần thứ ba là S3. Tổng quát lên có n thành phần thì đứa cuối cùng có tên gọi là Sn. Vậy lần hàm đầu tiên truyền tham số y nó là 1. Đó. Thế thì bây giờ tiếp tục mình lại suy nghĩ suy nghĩ suy nghĩ như vậy. Cô giả hình sẵn luôn rồi ha. Phải hiểu không?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 123,
+      "content": "Hình dung ha. Đây là cái ví dụ cho mọi người hiểu thế nào là bỏ trạng thái cũ và thế nào là thử qua các cái trường hợp. Còn giờ qua cái code chúng ta sẽ sửa sửa cái code này lại chút. Cái gì là ghi chú thì cô cho nó comment luôn. Rồi giờ làm lại nè. Và cái for này hồi nãy là nói chung chung. Bây giờ chúng ta phải thiết kế cho nó rõ ràng. J là chạy từ đâu tới đâu. Cô tổng quát bài này lên là cái tập a có n phần tử. Vậy thì cái for này lập bao nhiêu lần?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 145,
+      "content": "bạn sẽ viết cái câu lệnh kiểu dài. Tức là tôi gọi tới cái hàm pushback. Chức năng của hàm này là thêm một phần tử mới vào phía cuối cái mãng hiện hành mà thêm mới thôi chứ không ghi đè giá trị cũ. Vậy thì lúc đó bắt buộc các bạn phải có cái bước gọi là xóa cái giá trị cũ đi. Thì thông thường cái bước xóa nó sẽ là cái bước bóp b xóa cái giá trị cũ đi. Hình dung không? Do chúng ta phải có một cái phương án dự phòng chỗ này là không biết cái người",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 146,
+      "content": "code họ sẽ code câu lệnh kiểu gì. Nếu code là một câu lệnh dán thì cái bước bỏ này chúng ta có thể mặc định là không cần thiết. Nhưng mà nếu anh này viết theo cái kiểu là boost back là thêm vào một cái mảng thì chút nữa là anh phải b ra. Tức là anh phải xóa cái phần tử đã thêm trước đó ra thì lúc này cái mô hình của mình nó mới hoàn hảo được. Rồi được chưa? và bỏ hết mấy cái phần mà giả định ràm cũng tương đối đầy đủ rồi đó nha. Cái đứa code thì nó đọc vô có thể hiểu được ý tứ của em rồi. Nó chỉ là dựa trên",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 155,
+      "content": "Vậ cái hình này các bạn hình dung được chưa? Hình dung được rồi thì bắt đầu qua đây code nè. nhất cos để tìm đường đi từ O tới Y. Tổng quát lên là tìm đường đi từ đỉnh xuất phát là đỉnh S cho đến đỉnh mục tiêu là đỉnh G. Rồi tìm được đi đặt tên hàm là file vậy đi. Hàm này cần có đầu vào là một cái đỉnh xuất phát S, đầu ra là cái đỉnh đích sau đi đầu vào là đỉnh S và cái đỉnh đích là G luôn. Còn đầu ra của mình là nguyên cái đường đi thì cái đường đi chắc là cô sẽ lưu nó trong một cái vecơ đi ha.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 182,
+      "content": "có thể hiểu được em đang làm cái trò gì. Chỗ này cô muốn nói là bỏ cái đỉnh cuối cùng ra khỏi ếch. Rồi được chưa? Vậy là xong rồi ha. Hàm này viết xong là xong rồi đó. Sau đó chúng ta quay vô cái hàm nào đó để gọi tới cái hàm này cho nó chạy. Vậy lần đầu tiên gọi truyền vô cái gì? Hàm ban đầu viết độc lập mà viết mà không gọi tới nó thì nó cũng đâu có chạy đâu. Nó cứ trưng bày như thế này. Nó nằm trong tủ kính. Em muốn nó làm việc thì em phải gọi tới nó. Thì nó gọi ra từ một cái hàm nào đó khác. Ví dụ như gọi ra từ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 183,
+      "content": "hàm main thì lần đầu tiên gọi tới hàm file Bass này gọi sao? Mọi người có trả lời không mấy? Cô còn chờ không trả lời câu trả lời luôn. Lúc đó gõ nó muộn hơn thì không có tính điểm nhé. lần đầu tiên gọi đến coi như mình tìm cái bước giải đầu thì bước giải đầu có thể gọi là x0 cũng được gọi là x1 cũng được. Nếu như ngay từ đầu mình đã ghi nhận lời giải bắt đầu tính từ x0 chỗ này điền số 1 vô sau đó cái đỉnh xuất phát là đỉnh s đỉnh mục tiêu là đỉnh g và đỉnh hiện hành ban đầu thì nó cũng sẽ là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 189,
+      "content": "dòng nào nó sẽ lưu thông tin của cái đỉnh nào? Thì cái này trong cái môn cấu trúc rời rạt là phải học rồi. Còn em chưa học là cái thầy cô dạy em là họ dạy không đủ đề cương. Đó thì từ đây mới quay lại vấn đề nè là rõ ràng cái đề hồi nãy nó nói là tìm đường đi. Đường đi từ đỉnh có tên là U tới đỉnh có tên là Y đúng không? Và tên này nó là chuỗi ví dụ như u u nó là một chuỗi luôn chứ nó không phải là chữ cái nữa. Rồi tới một cái đỉnh là y như vậy đề yêu cầu là tên nhưng mà tới lúc mà mình viết cái hàm này n thì để cho đơn giản những cái tên này sẽ được mapping",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 199,
+      "content": "thành nó thì nó cũng đã đánh giá được cái năng lực và kiến thức của mình luôn rồi. Nên không cần thiết phải đẻ ra thêm nhiều cái cách thức đánh giá khác nữa. Không cần phải điểm danh trên lớp, không cần phải cho các cái bài tập nhỏ lẽ để lấy điểm quá trình hoặc là không cần phải thi hoặc kiểm tra thực hành vân vân. Thì cái này là do cái tình huống thực tế nó mới làm ra cái cái đối phó kiểu như vậy rồi chưa? Hiểu đề rồi ha. Giờ bắt đầu mình giải quyết à viết một cái hàm. Em thích thì",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "bài tập"
+      ]
+    },
+    {
+      "buoi": 6,
+      "paragraph_index": 216,
+      "content": "đâu tới chục cái đó. Người ta học bình thường trong ba tiết thôi, ba tiết trên lớp thôi là học cũng một lượt là hai phương pháp. Còn bây giờ cái lớp của mình có một phương pháp ngày hôm nay quần tới quần lui mà còn chưa chắc là hiểu rõ nữa nè. Các bạn muốn nghỉ sớm, các bạn không muốn luyện tập nhiều nữa thì cô không biết là mai mốt thi cử nó làm sao. Cô cũng muốn cho em qua môn lắm mà tại em không chịu qua mà. Rồi bây giờ câu hỏi đó. Điểm J đang xét có cần thỏa điều kiện nào không? Giờ ví dụ như J là số 0 nè được không?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 244,
+      "content": "các cái thuục toán mà được thiết kế theo giảm để trị là người ta dùng cái kiểu code bằng button up là phổ biến đài quy người ta không có dùng nhiều đâu. Chỉ những bài nào mà nó đơn giản như là những cái câu tính n giai thừa giống vậy nè, nó có công thức tri hồi rất là rõ rực diện như vậy thì người ta mới thiết kế bằng à đệ quy top down. Còn phần lớn những cái tình huống phức tạp hơn là đều thiết kế theo cái kiểu vòng lập bot và vòng lập nó là kiểu dài rồi. Thôi mình dừng lại ở đây đi. Bữa sau có thể cô quay lại thêm một vài ví dụ ở chia trị, giảm để trị trước khi qua",
+      "relevance_score": 5,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "công thức",
+        "đệ quy",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 128,
+      "content": "dùng một cái dòng là for ý muốn nói là lần lượt đi giải quyết từng bài toán con một cách đệ quy. Vậy cái lời gọi hàm của mình là gọi lại cái hàm đang xây dựng nên nó là lời gọi đệ quy. Sau khi có được lời giải của những bài toán con xong rồi thì tổng hợp kết quả lại. Cái kỹ thuật chia địa trị này chắc là ai cũng biết do học cái môn cấu trúc dữ liệu và giải thuật rồi. Cái môn đó nó cũng có một vài cái thuật toán mà nó được thiết kế theo kiểu chia để trị. đâu gọi tên những thuậc toán nó ra cho cô xem coi hồi đó các bạn có học một vài cái thuật toán mà chắc là cũng biết được",
+      "relevance_score": 4,
+      "keywords_found": [
+        "thuật toán",
+        "hàm",
+        "đệ quy",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 155,
+      "content": "Thì chính xác hơn cái thông tin ý nghĩa của Rotfor nó là vậy nha. Rotx nó là một cái cách giải bài toán trực tiếp trực diện dựa trên những định nghĩa dựa trên định nghĩa của những khái niệm có liên quan. Ví dụ vậy, nếu như cô có khái niệm a giai thừa thì em biết giai thừa là cái gì không? Giai thừa là một khái niệm và trong toán học người ta định nghĩa khái niệm giai thừa này theo cái kiểu của toán học. Về mặt ký hiệu là giai thừa được ký hiệu n chấm than. Và trong định nghĩa toán học của dây thừa thì nó chính là một cái biểu thức tính giữa 1 x 2 nhân 3 cho đến",
+      "relevance_score": 4,
+      "keywords_found": [
+        "ký hiệu",
+        "ví dụ",
+        "định nghĩa",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 165,
+      "content": "giải số 1 đi ha. Và phức tạp của cách giải số 1 là mấy? Là cái gì? Rồi mấy đứa trả lời vậy chắc đi thi rớt hết quá. Độ phức tạp mà ghi n nhân n là ngủm rồi. Độ phức tạp là phải gọi ký hiệu tiệm cận ra. Thường là chúng ta dùng ký hiệu tiệm cận big o. Hai dòng lập for lòng vào nhau mà mỗi cái lần lập nó lập n lần. Thì độ phức tạp là bình. Phải có gọi O ra nữa nha. Ai mà ghi n bình không là coi như mất điểm đó.",
+      "relevance_score": 4,
+      "keywords_found": [
+        "ký hiệu",
+        "tiệm cận",
+        "big o",
+        "độ phức tạp"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 195,
+      "content": "gì là return. Không cần làm gì là chỉ cần return thôi nha. Là coi như không cần làm gì. Rồi ok. Vậy xong rồi đó. Độ phức tạp của cái hàm này nhiêu thì các bạn về suy nghĩ ha. Nếu so sánh giữa cái chia trị với lại cái root force hồi nãy nó giống nhau ở chỗ là nó cũng có hai dòng for lòng vào nhau. Nhưng mà thằng chia để trị thì ngoài cái hai dòng là for lòng nhau nó còn có thêm những cái bước gọi đệ quy nữa. Và cái for này không cần phải duyệt hết cái mãng nó duyệt phân nửa này phân nửa kia thôi. Thì cũng không biết là nó",
+      "relevance_score": 4,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "so sánh",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 206,
+      "content": "bài toán thì chúng ta tư duy theo cái kiểu của đệ quy. Tư tưởng giải quyết là mình suy nghĩ theo cái lối của đệ quy. Tìm một cái công thức truy hồi thể hiện mối quan hệ giữa bài toán gốc với những bài toán con đồng dạng của nó. Thì đây là công thức tri hồi đã tìm được. Sau khi có công thức tri hồi rồi thì lúc mà viết cái hàm chúng ta chỉ đơn giản là viết cái hàm đại quy. Đại quy đó là điều kiện dần. Nếu giai thừa thì cái nhỏ nhất của mình là không giai thừa thì phải. Thì n bằng 0 thì tôi trả về kết quả không giai thừa là 1. Còn ngược lại chúng ta sẽ gọi để Q để tính",
+      "relevance_score": 4,
+      "keywords_found": [
+        "hàm",
+        "công thức",
+        "đệ quy",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 209,
+      "content": "là để quy tùng cách một khi cái bài toán của mình nó đơn giản em có thể tìm được công thức tri hồi một cách dễ dàng và chúng ta viết cái hàm như cái kiểu hàm đệ quy thì nó gọi là cách một đệ quy tow và nó có nhiều cái bài toán cũng là giảm để trị nhưng mà không phải đề quy tow nó giải theo cái kiểu bottom up thì bottom up là nó không phải đề quy mà nó dùng vòng lập và cái cách dùng vòng lập Nó cũng hơi phức tạp một chút xíu. Chúng ta lấy ví dụ cụ thể ra luôn để làm việc. À ví dụ chờ cô suy nghĩ chút nha.",
+      "relevance_score": 4,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "công thức",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 5,
+      "content": "vậy là khi cô ra đề thi lý thuyết á, biết đâu cô cũng có thể ra một trong số những câu này. Các bạn có làm qua rồi chúng ta cũng xử lý nó dễ hơn. Rồi đó là phần bài tập ha. Bây giờ mình học qua bài mới. Bài mới không biết là cô đánh số tuần nó đúng không? Tuần này không biết phải tuần bảy không nữa. Mình có nghỉ hai tuần và phải bù. Thì theo như lịch là các bạn thi vào ngày nào nhỉ? Cái môn này chúng ta thi vào ngày nào biết không? Cô thì chắc là không biết rồi đó. Chắc chắn là không biết rồi đó.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "bài tập",
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 29,
+      "content": "toán này nó là cái gì? Các bạn có mô hình hóa được cái lời giải đó thành một cái cấu trúc nó gần gần giống như toán học được hay không? Hiểu ý đó của cô không? Cái lời giải thì mình nói bằng tiếng Việt á, nói bằng ngôn ngữ tự nhiên á nó là một cái cây khung. Còn cái lời giải tối ưu thì nó là cây khung tối tiểu. Cái đó chúng ta đang phát biểu đặt đang diễn đạt bằng ngôn ngữ tự nhiên. Bây giờ mô hình hóa cái cấu trúc của lời giải về thành những cái dạng giống giống như bên toán học đó là một cái tập [hắng giọng] hợp hay là một cái hàm số hay là những",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "tối ưu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 39,
+      "content": "ta quên mất rồi. Nếu trong đề nó không nói rõ thì em sẽ tự quy ước. Ví dụ quy ước như thế này. Đồ thị có n đỉnh đi, m cạnh đi ha. Trong đề nó có thì mình dùng, còn trong đề nó không có thì tự quy ước. Rồi vậy là cái lời giải s chúng ta nói là một cái tập hợp có m cạnh vậ tức là tập hợp này có đủ n thành phần rồi sao nữa cái hàm tên gì cũng được tổng quát thì người ta hay gọi nó là cái hàm try do cái kỹ thuật quay lui á nó là cái kỹ thuật là thử và chấp nhận sai nên tổng quát người ta gọi cái hàm tên là try",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 40,
+      "content": "nhưng mà Còn các bạn, các bạn đặt tên gì khác cũng được. Ví dụ bài này cô là tìm cây khung, cô đặt cái tên hàm là cây khung. Tham số đầu vào thì có thể có nhiều tham số trong đó nhưng mà bắt buộc phải có một cái tham số gọi là y. Thì cái ý nghĩa vai trò của y là cái gì? Là vì đây là hàm đệ qy nên nó sẽ được gọi đến nhiều lần. Gọi đệ quy rất là nhiều lần. Thì mỗi lần gọi hàm là chương trình nó bay vô cái hàm này để đến nó đến làm việc. Mà hàm này được bay ra bay vô rất là nhiều lần luôn. thì tới một cái lần thứ y nào đó thì ở cái lần thứ y đó là chúng ta đi tìm hoặc là đi xác định cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 75,
+      "content": "nhật đúng không? Thì lúc này coi như là tìm thấy cái cây khung tối tiểu đầu tiên á. Rồi đề thi vậy mọi người làm được không vậy? Cái này là cái đề thi luôn á. Và rõ ràng người nào mà biết cái mô hình này thì chúng ta thiết kế nó nhanh hơn nè, nó cũng tự tin hơn nữa nè. Một vài chỗ còn loạn choạn thì v có thể chấp nhận được. Tại vì mình cũng có ý, mình cũng có một cái khung sườn rồi từ từ chấp vá đắp vô chi tiết làm mịn nó dần lên thì sẽ có được một cái giải pháp nó hoàn thiện. Đề thi lúc nào nó cũng có một câu hỏi về",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "mô hình",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 100,
+      "content": "dụ mình đang thấy luôn là các chuỗi con được phân tách với nhau bởi dấu phẩy. Thì đó là cách thứ nhất. Nhưng mà nếu các bạn tìm ra được những cái cách biểu diễn khác hay hơn thì chúng ta cứ mạnh dạng, không nhất thiết là cứ phải theo cái ví dụ y chang như cô đang đề cập. Rồi giờ suy nghĩ bài này giải sao? Thì nếu mà em dùng cái mô hình một đã được học á thì coi coi nó có thuận tiện không ha. Thử với cái mô hình 1 xem nè. Thì mình đặt tên cái hàm tên là dãy con đối xứng có tham số y. Thì lúc này coi như y là gì? Y nó đại",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 104,
+      "content": "bên trong, có đứa thì chỉ có hai thành phần thôi. Vậy làm sao tôi có thể biểu diễn một cách tổng quát mọi cái lời giải có thể có của bài toán được? Nên có cảm giác là cái cách biểu diễn này có vẻ không ổn. Nếu biểu diễn theo cái dạng phẩy phẩy phẩy phẩy này có vẻ không ổn cho lắm. Và cái mô hình số một này hình như nếu mà tiếp tục triển khai thì nó cũng hơi khó để cho em xử lý. Ví dụ như giờ tại cái bước thứ y đi chúng ta có bao nhiêu sự lựa chọn? Vậy là for này là lần lượt xem xét qua các cái lựa chọn cho bước thứ y này thì làm sao mình biết được là",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 112,
+      "content": "quay lui Quy nó về bài toán tìm giải nhị phân nha. Còn cái cách check thì ai giỏi thì làm thêm cái phần check nhưng mà nếu là đề thi mà không có nhiều thời gian á các bạn làm tới cái ý tưởng này là ok cũng có nhiều điểm rồi là có ý tưởng giải quyết bài toán là đã nhiều điểm rồi. Ví dụ như câu đó hai điểm thì khi em đã có ý tưởng và em cũng có thể ghi ra được một phần nào cái ý tưởng dướ dạng mãi giả. Ví dụ như giai đoạn một em ghi ra được dưới dạng mãi giả thì em đã có được gần như là 2/3 điểm của câu hỏi.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 126,
+      "content": "chúng ta cũng có một cái mô hình cần phải học. Cái hàm đặt tên gì cũng được. À n là kích thước dữ liệu đồ vào. Do cái hàm là điều cái hàm của mình là hàm đệ quy nên phải có cái điều kiện dừng. Thì thông thường là điều kiện dừng mình hay viết ở phía đầu của cái hàm. Còn cái quay lui á cũng có điều kiện dừng nha. Nhưng mà điều kiện dừng của quay lui em viết ở đầu cũng được nhưng mà viết ở chính giữa giống như cô hướng dẫn trên lớp thì nó sẽ hay hơn. Còn chia trị thì cái điều kiện nó hay viết ở đầu. Khi nủ nhỏ có nghĩa là bài toán mình chia nhỏ dần nhỏ",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "đệ quy",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 133,
+      "content": "chúng ta sort cho từng cái mãng con. Nhưng mà sort hai cái mảng con xong rồi thì cái mãng cha mãng gốc nó vẫn chưa được sort xong. Phải có thêm một cái bước gọi là trộn hai cái kết quả đó lại thì nó mới ra cái kết quả của hàng cha. Thì rõ ràng ba bước ha. Bước đầu tiên là chia nè. Bước thứ hai là trị, tức là gọi đệ quy để giải quyết cho từng bài toán con nè. Rồi bước thứ ba là tổng hợp. Trong tình huống này nó là trộn trộn hai cái mãng con đang có thứ tự để có được một cái mãng lớn hơn cũng có thứ tự. Thì cái đề cô hỏi như sau. Hãy chạy tay cái hàm này và mỗi lần mà",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "đệ quy",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 146,
+      "content": "khi mà em phân hoạch xong hết chúng ta gọi đề quy thì sắp xếp cho từng mãng con. Và sắp xếp xong những mãng con là coi như cái mãng gốc cũng có thứ tự luôn. Nhìn kỹ đi ha. Cô phân hoạch xong được là hai mảng con rồi nè. Rồi sau đó mình sọt trên hai mảng con cái nó ra thứ tự mới như vậy. Và sọt xong rồi thì gần như lúc này có được luôn cái kết quả của bài toán tra. Vậy cái bước tổng hợp là không còn nữa. Hiểu ý đó không? Theo như mô hình chung của chia để trị là nó có ba bước xử lý. Một là chia thì",
+      "relevance_score": 3,
+      "keywords_found": [
+        "sắp xếp",
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 149,
+      "content": "toán cha mà không làm thêm được, không cần phải làm thêm những bước đằng sau đó nữa. Vậy là cái bước tổng hợp này lúc có lúc không. Giờ cô sẽ lấy một cái ví dụ cho mọi người làm. Lấy đề thi ra giải luôn đi để mình đánh giá được cái mức độ khó của đề. Kiếm cái đề nha. Rồi đây là cái và Yến nói gì vậy ta? Đề à? DSA của tụi em khó hơn hay dễ hơn? Cái chữ bạn dùng cô không hiểu. Khó hơn ha. Đề các bạn khó hơn đề của cô luôn á. Hả? Ghê vậy.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "tổng",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 156,
+      "content": "nhân nhân tới n. Thì đây là định nghĩa của giai thừa. Và nếu như cái bài toán của mình là yêu cầu phải tính giai thừa của n tính giai thừa ha. Và em tính giai thừa bằng những cái thông tin mình biết về cái khái niệm giai thừa. Tức là đây là một cái quá trình nhân giữa 1 nhân 2 nh 3 nhân với n và nó nhân nhiều lần như vậy thì đây là một cái quá trình lập lặp lại nhiều lần cái phép toán nhân và chúng ta viết cái hàm tính á theo y chang như cái định nghĩa này. Tức là chạy bằng một một cái dòng mặt for chạy bao nhiêu lần? Hình",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "định nghĩa",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 188,
+      "content": "Chỗ này là chia nè. Chia xong gọi đệ quy để giải quyết cho tực bài toán con nè. Giờ qua được hai bước rồi ha. Bước cuối là bước tổng hợp. Rồi và bước tổng hợp hồi nãy cái ý tưởng đã có rồi mọi người còn nhớ không? Giờ chúng ta sẽ triển khai cái ý tưởng đó thành những cái câu lệnh cụ thể hơn trong cái mã giả. Giờ nói ý trước đi. Bây giờ ai hiểu rồi thì cho cô viết lại giùm cô cái ý đó ra. Cô copy cô bỏ vô này nè. Viết cái ý tưởng nó ra trước coi. Nếu mà đi thi không viết mở giả ra được thì nên viết cái ý tưởng ra nha. Có nhiêu thì cô",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "đệ quy",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 234,
+      "content": "Rồi cô làm lại ha. Lời giải A2 nó đang có hai thành phần, một cái là 43, một cái là 34. Lần lượt xét từng thành phần trong đây thì cái thành phần đó gọi tên là X. Coi như mình có x1 với x2 đi phân biệt với nhau đi nè. Đây là x1, đây là x2. Sau đó chúng ta gọi cái hàm insert để chàn một cái giá trị mới là số 1 vào trong cái x. Thì đối em cái thủ tục chàng này nó cho mình kết quả là cái gì? Ví dụ trong tình huống này nó trả về cho mình kết quả là gì? Hiểu câu hỏi không ta? Cô đang thực hiện một cái thủ tục gọi",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 247,
+      "content": "đề. Lúc thì có thêm tham lam, lúc thì có thêm chia để trị hoặc giảm để trị gì đó. Thì cái phần kia nữa là phần hên xui đây. Cô lấy ví dụ à một cái đề thi gần nhất. Đề nào gần nhất ta? Đây phần hai của một cái đề à gồm có câu 3. Câu 3 nó nói là hãy dùng quay lui là có quay lui rồi ha. Sau đó là chọn một trong hai câu bên dưới để làm thì cái câu có thể chọn là tham lam là một à quy hoạch động là hai. Thì nếu mà em có sự lựa chọn thì chắc là em sẽ nén cái quy hoạch động ra em chọn thằng kia.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 4,
+      "content": "Thường là cái phần thi thực hành là thầy cô tự tổ chức chứ phòng đào tạo không có hỗ trợ nên a bên phía trung tâm hoặc là bên phòng đào tạo á họ chỉ có phần tổ chức lý thuyết thôi. Còn thực hành thì thầy cô phải tự xử lý. Và lớp mình tới đâu cỡ trăm mấy người thì cô cô quạn không nổi. À bài tập mở lúc 2300. Đúng rồi. 23 giờ cái bài tính điểm môn học mà tuần rồi mình có học thì cô cũng có up đề lên đây luôn cho các bạn luyện tập lại nè. thì là những cái câu dễ thì tốt nhất là mọi người nên tự học, tự luyện, không nên dùng ai để giải quyết giùm. Thì như",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài tập",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 21,
+      "content": "cái thành phần gọi là cây hay còn gọi là cây khung. Ở đây mình có cây khung này. Thì cây khung là cái gì? Toán cấu trúc rời rạc có học rồi. Cây khung nó là một bộ phận của cái đồ thị và nó đi qua tất cả các cái đỉnh của đồ thị đó. Sao nữa? Và nó không có chu trình. Đó. Đó là định nghĩa của cây khung. Tôi nói lại nha. Cây khung nó là một cái bộ phận của cái đồ thị. Nó là cái thành phần của đồ thị và nó là một cái cấu trúc gì đó mà có thể cover, có thể bao hàm hết tất cả các đỉnh của đồ thị. Tức là nó chứa hết các đỉnh của đồ thị. Rồi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "định nghĩa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 26,
+      "content": "có cái tổng trọng số nhỏ nhất thì gọi là cây khuôn tối tiểu. Thì bài toán của mình là cho cái đồ thị rồi tìm cây khuôn tối tiểu của cái đồ thị đó. Xong. Giờ chúng ta giải quyết bài này sao? Thứ nhất là nó có dấu hiệu vét cạn không? Mình tìm coi nó có cái đặc trưng vét cạn trong cái bài toán này không. Thì cây khung tối tiểu đó là cây khung mà có tổng trọng số nhỏ nhất. Vậ nó có cái yếu tố là nhất. Mà nhất thì thường được gọi là tối ưu. Vậy bài toán đi tìm phương án tối ưu, tìm cái lời giải tối ưu thì gọi là bài toán tối ưu.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "tối ưu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 31,
+      "content": "là lời giải này ha. Chúng ta mô hình hóa cái lời dạy S này thành một cái bộ thành một cái tập hợp của các cạnh đúng không? Giờ nếu như cô gọi tên các cạnh trong đồ thị ra dồ cạnh này gọi tên là E1, cạnh này là E2 đi. Vậy là có phải cái lời giải của mình nó là tập hợp mấy cái cạnh E1, E2 như thầy bầy đúng không? Rồi có ai có ý kiến gì khác không? Ngoài cái chuyện là giải có thể được mô hình hóa dưới dạng là một tập hợp của các cái cạnh thì các bạn còn có một cái cách nào khác nữa không? Em chọn cạnh thì cô cũng sẽ đặt câu hỏi tại sao em không chọn đỉnh. Có nghĩa là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 32,
+      "content": "thay vì mình nói lời giải nó là tập hợp các cạnh mình vẫn có thể cho lời giải nó tập hợp các định cũng được mà đúng không? Vậ cái nào thấy nó có vẻ hợp lý hơn ta? Rồi thì giờ nếu mà sự chọn lựa giữa em giữa tập đỉnh với tập cạnh á mình còn đang hơi lăng tăng, hơi bối rối một chút thì các bạn cứ chọn đại một cái gì đó mà mình cảm thấy nó nó nó chưa rõ ràng ra để phân tích. Ví dụ như nếu cô nói là S này là một tập hợp của các đỉnh đi, chúng ta sẽ gọi tên mấy cái đỉnh này tên gì nhỉ? Ký hiệu đỉnh là T đi ha. Rồi có T1, T2, T3 cho đến TN với N là TM",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ký hiệu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 41,
+      "content": "thành phần bước giải xy của lời giải. Nhớ không nhớ không? Học lâu quá thì chắc quên rồi ha. Vậy là nếu như cái lời gọi hàm chúng ta truyền cái giá trị y này là 1 coi như lúc đó là đang đi tìm x1. Còn nếu cái lời gọi hàm truyền vô cái giá trị của y là 2 thì đang đi tìm x2 thì tổng quát lên là ở một cái bước thứ y nào đó mình đang đi tìm cái thằng xy của lời giải x rồi vì ở mỗi bước có nhiều sự lựa chọn mà mình cũng chẳng biết cái lựa chọn nào là dẫn đến thành công không biết cái lựa chọn nào là có thể đạt được đến cái mục tiêu nên giờ phải thử qua tất cả các lựa",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 60,
+      "content": "dàng. Còn không biết cái mô hình là mọi thứ mò mẫm trở nên nó vô cùng khó khăn. Em biết trước thì em có cái định hướng nó đi nhanh hơn, còn mình không biết là mình phải mò. Nếu như cái lựa chọn này là phù hợp thì theo cái mô hình mình làm gì tiếp theo? Có phải là tôi ghi nhận lại cái lựa chọn đúng không? Thì cái ghi nhận lựa chọn trong cái tình huống này là cái gì? Là cái cạnh nó phù hợp rồi đó. Bây giờ chúng ta coi như chọn cái bỏ vào trong cây T thì cô sẽ viết một cái câu lệnh để thể hiện cái chuyện là tôi chọn cái cạnh này và bỏ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 65,
+      "content": "Ok chưa? Còn cái chuyện mà em xử lý cây khung đó là sao thì tùy ý em hoặc là em xuất cái cây khung đó ra cho người ta xem chơi hoặc là mình lưu cái cây khung này lại trong một cái tập cây khung thì trong tình huống này em nên làm gì? Làm gì với cái cây khung hoàn chỉnh này? Chưa biết làm gì thì để nó đi. Hồi quay lại và xuống cái eo đi ha. Gọi đệ quy để tìm bước giải tiếp theo thì gọi đệ quy là gọi vào cái hàm tên là cây khung. Hmm số đầu vào là mình truyền vô y + 1. Tức là tôi thực hiện cho cái bước giải tiếp theo. Nếu có tham số gì nữa thì chấm chấm chấm",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 68,
+      "content": "Cái mô hình của mình sương sương nó như vậy. Em nhớ cái mô hình là em làm rất là nhanh. Còn một vài chỗ chúng ta còn cân nhắc thì hồi quay lại sau. Ví dụ chỗ này khi đã có một cây khung hoàn chỉnh thì xử lý là sao với cây khung đó? Hình như đề nó không phải là đi tìm cây khung đúng không? Đề nó hỏi là tìm cây khung tối tiểu thì có hai cách. Cách thứ nhất là tất cả những cây khung mà em xây dựng hoàn chỉnh á em gom nó lại lưu nó vô một kho đi. Rồi sau khi xây được hết tất cả các cây khung có thể có rồi mình vô cái kho đó lựa ra cái cây tối tiểu. Thì đó là cách thứ nhất.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 72,
+      "content": "thì chúng ta cần phải so sánh cho cái cây hiện tại là t với lại cái cây T min. Nhưng mà chúng ta để cái T so với T min thấy nó cũng hơi kỳ. Cái cây mà so với cái cây thì người khác đọc vô không hiểu là so cái kiểu gì. So số đỉnh hay so số cạnh hay so theo cái tiêu chí gì khác thì khả năng nó vẫn gây ra cái sự nhập nhà. Thì cái mình cần là cần so trọng số. Vậy chắc là sẽ gọi một cái hàm để tính ra trọng số của cây. Cô gọi cái hàm đó là hàm W. Quay lên trên giới thiệu nhân vật. Có một cái hàm tên là W. Hàm này nó xử lý một cái cây theo cái kiểu là tính trọng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "so sánh"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 73,
+      "content": "số của cây T. Mà tính trọng số thì chẳng qua là tính tổng trọng số các cạnh có trong cây đúng không? Rồi vậy là xuống đây tôi lấy trọng số của cây Tôi so với trọng số của cây T min. Và nếu thằng này nhỏ hơn cây này nó sẽ tối tiểu hơn. Chúng ta cập nhật lại T min. bằng t xong. Vậy là mỗi lần có một cây khung hoàn chỉnh được tạo ra thì chúng ta đi so với lại cái cây t min hiện tại. Rồi nếu nó tốt hơn thì chúng ta cập nhật lại cái cây t min đó. Và rõ ràng khi mà cái hàm",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 76,
+      "content": "quay lui nên các bạn làm sao đó học cho cô học tủ luôn cái quay lui này giùm nha. Thôi thêm thêm một ví dụ nữa đi. Mình còn tới ba bốn buổi lận chắc cũng còn thời gian. Cái ví dụ thứ hai này à nó sẽ liên quan tới cái mô hình thứ hai của quay lui. Mà trước khi qua mô hình thứ hai thì cô sẽ lấy một cái ví dụ đơn giản như vậy. Ừ. Tìm tất cả dãy tập đề hiểu không ta? Tìm tất cả những cái dãy nhị phân có độ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 88,
+      "content": "phải có bba back ra để lấy cái phần tử cuối đó ra. Còn khi mà viết ở dạng mà câu lệnh gán thì ai cũng hiểu là có thể ghi đè cái giá trị mới lên cái giá trị cũ được. Thì bước này cũng bỏ luôn không cần. Rồi, vậy là cái việc mà đi tìm cái dãy nhị phân có độ dài là n chúng ta có thể xử lý bằng một cái mã giả như thế này. Nhưng mà đây không phải là cái vấn đề cô đang muốn nói. Cô muốn nói qua cái áp dụng của cái vấn đề gì phân ha. nó tạo ra cái mô hình thứ hai của quay lui. Rồi coi áp dụng như thế nào. Bây giờ lấy",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 94,
+      "content": "vét cạn nhưng mà nó thường là cái kiểu vét cạn bởi những dòng lập có nghĩa là chạy những cái dòng lập for lòng vào nhau á nó là cái dạng của RFX còn quay lui là cái kiểu đệ quy nha. Rồi bây giờ qua cái bài áp dụng nè. Bài áp dụng bài này. Ừ. Đọc đề trước đi. Cho một cái chuỗi S AAB là chuỗi này. à tìm những cái cách có thể chia cái chuỗi này ra thành những cái chuỗi con đối xứng. Ví dụ như AAB này nó có những chuỗi con nào thì nó có a là một chuỗi con rồi cái",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 97,
+      "content": "đề thi lúc nào cũng có một câu quay lui và thông thường á đề nó sẽ có nhiều câu thiết kế. Sinh viên được chọn một trong số những câu trong đề để làm. Thì nếu các bạn vẫn vàng với quay lui thì cứ việc chọn quay lui làm trước. Tách ra nó có cái cách tách thứ nhất là A rồi phẩy B ph A'C. Tách này là ok nhất nè, dễ nhất nè. Đúng không? Tách riêng từng ký tự ra luôn. Thì mỗi ký tự đứng riêng ra như vậy nó là chuỗi con. Chuỗi con có một ký tự là nó đối xứng. Đó là cách tách thứ nhất. Mà mình là có nhiều cách tách tức là phải vét cạn rồi đó. Cách tách thứ hai",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 103,
+      "content": "khác biệt so những cái loại thành phần trước đó. N các bạn lúng túng, các bạn không biết là cái thành phần mình biểu diễn làm sao cho nó phù hợp, nó tổng quát, nó hợp lý trong mọi tình huống. Ở ví dụ đầu tiên của cô thì thành phần nó chỉ là một cái ký tự nhưng mà qua tới ví dụ thứ hai thì thành phần nó là một cái chuỗi con ABBA này luôn. Rồi qua ví dụ thứ ba thì thành phần có khi là một ký tự, có khi là một dãy có nhiều ký tự bên trong nữa. Và trong tất cả các lời giải này hình như nó cũng không có một cái chuẩn chung là lời giải có bao nhiêu thành phần. Có đứa thì nhiều thành phần",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 105,
+      "content": "đó là những lựa chọn nào và bao nhiêu sự lựa chọn. Thì với cái tình huống này phải cô nói nhanh luôn là cái mô hình một này là fail đó. Mình không áp dụng mô hình một này để giải được đâu. Mà các bạn biết thêm được mô hình hai nữa thì quá tốt. Mô hình hai nó sẽ phù hợp hơn với ví dụ này. Thì mô hình hai là cái gì? Là hãy chuyển cái bài toán của mình về thành một cái bài toán mà đi tìm những dãy nhị phân. Có nghĩa là tìm cái cách chuyển đổi cái bài toán về thành cái bài toán giống giống như là đi tìm những cái dãy nhị",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "mô hình"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 113,
+      "content": "Rồi vậy giờ giai đoạn một mình xử lý làm sao? Giai đoạn một làm giống như cái bài dãy nhị phân lúc nãy đi. Nãy sao giờ làm y chang vậy? Giải nhị phân có cái hàm tên dạy tham số là y. Rồi bên trong là tìm dãy nhị phân. Có nghĩa là mình quyết định số 0 hay số 1 được chọn thì for chạy từ 0 cho đến 1 nè. Vậy cứ chọn là được. Nên thành ra mình sẽ ghi nhận lại cái lựa chọn J cho cái xy. Đấy. XY bằng J. Ghi nhận xong là kiểm tra coi đệ quy dừng được chưa. Thì đệ quy của mình là mình biết cái dãy nhị phân có độ dài là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 116,
+      "content": "đối xứng hay không. Thì nếu thằng này đúng chúng ta xuất ra một cái lời giải cho bài toán. Đế thì khi mà em viết vậy á là câu này mà hai điểm là em cũng đã được full hai điểm rồi. Sau đó là khi mà em biết cái cách mà chi tiết hóa cái chuỗi cái việc mà check cái chuỗi đối xứng này thì em có thêm cái phần bonus. Rồi mọi người cảm tưởng đi thấy sao? Thế cũng được mà đúng không? Đề thi cô cho vậy và em chỉ cần em làm giống như vậy cô đang hướng dẫn là được full điểm của câu hỏi rồi. Còn nếu mà em làm được hay hơn thiên hạ nữa thì phần",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 125,
+      "content": "bài toán con thì chỉ mới có lời giải của bài toán con và chưa chắc nó đã là lời giải của thằng cha nên phải có thêm một cái bước gọi là tổng hợp. Thì tổng hợp là tổng hợp lời giải của những bài toán con. Tổng hợp lời giải của những bài toán con để có được lời giải của bài toán gốc. Rồi ok chưa? Vậy phương pháp chia để trị nó có ba cái khâu rất là rõ rệt luôn. Ba cái bước xử lý. Một là bước chia nè. Hai là bước trị nè và ba là bước tổng hợp. Nó có ba bước như vậy. Và cái mô hình thì nó sẽ có kiểu như thế này. Đây",
+      "relevance_score": 2,
+      "keywords_found": [
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 129,
+      "content": "nó là được thiết kế theo chiến lược chia để trị nó là thực toán nào trong cái môn cấu trúc dữ liệu và giải thuật á các bạn có học qua những thuật toán có biết không ta? Sao hỏi không trả lời s và se binary? Rồi bây giờ nói về M sort trước đi. Mort là sort trên một cái cấu trúc thường là trên một cái mảng. Cô có một cái mảng A có một vài phần tử trong đó. À à không biết hồi xưa các bạn thi môn cấu trúc dữ liệu và giải thuật đề nó dễ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 130,
+      "content": "không? Chứ mới vừa rồi là học kỳ hè, các bạn sinh viên có thi một cái đề mà cô ra. Trời chút cái đề đó đâu ta? Rồi đây là cái đề của môn cấu trúc dữ liệu và giải thuật ha. Cái đề này có câu hỏi mà sort luôn nè. Sẵn tiện có cái mã giả Mort luôn để mình show ra cho hàm Mort có đầu vào là một cái mãng A thì vì nó là một hàm đệ QY có nghĩa là cái mãng nó được phân tách ra thành những cái mãng con và mỗi lần mình xử lý trên cái mãng con nào đó thì nó phải có một cái cách thức nào đó cho mấy máy",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 132,
+      "content": "cái chỉ số đầu với chỉ số cuối của mạng hiện hành rồi. Cái lấy chỉ số đầu với chỉ số cuối cộng lại chia 2 cái nó ra vị trí chính giữa. Thì cái mid này chính là cái vị trí chính giữa. Vị trí này sẽ giúp em chia cái mãng hiện hành ra làm hai phần và chia làm hai cái mảng con. Đó. Mãng con thứ nhất tính từ left tới mid. Mãng con thứ hai tính từ mid cộng 1 tới ray. Rồi có được hai cái mãng con sau đó chúng ta gọi đề quy để sắp xếp cho hai cái mãng con. Thì coi như bước chia là sao? Là chia làm đôi rồi đó. Sau đó gọi đệ quy để",
+      "relevance_score": 2,
+      "keywords_found": [
+        "sắp xếp",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 137,
+      "content": "xong á nó sẽ ra được cái thứ tự mới là 25 40 55. Còn mãng con thứ hai sau khi sắp xếp xong cái nó ra thứ tự mới đạn dài. Vậy lúc này coi như cô đã giải xong hai bài toán con rồi. Tức là đã sắp xếp xong hai bài toán con rồi. Nhưng mà đây chưa phải là cái kết quả cuối cùng thì các bạn phải làm một cái động tác tổng hợp. Mà tổng hợp trong bài toán này nó là động tác trộn. trộn hai cái mãng con có thứ tự để nó tạo ra một cái mãng lớn hơn cũng có thứ tự luôn. Nhưng mà cái này mình nói chung chung thôi. Còn khi thực hiện khi thực",
+      "relevance_score": 2,
+      "keywords_found": [
+        "sắp xếp",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 138,
+      "content": "hiện cụ thể á là cái lúc mà tách cái mãng ra làm hai cái mãng con thì chúng ta gọi đệ quy cho từng mãng con. Và mỗi lần xử lý cho những mãng con thì nó cũng làm cách thức tương tự là nó lại chia cái mãng hiện hành ra làm đôi. Rồi sau đó nó mới gọi đề quy cho hai phần. Rồi tính tính tới mỗi phần nữa nó lại chia ra làm đôi rồi nó gọi đề quy nữa. Vậy là cái thứ tự thay đổi đầu tiên nó diễn ra ở chỗ vị trí nào? Giờ các bạn phải chạy tay hoàn chỉnh thì mới thấy được. Ví dụ như giờ cô chạy tay dài. Đây là cái mãng góc cái mình chia nó ra làm đôi. Chia ra dài. Sau đó nó lần lượt",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 142,
+      "content": "Vậy cái sự thay đổi thứ hai nó diễn ra chỗ nào? À sự thay đổi thứ hai là nó nằm ở cái khúc mà trộn hai cái mãng con chỗ này lại nó sẽ tạo ra một cái thứ tự mới là 25 40 45 55 còn cái phần kia không thay đổi hình đúng chưa thì cái thằng mà sort này chính là chia để trị đó tức là tôi chia cái bài toán lớn thành những bài toán con đồng dạng. Rồi tôi đi xử lý giải quyết những bài toán con đó một cách đệ quy. Giải xong được bài toán con thì nó có được lời giải rồi. Phải tổng hợp lời giải của",
+      "relevance_score": 2,
+      "keywords_found": [
+        "đệ quy",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 147,
+      "content": "quyết sort coi như là chia nó là phân hoạch đó. Phân hoạch đó là giai đoạn chia của cái thằng sort. Cái đến là gọi đề quy thì gọi đề quy là mình cũng gọi sort cho hai cái bảng con này. Rồi giai đoạn thứ ba là tổng hợp. Nhưng mà đối với short thì không có cái bước tổng hợp. Do mỗi lần mà giải xong những bài toán con là em gom cái kết quả của những bài toán con đó lại là nó có thứ tự luôn. thành ra không cần phải tổng hợp gì thêm đằng sau nữa. Giờ quay lại cái mô hình của chia trị thì nó có nhấn mạnh cái ý này.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "mô hình",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 154,
+      "content": "Cô quay lại chưa tình như cô bị văng ra ngoài. &gt;&gt; [khịt mũi] &gt;&gt; Mình đã trở lại chưa? Chờ một chút rồi. Bây giờ bài này giải bằng Rot force. Giờ Rot Force là cái gì? Nãy có bạn nói em có đọc tài liệu rồi em thấy người ta so sánh giữa RF với quay lui á, tức là có đọc qua rồi đúng không? Đôi khi đọc là chuyện nhưng mà mình có hiểu rõ hiểu chính xác hay không nó là chuyện khác. Thì Rot force nó là cái gì? Nó là cách giải bài toán một cách trực tiếp trực diện.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "so sánh",
+        "mũ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 158,
+      "content": "trị y với một cái biến tích nào đó. Thì khi mà em code theo cái kiểu như vậy tức là em đang sử dụng phương pháp group. Do tôi bám vào trực diện trực tiếp cái khái niệm có liên quan trong bài toán là cái khái niệm về giai thừa và định nghĩa của nó trong mặt về mặt toán học nó là như vậy. Và tôi code y chang cái ý tưởng đó thì nó gọi là root forx. Ngoài ra có nhiều bạn thì sẽ hiểu rootf theo cái kiểu là vét cạn. Thì khi nào cái bài toán nó là cái kiểu vét cạn mà em áp dụng cái cách giải của rootf thì ok em có thể đánh đồng là rootf nó là vét cạn cũng được. Và cái vé",
+      "relevance_score": 2,
+      "keywords_found": [
+        "định nghĩa",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 170,
+      "content": "Mỗi lần mà mình sort xong á thì cái cấu trúc nó có một cái trật tự nhất định và trên cái trật tự đó có cảm giác là mình sẽ tìm ra cái giải pháp nó hiệu quả hơn. Giờ cô cũng sẽ sort cái tập này theo một cái thứ tự gì đó. Ví dụ mình chọn theo cái trục là trục hoành đi. Sắp xếp lại tập hợp các điểm theo thứ tự tăng dần của hoành độ. Thì theo đó là đứa nào mà nhỏ nhất chúng ta gọi ra giống như là A B C D E vậy. Rồi vậy là giai đoạn một là sắp xếp bước một. Sau khi sắp xếp xong cái chúng ta chia cái tập hợp này ra làm nhiều phần. Và",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "sắp xếp"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 171,
+      "content": "nếu mà chia ra làm nhiều phần thì thường người ta hay chia làm hai phần cho nó đơn giản. Ba phần cũng được, bốn phần cũng được nhưng mà hai phần thì đơn giản hơn. Và tôi chia cái bộ dữ liệu ra thành hai cái bộ nhỏ hơn. Thì em em chia kiểu gì? Giờ cái tập hợp này nhìn cái hình với ví dụ này luôn. Chúng ta chia làm hai phần thì cái tiêu chí chia của mình là chia là sao? Sao ta? Để viết code là phải có một câu lệnh chỉ định cho nó rõ ràng cái cách chia như thế nào, câu lệnh nó ra làm sao. Thì",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 172,
+      "content": "trong tình huống này các bạn chia làm sao? Chia sao cho nó ra được hai phần? Cô hiểu câu hỏi không nhỉ? Sợ mọi người không hiểu. Quá tính ra là cô đã sắp xếp cái tập học S này xong rồi nha. Chúng ta sẽ gọi cái tập hợp mới đó là S sort Sort đi. Tập S đã được sort thì trong đây nó sẽ có những cái điểm chúng ta gọi tên nó là à X 1, X2 cho đến X N. Thì thành ra thôi bắt đầu tắm từ 0 đi ha. S0 rồi S1 cho đến Sn - 1. Vậy các thành phần trong cái S này coi như được",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "sắp xếp"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 180,
+      "content": "cái chương trình có thể giúp mình tự động tính được hạng của tất cả một cái tập hợp nào đó bất kỳ. Thì cái cách để tổng hợp nó là sao? Giờ phải suy nghĩ. Nếu mà em chịu khó quan sát á sẽ thấy là hình như có một vài điểm hạng của nó là cũng đã trúng bon luôn rồi. Thì phải. Ví dụ như hạng của a nè, chỗ này là 0 nè. Ở đây kết quả của nó cũng là 0 là hình như giống rồi đó. Hạng của B là 1 này. Thì kết quả trong cái bài toán tra nó cũng là 1 nè. Vậy là hạng của những cái điểm trong cái X1 là không đổi là nó trúng rồi. Đó là nó đúng với lại",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 183,
+      "content": "hạng của C cập nhật lên thành 1. Còn B thì nó không lớn hơn nên không có gì thay đổi thêm. Tương tự vậy xét tiếp tới điểm D thì D cũng lại đi so với lại A và B. Và tung độ của thằng D lớn hơn tung độ của hai đứa kia lớn hơn cả hai luôn nên nó được tăng lên là hai đơn vị luôn. Thì cuối cùng hạng của D tăng lên được là 3. Rồi E cũng vậy. Đó thì khi em hình thành được ý tưởng rồi, giờ chúng ta chỉ cần chuyển hóa nó thành câu lệnh thành mã giả. Giờ chúng ta sẽ viết mãi giả theo kiểu của chia trị. hàm mà cũng đặt tên là hàm tính hạng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 184,
+      "content": "luôn đi. Đầu vào có s có n nhưng mà để cho cái quá trình giải quyết này nó đơn giản thì mình có một cái bước tiền xử lý là sọt sọc ếch theo tiêu chuẩn gì đó. Ví dụ như mình gọi là sọt theo hoành độ tăng dần ha. Vậy thì lúc này cái đã được sọt nên mình có thể làm một cái động thái cho người ta biết là cái ếch cô tôi đang xét là cái ếch đã được sort giai đoạn phía trên. Bước ở trên gọi là bước tiền xử lý. Còn cái hàm này nhận đầu vào là cái",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 185,
+      "content": "sã đã được sợ. Rồi cái làm gì? Chia cái tập hợp đang xét ra làm hai phần. Thì chia bằng cách nào? là các bạn phải biết được cái vị trí chính giữa nó nằm ở đâu. Và thông thường khi mà mình viết hàm đệ quy á mà xét trên một cái mãng nữa, mỗi lần gọi đệ quy là nó xét một cái mãng con. Vậy là phải cung cấp cho máy tính một cái cơ chế, một cách thức nào để nhận diện cái mãng con đang xét nó nằm trong cái phạm vi nào. Thì cái cách đơn giản và phổ biến nhất là đặt một cái biến left và right. Thôi cô viết tắt chữ L với chữ R đi.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 187,
+      "content": "cần phải đi giải quyết từng bài toán con một cách đề quy. Tức là cô gọi lại cái hàm đề Q để tính cho cái thằng S. có cảm giác như biến nến thì em có thể bỏ bớt đi. Ví dụ như đây cô bỏ luôn đi. Còn khi có dùng thì để lại. Lần gọi đề Q đầu tiên xử lý cho thằng X1 thì là giá trị của mình từ left cho đến right à sorry left cho đến mid. Đây là mãng số 1. Rồi tương tự vậy cho S2. Ủa cô đang làm gì mọi người hiểu không? Vậy nãy giờ theo kịp không?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 196,
+      "content": "có hay hơn rootf hay không. Thì cô không có khẳng định là chia để trị nó hay hơn rootf. Các bạn phải tự đánh giá được là độ phức tạp thằng này nó như thế nào, nó có tốt hơn thằng kia không? Vậy về suy nghĩ nha. Rồi đây là một ví dụ của chia địa trị. Chắc là phần này chỉ lấy một ví dụ thôi để còn những cái kỹ thuật khác nữa. Giờ qua giảm đi. Giờ giữa giảm với tham lam các bạn muốn học trước cái nào? Chắc là cô chỉ có thể nói được một trong hai thôi. Time lam thì có bạn học rồi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 204,
+      "content": "thừa cho nó đơn giản nha. Tính n giai thừa rồi ha. Bài toán góc là bài toán có kích thước n đi tính n chơ thừa. Thì thay vì em giải bằng group for là phải chạy một dòng là for. Thì bây giờ chúng ta giải theo cái kiểu là quy đổi cái bài toán góc về thành bài toán con đồng dạng. hay nó khác hơn là cái tư tưởng của nó là tư tưởng đệ quy. Giờ giảm kích thước thì giảm kiểu gì? Giờ em muốn tính n giai thừa thì có cái cách mà mình quy nó về bài toán con nào không?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "đệ quy",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 207,
+      "content": "cái bài toán con là chia thừa n - 1. Kết quả của đứa này tiếp tục được nhân với n thì nó ra được bài toán góc. Ok chưa? Thì cái hàm mà cô thiết kế như vậy nó là hàm đệ quy và nó là hàm đệ quy kiểu top down. Mọi người hiểu cái chữ top down là cái gì không? Đệ quy thì ai cũng biết rồi. Mà đệ quy này là gọi là đại quy top down. Top down là sao? là cái cây hình thành nó sẽ đi từ trên xuống dưới. Ở trên là những bài toán lớn rồi nó nhỏ dần giảm dần xuống những cái nhánh con thì nó gọi là top down là từ trên xuống dưới. Nếu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 208,
+      "content": "mà hình dung thành một cái cây á là cái cây của em có cái nút gốc rồi nó tẻ ra thành những cái nhánh con tương ứng với những bài toán con rồi ứng với những cái nhánh con nó lại nhỏ ra nữa. Có thêm những cái nhánh con nhỏ hơn nữa thì nó gọi là đề quy tow. Thì bài toán nào mà tìm được công thức tri hồi kiểu dày các bạn sẽ thiết kế cái hàm theo kiểu để quy t. Còn nếu bài toán của mình mà không tìm ra được công thức tri hồi thì chúng ta sẽ giải cái bài toán theo cái dạng là bottom up. Phân biệt được không ta? Vậy là cách một",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 212,
+      "content": "Rồi giảm để trị thì quay trở lại. Giảm để trị cũng có hai cách. Một cách là top down. T down là đề quy đó. Cách thứ hai là button up. Giờ em em suy nghĩ xem cái tóc đ chỗ này mình thiết kế ra là một cái hàm đại quy sao được không. Nếu cảm thấy hơi khó khăn thì thôi mình cứ dùng button up. Button up làm cái gì? Chú ý nha. Này hơi khó nha. Khi giải quyết bằng giảm để trị mà bostanup á thì lúc đầu là lên ý tưởng trước mà cái ý tưởng sẽ được hình thành theo cái kiểu đệ quy top down.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 242,
+      "content": "trước for mà không biết for nào có hai for lận đó. Rồi xong chưa? Vậy là xong rồi đó. Thì nếu mà em làm dày là em sẽ được full điểm câu hỏi. Và bạn nào mà còn có thêm thời gian để viết rõ cái hàm insert này xử lý như sao nữa thì nó sẽ là bonus. Hình như không đây là cái cách mà cô chấm bài thi á. Em chỉ cần thiết kế tới đây thôi. Và khi mà mình có một cái thủ tục nào đó không làm rõ được ngay từ đầu thì các bạn có thể viết dưới dạng là một cái lời gọi hàm rồi cho biết cái ý nghĩa",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 243,
+      "content": "của lời gọi đó. Tức là ở đây cô dùng một cái thủ tục là gọi tới cái hàm insert. Hàm này có chức năng vai trò gì mình chỉ cần giải thích cái vai trò của nó thôi và dùng để chèn ai đó vào đâu đó. Em làm tới đây là em đã được full điểm câu hỏi. Còn cái chuyện mà insert có viết thêm được chi tiết hay không thì được có. thêm bonus trong bài thi lúc nào nó cũng có những cái chỗ có thể bonus được thì những cái câu trước đó em làm sai em làm thiếu làm sót chỗ nào thì phần bonus này nó bù lỗ vô rồi xong đây là giảm để trị và phần lớn",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 248,
+      "content": "Nhưng mà lúc nào đề nó cũng có một câu quay lui với lại câu quy hoạch động. Đây là một đề một cái đề khác thiết kế thực toán. Trong đó có một câu bắt buộc dùng quay lui. Nhưng mà đây là chỉ là câu A thôi. Còn câu B nó nói là hãy dùng một cách giải khác. Tức là lúc này các bạn phải chọn một cách khác, không phải quay lui. Coi như chỗ này là hai phương pháp rồi ha. Và câu 5 thì câu 5 nó nói là hãy chọn một cách nào đó để giải bài này. Thì câu 5 là dòng tham lam đó. Còn câu 6 là quy hoạch động. Rồi vậy đề ở đây là có ba câu. Một là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thực toán",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 7,
+      "paragraph_index": 252,
+      "content": "bài tập cho mọi người học. Đây là cái đóng bài tập về nhà luyện nha. Cô không có chắc là đề thi nó sẽ hỏi trong đây nhưng mà các bạn luyện qua thì nó có lợi cho mình. Bài này sẽ mở vào à đôn thời gian lên chút đi. Mọi người muốn làm liền luôn không? Cô mở liền luôn. Còn ban đầu nó setup vào 23 giỏ sớm luôn đi ha. tạm thời là thời gian cô để một tuần sau đó là có thêm cái extra time là có gia hạn và trong cái khoảng thời gian gia hạn này là điểm của mình nó giảm từ nha để cô phân biệt được là ai làm đúng đúng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài tập",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 64,
+      "content": "như vậy và mình làm y chang như theo cái định nghĩa thì nó gọi là chiến lược root force. Rồi bây giờ ngoài cái rootf có thể giải bằng những cách khác. Ví dụ cách số hai thì fibonacci chắc là ai cũng biết cái công thức truy hồi của nó đúng không? Phần tử thứ n cô gọi là Fn đi ha. Thì Fn được tính dựa trên hai cái phần tử trước đó. Tức là Fn - 1 cộng Fn -2. Rồi thì đây là công thức tri hồi của cái phần tử Fibonacci. Thì nếu mà em áp dụng công thức tri hồi này mà mình code luôn thì có thể dùng kỹ thuật đệ quy trong đây. Ví dụ để Q à cô gọi cái tên hàm là",
+      "relevance_score": 5,
+      "keywords_found": [
+        "hàm",
+        "ví dụ",
+        "định nghĩa",
+        "công thức",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 71,
+      "content": "cái hàm nó sẽ gồm có những cái câu lệnh xử lý chính như vậy thì em đoán được cách một có độ phức tạp là bao nhiêu không? Cái dòng lập for này lập bao nhiêu lần ta? Mọi người đang hiểu câu hỏi của cô nhảy biết cô đang hỏi chỗ nào không? Chúng ta đây đánh giá độ phức tạp của hai cách giải. Và cách số một là dùng kỹ thuật root force giải quyết một cách trực tiếp trực diện. Và trong cái code của mình có câu đó nó liên quan tới cập nhật các cái biến thôi. Ví dụ như cái giá trị ở phía sau được tính dựa trên hai giá trị trước",
+      "relevance_score": 4,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 72,
+      "content": "cộng lại. Rồi sau đó chúng ta cập nhật lại cái thằng trước và trước nữa những giá trị mới cho nó. Vậy cách làm này có độ phức tạp là nhiêu? Em không trả lời được rồi. M thi câu hỏi sao trả lời đúng được ta. Cách một có độ phức tạp là on đúng rồi. Do cái dòng lập này cao lắm thì lập có n lần thôi. Mỗi lần lập là nó xác định được một phần tử và nó lập tới cái lần cuối cùng thứ n thì tìm được phần tử thứ n. nên độ phức tạp là on còn qua tới cách số hai là có dùng đệ quy mà đánh giá hàm đệ quy thì các bạn không đánh giá nhanh được đâu.",
+      "relevance_score": 4,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "câu",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 26,
+      "content": "trình mà em đã thực hiện ra cái sản phẩm rồi nha. Thì cái bài này giả giải là sao? Input là cái gì? Output là cái gì? và cái mã giả của cái thuật toán để giải quyết cái yêu cầu là cái gì. Rồi các bạn suy nghĩ và chúng ta giải luôn. Câu này đã từng xuất hiện trong đề thi cuối kỳ rồi. Mọi người cũng đánh giá luôn câu hỏi này là dễ hay khó đến với mình. Biểu đề rồi ha. Vậy input là cái gì ta? Rồi các bạn trả lời đi. Đây đề thi lúc nào nó cũng có một cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 58,
+      "content": "Rồi tối ưu giải bằng tham lam cũng được luôn và tối ưu giải bằng quy hoạch động cũng được luôn. Vậy là cái dấu hiệu thứ nhất là khi mình phải giải quyết một bài toán tối ưu có thể cân nhắc cái chiến lược quy hoạch động. Cái thứ hai nữa là bài toán có công thức tri hồi. Thì những bài nào mà có công thức tri hồi tức là có thể giải được bằng đệ quy. Mà đệ quy thì hỏm rài mình học có hai kiểu đó là chia để trị thì bằng n rồi giảm thìị cũng có thể giải bằng đề quy luôn vân vân.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "công thức",
+        "đệ quy",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 69,
+      "content": "mà để quy top down người ta thiên về kỹ thuật lập trình hơn. Còn chia để trị nó là tên của cái chiến lược. Rồi ok chưa? Thì bây giờ hỏi à độ phức tạp của cách một và cách hai như thế nào? Độ phức tạp nha cô đang có hai cách. Cách một là dùng root forx là mình dùng vòng lập để xử lý. Cách số hai là có công thức tri hồi và mình giải quyết một cách trung trung gian. Có nghĩa là em đi đường vòng một tí đi vòng vòng vòng vòng vòng hồi mới giải quyết được xong bài toán. Còn Rot For là giải quyết một cách trực diện. hoặc là định nghĩa có liên quan đến bài",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "định nghĩa",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 70,
+      "content": "toán như thế nào thì giải quyết một cách trực tiếp trực diện gọi là rootf còn đi lòng vòng một tí xíu tìm công thức tri hồi trước từ công thức tri hồi chúng ta mới dạy toán thì nó gọi là phương pháp là dùng kỹ thuật trung gian đó đi đường vòng thì giờ trong hai cách một cách hai cách nào nó có độ phức tạp nhỏ hơn độ phức tạp càng nhỏ tức là cái giải pháp nó càng hiệu quả giờ cách số một đi. Độ phức tạp là nhiêu? Mặc dù cái hàm cô viết nó chưa có hoàn chỉnh nhưng mà em nhìn được dáng dấp của",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 73,
+      "content": "Muốn đánh giá một cái hàm đề quy thì làm đúng theo phương pháp là thành lập phương trình đại quy trước. thành lập xong cái phương trình đại quy rồi sau đó phải giải cái phương trình này thì nó mới ra được cái giá trị của cái hàm thời gian TN là nhiêu. Thì cái này cô có giải trước và cho em biết luôn cái đáp án của mình á là O 2 mũ n tức là độ phức tạp ở cái dạng hàm mũ mà hàm mũ tức là độ phức tạp rất cao, không chấp nhận được. Còn ở trên là on xem như độ phức tạp rất là nhỏ nha. Cách giải này vô cùng vô cùng nhanh chóng và hiệu quả. Còn cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "mũ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 74,
+      "content": "cách số hai mặc dù cái code nó rất là ít câu lệnh, cái code rất là ngắn gọn nhưng mà không hiểu là sao trong quá trình chạy để tìm ra được kết quả thì nó chạy rất là lâu và độ phức tạp rất là cao luôn. Mà chạy càng lâu độ phức tạp càng quá cao như vậy thì coi như cái giải pháp này vứt đi không sử dụng được. Thì lý giải tại sao độ phức tạp trong cái tình huống của cách hai này nó lại cao như thế. Các bạn có lý giải được không? Bây giờ mình lấy ví dụ ha. Nếu cô cần tính số fibonaci thứ năm, tức là mình đi tính cái f",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 110,
+      "content": "tệ nhất là tất cả các câu tri vấn đều phải tính tổng từ đầu tới cuối. Và độ phức tạp trong trường hợp xấu nhất đó đối với for y thì nó sẽ là on này là của cái for y thôi nha. Nhưng mà cái for y nó lại lòng vào bên trong một cái for chấm chấm ở phía trước. Mà cái for ngoài này nó lập qua quy câu tri vấn thì có bao nhiêu câu tri vấn là nó lập qua bấy nhiêu lần. Và cái giá trị Q so với n thì không phải là Q nhỏ hơn n đâu. Khả năng là Q này lớn hơn n rất là nhiều. N là kích thước của cái mãng, số lượng phần tử của mãng. Vậy là cái mạng có thể",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 153,
+      "content": "nhau. Ví dụ như dùng quay lui cũng được nè, rồi dùng timeline cũng được luôn. Nhưng mà ngon nhất trong tụi nó là quy hoạch động. Cô chỉ yêu cầu tìm một dãy thôi. Nếu mà vét cạn hết thì em phải dùng quay lui rồi. À còn giờ chỉ là một dãy. Mặc dù đáp án có thể có nhiều dãy cái kích thước bằng nhau nhưng mà tìm ra một dãy là được rồi. Vậy giờ tiếp cận bằng quy hoạch động luôn đi ha. Bài này hồi xưa xuất hiện trong đề thi và câu hỏi trong đề là có thể giải bằng nhiều cách đó. Chắc là cô dùng màn hình màu đen đi gõ",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 162,
+      "content": "nào? Thì khi em trả lời được câu hỏi này có nghĩa là em đã thành lập được xong một cái thứ gọi là phương trình quy hoạch động ha. Và phương trình quy ho bạch động nó có cái dạng tổng quát là my bằng rồi đó. Đây là một công thức tính cho my à tới đây mọi người hiểu không? Bây giờ tiếp ha. Có rất nhiều câu hỏi cô đặt ra ở đây thì câu nào mình trả lời được trước thì trả lời, còn không thì cứ để đó đi. Khi ý tưởng nó càng ngày càng rõ ràng ra thì có thể quay lên trên trả lời những câu hỏi cũ. Bây giờ mi được",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 208,
+      "content": "có thêm một chút điểm nữa. Sau đó là trong đề nó nói là hãy minh họa những cái ý tưởng nãy giờ trên một cái ví dụ. Đây ví dụ trên đây thì khi em làm được cái phần tinh họa này em được thêm một điểm nữa. Nhìn vô đề thì có vẻ như câu này chỉ có hai điểm nhưng mà lúc chấm á thầy cô chấm câu này lên tới 4 năm điểm lận nên em làm càng chi tiết càng kỹ lưỡng càng đầy đủ thông tin thì điểm có số của mình càng cao. Tính điểm lại nè. Hỏi mi chứa cái gì là được 0.5 rồi ha. Công thức quy hoạch động được thêm 0.5 nữa rồi nè. Viết ra được cái mã giả là được một điểm là hai điểm rồi đó.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 210,
+      "content": "phức tạp hơn rất là nhiều và khó hiểu hơn rất là nhiều thì hy vọng lúc đó mọi người có thể hiểu được. Còn giờ tới trường hợp này, ví dụ này có gì thắc mắc nữa không? Mốc đề thi cho ná vậy mọi người làm được không? Hay cho khó hơn chút nữa đi. Cô nghĩ là nên khó hơn này chút xíu nữa. Ôi đừng cô ơi. Ừ. Giờ mọi người muốn cô mở cái bài tập hoạt động. trên we code luôn không? Có một số bạn làm rất là nhanh cái bài quay lui ngày trước mình làm xong hết rồi. Thời gian của mọi người cũng đang rảnh rỗi đó. Có muốn làm thêm bài trên Qode",
+      "relevance_score": 3,
+      "keywords_found": [
+        "bài tập",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 3,
+      "content": "là không điểm. Tại vì à các thầy cô quan niệm rằng là học không được phép sai trong cái vấn đề kỹ thuật là không được phép sai. Còn chỉ khi nào mà cái đề thi cố tình đặt cái giới hạn về thời gian, ví dụ như gọi là time limit hoặc là giới hạn về không gian lưu trữ gọi là memory limit á là thầy cô cố tình đặt cái giới hạn để làm khó tăng cái tính thử thách của bài toán nó lên thì đạt bao nhiêu điểm là lấy bao nhiêu điểm. Còn trong trường hợp là sai là coi như",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 4,
+      "content": "không chấp nhận được. Nhưng mà đối với lớp mình thì không có thi, chỉ là bài tập về nhà thôi. Nên các bạn có rất nhiều thời gian để mà tìm cái phương án sửa lỗi. Ví dụ như mình tự sửa không được thì cô nghĩ là phần lớn mọi người cũng sẽ hỏi ai gemini, trbt gì đó nhờ làm giùm. Dạ cô ơi cho em hỏi cái là cái Qod của mình là mình có cần phải lưu ý cái gì để mà cái cái code mình nó có đặc trưng gì không cô? Tại vì em làm em test trên máy của em á thì các cái test cây từ 1 tới 9 của em là em test từ số 1 tới số 9 là ok hết nhưng mà em submit lên cái là không",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài tập",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 5,
+      "content": "điểm luôn cô. &gt;&gt; Không điểm là do câu lệnh của các bạn viết không chuẩn. không chưng có nghĩa là nó có tính hên xui phụ thuộc vào compiler. Có compiler thì nó khắc khe, nó nhận diện được cái lỗi và nó không chấp nhận. Còn có những compiler nó cùi bắp hơn á thì cái lỗi đó nó bỏ qua. Ví dụ như đơn giản vậy thôi nè. Này khi mà cô dạy mấy cái môn lập trình nè, &gt;&gt; cô coi thử cái bài của em rồi cô làm mẫu cho mọi người biết là nó nó sai chỗ nào được không cô? Tại em cũng em cũng tìm",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 7,
+      "content": "cái mình có thể tự sinh. Ở đây cô đọc cái đề nhá, cô cũng nhớ cái đề là cái gì? Cho một mặt số nguyên dương sinh n giai thừa hoán vị của n số nguyên dương đầu tiên là từ 0 tới 9 n bé xíu luôn mà các bạn xin không được hết ta dù n lớn thì nó còn gặp bị bùng nổ về không gian lưu trữ cho n nhỏ thì nó xé hơn [khịt mũi] rồi đây nội cái chuyện mà khai báo mãn vậy là chết rồi Ê cái code mình dài quá là sao cô bớt được. Nhìn bằng mắt thường thì hơi khó nhận diện nha.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "mũ",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 17,
+      "content": "bỏ vào chỗ này thôi nha chứ không có upload file gì hết á cái chỗ mà chọn file nè bỏ đi đừng có upload chọn vô code editor À thôi sẵn tiện nói luôn vụ này cô định tới cuối buổi mới nói giờ nói luôn để bị quên. À thay vì bài tập chúng ta làm trên Qode thôi á thì giờ cô có một cái đề nghị có một cái yêu cầu thêm nữa đó là chọn một trong số những cái problem mình đã từng làm. Ví dụ như trong số cái list này hoặc là cái list mà chúng ta sẽ làm tiếp theo sau đó chọn một hoặc là nhiều bài cũng được. Các bạn làm sao cho cô",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài tập",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 19,
+      "content": "Nói ứng dụng thì nghe ghê quá. Cái này nó giống như một cái giao diện nhỏ xíu thôi. Một cái chức năng tương đối đơn giản. Một cái bài toán cũng đơn giản chứ nó không phải là một ứng dụng gì ghê gớm cả. Không biết cô có mấy cái mẫu nào cho mấy đứa tham khảo không ta. H Chờ cô chút nha. À đây đây là một ví dụ nè. Bạn này có làm là nạp cho cô một cái à bài mà có cái giao diện giống vậy nè. Thì bạn chọn cái bài mà giải bài toán tối ưu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 22,
+      "content": "Cô ơi cái Q code nó là ở đâu vậy cô? Qode ở đâu là sao ta? Ừ cái có cái đường link mà buổi học hôm trước cô có gửi một đường link cho lớp còn nếu không có nữa thì cô lưu chỗ này mọi người muốn xin lúc nào cũng được nha miễn là trước khi cô bị hối trả điểm về cho phòng đào tạo nặt bài cho cô chấm điểm là Nà Mấy bạn sinh viên của cô làm được nhiều cái ứng dụng đẹp lắm. Ví dụ như là một cái yêu cầu vẽ một cái cây thước. Rồi giờ mình lấy ví dụ vậy đi. Các bạn thích thì các bạn làm cái ứng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "chấm điểm"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 27,
+      "content": "câu hỏi liên quan tới phát biểu bài toán nha. Là phải chỉ định rõ input output nó như thế nào rồi sau đó mới tới cái phần thực toán. Mấy cái đáp án ngày xưa cô chấm á là khi mà các bạn trình bày output và output không đủ rõ thì cái mã giả không cần phải chấm. Đó là output của nguyên cái ban chuyên môn gửi đến cho thầy cô chấm bài cho có sự thống nhất á là khi mà input output không đủ rõ hoặc là nó sai nó không phù hợp là dù em có viết cái gì ở đằng sau đi chăng nữa thì cũng không có chấm luôn. Nên cái bước tiên phong này là lúc nào",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thực toán",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 29,
+      "content": "nói bằng ngôn ngữ tự nhiên giống như là lời nói hơn là cái văn bản mình viết ra nó là cái mô hình của bài toán. Vậy giờ viết lại cho cô coi. Bạn Vĩ trả lời là input là chiều dài cây thước là L rồi chiều cao H thì cũng chưa đạt đâu. Vậy rồi mai mốt làm bài thi sao cô chấm điểm ta. Túm lại là có hai thông tin nhập. Thứ nhất là chiều dài cây thước là một rồi cái chiều cao của cái vạch cái chiều cao cao nhất của cái vạch đó. Nhưng mà giờ lúc mà trình bày mô hình input thì phải nói rõ l",
+      "relevance_score": 2,
+      "keywords_found": [
+        "mô hình",
+        "chấm điểm"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 57,
+      "content": "nè. Rồi không biết những người còn lại tối thứ tư có học được không? R thôi vô bài mới đi. Tí nữa cuối buổi mình chốt luôn. Khả năng là ngày mai không học rồi đó. vào ha. Quy hoạch động là cái gì? Đầu tiên là cái dấu hiệu nhận biết của quy hoạch động. Dấu hiệu khi cái bài toán có những cái dấu hiệu này thì chúng ta có thể cân nhắc sử dụng quy hoạch động. Thứ nhất đó là bài toán tối ưu. Vậy là bài toán tối ưu thì các bạn có thể tiếp cận bằng nhiều cái chiến lược khác nhau. Ví dụ như tối ưu mà giải bằng quay lui cũng được nè.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 59,
+      "content": "Vậy là nếu bài toán của em nó là thuộc một trong hai bài toán này thì mình có thể cân nhắc dùng tới quy hoạch động. Đây học đi rồi còn bàn bạc cái gì nữa? Quay lại học đi nha. Tập trung học cái đã. Rồi cô sẽ lấy ví dụ bởi cái bài toán có công thức tri hồi trước. Mình lấy cái bài Fibonacci đi ha. Fibonacci. Fibonacci viết về đúng chính tả không ta? Thôi kệ đi. Dãy fibonacci là một cái dãy số mà hai cái số đầu tiên là số 1. Rồi những số đằng sau nó được lấy từ hai số trước đó",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 63,
+      "content": "vét cạn à nó cũng na ná nó cũng gần gần giống đáp án rồi đó. Ở đây không gọi hẳn là B Càng đâu. Nó có một cái tên gọi khác hay hơn. Còn nhớ cái tên đó không? Đây cũng là một cái kiểu vét cạn này nhưng mà nó có một cái tên hay hơn cái từ vét cạn. Đúng rồi. Nó là root force. Tại vì cái quá trình giải quyết mình đang dự trên có phần tử trong fibo dãy số fibonai thì định nghĩa là gì? Là cái phần tử phía sau được tính toán được xác định dựa trên cái việc lấy tổng hai cái giá trị trước đó. Thì định nghĩa của dãy số fibonacci ban đầu người ta phát biểu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "định nghĩa",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 65,
+      "content": "Fibo nè. Hamm số đầu vào là n. Chúng ta sẽ code theo cái dạng của đề Q nha. Hàm sẽ return về hai cái lời gọi này cộng lại. Vậy điều kiện dừng của đề Q là cái gì? Cái hàm có tham số đâu vào là n tức là đang đi tính cái số fibonaci thứ n trong dãy. Và cái quá trình tính đó được thực hiện dựa trên việc em gọi đề quy để em đi tìm số fibonaci thứ n - 1 trước rồi sau đó gọi đề quy để tìm số fibonaci thứ n -2 rồi lấy hai con số tìm thấy đó cộng lại thì nó mới ra cái con số mà mình cần tìm. Thì cái này là hàm đệ quy. Hàm đệ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 83,
+      "content": "cái tình huống của Fibonacci thì nó chỉ có một cái vướng lắc là có những bài toán con cứ phải giải đi giải lại nhiều lần. Thì em chỉ cần khắc phục cái nhược điểm này thì cái giải pháp này có thể hiệu quả hơn. Vậy cách khắc phục là làm sao? Theo em là nếu như bắt mình phải code á thì cái chuyện mà chúng ta code cái hàm này bằng đệ quy với cái chuyện mà code bằng vòng lập cái nào nó dễ dàng đối với em hơn? Nhìn vô đệ quy nó dễ code hơn đúng không? Đối với lập trình viên là cái đệ quy là cái mà dễ chịu, dễ dàng.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 98,
+      "content": "Vậ một cái quá trình giải quyết như vậy từ giải bằng quy hoạch động. Thì lớp mình có hiểu được cái ví dụ đầu tiên này của cô không? Cách ba này có độ phức tạp là mấy? Cái số 3 này có độ phức tạp là nhiêu? Cách ba phức tạp là O. Đúng rồi. Do dòng lập for của mình cũng lập đâu đó là n lần thôi. Cái bảng của em có n phần tử thôi thì điền hết các giá trị vào trong cái bảng cũng chỉ là điền à nó đa là cỡ n giá trị. dòng lập lập n lần nên độ phức tạp là on rất là dễ dàng để đánh giá. Vậy là quy hoạch động mà so với lại à chia trị so với lại đề Q thì nó hiệu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 99,
+      "content": "quả hơn rất là nhiều. Rồi theo ví dụ ha. Giờ chúng ta lấy qua một cái bài toán a cũng đơn giản bắt đầu từ những bài toán đơn giản trước. Cô có một cái mảng A có một cái bộ số đi kèm là 5 2 1 7 4 mãng hiện tại có n phần tử N lào nhiêu thì nãy giờ chưa có đếm đâu. Đếm là bốn phần tử này. Cái mảng A này có bốn phần tử. Sau đó chúng ta có quy câu truy vấn. Quy câu truy vấn. Trong đó mỗi cái câu tiêu tính nó sẽ có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 100,
+      "content": "cái thông tin gồm hai cái thuộc tính và yêu cầu cho từng câu tri vấn đó là em hãy tính tổng các cái phần tử từ cái index a cho đến index b. Rồi suy nghĩ câu hỏi coi hiểu không nha. Rồi hiểu câu hỏi không? Q câu tri vấn thì Q nó là một cái tham số mình nhập từ bàn phím. Nó cũng là input của bài toán luôn. Bài toán nó có những cái input như sau. Thứ nhất là nhập số lượng phần tử mãng là nhập n. Sau đó nhập các cái phần tử trong mãng là nhập cái mãng A. Nhập xong mãng A cái nhập Q là số lượng câu truy vấn. Rồi ứng với từng câu truy",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 101,
+      "content": "vấn thì em nhập cho cô một cái cặp số. Trong đó cái đứa đầu tiên là index của cái phần tử ở trước. Số thứ hai là index của cái phần tử cuối cùng. Nhiệm vụ của bài toán là ứng với từng câu tri vấn. Mình tính tổng các cái phần tử trong cái miền index từ A tới B. Rồi hiểu chưa? Vậy giờ là nếu cái mảng A của cô có tám phần tử như trên đây và số lượng câu tr vấn là 3 đi q = 3. Trong đó từng câu tri vấn nó sẽ có những cái thuộc tính đi kèm. Câu tri vấn thứ nhất là 24. Rồi câu tri vấn thứ hai là 13. Câu tri vấn thứ ba là 27.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 102,
+      "content": "Thì hỏi em output của bài toán nó là cái gì? Ai hiểu đề rồi cho biết output của bài toán là cái gì đi. cho cái kết quả cụ thể luôn chứ em nói output nó là một cái mảng không cho cô biết luôn. Và với cái mẫu input như vậy n là 8, bảng A là một bộ gồm tám giá trị. Số lượng câu truy vấn giải đáp, phải xử lý là 3. Trong đó thông tin của từng câu truy vấn được liệt kê luôn. Rồi thì cái output của cái mẫu ví dụ này là cái gì? Với cái truy vấn thứ nhất 24. Tri vấn thứ nhất là 24.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 103,
+      "content": "Vậy là 24 là index nha. Tôi sẽ tính tổng các cái phần tử từ index 2 cho đến index 4 là 1 + 7 + 4 thì nó sẽ ra giá trị là 10 gì? 8 + 4 là 12. Ủa cô làm sai cái gì vậy? Sao cô thấy đáp án không giống của các bạn? Sao mọi người ra cái số đầu tiên là số 10 được hay vậy? Index của mãng đánh số bắt đầu từ 0 nha. Rồi index của mãng đếnh đếm số bắt đầu từ 0. Với câu truy vấn thứ hai, cái bộ index của nó là 13. Thì tính tổng các phần tử có index từ 1",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 105,
+      "content": "nhập đầy đủ hết rồi. Được thu nhận hết rồi. Bây giờ bay vô giải luôn. Bài này có yêu cầu là phải thực hiện xử lý quy câu tri vấn nên cô chạy một cái dòng lập for lập quy lần để cho nó đi qua từng câu tri vấn. Với mỗi cái câu tri vấn á thì chúng ta có hai cái thông tin là index đầu và index cuối của nó. Thì giống như mình gọi cái index đó là a với b đi. Thì lúc này tôi đã có cái thông tin là index đầu là a, index cuối là b. Vậy là nhiệm vụ của em là tính tổng các cái phần tử tính từ index a cho đến b",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 106,
+      "content": "tổng lần lượt xét qua từng phần tử rồi cộng dồn vô. Y chạy từ A cho đến B. Rồi mỗi lần chạy tới đâu thì tính cộng dồn vô một cái tổng S. Cái mãng à cái mãng cô gọi là a thì cái index này mình cho tên gì khác? Cái chữ a index k tới t đi ha. Rồi vậy là chạy cộng dồn câu lệnh cô viết vậy mọi người hiểu không? S + bằng thì chẳng qua nó chính là x = x cộng với lại ay. Rồi ok. Vậy có phải chạy hết cái dòng lập for y thì em sẽ ra được cái kết quả",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 107,
+      "content": "của câu tri vấn thứ nhất. Sau đó quay trở lại cái for ở phía trên. Cái for này là chạy qua các câu tri vấn. Rồi cứ mỗi lần mà quay lại câu tri vấn thì chúng ta lại chạy một cái for y để tính ra được cái kết quả. Vậy độ phức tạp trong cái cách giải này là cái gì và cái cách giải này có tên gọi là chiến lược gì? Rồi. Ok. Chiến lược này tên là rút for là đúng rồi nè. Độ phức tạp của nó là on thì sai nha. N ở đâu ra mà on vậy? Mấy cái dòng lập này lập bao nhiêu lần? Các bạn có xác định một cách tường minh",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 108,
+      "content": "được không? Ví dụ như là cái dòng LP for Y này nè, I nó chạy từ K tới T thì tùy theo cái thông tin của câu triêu vấn mà user nhập vào thì mình mới biết được là cái for này lập bao nhiêu lần. Vậy là chẳng qua cái for này lập bao nhiêu lần mình không xác định được một cách tường minh mà nó còn phụ thuộc vào cái dữ liệu nhập nữa. Thì trong cái trường hợp mà nó tùy ý như thế, nó không tường minh như thế thì các bạn hãy đánh giá cho cô cái trường hợp tệ nhất, trường hợp xấu nhất. Thì xấu nhất tệ nhất là cái for y này nó chạy bao nhiêu lần biết không?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 109,
+      "content": "Tệ nhất là cái for y này nó lập bao nhiêu lần. Thì trường hợp mà ngặt nghèo nhất là cái câu tri vấn này người ta nhập vô nó là tính từ đầu cho đến cuối cái mãng luôn. Vậy k này là 0 nè. Còn cái t này là index của phần tử cuối cùng trong mãng là n - 1 nè. Vậy là tệ nhất là cái tình huống mà chúng ta tính tổng toàn bộ các phần tử trong mãng. Vậy là cái for này nó chạy hết tất cả các phần tử trong mãng luôn. Và tới câu tri vấn thứ hai nó cũng y chang như vậy. Rồi câu tri vấn kế tiếp nó cũng y chang như vậy. Và tình huống",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 111,
+      "content": "có 100 phần tử nhưng mà cái Q này là số lượng câu truy vấn. Biết đâu nó lên tới 1 tỷ cô truy vấn thì sao? Vậy là Q so với N có thể lớn hơn rất là nhiều nên độ phức tạp này không thể nào là ON bình được. Bạn Vương Hào Bình này nói là độ phức tạp là OR bình là không đúng nha. Hoặc là bạn Đỉnh nói độ phức tạp là ON bình cũng không đúng luôn. Q so với N có thể lớn hơn rất là nhiều. Vậy độ phức tạp nó phải là OQ nhân với lại N mới đúng. Ủa sao bạn Vĩ lại dùng phép toán cộng? Bạn Tuấn Vĩ em nói là ON cộng OQ là sai",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 112,
+      "content": "rồi đó. Hai cái dòng là for lòng vào nhau đánh giá dựa trên quy tắc nhân là hai đứa này phải nhân lại rồi. Được chưa? Vậy thì OQN nó lớn cỡ nào? Nếu mà so với lại on bình thì hai đứa này nó có xem xem nhau không? Thì câu trả lời là không có đâu nha. Q có thể rất là lớn và nó lớn hơn hẳn cái mức ON bình luôn. Và lớn hơn hẳn thì nó lại vô trần không biết là lớn tới mức nào. Vậy là coi như em vẫn có thể đánh giá được cái độ phức tạp OQN này là độ phức tạp lớn. Mà lớn quá thì nó sẽ đâm ra không hay. Nên",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 113,
+      "content": "chúng ta nên tìm cái cách nào khác hay hơn, hiệu quả hơn. Thì từ đây mình cần phải tìm ra thêm cách nữa. Cách số hai đi. Cách số hai giải quyết là sao nhờ? Cách số hai mình có thể suy nghĩ về quy hoạch động và quy hoạch động nó sẽ khắc phục được cái hiện tượng là có những bài toán con cứ phải giải đi giải lại nhiều lần. Vậy thì theo em cách giải một á phí nó cao nó lớn là do đâu biết không? Đây ví dụ ha. Đối với cách giải số 1 là chúng ta cứ lần lượt xét qua từng câu tri vấn rồi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 117,
+      "content": "Tại sao phải đặt câu hỏi này? Do lúc nãy cô có nói khi nào mình có thể dùng quy vạch động? Thì khi mà cái bài toán đang giải nó là một trong hai bài toán này thì mình có thể suy nghĩ về quy ho vạch động. Thứ nhất nó là bài toán tu. Thứ hai là bài toán có công thức tri hồi. Vậy thì giờ cái bài toán mình đang giải là cái bài toán mà tính từng câu tri vấn đó nằm trong một trong hai loại này không? Nó là loại nào trong hai loại này? thì nó làm một cái loại khác nữa. [hắng giọng] Bài này có phải là bài toán tối u không? Hoặc là bài này có phải là bài toán có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 118,
+      "content": "công thức triy hồi không? Thì em nghĩ nó là kiểu bài toán nào? Tôi nói luôn ha. Bài này không có tới u do yêu cầu của bài toán chỉ đơn thuần là tính tổng. Nó không nhắc gì tới cái chuyện là làm sao cho một cái giá trị nào đó lớn nhất hoặc là nhỏ nhất. Nên bài này không phải là bài toán tối u. Vậy thì nó là trường hợp còn lại, nó là bài toán có công thức truy hồi. Bây giờ nhiệm vụ của em là biến đổi cái bài toán đang giải về thành những cái bài toán có liên quan và có công thức tri hồi. Bài toán góc ban đầu nó không có tường",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 119,
+      "content": "minh một công thức tri hồi nào ở đây hết. Vậy thì giờ phải đi tìm công thức truy hồi và khả năng công thức đó nó lại là công thức của một bài toán khác, không phải là bài toán trực tiếp mà em đang giải. Vậy giờ chúng ta sẽ cố gắng chuyển đổi cái bài toán góc về thành một bài toán mà có thể tìm ra công thức tri hồi cho nó rồi coi cô chuyển nè. Chúng ta suy nghĩ theo cái kiểu là tự nhiên mình đặt ra một cái bài toán nó có liên quan tới cái bài toán đang giải như sau. Đây là bài toán mới đi là cũng sẽ là một bài toán tính tổng.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 128,
+      "content": "đã có trước trong cái bảng m để suy ra cái phần tử đằng sau trong cái bảng m này được không? Hiểu cái ý đó không? Nãy giờ cô đang nhẩm, cô đang nhẩm theo kiểu là m1 thì cô lấy a0 + a1 rồi m2 thì cô lấy a0 + a1 + a2. Rồi m3 mình cứ cộng dồn dồn dồn nhiều số như vậy. Thì cái đó là mình đang tính nhẩm. Còn bây giờ nếu như cái m lớn hơn, ví dụ cô tính m10 đi mà em ngồi em tính tổng lại từ a0 + a1 là hơi căng đó. Vậy có cách nào mình tính m10 một cách đơn giản? dựa trên việc khai thác giá trị của những ô đã có sẵn trong M để suy ra những cái ô còn",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 130,
+      "content": "toán con với bài toán cha nên nó còn gọi là công thức tri hồi. Còn trong cái ngữ cảnh của cái kỹ thuật quy hoạch động thì đây gọi là phương trình quy hoạch động. Nhiệm vụ của phương trình quy hoạch động là đi tính một cái ô nào đó trong cái bảng m dựa trên những cái ô đã có sẵn giá trị trước đó. Thì cái công thức như vậy cô gọi là phương trình quy vạch đỏ. Rồi mọi người hiểu không? Vậy là cứ áp dụng phương trình quy vạch động mình có thể điền tiếp tiếp theo những cái ô đằng sau. Thì giờ câu hỏi là cái mãng m của mình cần bao nhiêu phần tử? Kích thước cần phải được thiết kế rõ",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 131,
+      "content": "ràng ngay từ đầu luôn là cái mãng M có bao nhiêu phần tử. Mọi người trả lời được không? Mãng M của cô có kích thước là bao nhiêu? Là n phần tử. Ok. Do mình có nhu cầu là tính tổng hết tất cả các phần tử của mãng A từ đầu cho đến cuối thì cái index của phần tử cuối cùng trong đây là n -1. Rồi nhưng mà cái bài toán này hình như nó không phải là bài toán góc ban đầu. Cái bài toán góc ban đầu của mình là bài toán liên quan tới một cái câu tri vấn. Câu truy vấn đó có cái index từ k cho đến t và tôi cần tính tổng bắt đầu từ ak",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 137,
+      "content": "vậ chán bài toán góc vậy bước kế tiếp là tôi suy ra kết quả của bài toán góc và giờ kết quả của bài toán góc suy ra kiểu gì thì mọi người cũng đã tìm thấy rồi Và toán gốc là có quy câu truy vấn. Chị chạy một cái dòng là for để xét quy câu tri vấn. Thì nếu như trong mỗi cái lượt xét câu tri vấn đó mình gọi cái câu tri vấn đó là KT thì câu tri vấn này sẽ được tính như sau. Câu tri vấn này tính như thế nh quên rồi. Cái tổng S sẽ bằng M gì ta? MT",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 138,
+      "content": "trừ MK - 1 đúng không ta? Rồi vậy chắc là xong rồi ha. Xuất kết quả tôi sẽ in ra được kết quả của câu ấn này. Vậy giờ câu hỏi cái tiếp độ phức tạp của cách giải này là bao nhiêu? Quá trình giải của em là tính từ cái lúc mà điền bảng, tạo ra cái bảng rồi điền cái bảng rồi sau đó từ cái bảng nó suy ra kết quả của bài toán góc. Vậy là nó có hai giai đoạn thì phải xét luôn chi phí của cả hai giai đoạn đó. Cái chi phí của cái quá trình điền bản là chạy một",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 139,
+      "content": "cái for điền các cái ô mi bằng gì đó thì nguyên cái câu lệnh for này nè độ phức tạp sẽ là nhiêu? Ô ô máy tệ nhất của nó sẽ là ô N đi ha. Nguyên cái for Y để điền cho cái bảng M thì có độ phức tạp là ON. Còn bên dưới cái giai đoạn thứ hai là giai đoạn đi trả lời cho từng câu truy vấn thì cô cũng lại có một cái for cái for mà xét qua từng câu truy vấn thì nó là độ phức tạp OQ. Còn ở mỗi câu truy vấn chúng ta chỉ làm một cái phép toán trừ thôi. Truy xuất vô phần tử của cái mãng m truy xuất hai đứa, lấy hai đứa đó trừ ra thì nó là kết",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 140,
+      "content": "quả của câu tri vấn đó luôn. Thì cái chi phí mà truy xuất vào cái bảng M rồi thực hiện cái toán trừ nó không đáng kể. Chỗ này độ phức tạp của nó chỉ là O1 nhưng mà cái khúc này mình lập Q lần nên trung quy lại nguyên cái giai đoạn hai nó sẽ có độ phức tạp là OQ. Vậy từ đây kết quả chung cột của cả hai giai đoạn là O gì nhỉ? N cộng Q. Đúng chưa? Rồi đúng rồi đó. Vậy giờ cách này có độ phức tạp là ON+ V. Trong khi cái cách trước đó của mình cái cách Rot Force có độ phức tạp là OQ nhân với N thì như vậy là có sự cải",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 141,
+      "content": "thiện vô cùng đáng kể luôn. Thằng này sẽ nhỏ hơn rất là nhiều so với lại OQ nhân với N. Việc quy hoạch động luôn luôn là một cái giải pháp mang lại hiệu quả tốt. So với tất cả những chiến lược khác thì quy vạch đạo luôn mang lại cái hiệu quả tốt hơn. Nên nói là một kỹ thuật rất là quan trọng đòi hỏi là sinh viên cái môn người phải được chi sử dụng và áp dụng một cách thạo luôn. M đề thi mà cho những câu hỏi tương tự mọi người làm được không? Giờ cô giảng hiểu gì không? Vậy",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 152,
+      "content": "các phần tử có thể nằm rời rạt, không cần phải liên tiếp. Mà nếu có đề thi có hỏi về dãy con hay mãng con là chắc chắn luôn cái người ra đề sẽ nhắc lại cho em cái khái niệm này trong đề luôn. Nếu người ta muốn giảy liên tiếp thì người ta cũng sẽ nói rõ luôn. Hãy tìm cho tôi một cái mãng con mở ngoặc ra là các cái phần tử liên tiếp nhau. Còn ai đó nhắc về dễ con người ta cũng sẽ mở ngoặc ra nói luôn cho em dãy con là như thế nào. Rồi hiểu đề rồi chưa? Nhờ giải nha. Bài này là bài toán tối ưu rồi đó. Thì em có thể tiếp cận bằng nhiều chiến lược khác",
+      "relevance_score": 2,
+      "keywords_found": [
+        "tối ưu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 170,
+      "content": "1 3 9 là dài nhất. Và độ dài của dãy con lúc này mình ghi nhận là số 3. Ok chưa? Bây giờ tổng quát lên. Nếu như cô xét một cái ô bất kỳ nào đó nằm ở tuốc ở phía sau, ví dụ chỗ này là trường hợp ô thứ y, chúng ta gọi ô này là ô thứ y, chúng ta cần điền cái ô mi là số mấy thì em phải làm cái gì? cần đi tính cái mà muốn biết được độ dài thì phải chỉ ra được cái dãy con rồi mới đếm trong dãy con có bao nhiêu phần tử rồi sau đó mới ghi nhận cái độ dài của dãy con khi đó giờ tôi đi tìm dãy con trước dãy con có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 181,
+      "content": "thi và đề thi nó cho nguyên một cái dãy a vậy. Kêu em điền cho cô cái mãng m điền full cái mãng m luôn nha. Điền hết luôn thì có được một điểm đó. Nên nếu em hiểu được cái cách thức điền giá trị vào, biết được cái phương trình quy hoạch động tính toán ra làm sao là mình điền được một cách rất là dễ dàng. Và điền xong cái bản là được một điểm. Giờ câu hỏi là cái bảng M này cần bao nhiêu phần tử? Lúc nãy mình chưa trả lời. Thì mãng M này lúc này đã biết được là nó có bao nhiêu phần tử không? Khả năng cái dãy con của em sẽ kết thúc tại phần tử cuối cùng nên kích thước của",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 193,
+      "content": "Rồi vậy là coi như xong bài toán. Tôi thấy mọi người chắc cũng đuối rồi nên làm hết thì cũng hơi mất thời gian mà mọi người cũng chẳng có chịu làm nên chúng ta đại khái một bài phần tử thôi. Mấy cái ô còn lại các bạn về suy nghĩ nha. Rồi coi cái đề thi nè. Đề thi năm ngoái hỏi cái gì? Năm trước nữa hỏi cái gì? Giả định như em là người làm cái đề này thì em có làm được không? Tại tôi đã mất tiêu rồi. Trên lớp là cô dạy cái ví dụ vừa làm sau đó đi thi cô hỏi như vậy. Thì nếu như em",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 198,
+      "content": "thức tính cho mi là gì. Tức là tìm phương trình quy hoạch động. Thì cái ý đầu tiên các em sẽ có một chút điểm. Ví dụ chỗ này là được 0.5 chẳng hạn. Phương trình quy hoạch động mà em tìm ra được đúng thì em được thêm 0.5 nữa chẳng hạn. có được hai cái này cái bắt đầu mình suy ra à cái mã giả sẽ viết như thế nào rồi cái quá trình truy tìm lời giải sẽ giải quyết ra làm sao. Đó thì với những cái thông tin như vậy là em giải quyết được, trả lời được là phô triểm câu hỏi rồi giờ giải quyết từ từ ha. M chứa thông tin gì? Nói là sao đây?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 209,
+      "content": "Sau đó là trong cái phần lời giải mà viết thêm được cái này nữa là được 0.5 đến 1 điểm như đó cô quên rồi. Sau đó là qua cái phần minh họa. Minh họa là làm theo đúng cái yêu cầu của đề là minh họa trên cái dãy A có 14 phần tử như thế này thì các bạn minh họa xong là được một điểm nữa thì gom vị chi hết nguyên cái câu này là nhiều hơn hai rất là nhiều luôn. Hình như đâu đó cỡ 4 đến 5 điểm lận. Rồi có ai hỏi thêm cái gì nữa không? Tạm thời là quy hoạch động mình học như đó thôi. Qua tới cái buổi học kế tiếp thì học phức tạp hơn nữa. Ví dụ của cô",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 215,
+      "content": "tác trong các cái buổi học. Với lại cái bài à cái bài homework mà ngày trước mình làm đó liên quan tới phân tích thực toán. Các bạn có muốn làm thêm bài homework nào liên quan tới phân thật toán nữa không? Muốn thì cô giao, còn không thì thôi. Ngày trước có một bài mà liên quan tới độ phức tạp gì đó thì nếu mọi người thích thì cô thêm bài cho làm, còn không thì mai mốt cái bài đó cũng là cái bài để em ôn tập thi luôn nha. Có bạn nhắn tin hỏi là nhờ thi em nên ôn tập cái gì thì ôn cái bài",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thực toán",
+        "độ phức tạp"
+      ]
+    },
+    {
+      "buoi": 8,
+      "paragraph_index": 217,
+      "content": "để có điểm quá trình cao hâm hoặc thứ [hắng giọng] hai. Họ thứ hai là liên quan tới phân tích thuật toán còn mấy cái bài trên Qode là liên quan tới thực hành. Cái bài HW 1 nhìn lại một lượt nữa là sẽ thấy chúng ta ôn cái gì. À có phương trình đề quy nè. Rồi giải phương trình đề quy. Giải bằng nhiều phương pháp từ tri hồi tới hàm sinh, tới đoán nghiệm vân vân rất là nhiều. Mấy bài nào mà ngày trước nó là bonus á các bạn không làm thì giờ cũng cố gắng mình làm đi nha. Ủa",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "hàm"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 9,
+      "content": "cái khẳng định thứ nhất 075, khẳng định thứ hai là một điểm. Rồi kế đến là cái phần sắp xếp. Câu A đây, câu B đâu ta? Chắc câu này chắc câu dưới là câu B nè. Rồi câu B là sắp xếp một cái group như ví dụ trên lớp cũng từng làm rất là nhiều rồi. Thì ở đây chúng ta sắp xếp một cái group à có ghi rất rõ là các bạn phải thể hiện cái quá trình mình lập luận phân tích phân lớp mấy cái hàm vô những cái big o phù hợp là giải thích ngắn gọn có nghĩa là không đơn thuần là mình chỉ kết luận bằng ô gì mà có thể trong quá trình đưa đưa tới cái kết luận",
+      "relevance_score": 6,
+      "keywords_found": [
+        "big o",
+        "hàm",
+        "câu",
+        "ví dụ",
+        "sắp xếp",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 11,
+      "content": "bị bỏ sót cái ý nào hết. Tại vì làm bài là làm bài trên đề nên ví dụ như cái bảng mình điền xong rồi thì ở đây nó vẫn còn một ý để hỏi nữa nè là cái thứ tự sắp xếp xong nó ra gì thì phải ghi ra coi chừng bị sót nha. Sinh viên ngày trước làm bài thi thì dễ bị sót lắm các bạn đọc đề không kỹ. Câu số hai là ba điểm liên quan tới phân tích thuật toán. Thì phân tích cô chia làm hai nhóm là đệ quy với không đệ quy. Thì đối với lại đệ quy à không đệ quy trước đi sẽ cho em một cái đoạn code đoạn mã. cho một cái hàm hỏi là cái hàm này nó xử",
+      "relevance_score": 6,
+      "keywords_found": [
+        "thuật toán",
+        "hàm",
+        "câu",
+        "ví dụ",
+        "sắp xếp",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 8,
+      "content": "Đề thi nó có những cái nội dung chủ đề như sau. Thứ nhất là hỏi về ký hiệu tiệm cận thì y như trên lớp cô hướng dẫn sao mình thi như vậy. Đó là chứng minh một vài cái nhận định nào đó là đúng. Thì ở đây cô dự kiến là cho hai câu, câu thứ nhất, câu thứ hai để dụ như câu thứ nhất làm không được thì mình vẫn còn câu thứ hai để gỡ gạt. Nên đây cho hai ý. Còn chứng minh cái gì thì chưa nghĩ ra mà nếu mà có ghi vào trong đây thì nó lộ đề mất rồi. Nên cô có nghĩ gì thì cô cũng có show lên trong đây đâu ha. Chúng ta có hai ý chứng minh, một câu dễ, một câu khó hơn chút. Thì à",
+      "relevance_score": 5,
+      "keywords_found": [
+        "ký hiệu",
+        "tiệm cận",
+        "câu",
+        "chứng minh",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 13,
+      "content": "em làm chứ không phải là copy nhìn qua bài của bạn. Vậy là có trình bày cái cách để suy ra công thức. Viết gọn gọn thôi. Cô chừa nó ít à. Chắc chỗ này phải chừa thêm một chút xíu nữa là chắc chừa đâu đó cỡ nửa trang cho mọi người làm ha. Sau khi ra được cái công thức cái mình từ cái công thức đó kết luận độ phức tạp của cái giải thuật. Đây là câu A. Còn câu B thì cho đề quy, cho một cái giải thực đề quy, sau đó thành lập phương trình đề quy, giải thích ngắn gọn cách thành lập cũng chừa ra một chút đỉnh cho mọi người ghi. Thì ghi ngắn",
+      "relevance_score": 4,
+      "keywords_found": [
+        "độ phức tạp",
+        "câu",
+        "công thức",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 24,
+      "content": "cho em hai bài toán để giải. À trình bày ý tưởng, minh họa cách giải, thiết kế thuật toán và phân tích độ phức tạp. Rồi bây giờ mặc dù trong đề ghi 12 điểm nhưng mà cô nghĩ chắc chắn là lúc mà chấm bài thì cái đáp án cô chắc cũng phải lên tới 14 điểm hoặc 15 điểm luôn. Nhưng mà không lẽ giờ ghi trong đề là à tổng điểm các câu hỏi là 15 điểm thì nó kỳ quá, nhìn nó hơi dị không giống ai. Nên ghi 12 điểm là cũng hơi hơi đặc biệt rồi. Chứ còn thực tế chấm bài thì cô chấm lên tới 15 điểm. Thì trong quá trình các bạn làm chỗ nào cô thấy có bonus được thì cô sẽ có những cái điểm",
+      "relevance_score": 4,
+      "keywords_found": [
+        "thuật toán",
+        "độ phức tạp",
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 232,
+      "content": "cô cô nhắc lại rồi nha. Cái quy hoạch động là cô sẽ hỏi trong đề thi là những cái bài mà đã được hướng dẫn trên lớp và làm về nhà là những bài mà em đã từng biết qua câu hỏi lại đó nên về nhà xem lại cái record này cho kỹ lưỡng vào. Bài tập trên Qode làm cho nó cẩn thận vào. Đừng có dùng AI để giải. Nếu có tham khảo AI thì cũng phải hiểu cái cách giải của nó. Mà có hỏi thì hỏi theo cái dạng là cho ví dụ yêu cầu các bạn tính tay và điền số vào bảng đó. Nên em không hiểu là em không có tự điền được đâu. Cái đề của cô ra nó giống như là những cái đề mẫu mà nãy giờ mình đã sửa",
+      "relevance_score": 4,
+      "keywords_found": [
+        "bài tập",
+        "câu",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 12,
+      "content": "lý cái yêu cầu gì? Có nghĩa là chức năng vai trò của hàm này nó làm cái nhiệm vụ gì á. Rồi sau đó đếm một cái loại phép toán đặc biệt gì đó trong cái hàm này. Vậy là cái buổi một cô có chỉ em đếm về số phép gán, số phép so sánh rồi đó đúng không? Thì cái câu này mình làm giống vậy. Đếm số lượng phép gán hoặc số lượng phép so sánh gì đó trong cái hàm đã cho. Thì cái quá trình mình đếm nó cũng nên được nói ra trong cái bài làm. Có nghĩa là em đếm như thế nào, cách thức ra làm sao thì mình ghi ra. Không cần ghi quá dong dài đâu. Ghi ra chút đỉnh thôi để cô hiểu là cái này là em có suy nghĩ và",
+      "relevance_score": 3,
+      "keywords_found": [
+        "hàm",
+        "câu",
+        "so sánh"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 22,
+      "content": "chọn một bài để làm và em thấy cái phần mô tả trong đó nó còn nhập nhằn á thì mình cứ thoải mái ghi chú vào trong bài làm luôn là khi em phân tích đề em thấy nó có những cái điểm nhập nhằn như thế này không rõ. Và bây giờ à em suy diễn như sau rồi theo cái ý suy diễn đó của em em làm tiếp. Rồi câu thứ tư là hỏi về một cái chiến lược nào đó thì cũng cho em một bài toán rồi chọn một chiến lược để giải quyết à ghi tên chiến lược ra và ghi cái mã giả thực toán thì tới đây là không là ý tưởng nữa rồi nha. Cái này phải viết ra thành cái thuật toán luôn. Trong thuậc",
+      "relevance_score": 3,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 49,
+      "content": "Chà một chút giờ làm sao cô xem được phòng giác đây nhỉ? Rồi dùng điện thoại đi ha. Rồi bài này là bài ví dụ liên quan tới cái nhóm bài toán có công thức tri hồi thì nó giống như cái tình huống của Fibonacci á là mình có sẵn cái công thức tri hồi rồi. Thì bài này nó cũng vậy. À nhìn coi bài này là bài tên gì nhớ không? Đây là một cái ký hiệu toán học cũng khá là quen thuộc. Chắc là ai cũng biết. Cái này là mình đang đi tính tổ hợp chập k của n.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ký hiệu",
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 50,
+      "content": "Tổ hợp chập k của n thì định nghĩa góc của cái công thức này đó là lấy n giai thừa chia cho k giai thừa rồi lại tiếp tục chia cho n trừ k giai thừa. Thì cái đó là định nghĩa góc của tổ hợp chập k của n. Nhưng mà trong quá trình người ta làm việc với lại cái định nghĩa này, cái khái niệm này thì nó lại có phát hiện mới là phát hiện sáng tạo ra thêm một cái định lý. Thì đây là một cái định lý người ta tìm ra được cái mối quan hệ giữa tổ hợp chập k của n với những cái tổ hợp khác. Thì nhìn vô đây chúng ta thấy quan hệ nó là sao? Tổ chập chập k của n được tính dựa trên tổ hợp chập k",
+      "relevance_score": 3,
+      "keywords_found": [
+        "định nghĩa",
+        "công thức",
+        "giai thừa"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 54,
+      "content": "hiển nhiên. Thì lúc đó dừng lại. Ví dụ như giờ cô rã tới khi nào dừng lại được? Để cho nó giống giống công thức một chút đi. K - 1 mọi người chờ xíu nha. K - 1 là 2. Cô đang viết sai cái gì đó vậy. 2 4 thì giảm k - 1 là còn 1 3. Bên đây sẽ là 23. Rồi bài toán cơ sở của mình là bài toán nào? Các bạn trả lời được chưa? Bài toán cơ sở là dựa trên cái phần điều kiện dừng của đệ quy á. Điều kiện dừng là khi k = 0 hoặc k = n thì nó là bài",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "công thức",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 78,
+      "content": "phí. Độ phức tạp của nó rất là cao. Độ phức tạp ở cái dạng hàm mũ và cái lý do chi phí cao là do những bài toán con cứ phải giải đi giải lại nhiều lần. Thì thành ra người ta sẽ cố gắng khắc phục phần nào cái hạn chế bằng cách là những cái bài toán nào mà mình giải rồi thì lưu vô trong một cái bảng. Vậy là qua cái cách giải thứ hai nó cũng gần na ná giống như cách giải số một nhưng mà nó có thêm một cái bảng hỗ trợ nữa thì nó cũng na ná như vậy nha. Và kèm theo trong đó là nó có một cái bảng cô đặt tên bảng là C đi. Bảng này là bảng hai chiều có N dòng và K cột.",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "hàm",
+        "mũ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 133,
+      "content": "thì thằng này nó cũng y trang như vậy. Không có cách thức nào để chứng minh được một cái cách phân chia nào là tối ưu. Nên mình chơi cái trò là vét cạn. Nhờ vét cạn hết thì nó sẽ như thế nào? Tôi không chứng minh được cái nào là hiệu quả hơn cái nào thì tôi vét hết mọi tình huống luôn. Bây giờ cô làm cho nó có cái ví dụ ngắn ngắn hơn một chút. Rồi bây giờ phân vét cạn hết mọi cách phân thì em có những trường hợp nào? Trường hợp thứ nhất là à x0 đứng mình đi. Sau đó cái đám kia mình gom lại. Đây là tình huống thứ nhất. Giữa các mấy",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "chứng minh",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 159,
+      "content": "hoạch động này. Rồi đây là cái công thức tính tổng quát. Còn những cái trường hợp cơ sở là những cái ô đầu tiên chúng ta điền vào trước thì nó là ô nào? Mọi người ghi ra được không? Ở đây là công suất tính tổng quát thôi ha. tính cho một cái ô bất kỳ nào đó thì tính theo kiểu này. Vậy giờ những ô đầu tiên mà có thể điền vào trong bảng là ô nào và giá trị của nó ra là sao? Mình có ghi ra được thành một cái quy luật không? Nếu bạn quên á thì có thể quay lại cái ví dụ hồi nãy này. Hình như lúc nãy có",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 177,
+      "content": "của em sẽ tính theo kiểu này. Ra một con số và rõ ràng là hai con số này chắc là trên lệch rất là lớn luôn không thể nào giống nhau được. Nên người ta mới đặt ra câu hỏi là liệu cái cách đặt ngoặc nào có thể mang lại cho em cái chi phí nhỏ nhất? Vậ cái nào càng nhỏ thì cái cách đắt cái cách đặt đó là càng hiệu quả là tối ưu. Thì đó là sự khác biệt về mặt chi phí. Thì quay lại tổng quát hơn là cho một chuỗi gồm có n ma trận nhân với nhau. Chúng ta lần lượt đặt cái dấu ngoặc vô trong cái chuỗi phép nhân này. Làm sao đó để có được cái chi phí tính toán đây ra cái ma trận",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "tối ưu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 207,
+      "content": "theo ví dụ đó mọi người viết ra được công thức không? Cái bài góc thì là m16. Còn giờ mình lấy một ô bất kỳ trong cái bảng ra để tính thì cái ô bất kỳ đó gọi là y. Nghĩa là cái chuỗi con hiện hành đang xét là một cái chuỗi nhân từ AY rồi tới AY + 1 rồi nhân nhân tiếp tới AJ. Thì đây là cái bài toán con đang xét nè. Cái chi phí tối ưu trên cái bài toán con này được lưu trong cái ô MJ. Vậy tôi cần tìm ra được cái công thức tính cho MIJ nói chung. Thì MIJ bằng cái gì? Chuỗi là AY nhân cho đến AJ. Và từ đây",
+      "relevance_score": 3,
+      "keywords_found": [
+        "ví dụ",
+        "công thức",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 221,
+      "content": "Qode thì đề thi sẽ hỏi trong cái đống đó. có cần nói lại hay nói thêm hoặc đưa thêm ví dụ nào cho cái bài toán này không? Ừ, bài toán có thể hỏi theo kiểu này ha. Cho em một cái chuỗi ma trận, kích thước của từng ma trận nó là dài. Yêu cầu điền điền giá trị vào trong cái bảng m và cái bảng S. Đó, nếu đề thi hỏi vậy mọi người làm được không? Thấy ai cũng ngất ngay hết nha. Cô hỏi cô không trả lời luôn. Rồi nói trước rồi nha. Nếu có hỏi là đề thi câu hỏi kiểu đó. á là cho em một cái",
+      "relevance_score": 3,
+      "keywords_found": [
+        "câu",
+        "ví dụ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 224,
+      "content": "những cái dòng con lòng bên trong nữa thì có thể cân nhắc lên ô n mũ 3 n mũ 4 gì thì tùy theo cái mã giải em viết kiểu nào nhưng mà phần lớn những cái trường hợp mà dùng bảng hay chiều rồi làm theo những gì như hai ví dụ này là độ phức tạp cỡ chừng cái n bình Thôi. Ờ các bạn muốn qua tham lam luôn không hay là thôi nghỉ rồi ngày mai có học không? Cho một cái chốt đi cô ơi, mai mà học mình học lùi lùi ra một tí được không ạ? Tại vì ờ bên em là 4:00 sáng, &gt;&gt; bên em là 4:00 sáng. Vậy là em không ở Việt Nam hả? Em ở chỗ nào đó hả?",
+      "relevance_score": 3,
+      "keywords_found": [
+        "độ phức tạp",
+        "ví dụ",
+        "mũ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 229,
+      "content": "theo yêu cầu thôi. Các bạn yêu cầu sao cô ôn vậy? Hoặc là muốn hướng dẫn, muốn giải một cái bài tập, một cái ví dụ nào đó thì cứ đề nghị rồi cô ôn theo. Còn khi mà không có đề xuất gì hết ngồi nói lảm nhảm hồi là kết thúc buổi học sớm luôn ráng chịu nha. Rồi chúng ta còn cơ hội gặp nhau lần cuối vào à tuần sau luôn đi ha. Để cho các bạn có cả một thời gian thông thả để ngồi xem lại tất cả những gì đã học rồi chốt lại cho cô là câu nào cần phải hướng dẫn lại, bài tập nào cần phải giải. Chuẩn bị sẵn cho cô các câu hỏi luôn. Tới cái bữa ôn là mọi người chỉ",
+      "relevance_score": 3,
+      "keywords_found": [
+        "bài tập",
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 230,
+      "content": "cần đề nghị rồi cô làm theo thôi. Vậy chốt tới tối thứ bảy tuần sau mình gặp lại. Các bạn chuẩn bị sẵn câu hỏi. Giờ tham lam cũng cần phải nói lại một chút xíu. Một chút xíu rồi. Ok. Nói lại tham lam một chút. Cho thêm một vài cái ví dụ để các bạn luyện tập. Bài tập quy code về tham lam. Mọi người muốn làm không? Mà nếu có làm chắc nó cũng giống giống như bài tập thầy Hiển á. Nó có những cái bài như là phân công việc nè, à tô màu đồ thị nè, gì nữa ta? Tự nhiên cô quên mất rồi. Cái clip nó cũng nhiều bài toán lắm nhưng mà thường là những cái bài các bạn cũng đã từng",
+      "relevance_score": 3,
+      "keywords_found": [
+        "bài tập",
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 7,
+      "content": "phải. Thì cô nghĩ chắc là rớt đâu đó cũng vài chục người. Ừ. Rồi cái đó là cái one thứ nhất trong đề. Rồi cái thứ hai nữa là cô ghi luôn trong đề là mình có cả thảy tổng điểm là 12 điểm. 12 điểm ha. Trong đó là cái phần phân tích á cỡ sáu điểm, cái phần thiết kế cỡ sáu điểm thì cộng lại là 12 điểm. Thì các bạn có thể bỏ qua một vài ý. Nếu ý nào không biết làm, bài nào câu nào không biết làm thì cứ bỏ qua. Chúng ta làm phần còn lại thì vẫn có thể đạt được điểm cao.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 10,
+      "content": "á mình có qua một vài các bước biến đổi thì chịu khó biến đổi thêm một chút xíu rồi sau đó mới chốt lại là nó thuộc cái ô nào còn cái nào nó tường minh quá, nó rõ quá, nó dễ quá thì các bạn cứ ghi trực tiếp nó bằng cái ô nào luôn như nó là cái sự phân lớp. Còn cái giải thích ngắn gọn như cô nói ha, những cái phần nào mà nó hơi khó một chút đòi hỏi phải có nhiều bước lập luận thì các bạn làm cho cô nhiều bước để nó đi đến kết quả. Cái đến là cái phần à kết luận chốt cái thứ tự mình sắp xếp là cái gì. Cô phải nhắc nhở để mọi người làm không",
+      "relevance_score": 2,
+      "keywords_found": [
+        "sắp xếp",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 15,
+      "content": "trang là mọi người hoảng luôn không còn tinh thần để làm nữa cho cố gắng càng ngắn càng tốt. Rồi câu C thì cái này cô đang dự kiến thôi nha. Câu C đang dự kiến thôi. Không biết là mọi người có ý kiến gì không thì cô chỉnh lại. Đó là cho em ba cái phương trình. Phương trình đệ quy á. Chỗ này là ba phương trình đệ quy và mình được chọn giải một trong ba cái phương trình đó. Thì cái nào mà hồi xưa có làm qua cái dạng của nó rồi thì em thấy nó quen thuộc và mình tự tin hơn thì chọn để làm.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 16,
+      "content": "Chứ giờ cô cho thì có người này thấy quen có người kia thấy lạ. Rồi có người này thấy dễ, người kia thấy khó. Hôm đó nó cũng hơi hơi tội tội một chút nên cô cho em ba cái phương trình khác nhau, ba cái dạng, ba cái loại khác nhau luôn. Và các bạn sẽ chọn trong đây để giải. Thì ở mỗi phương trình có chỉ định rõ luôn là giải bằng phương pháp nào để khỏi phải suy nghĩ, khỏi phải lăn tăng. Ví dụ như một cái giải bằng tri hồi, một bên thì hàm sinh, một bên là phương trình đặc trưng hoặc là đoán nghiệm gì đó thì các bạn chọn để làm. Khoảng trống để giải thì cũng cỡ khoảng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 19,
+      "content": "luận nữa thì trong phần tự luận nó có những cái ý hỏi rất là đơn giản. Những cái phần đơn giản đó các bạn cũng có thể dễ dàng có kiếm được. Rồi lúc nào đề nó cũng yêu cầu mình là thiết kế thuậc toán. Nhưng mà cô có một cái lưu ý chỗ này. Trong trường hợp mà các bạn viết không ra cái mã giả, viết không tốt, viết không được rõ ràng chi tiết cái mã giả thì viết cái ý tưởng của mình ra. Đây trong trường hợp không xây dựng được thực toán thì sinh viên trình bày ý tưởng ha sẽ có được một phần điểm. Em không giết được thuật toán thì em nói",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "thực toán"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 20,
+      "content": "lên cái ý tưởng của mình. Và thuật toán trình bày với dạng mã giả không vẽ lưu đồ. Vẽ lưu đồ mà vẽ không đẹp. Cô đọc cô khó khó chịu lắm nên viết mở giả ra luôn. Chú thích rõ ràng cho dễ hiểu. Viết ra mà cô đọc không hiểu thì các bạn thiệt thòi ráng chịu. Ủa sao cứ câu ba hoài vậy? À tới câu 3 rồi. Câu 3 là phân tích bài toán thì sẽ cho em hai bài em lựa luôn. Mình thấy bài nào làm được thì làm. Đọc thoáng qua một chút. Thấy cái bài nào mà mình cảm thấy là mình à có thể tiếp tục làm với nó thì làm ha.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "thuật toán",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 21,
+      "content": "Trong hai bài toán đó thì yêu cầu chung giống nhau là xác định rõ input output cho ví dụ. Trình bày ý tưởng giải, nêu rõ chiến lược áp dụng là cái gì. Chỗ này có ghi chú luôn, không cần viết mã giả. Chỗ này chỉ là ý tưởng thôi. Sau đó là minh họa cái ý tưởng của em trên một ví dụ cụ thể. Thì ở trên mình có đưa ra hai ví dụ á, chọn một ví dụ nào đó trong đây ra để minh họa. Thì câu này sẽ tập trung hỏi nhiều về cái a cái năng lực, cái kỹ năng phân tích bài toán, đọc hiểu bài toán. Còn nếu trong hai cái bài toán này mà em",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 26,
+      "content": "câu đó không biết làm rồi làm sao? Rồi hai câu thì lỡ như hai câu không biết làm sao nên cô cho ba câu để em có sự lựa chọn đó mà nói là ba câu nghe ghê quá chứ thực chất là năm câu luôn á. Mọi người để ý không? Tới năm bài luôn á. Đây nè, bài câu 3 này. Chọn một trong hai bài toán, tức là chỗ này có hai bài. Rồi qua bài số 4 thì thôi có một thôi ha. Câu số 4 có một rồi. Câu số 5ă cũng hai bài luôn là cả thấy em có năm bài thì trong năm bài này em ráng làm làm hai bài cho cô thôi. Em cũng có thể được 9 10 điểm rồi đó.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài số",
+        "câu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 28,
+      "content": "đề này bắt đầu là sẽ than vãn ha. gì đâu mà thầy cô cho cái đề gì mà dài dữ vậy? Rồi cán bộ coi thi nhìn vô cái đề cũng nói là sao cái môn này đề thi gì mà dài thế? Quá nhiều câu hỏi luôn sao sinh viên làm kịp nha. Mọi người phải hiểu được cái tâm ý của cô chỗ này nha. Cho càng dài để cho mọi người có sự lựa chọn đó. Không cần làm hết cái đề này đâu. Câu nào biết làm thì ưu tiên làm trong vòng 90 phút đó. làm được cái gì thì cứ làm đi. Miễn là những cái chỗ mà em làm em làm thiệt là tốt. Em có điểm tốt ở những phần đó thì em làm phân nửa thôi. Cô nghĩ cũng có thể được 9 10 điểm rồi.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 41,
+      "content": "lớn thành những bài toán con đồng dạng rồi đi giải những bài toán con đồng dạng đó. Thì giải xong mình có được lời giải của những bài toán con. Rồi tổng hợp lời giải của những đứa con thì nó tạo ra lời giải của thằng cha. Rồi yếu tố tối ưu nhấn mạnh ở chỗ là lời giải tối ưu của bài toán cha của bài toán gốc phải chứa đựng trong đó lời giải tối ưu của những bài toán con. Thì đây là dấu hiệu thứ nhất. Mà dấu hiệu này thì nó cũng chưa đủ mạnh. Nếu có thêm dấu hiệu thứ hai nữa thì hai cái dấu hiệu này rất là mạnh mẽ luôn để em có thể hoàn toàn tự tin quyết",
+      "relevance_score": 2,
+      "keywords_found": [
+        "tối ưu",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 51,
+      "content": "-1 của n - 1 cộng với lại tổ hợp chập k của n - 1. Khi k = 0 hoặc k = n thì cái tổ hợp này bằng 1. Còn tình huống còn lại thì sẽ bằng 0. Rồi vậy là kiếm cái ví dụ. Ủa sao cái chế độ này không có cái viết vậy? Là sao có cái viết đây? Thôi về đây lại đi ha. Rồi bây giờ cô muốn tính tổ hợp chập 3 của 5 đi thì theo công thức tri hồi lúc nãy các bạn cần phải tính cái gì trước? Muốn có được kết quả của tổ hợp chập 3 của 5 thì chúng ta phải đi tính tổ hợp",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 56,
+      "content": "Rồi 01 là bài toán cơ sở đáp án của nó là 1. C11 là K với N bằng nhau cũng là bài toán cơ sở đáp án là 1. Rồi có những đứa con xong rồi tổ hợp tổng hợp kết quả bằng phép toán cộng thì nó ra được kết quả của thằng cha lớn hơn. Rồi hai cái đứa con này chúng ta lại cộng lại thì ra kết quả của thằng cha lớn hơn nữa. Vậy là trong quá trình giải quyết cái bài toán bằng đệ quy thì cái máy tính nó chưa có phải là giải liền tính toán liền ngay từ đầu mà nó liên tục gọi những cái lời gọi đề quy thì nó tạo ra một cái cây như thế này cô gọi là cây đại quy top down. Nó phân rã",
+      "relevance_score": 2,
+      "keywords_found": [
+        "đệ quy",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 61,
+      "content": "qua tới phần mã giả đi ha. Vậy là để viết cái mã giả thì mọi người nên trả lời một vài câu hỏi định hướng trước để mình có cái cơ sở làm cho nó dễ hơn, nó nhanh hơn. Và bài toán của cô có tên gọi là tính tổ hợp chập k của n. Đây là bài toán góc. Thì câu hỏi thứ nhất là bài toán này có bao nhiêu bài toán con cần phải giải? Có bao nhiêu bài toán con có liệt kê ra được không? Ví dụ như giả định chỗ này nó là C [hắng giọng] 35 đi. Tính tổ hợp chập 3 của 5. Em có xè tay",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 69,
+      "content": "có được cái giá trị tính toán là phải có công thức tính đàng hoàng. Vậy là tôi cần phải đi tìm công thức. Nếu cái bảng này cô gọi tên là M thì muốn xác định giá trị tại một ô nào đó trong đây có nghĩa chúng ta gọi cái phần tử của mãng ra là MJ. Thì MJ này được tính theo kiểu nào? Ví dụ như giờ M của cô đang nằm ở vị trí này, đang là dòng 2 cột 1 thì coi như đang tính M21 đi ha. M21 tính ra bằng cách nào? Mỗi một ô trong cái bảng nó sẽ lưu kết quả hay chúng ta còn gọi nó là lưu lời giải của một bài toán con.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 71,
+      "content": "nhau thì nó ra cái đứa ở dòng dưới. Vậy tổng quát lên đi. Nếu cô cần phải tính mi, MIJ là một ô tổng quát bất kỳ thì các bạn suy ra được công thức tính cho nó là gì không? Cái ô ở dòng dưới được tính dựa trên hai cái ô ở dòng trên mà dòng trên tức là giá trị của y này nó giảm đi một đơn vị là my - 1. Rồi hai đứa này nó nằm à nằm lệch lệch phía dấu dài. Vậy là J nó cũng giảm đi một đơn vị rồi cộng với lại cái ô nằm liền ở phía trên. Đấy thì cái công thức mà cô vừa viết ra xong á nó gọi là phương trình quy hoạch động. Phương trình này chẳng qua nó là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 76,
+      "content": "cái quan trọng của mình là mình cần phải tìm ra được cái giải pháp cho bài toán chứ không phải là đặt tên nó là cái gì. Thì cái sự khác nhau giữa hai bên là sao? Cái thằng top down là nó làm y chang như là chia để trị á. Có nghĩa là cái mã giả của mình nó là một cái dạng mã giả của hàm đệ quy. Viết ra dưới dạng là một cái hàm đệ quy. Rồi hàm đề Q cô đặt tên hàm là gọn gọn vậy đi. Có hai tham số đầu vào là n với k. Trong đề Q nó có điều kiện dừng. Vậy điều kiện dừng mình đặt ra phía đầu. Ví",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 77,
+      "content": "dụ như K = 0 là điều kiện dừng thứ nhất nè. Điều kiện dừng thứ hai là k = bằng nè. Thì nếu gặp trúng cái đường hợp dần, tôi có thể kết luận luôn kết quả của bài toán đó là 1. Còn trong trường hợp không phải dần nó là bài toán lớn thì chúng ta rã nó ra thành những bài toán nhỏ hơn. Ở đây gọi tới hai cái lời gọi đề Q N - 1 K -1. Rồi thì với cái hàm mà cô đang viết ra đây thì nó là chia để trị thuần túy, chia để trị nguyên nguyên bản luôn. Và khi em áp dụng cái giải pháp này thì nó sẽ gây ra cái sự tốn kém về mặt chi",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 80,
+      "content": "là toàn toàn 0 hết đi được không ta? 0 hay -1 gì đó tùy em. Em muốn khởi tạo thành nhiêu cũng được. Ví dụ cô khởi tạo ban đầu cái bảng này toàn không hết nha. Vậ cái bài nào mà mình giải rồi kết quả lưu vào trong một cái ô nào đó của cái bảng này thì cái giá trị của nó phải khác 0, phải lớn hơn 0. Giờ lúc mà chúng ta thực hiện cái lời gọi hàm nó bay vô cái hàm com này thì mình kiểm tra liền luôn. Anh này giờ đã giải chưa? Tiếp. Nếu cái anh này giải rồi thì đừng có đi giải nữa. Chúng ta lấy cái giá trị đó ra rồi tính toán xử lý tiếp. Vậ cái",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 82,
+      "content": "Đúng không? Vậy thì em để ý cái hàm này vẫn là hàm đệ quy, vẫn là đệ quy top down, có gọi đề quy đàn hoàng và nó có kết hợp thêm một cái bảng để lưu trữ nên người ta đặt tên cho cái kỹ thuật này là cái anh này đây. Chúng ta gọi tên nó là như vậy. Rồi ha. Còn cái quy hoạch động mà hổm rài mình học á nó là cái kiểu khác. Nó không phải là chia để trị, nó không phải là đệ quy mà nó là dạng vòng lập thôi. Và khi em hình thành cái vòng lập này thì chúng ta phải tư duy ngay từ đầu là chúng ta tư duy theo cái lối của chi đề trị. Có nghĩa là các bạn biết cách phân",
+      "relevance_score": 2,
+      "keywords_found": [
+        "hàm",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 85,
+      "content": "từng ô trong cái bảng điền cái giá trị của nó bằng cách là viết ra cái công thức tính của phương trình quy hoạch động. Thực hiện cái việc tính toán này. [hắng giọng] Đưa cái giá trị vào trong cái ô tương ứng trong bảng. Điền xong cái bảng rồi thì bước cuối là kết luận lợi giải. Thì bài này hồi nãy mình nói là chỉ cần return về cái ô cuối cùng trong cái bảng là xong. Ô cuối cùng là MNK nè. Rồi đây là quy cập động. Thì cô có một cái hình để chuẩn bị sẵn cho các bạn là không biết cái bảng của một bên top down với một cái bảng của quy hoạt động",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 88,
+      "content": "coi như cô đang tính tổ hợp chập 2 của 3 đi ha thì nếu mà em tìm tổ hợp chập hai của ba theo cái cách số hai. Cách số hai lúc nãy chúng ta gọi tên á là top down memorization. Thì cái quá trình mình điền giá trị vào trong bảng nó diễn ra như thế nào? Cái ô nào mình điền giá trị vào trước? Những cái ô nào chúng ta điền giá trị vào trước? Người suy nghĩ xem. có đang suy nghĩ không? Suy nghĩ đi nha. Ê biết đâu mai mốt đề thi của cô cô cho lại câu hỏi này thì sao? Những cái gì em có học trên lớp hoặc em",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 94,
+      "content": "boton up. Thì cái sự khác biệt giữ cách ba, cách hai nó nằm ở chỗ là đối với cách số hai á trong quá trình gọi đệ quy thì cái bài toán nào được gọi nó mới đi giải. Vậy những cái bài con của thằng bài toán góc được gọi đó là C12 là 1, C22 là 2, C01 là 3, C11 là 4. Tức là nó chỉ cần giải bốn bài toán con thôi. Bài toán nào được gọi đến trong quá trình gọi đề QY thì nó mới đi giải. Còn đối với bottom up á nó có phân biệt được là đứa nào cần thiết phải giải không? Thì câu trả lời là không. Nó không biết bài toán con nào cần thiết phải giải nên có bao nhiêu bài",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 99,
+      "content": "chi phí nhiều lắm nên nó không có cải thiện được nhiều bằng cái button up. Thì bottom up đơn giản là chỉ chạy hai dòng lập for để điền hết cái bảng này là xong rồi. Chi phí là on bình. Biết rồi giờ cái đề thi nó ở đâu? Nhiều đề quá không biết nó nằm đâu luôn. Rồi mọi người cùng cô giải cái bài này ha. [khịt mũi] Chụt đâu rồi ta? Hôm nay cái file này nó bị gì ấ nhỉ? Cho file khác đi. Mọi người thông cảm. Cô cũng không có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "mũ",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 101,
+      "content": "toán nhân thôi. Có hai phép toán thôi. Thì biểu thức nó có cái sự kết hợp giữa toán tử và toán hạn. Toán tử là phép toán tức là cộng với nhân. Còn toán hạng là mấy cái số hạng đó. Ví dụ như cô có biểu thức này viết lớn lên là 6 cộng 0 rồi nhân với 6. Toán tử có hai đứa là dấu cộng với dấu nhân là phép cộng phép nhân. Toán hạng có ba đứa [hắng giọng] thì toán tử với toán hạn nó trộn lẫn với nhau kiểu dày. Vậy tổng quát lên thì chúng ta sẽ gọi cái số hạng toán hạng đầu tiên là x0. Rồi cái toán hạng thứ hai là x1. Đây là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 111,
+      "content": "hạng là x gì đó. Thì sen kẻ giữa mấy đứa này chúng ta có thứ nhất là thằng Oy, còn trước thằng XJ sẽ là O - 1. Rồi đây là bài toán con. Còn em thế y với J cụ thể là nhiêu thì nó sẽ ra bài toán con cụ thể hơn. Rồi vậy giờ có bao nhiêu bài toán con có thể có của bài toán góc này? Thì chắc là nhiều lắm mình đếm không xể đâu. Nhưng mà cô hỏi câu này thì chắc mọi người trả lời được. Bài toán nhỏ nhất của mình là cái gì? Bài toán con nhiều lắm nha. Chỉ cần thế cái y với cái j này cụ thể vô là nó ra được bài toán con đó. Ví dụ như cô thế",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 123,
+      "content": "nhau thì khi em trả lời câu B được như vậy là được 025 rồi. Vậy câu A với câu B dị chi mình được một điểm rồi. Giờ qua tới câu C. Trong đề nó nhiều câu lắm. Hình như bên dưới câu Còn câu D, câu E nữa. Và câu C nó nói là hãy phân tích cái đặc trưng optimal substructure. Dịch ra là một cái cấu trúc con tối ưu hay nói khác hơn diễn đạt cho nó đúng nghĩa ngữ nghĩa ra là lời giải tối ưu của bài toán cha chứa đựng trong đó lời giải tối ưu của những bài toán con. thì hãy phân tích cái đặc",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 127,
+      "content": "phân rã theo kiểu gì? Mình phân ra làm đôi hay làm ba hay làm bốn là phù hợp? Không biết hiểu câu hỏi không ta? Dịch cái ý tưởng của mình nó phải là ý tưởng đệ quy tắp down nha. Tức là giờ trong quá trình em phân tích bài toán nó phải hình thành ra được một cái cây đề quy mới được. Thì giờ bài của mình nó có ra được dán dắt của một cái cây đệ quy nào không? Thì cái bài toán lớn là coi như là cái góc của cây đó. Giờ cô muốn rã ra thành những bài toán con. Thì trong trường hợp em rã làm hai bài toán con thì cái cây của mình tẻ ra làm hai nhánh mà có ba",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đệ quy"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 131,
+      "content": "nhất cho biểu thức. Không có cơ sở nào để chứng minh được chuyện đó. Nên tôi mặc dù biết là phân ra làm hai bài toán con nhưng mà phân kiểu nào thì lúc này em không tự tin để khẳng định. Giờ làm gì giờ? phân làm đôi là thấy không ổn rồi nè. Chỗ này là coi như hai phần đều nhau là không được rồi ha. Nếu em quyết tâm em phân làm hai phần đều nhau thì sau đó mình phải chứng minh được là cái chuyện mà phân chia đều nhau như vậy nó dẫn đến cái giá trị là giải tối ưu ra bài toán thì phân đều nhau là không ổn. Mình không có cơ sở để chứng",
+      "relevance_score": 2,
+      "keywords_found": [
+        "chứng minh",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 132,
+      "content": "minh. B giờ không phân đều thì phân kiểu gì giờ? Hay là giờ mình phân hai cái phép toán đầu tiên a cái phép toán đầu tiên mình ngoặc lại rồi cái phần còn lại mình ngoặc lại lớn hơn phân kiểu này không? Vậy là x0 với x1 mình cho nó vô một nhóm. Rồi phần còn lại mình cho vô cái nhóm thứ hai thì coi như cũng lúc này là hai bài toán con đó. Một bài toán có kích thước nhỏ hơn, bài toán kia kích thước lớn hơn. Hai đứa này không đều nhau. Mà hồi nãy phân đều không có căn cứ để chứng minh là nó dẫn đến lời dạy tối ưu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "chứng minh",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 142,
+      "content": "con. Hai bài toán đó là hai đứa này nè. Gọi tên hai đứa này ra. Vậy cố gắng tìm cách đóng mở ngoặc trên từng bài toán con sao cho nó là tối ưu nhất. Rồi. Vậy giờ ví dụ sau khi em đóng ở ngoặc tối ưu rồi, cái giá trị lớn nhất cô gọi là cái giá trị max đi ha. Max value của cái bài toán con số 1 đã tìm thấy rồi. Rồi cái max value của bài toán con số 2 cũng tìm thấy rồi. Thì làm sao tôi suy ra được cái mắt của bài toán tra? Chắc là chỗ này mình nhân nó lại à hoặc là cộng nó lại túm lại là chỗ này nó có",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 156,
+      "content": "tôi đóng mở ngoặc tới U xong rồi thì tôi tính ra được cái giá trị tương ứng gọi là DB K + 1 J đúng không? Lúc nãy chúng ta có quy ước là cái ô trong cái bảng nó lưu cái giá trị của biểu thức. Vậy sau khi cô đặt ngoặc tối ưu xong thì cô cũng tính ra được cái giá trị tối ưu của biểu thức luôn. Và giá trị đó nó nằm trong hai cái vị trí, nằm trong hai cái ô này. Rồi giờ giữa cái này mình làm cái gì? Chấm hỏi à mình thêm cái phép tính vô nữa. Ví dụ ở đây tôi tính toán xong nó ra số 12 đi.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 158,
+      "content": "Mọi người hiểu không? Cái phương trình này gọi là phương trình nguyên hoạch động á. Vậy lúc này hiểu vấn đề chưa ta? Có gì thắc mắc chỗ này không? Để cô giải thích lại. Khi đi thi các bạn có lết lết được tới cái chỗ mà xây dựng phương trình quy ho vật động giống vậy không ta? Em mà làm được tới phương trình này là em được bonus rất là nhiều luôn. Đề thi mặc dù ghi trong câu hỏi là có hai điểm thôi nhưng mà tới đây là điểm của mình chắc được ba được bốn điểm rồi đó. Nếu em hoàn thành được cái phương trình quy",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "đề thi"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 160,
+      "content": "một vài ô nào đó mình điền giá trị vào trước. Ví dụ như cái đường chéo này thì phải tức là cái biểu thức của mình chỉ có mỗi x0 thôi. Thì giá trị ở đây là 1 nè. Rồi o11 chỗ này biểu thức của mình chỉ có x1 thôi. Giá trị là 2 nè. Giờ tổng quát lên thì nó sẽ viết như thế nào? Biểu thức mà chỉ có một số hạng là y với j bằng nhau. Vậy cái DI lúc đó sẽ bằng nhiêu? DB bằng nhiêu? Nếu",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 180,
+      "content": "cùng. Ủa nãy giờ cô quên để ý là cái lời cô nói với lại cái giao diện trên đây nó theo kịp không? Cái chữ viết ra với cái lời nói này nó có đồng bộ với nhau không? Rồi giờ mọi người tưởng tượng được cái chuyện là một bài toán lớn mình phân rã ra làm hai bài toán con chưa? Chắc ổn rồi ha. Thì thông thường là chúng ta hay chia nó ra làm đôi và hai cái nửa này nó đều nhau. Nhưng mà cái việc mà em chia làm đôi đều nhau như vậy nó không có cái cơ sở và căn cứ nào để có thể kết luận là cái cách chia này là tối ưu nhất. Nên",
+      "relevance_score": 2,
+      "keywords_found": [
+        "tối ưu",
+        "kết luận"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 181,
+      "content": "vì chúng ta không chứng minh được nó tối ưu nhất nên phải làm cái trò gọi là vét cạn. Vậy là tôi vét hết tất cả những khả năng mà có thể chia cái chuỗi hiện hành ra làm hai chuỗi con. Còn đều hay không đều là không quan tâm. Thì có bao nhiêu cách chia mình liệt kê ra cho đủ. Vậy trong tình huống mà có bốn đứa nhân lại thì mình có thể đặt ra được bao nhiêu cách chia? Thì chắc là chia vậy đi. A1 đứng mình sau đó là cái đám kia mình cho nó gom lại. Đây là cách thứ nhất. Cách thứ hai là cho một nửa. Rồi cách thứ ba là ba đứa đầu tiên gom",
+      "relevance_score": 2,
+      "keywords_found": [
+        "chứng minh",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 194,
+      "content": "thông tin gì không? Một cái ô trong cái bảng gọi là M thì nó chứa thông tin gì? Cái được chứa trong bảng là cái mà có thể tính toán được. Cái gì có thể tính toán được trong tình huống này? Tại vì cái phương trình quy hoạch động nó là một công thức tính toán nên em phải quy về công thức tính toán nó mới hay. Độ dài của chuỗi ha các bạn nói là chỗ này nó sẽ chứa độ dài của chuỗi chi ta. Chứa độ dài chi nhờ? À chứa cái cos đó. Vậy là m chứa cái cos nhưng mà cái code không chưa đủ đâu. Nó là cái code tối ưu. Cái",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 205,
+      "content": "tính cái chuỗi từ A2 đến A6. Và nếu mình tính xong cái chi phí nó nằm tại cái ô là M26. Rồi hai cái ma trận tích nhân lại với nhau lần cuối. Chi phí nhân lần cuối đó là B0 nhân B1 nh B6. Thì đây là cách thứ nhất khi em phân tách cái chuỗi ra là hai chuỗi con. Nhưng mà ngoài cách này chúng ta vẫn còn nhiều cách tách khác. Ví dụ đây là cách thứ hai thì cách thứ hai là có hai cái nhóm dày. Công thức tính chi phí của nó là bên cạnh. Rồi ngoài cách này vẫn còn cách thứ ba, vẫn còn cách thứ tư. Và cả thảy là hình như có năm cách thì phải.",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 206,
+      "content": "Và tứng ứng với từng cách khác nhau, chúng ta có những cái chi phí khác nhau. Và nhiệm vụ của mình là cần tìm chi phí nhỏ nhất. Vậy cuối cùng là chỉ cần lấy mắt cái đám này là được. Thì từ đây mọi người hình thành cho cô cái công thức quy hoạch động được không? Công thức quy hoạt động để mình viết làm sao đóng mấy cái cái này lại đi ha. Rồi vào phương trình quy hoạch động nó sẽ có cái kiểu như thế nào? Phương trình là phải tổng quát. Dạ tôi lấy một cái ô bất kỳ trong cái bảng ra để tính thì phải tính theo kiểu nào? M",
+      "relevance_score": 2,
+      "keywords_found": [
+        "công thức",
+        "tổng"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 211,
+      "content": "Hai bài này tương đối khó ha. quy hoạch động mỗi lần giảng là thầy cô rất là mệt mỏi mà sinh viên cũng khá là khó hiểu nên chúng ta phải cố gắng với nhau. Công thức này cô viết đúng không? Hình như đúng rồi đó. Trường hợp cơ sở là khi cái chuỗi chỉ có duy nhất một ma trận à là cái ô của mình tương ứng với lại giá trị y = j và chi phí là 0 thì phương trình nên có thêm cả cái trường hợp cơ sở nữa thì nó mới hoàn chỉnh. Còn nếu các bạn đã xong được cái phương trình này rồi thì cái việc tạo bản nó tương đối dễ dàng. Ví dụ như tạo bảng là",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "công thức"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 218,
+      "content": "tự nhưng mà nó không phải lưu chi phí, nó lưu cái vị trí K. Rồi vậy giả định như cái vị trí K chỗ này là số 3 thì đố em chuyện gì xảy ra? Chỗ này tương ứng là k = 3 nha. Thì nghĩa là sao? K là vị trí đặt ngoặc và nó là vị trí đặt ngoặc tối ưu. Cái chuỗi của cô là nhân từ A1, A2, A3, A4. Thì nếu K = 3 nghĩa là cái chỗ này mình ngắt ra vậy. Rồi cái giờ còn cái chuỗi này nó cũng tương đối bự bự. Ví dụ từ A1, A2, A3 nó là một cái chuỗi cũng tương đối lớn. Thì cái chuỗi này hỏi là đặt ngoặc là sao?",
+      "relevance_score": 2,
+      "keywords_found": [
+        "ví dụ",
+        "tối ưu"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 220,
+      "content": "Khả năng là hôm nay mình nói cái quy hoạch động xong là hết giờ luôn rồi đó. Cái tham lam chắc học không kịp rồi đó. Tham lam để buổi sau nói qua thêm một chút xíu nữa. Cái tham lam khỏi giảng luôn cũng được. Tại vì mọi người học ở môn trí tệ tạo rồi và đầy thi có hỏi nha. Rồi ví dụ này có gì thắc mắc không? Mốt đi thi cô cho cái bài tập này làm được không? À mọi người ngồi liệt kê lại tất cả những cái ví dụ về quy ho v hoạch động mà cô có giảng từ hôm trước cho đến hôm nay rồi thêm cả những cái bài toán trên",
+      "relevance_score": 2,
+      "keywords_found": [
+        "bài tập",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 222,
+      "content": "mẫu ví dụ rồi cho một cái bảng yêu cầu điền số vào hoặc là ví dụ lúc nãy có sửa là cũng có một cái bài tính biểu thức thì cũng có một cái bảng dày kêu em điền số vào thì nếu em điền đúng được thì chắc là cũng được 1/2 cái điểm số của câu hỏi câu hỏi ba điểm thì chắc là cái bảng cũng được 1 điểm rưỡi đó thì cái phần điền bảng này tương đối quan trọng nó đánh giá được là em có hiểu cái giải pháp hay không rồi kế đến là phân tích tích cái đặc trưng optimal substructure rồi phân tích cái cách mà hình thành cái phương trình quy hoạch động thì em chỉ cần cố gắng giải",
+      "relevance_score": 2,
+      "keywords_found": [
+        "câu",
+        "ví dụ"
+      ]
+    },
+    {
+      "buoi": 9,
+      "paragraph_index": 223,
+      "content": "quyết cho cô tới cái phương trình quy hoạch động thôi là đã đủ điểm rồi nhé. Hay hơn nữa là viết được cái mã giả luôn. Cái mã giả nó đơn giản chỉ là viết những cái dòng lập for lòng vào nhau để có thể điền từng giá trị vào trong các cái ô trong bảng. Em biết cách viết được những cái dòng LC for như vậy là em có điểm cái phần mã giả. Còn độ phức tạp thì giờ bảng nó có kích thước bao nhiêu rồi mã giả có bao nhiêu dòng lập for lòng vào nhau thì từ đó mình suy ra được nó là ô mấy ví dụ như có hai dòng lập for thì là on bình rồi trong đó những cái dòng lập for mà còn",
+      "relevance_score": 2,
+      "keywords_found": [
+        "độ phức tạp",
+        "ví dụ"
       ]
     }
   ],
