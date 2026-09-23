@@ -1,0 +1,203 @@
+\documentclass[9pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  top=0.6cm,
+  bottom=0.6cm,
+  left=0.6cm,
+  right=0.6cm
+}
+\usepackage{multicol}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\setlength{\columnsep}{10pt}
+
+% Tối ưu hóa khoảng cách danh sách
+\def\labelitemi{$\bullet$}
+\renewenvironment{itemize}{%
+  \begin{list}{\labelitemi}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\leftmargin}{10pt}%
+  }%
+}{\end{list}}
+
+\renewenvironment{enumerate}{%
+  \begin{list}{\arabic{enumi}.}{%
+    \usecounter{enumi}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\leftmargin}{10pt}%
+  }%
+}{\end{list}}
+
+\newcommand{\mysec}[1]{\vspace{2pt}\textbf{\fontsize{9.5}{10.5}\selectfont #1}\vspace{1pt}\hrule\vspace{2pt}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% ==========================================
+% TRANG 1: MẶT 1 (KÝ HIỆU TIỆM CẬN & PHÂN TÍCH THUẬT TOÁN)
+% ==========================================
+\begin{center}
+  \textbf{\large BẢNG TỔNG HỢP ÔN TẬP MÔN PTTKTT (CS112) - TỜ A4 VIẾT TAY (MẶT 1/2)}\\
+  \small \textit{Chuẩn phương pháp \& tiêu chí chấm điểm Cô Huỳnh Thị Thanh Thương - UIT}
+\end{center}
+\vspace{-4pt}
+
+\begin{multicols*}{2}
+
+\mysec{1. ĐỊNH NGHĨA TOÁN HỌC KÝ HIỆU TIỆM CẬN}
+\textbf{[!] Bắt buộc ghi đủ lượng từ ($\exists, \forall, \in \mathbb{R}^+, \in \mathbb{N}$), KHÔNG dùng lim:}
+\begin{itemize}
+  \item \textbf{Big-O ($O$):} $f(n) \in O(g(n)) \iff \exists c \in \mathbb{R}^+, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le f(n) \le c \cdot g(n)$.
+  \item \textbf{Big-Omega ($\Omega$):} $f(n) \in \Omega(g(n)) \iff \exists c \in \mathbb{R}^+, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le c \cdot g(n) \le f(n)$.
+  \item \textbf{Big-Theta ($\Theta$):} $f(n) \in \Theta(g(n)) \iff \exists c_1, c_2 \in \mathbb{R}^+, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$.
+\end{itemize}
+
+\mysec{2. MẪU CHỨNG MINH TẬP BẰNG NHAU $O(f) = O(g)$}
+\textbf{Đề bài:} Cho $g \in O(f)$ và $f \in O(g)$, chứng minh $O(f) = O(g)$.\\
+\textbf{[LƯU Ý]: Bắt buộc tách 2 vế và có chữ ``bất kỳ'':}
+\begin{itemize}
+  \item \textbf{Vế 1: Chứng minh $O(f(n)) \subseteq O(g(n))$:}
+  \begin{itemize}
+    \item Do $f \in O(g) \implies \exists c_1 \in \mathbb{R}^+, \exists n_1 \in \mathbb{N}, \forall n \ge n_1: 0 \le f(n) \le c_1 \cdot g(n)$.
+    \item Xét một hàm \textbf{bất kỳ} $h(n) \in O(f(n)) \implies \exists c_2 \in \mathbb{R}^+, \exists n_2 \in \mathbb{N}, \forall n \ge n_2: 0 \le h(n) \le c_2 \cdot f(n)$.
+    \item Với mọi $n \ge n_0 = \max(n_1, n_2): 0 \le h(n) \le c_2 (c_1 g(n)) = (c_1 c_2) g(n)$.
+    \item Chọn $c = c_1 c_2 \in \mathbb{R}^+, n_0 = \max(n_1, n_2) \in \mathbb{N} \implies h(n) \in O(g(n))$.
+    \item Do $h(n)$ bất kỳ $\implies O(f(n)) \subseteq O(g(n)) \quad (1)$.
+  \end{itemize}
+  \item \textbf{Vế 2: Chứng minh $O(g(n)) \subseteq O(f(n))$:}
+  \begin{itemize}
+    \item Do $g \in O(f) \implies \exists c_3, n_3$. Xét hàm \textbf{bất kỳ} $k(n) \in O(g) \implies \exists c_4, n_4$. Lấy $n_0' = \max(n_3, n_4), c' = c_3 c_4 \implies k(n) \in O(f(n)) \implies O(g) \subseteq O(f) \quad (2)$.
+  \end{itemize}
+  \item \textbf{Kết luận:} Từ $(1)$ và $(2)$ suy ra $O(f(n)) = O(g(n))$ (ĐPCM).
+\end{itemize}
+
+\mysec{3. CÁC BÀI CHỨNG MINH ĐỊNH NGHĨA KINH ĐIỂN}
+\begin{itemize}
+  \item \textbf{$f+g \in O(\max(f, g))$:} $f+g \le 2\max(f, g) \implies c=2, n_0=1$.
+  \item \textbf{$(n+a)^b \in \Theta(n^b)$ ($b>0$):} Xét $n \ge 2|a| \implies n/2 \le n+a \le 2n \implies (1/2)^b n^b \le (n+a)^b \le 2^b n^b \implies c_1=(1/2)^b, c_2=2^b, n_0=\lceil 2|a| \rceil$.
+  \item \textbf{$\log(n!) \in \Theta(n \log n)$:} Có $n! \le n^n \implies \log(n!) \le n\log n$. Mặt khác $n! \ge (n/2)^{n/2} \implies \log(n!) \ge \frac{1}{4}n\log n$ ($\forall n \ge 4$). Chọn $c_1=1/4, c_2=1, n_0=4$.
+\end{itemize}
+
+\mysec{4. CHUỖI PHÂN LỚP BIG-O \& CÔNG THỨC BIẾN ĐỔI}
+\textbf{Chuỗi chuẩn tăng dần:}
+$$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \prec n \log n \prec n^2 \prec n^k \prec a^{\sqrt{n}} \prec a^n \prec n! \prec n^n$$
+\textbf{Công thức biến đổi đưa về dạng chuẩn:}
+\begin{itemize}
+  \item $a^{\log_b n} = n^{\log_b a}$ (Vd: $4^{\log_2 n} = n^{\log_2 4} = n^2$).
+  \item $\sqrt{a^b} = a^{b/2}$ (Vd: $\sqrt{3^{\sqrt{n}}} = 3^{\frac{\sqrt{n}}{2}}$); $\sqrt{n} \cdot 3^{n/2} = \sqrt{n}(\sqrt{3})^n$.
+  \item $\sum_{i=1}^n i = \frac{n(n+1)}{2} = \Theta(n^2)$; $\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} = \Theta(n^3)$.
+  \item $\sum_{i=1}^n \sum_{j=1}^n (i \cdot j) = [\frac{n(n+1)}{2}]^2 = \frac{n^4+2n^3+n^2}{4} = \Theta(n^4)$.
+\end{itemize}
+
+\mysec{5. PHÂN TÍCH THUẬT TOÁN LẶP \& THÁP HÀ NỘI}
+\begin{itemize}
+  \item \textbf{Thuật toán lặp:} (1) Nêu rõ chức năng hàm, (2) Chỉ ra phép toán cơ bản, (3) Lập tổng: $C(n) = \sum_{i=0}^{n-2} \sum_{j=i+1}^{n-1} 1 = \sum_{i=0}^{n-2}(n-1-i) = \frac{n(n-1)}{2} \implies O(n^2)$.
+  \item \textbf{Thành lập PT đệ quy Tháp Hà Nội:}
+    $$\begin{cases} T(1) = 1 & \text{(chuyển 1 đĩa trực tiếp } A \to C) \\ T(n) = 2T(n-1) + 1 & (n > 1: A \to B, A \to C, B \to C) \end{cases}$$
+\end{itemize}
+
+\mysec{6. BỘ 3 PHƯƠNG PHÁP GIẢI PT ĐỆ QUY (CẤM MASTER)}
+\textbf{Giải hệ thức Tháp Hà Nội: $T(1)=1, T(n)=2T(n-1)+1$:}
+\begin{enumerate}
+  \item \textbf{Phương pháp 1: Thế ngược (Backward Substitution):}
+  \begin{itemize}
+    \item $T(n) = 2T(n-1) + 1 = 2^2 T(n-2) + 2 + 1 = \dots = 2^k T(n-k) + \sum_{i=0}^{k-1} 2^i$.
+    \item Dừng khi $n-k=1 \implies k=n-1$:
+      $$T(n) = 2^{n-1}T(1) + (2^{n-1}-1) = 2^n - 1 \implies O(2^n).$$
+  \end{itemize}
+  \item \textbf{Phương pháp 2: Phương trình đặc trưng:}
+  \begin{itemize}
+    \item PT thuần nhất: $r - 2 = 0 \implies r = 2 \implies T^{(h)}(n) = C \cdot 2^n$.
+    \item Nghiệm riêng: vế phải $f(n)=1 \implies T^{(p)}(n) = A \implies A - 2A = 1 \implies A = -1$.
+    \item Nghiệm tổng quát: $T(n) = C \cdot 2^n - 1$. Với $T(1)=1 \implies 2C - 1 = 1 \implies C = 1 \implies T(n) = 2^n - 1 \implies O(2^n)$.
+  \end{itemize}
+  \item \textbf{Phương pháp 3: Hàm sinh (Generating Functions):}
+  \begin{itemize}
+    \item Đặt $G(x) = \sum_{n=1}^\infty T_n x^n$. Nhân $x^n$ vào $T_n - 2T_{n-1} = 1$ và lấy tổng $\sum_{n=2}^\infty$:
+      $$(G(x) - T_1 x) - 2x G(x) = \frac{x^2}{1-x} \implies G(x)(1-2x) = \frac{x}{1-x}$$
+    \item Tách phân thức: $G(x) = \frac{x}{(1-x)(1-2x)} = \frac{1}{1-2x} - \frac{1}{1-x} = \sum_{n=0}^\infty (2^n - 1)x^n \implies T_n = 2^n - 1 \implies O(2^n)$.
+  \end{itemize}
+\end{enumerate}
+
+\end{multicols*}
+
+\newpage
+% ==========================================
+% TRANG 2: MẶT 2 (TỰ LUẬN: DP, THAM LAM, QUAY LUI & WECODE)
+% ==========================================
+\begin{center}
+  \textbf{\large BẢNG TỔNG HỢP ÔN TẬP MÔN PTTKTT (CS112) - TỜ A4 VIẾT TAY (MẶT 2/2)}\\
+  \small \textit{Quy Hoạch Động $\cdot$ Tham Lam $\cdot$ Quay Lui \& 10 Bài Toán WeCode}
+\end{center}
+\vspace{-4pt}
+
+\begin{multicols*}{2}
+
+\mysec{1. QUY TRÌNH 4 BƯỚC QUY HOẠCH ĐỘNG (DP)}
+\begin{itemize}
+  \item \textbf{B1 (Ý nghĩa bảng):} Nêu rõ $DP[i][j]$ (hoặc $M[i]$) lưu đại lượng tối ưu gì.
+  \item \textbf{B2 (Công thức DP):} Ghi rõ cơ sở ($i=j$) + công thức chuyển trạng thái ($i<j$).
+  \item \textbf{B3 (Điền bảng Bottom-Up):} Điền theo độ dài đường chéo $L=j-i+1$.
+  \item \textbf{B4 (Truy vết):} Dùng bảng vết $trace[i][j]=k$ (hoặc $S[i]$) để in nghiệm.
+\end{itemize}
+
+\mysec{2. CÔNG THỨC 5 BÀI TOÁN QUY HOẠCH ĐỘNG}
+\begin{itemize}
+  \item \textbf{(1) Đặt dấu ngoặc biểu thức số thực ($x_0 o_0 x_1 \dots x_n$):}
+    $$DP[i][i] = x_i; \quad DP[i][j] = \max_{i \le k < j} \{ DP[i][k] \circ_k DP[k+1][j] \}$$
+    Bảng vết $trace[i][j]=k$. Giá trị lớn nhất: $DP[0][n]$.
+  \item \textbf{(2) Dãy con tăng dài nhất (LIS - Buổi 8):}
+    $$M[i] = 1 + \max_{0 \le j < i, a_j < a_i} \{ M[j] \}, \quad S[i] = j^*$$
+    Kết quả: $L_{max} = \max_{0 \le i < n} M[i]$ (ô lớn nhất mảng $M$, không phải ô cuối).
+  \item \textbf{(3) Nhân chuỗi ma trận (MCM):}
+    $$m[i][i] = 0; \quad m[i][j] = \min_{i \le k < j} \{ m[i][k] + m[k+1][j] + p_{i-1}p_kp_j \}$$
+    Bảng vết $s[i][j]=k$. Độ phức tạp: $O(n^3)$ thời gian, $O(n^2)$ bộ nhớ.
+  \item \textbf{(4) Tính tổ hợp $C_n^k$ / Pascal:} $C[i][0]=1, C[i][i]=1$; $C[i][j] = C[i-1][j-1] + C[i-1][j]$.
+  \item \textbf{(5) Cái túi 0/1 (Knapsack):} $DP[i][w] = \max(DP[i-1][w], DP[i-1][w-w_i] + v_i)$ khi $w_i \le w$; ngược lại bằng $DP[i-1][w]$.
+\end{itemize}
+
+\mysec{3. THAM LAM (GREEDY) - BA LÔ PHÂN SỐ}
+\begin{itemize}
+  \item \textbf{Mô hình hóa:} $\max \sum p_i x_i$ thỏa $\sum w_i x_i \le M, 0 \le x_i \le 1$.
+  \item \textbf{Chiến lược:} Tính đơn giá $v_i = p_i/w_i$, sắp xếp giảm dần.
+  \item \textbf{Mã giả:} Nếu $w_i \le cap \implies x_i = 1.0, cap -= w_i$; Ngược lại $x_i = cap/w_i, cap = 0$. Độ phức tạp: $O(n\log n)$.
+\end{itemize}
+
+\mysec{4. KHUNG QUAY LUI (BACKTRACKING) \& WECODE}
+\textbf{Khung mã giả Quay lui chuẩn:}
+\begin{enumerate}
+  \item Với mỗi $v \in S_k$: Nếu $IsValid(v, k, State)$ thì:
+  \item Gán $X[k] = v$; Cập nhật $State$.
+  \item Nếu $k == n$ thì: In nghiệm $X[1..n]$.
+  \item Ngược lại: Gọi đệ quy $Backtrack(k+1, n, State)$.
+  \item Hoàn tác $State$ (\textbf{Quay lui / Undo}).
+\end{enumerate}
+
+\mysec{5. TỔNG HỢP 10 BÀI TOÁN WECODE CHUẨN THI}
+\begin{itemize}
+  \item \textbf{1. Tính điểm môn học:} Nhân 400 để thành số nguyên: $\text{min\_T} \le \sum V_i w_i \le \text{max\_T}$. Nhánh cận: $rem\_max = rem\_w[i] \times 40, rem\_min = rem\_w[i] \times 1$. Cắt tỉa nếu ngoài khoảng. $O(40^n)$, bộ nhớ $O(n)$.
+  \item \textbf{2. Khôi phục IP:} Thử độ dài đoạn $1..3$. Ràng buộc $0 \le val \le 255$, không có số 0 đầu nếu $len > 1$. Khi $part==4 \land start==length(S) \implies$ Lưu IP. $O(1)$.
+  \item \textbf{3. Tách chuỗi đối xứng (Palindrome):} Cắt $S[start..end]$, nếu $IsPalindrome \implies$ thêm vào list, đệ quy $end+1$, quay lui xóa phần tử cuối. $O(n \cdot 2^n)$.
+  \item \textbf{4. Tìm từ trong ô chữ (Word Search):} DFS 4 hướng, gán tạm $Board[r][c] = '\#'$ để đánh dấu, quay lui trả lại ký tự cũ. $O(M \cdot N \cdot 4^L)$.
+  \item \textbf{5. Giải Sudoku 9x9:} Thử điền $1..9$ vào ô trống, kiểm tra Hàng, Cột, Khối $3 \times 3$, quay lui $Board[r][c]=0$. $O(9^{81})$.
+  \item \textbf{6. Sinh hoán vị:} Dùng $X[1..n]$ và $used[1..n]$. Quay lui $O(n \cdot n!)$, bộ nhớ $O(n)$. So với Giảm để trị tốn $O(n \cdot n!)$ RAM.
+  \item \textbf{7. Dò mìn (Minesweeper):} Click trúng $'M' \to 'X'$; ô có mìn lân cận $\to$ ghi số; ô rỗng $\to 'B'$ và lan truyền đệ quy 8 hướng. $O(M \cdot N)$.
+  \item \textbf{8. Mã đi tuần (Knight's Tour):} 8 hướng $(\pm 1, \pm 2), (\pm 2, \pm 1)$. $Board[u][v] = step + 1$, hoàn tác gán 0. Warnsdorff: ưu tiên ô có bậc đi tiếp nhỏ nhất. $O(8^{n^2})$.
+  \item \textbf{9. N-Queens:} 3 mảng đánh dấu: $col[j], diag_1[i+j], diag_2[i-j+n]$. $O(n!)$.
+  \item \textbf{10. Tô màu đồ thị:} Thử màu $1..M$ cho đỉnh $u$, kiểm tra không trùng màu đỉnh kề, đệ quy $u+1$, hoàn tác gán 0. $O(M^n)$.
+\end{itemize}
+
+\end{multicols*}
+
+\end{document}
