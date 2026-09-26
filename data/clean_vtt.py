@@ -10,6 +10,9 @@ Lưu ý: data/download_subtitles.py có hàm clean riêng (clean_vtt_file) và l
 pipeline chính. Script này chỉ để clean lại thủ công.
 """
 
+from __future__ import annotations
+
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -59,13 +62,25 @@ def output_path_for(vtt_path: Path) -> Path:
     return vtt_path.with_name(f"{stem}_clean.md")
 
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        inputs = [Path(p) for p in sys.argv[1:]]
-    else:
-        inputs = sorted(Path(__file__).resolve().parent.glob("buoi*.vi.vtt"))
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Chuyển .vtt thành _clean.md (gộp 15 dòng/đoạn).")
+    parser.add_argument("files", nargs="*", type=Path,
+                        help="file .vtt cần clean (mặc định: mọi data/buoi*.vi.vtt)")
+    args = parser.parse_args(argv)
+
+    inputs = args.files or sorted(Path(__file__).resolve().parent.glob("buoi*.vi.vtt"))
+    missing = [p for p in inputs if not p.is_file()]
+    if missing:
+        print(f"❌ Không tìm thấy file: {', '.join(map(str, missing))}", file=sys.stderr)
+        return 1
 
     for vtt in inputs:
         out = output_path_for(vtt)
         clean_vtt(vtt, out)
         print(f"✓ {vtt.name} -> {out.name}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

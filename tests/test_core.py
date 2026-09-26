@@ -318,6 +318,37 @@ class CompilePdfTest(unittest.TestCase):
         self.assertFalse(ok)
 
 
+class CleanVttCliTest(unittest.TestCase):
+    """data/clean_vtt.py: trước đây '--help' bị coi là tên file -> FileNotFoundError."""
+
+    SCRIPT = Path(__file__).resolve().parent.parent / "data" / "clean_vtt.py"
+
+    def _run(self, *args, cwd=None):
+        import sys
+        return subprocess.run([sys.executable, str(self.SCRIPT), *args],
+                              capture_output=True, text=True, cwd=cwd)
+
+    def test_help(self):
+        p = self._run("--help")
+        self.assertEqual(p.returncode, 0)
+        self.assertIn("usage", p.stdout.lower())
+
+    def test_missing_file_clear_error(self):
+        p = self._run("khong_ton_tai.vtt")
+        self.assertEqual(p.returncode, 1)
+        self.assertIn("Không tìm thấy file", p.stderr)
+        self.assertNotIn("Traceback", p.stderr)
+
+    def test_cleans_given_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            vtt = Path(tmp) / "buoi1.vi.vtt"
+            vtt.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nXin chào\n"
+                           "00:00:01.000 --> 00:00:02.000\nXin chào\n", encoding="utf-8")
+            p = self._run(str(vtt))
+            self.assertEqual(p.returncode, 0, p.stderr)
+            self.assertEqual((Path(tmp) / "buoi1_clean.md").read_text(encoding="utf-8"), "Xin chào")
+
+
 # Lỗi thật gặp khi E2E: model quên đóng \[ trước \end{itemize}
 BROKEN_DISPLAY_MATH = (
     "\\documentclass{article}\n\\begin{document}\n\\begin{itemize}\n"
