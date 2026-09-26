@@ -35,11 +35,15 @@ Tự động giải bài tập từ file PDF, theo **đúng phong cách cô Hu�
 
 ### Phase 2: Search — Tìm bài cô đã giải
 
-3. **Search trong transcript** (buổi 1-5) để tìm bài tương tự cô đã giải trên lớp:
+3. **Search trong transcript** (buổi 1-9) để tìm bài tương tự cô đã giải trên lớp:
    ```
    grep_search: keywords từ đề bài → data/buoi*_clean.md
    ```
-   Ưu tiên search: buổi 4 (ký hiệu tiệm cận) → buổi 5 (sửa bài + đề thi) → buổi 2,3 (đệ quy, vòng lặp) → buổi 1 (tổng sigma)
+   Ưu tiên search theo chủ đề đề bài (nội dung buổi lấy từ `data/playlist_summary.txt`):
+   - Tiệm cận, O/Ω/Θ: buổi 4 → buổi 5 (sửa bài + đề thi)
+   - Đệ quy, phân tích vòng lặp: buổi 2, 3 · Tổng sigma, đếm: buổi 1
+   - Mô hình hoá, tối ưu đơn giản: buổi 5 · Quay lui: buổi 6
+   - Chia để trị, giảm để trị, tham lam: buổi 7, 9 · Quy hoạch động: buổi 8, 9
 
 4. **Đọc đoạn transcript** tìm được để hiểu CÁCH cô giải — không chỉ đáp án mà cả **cách lập luận, trình bày, ký hiệu**.
 

@@ -82,7 +82,7 @@ Thuật toán N_Queens_Backtrack(i, n, X, col, d1, d2):
 - **Mục tiêu:** Quân mã đi qua toàn bộ $n^2$ ô của bàn cờ $n \times n$, mỗi ô đúng 1 lần.
 - **Biểu diễn:** Ma trận $Board[1..n][1..n]$ lưu thứ tự các bước từ $1$ đến $n^2$.
 - **Mảng hướng:** $dx = [2, 1, -1, -2, -2, -1, 1, 2]$, $dy = [1, 2, 2, 1, -1, -2, -2, -1]$.
-- **Mã giả:** (Xem chi tiết tại file [Cau5_Ma_Di_Tuan_Va_Quay_Lui.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Ôn%20Luyện/Cau5_Ma_Di_Tuan_Va_Quay_Lui.md)).
+- **Mã giả:** (Xem chi tiết tại file [Cau5_Ma_Di_Tuan_Va_Quay_Lui.md](Cau5_Ma_Di_Tuan_Va_Quay_Lui.md)).
 - **Độ phức tạp:** Thời gian $O(8^{n^2})$, Không gian $O(n^2)$.
 
 ---
@@ -91,7 +91,7 @@ Thuật toán N_Queens_Backtrack(i, n, X, col, d1, d2):
 
 - **Mục tiêu:** Liệt kê tất cả $n!$ hoán vị của tập $n$ phần tử.
 - **Cấu trúc dữ liệu:** Mảng $X[1..n]$ và mảng đánh dấu `used[1..n]`.
-- **Mã giả:** (Xem chi tiết tại file [Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Ôn%20Luyện/Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md)).
+- **Mã giả:** (Xem chi tiết tại file [Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md](Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md)).
 - **Độ phức tạp:** Thời gian $O(n \cdot n!)$, Không gian $O(n)$.
 
 ---

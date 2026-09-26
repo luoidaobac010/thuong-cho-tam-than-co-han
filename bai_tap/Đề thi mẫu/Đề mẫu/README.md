@@ -11,34 +11,34 @@ Toàn bộ các đề thi và đáp án đều được biên soạn **chuẩn 1
 
 ### 1. Đề thi mẫu số 01 (Chủ đề: MergeSort, IP Address Restoration, Subset Sum DP)
 - **Đề thi:**
-  - [CS112_De_Thi_Mau_So_01.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_01.docx)
-  - [CS112_De_Thi_Mau_So_01.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_01.pdf)
-  - [CS112_De_Thi_Mau_So_01.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_01.md)
+  - [CS112_De_Thi_Mau_So_01.docx](CS112_De_Thi_Mau_So_01.docx)
+  - [CS112_De_Thi_Mau_So_01.pdf](CS112_De_Thi_Mau_So_01.pdf)
+  - [CS112_De_Thi_Mau_So_01.md](CS112_De_Thi_Mau_So_01.md)
 - **Lời giải chi tiết & Thang điểm:**
-  - [CS112_Dap_An_De_So_01.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_01.docx)
-  - [CS112_Dap_An_De_So_01.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_01.pdf)
-  - [CS112_Dap_An_De_So_01.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_01.md)
+  - [CS112_Dap_An_De_So_01.docx](CS112_Dap_An_De_So_01.docx)
+  - [CS112_Dap_An_De_So_01.pdf](CS112_Dap_An_De_So_01.pdf)
+  - [CS112_Dap_An_De_So_01.md](CS112_Dap_An_De_So_01.md)
 
 ---
 
 ### 2. Đề thi mẫu số 02 (Chủ đề: Strassen Matrix, Word Search DFS, Matrix Chain Multiplication DP)
 - **Đề thi:**
-  - [CS112_De_Thi_Mau_So_02.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_02.docx)
-  - [CS112_De_Thi_Mau_So_02.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_02.pdf)
-  - [CS112_De_Thi_Mau_So_02.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_02.md)
+  - [CS112_De_Thi_Mau_So_02.docx](CS112_De_Thi_Mau_So_02.docx)
+  - [CS112_De_Thi_Mau_So_02.pdf](CS112_De_Thi_Mau_So_02.pdf)
+  - [CS112_De_Thi_Mau_So_02.md](CS112_De_Thi_Mau_So_02.md)
 - **Lời giải chi tiết & Thang điểm:**
-  - [CS112_Dap_An_De_So_02.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_02.docx)
-  - [CS112_Dap_An_De_So_02.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_02.pdf)
-  - [CS112_Dap_An_De_So_02.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_02.md)
+  - [CS112_Dap_An_De_So_02.docx](CS112_Dap_An_De_So_02.docx)
+  - [CS112_Dap_An_De_So_02.pdf](CS112_Dap_An_De_So_02.pdf)
+  - [CS112_Dap_An_De_So_02.md](CS112_Dap_An_De_So_02.md)
 
 ---
 
 ### 3. Đề thi mẫu số 03 (Chủ đề: QuickSort / Binary Search, WeCode Grade Target, 0/1 Knapsack DP)
 - **Đề thi:**
-  - [CS112_De_Thi_Mau_So_03.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_03.docx)
-  - [CS112_De_Thi_Mau_So_03.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_03.pdf)
-  - [CS112_De_Thi_Mau_So_03.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_De_Thi_Mau_So_03.md)
+  - [CS112_De_Thi_Mau_So_03.docx](CS112_De_Thi_Mau_So_03.docx)
+  - [CS112_De_Thi_Mau_So_03.pdf](CS112_De_Thi_Mau_So_03.pdf)
+  - [CS112_De_Thi_Mau_So_03.md](CS112_De_Thi_Mau_So_03.md)
 - **Lời giải chi tiết & Thang điểm:**
-  - [CS112_Dap_An_De_So_03.docx](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_03.docx)
-  - [CS112_Dap_An_De_So_03.pdf](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_03.pdf)
-  - [CS112_Dap_An_De_So_03.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Đề%20mẫu/CS112_Dap_An_De_So_03.md)
+  - [CS112_Dap_An_De_So_03.docx](CS112_Dap_An_De_So_03.docx)
+  - [CS112_Dap_An_De_So_03.pdf](CS112_Dap_An_De_So_03.pdf)
+  - [CS112_Dap_An_De_So_03.md](CS112_Dap_An_De_So_03.md)

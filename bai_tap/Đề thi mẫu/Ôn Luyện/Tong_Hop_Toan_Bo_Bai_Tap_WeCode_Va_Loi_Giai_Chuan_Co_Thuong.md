@@ -196,7 +196,7 @@ Thuật toán Solve_Sudoku(Board):
 ## BÀI 6: SINH HOÁN VỊ & HOÁN VỊ CHỮ SỐ
 
 - **Mô hình hóa:** Liệt kê $n!$ hoán vị của $n$ phần tử.
-- **Mã giả:** (Xem chi tiết tại file [Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md](file:///Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề%20thi%20mẫu/Ôn%20Luyện/Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md)).
+- **Mã giả:** (Xem chi tiết tại file [Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md](Cau4_Liet_Ke_Hoan_Vi_Va_Giam_De_Tri_Quay_Lui.md)).
 - **Độ phức tạp:** Thời gian $O(n \cdot n!)$, Bộ nhớ $O(n)$.
 
 ---
