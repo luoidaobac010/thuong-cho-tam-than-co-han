@@ -81,7 +81,7 @@ Chỉ cần **1 đường dẫn PDF**, hệ thống tự động chạy pipeline
 
 > ⚠️ Workflow này dựa trên transcript thực tế từ buổi giảng của cô, không phải AI đoán mò.
 
-> ℹ️ `/solve` chạy trong IDE (hoặc `agy` interactive) để duyệt từng lệnh. Chạy headless `agy -p "/solve ..."` sẽ **không ra kết quả**: workflow cần chạy lệnh shell (render PDF), headless tự từ chối nếu chưa cấp quyền `command(...)` trong `~/.gemini/antigravity-cli/settings.json`. Không nên dùng `--dangerously-skip-permissions` trên repo thật.
+> ℹ️ `/solve` chạy trong IDE (hoặc `agy` interactive) để duyệt từng lệnh. Chạy headless `agy -p "/solve ..."` sẽ **không ra kết quả**: workflow cần chạy lệnh shell, headless tự từ chối nếu chưa cấp quyền `command(...)` trong `~/.gemini/antigravity-cli/settings.json`. Không nên dùng `--dangerously-skip-permissions` trên repo thật.
 
 #### Cách 2: CLI truyền thống (`solve.py`)
 
