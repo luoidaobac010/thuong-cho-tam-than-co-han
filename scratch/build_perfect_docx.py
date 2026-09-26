@@ -394,7 +394,7 @@ def build_perfect_docx():
             
         add_underline_lines(doc, num_lines=16, space_after=22)
 
-    target_path = "/Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề thi mẫu/CS112.DE_THI_CK.HK3.2025-2026.docx"
+    target_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "bai_tap", "Đề thi mẫu", "CS112.DE_THI_CK.HK3.2025-2026.docx")
     doc.save(target_path)
     print(f"✓ Saved exact DOCX to {target_path}")
 

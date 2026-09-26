@@ -168,7 +168,8 @@ def build_knowledge_base(
     knowledge_base = {
         "metadata": {
             "description": "Knowledge base for CoThuong-AI",
-            "data_dir": str(data_dir),
+            # Chỉ ghi tên thư mục, không ghi absolute path (lộ path máy, không portable)
+            "data_dir": data_dir.resolve().name,
         },
         "teaching_segments": [],
         "latex_examples": [],

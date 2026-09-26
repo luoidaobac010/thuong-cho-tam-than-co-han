@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "Knowledge base for CoThuong-AI",
-    "data_dir": "/Users/thangdo/www/thuong-cho-tam-than-co-han/data"
+    "data_dir": "data"
   },
   "teaching_segments": [
     {

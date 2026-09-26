@@ -1,5 +1,9 @@
-1. Buổi 2 Đánh giá giải thuật đệ quy 20260718 183012 Meeting Recording 1 - https://www.youtube.com/watch?v=i1WjLP4W8kw
-2. Buổi 1  Khởi động với Kỹ thuật đếm sơ cấp 20260711 183234 Meeting Recording - https://www.youtube.com/watch?v=WnqRiBRx3sw
-3. Buổi 3 Đánh giá thuật toán tiếp theo 20260801 184617 Meeting Recording - https://www.youtube.com/watch?v=GTdyZpAg0hk
-4. Buổi 4 Ký hiệu tiệm cận 20260808 183127 Meeting Recording - https://www.youtube.com/watch?v=w9XqraXm6DM
-5. Buổi 5 Mô hình hóa bài toán và Giải bài toán tối ưu đơn giản 20260815 184106 Meeting - https://www.youtube.com/watch?v=oKaE9Kky2mw
+1. Buổi 6 Giải bài toán tối ưu + Thiết kế thuật toán Quay lui 20260822 184616 Meeting Re - https://www.youtube.com/watch?v=NLdFXbeh2zo
+2. Buổi 5 Mô hình hóa bài toán và Giải bài toán tối ưu đơn giản 20260815 184106 Meeting - https://www.youtube.com/watch?v=oKaE9Kky2mw
+3. Buổi 4 Ký hiệu tiệm cận 20260808 183127 Meeting Recording - https://www.youtube.com/watch?v=w9XqraXm6DM
+4. Buổi 3 Đánh giá thuật toán tiếp theo 20260801 184617 Meeting Recording - https://www.youtube.com/watch?v=GTdyZpAg0hk
+5. Buổi 2 Đánh giá giải thuật đệ quy 20260718 183012 Meeting Recording 1 - https://www.youtube.com/watch?v=i1WjLP4W8kw
+6. Buổi 1  Khởi động với Kỹ thuật đếm sơ cấp 20260711 183234 Meeting Recording - https://www.youtube.com/watch?v=WnqRiBRx3sw
+7. Buổi 7 Divide and Conquer, Decrease and Conquer, Greedy 20260905 183634 Meeting Recording - https://www.youtube.com/watch?v=LqD6DhiQubM
+8. Buổi 8 Ôn tập Chia Giảm để trị + Quy hoạch động 20260912 183954 Meeting Recording - https://www.youtube.com/watch?v=aQ7N8Hbx1Ls
+9. Buổi 9 Quy hoạch động tiếp theo+Tham lam 20260919 183530 Meeting Recording 1 - https://www.youtube.com/watch?v=wvfdaR38Wrs

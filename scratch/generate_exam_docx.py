@@ -448,7 +448,7 @@ def create_document():
         r.font.color.rgb = RGBColor(209, 213, 219)
         r.font.size = Pt(9)
 
-    out_docx = "/Users/thangdo/www/thuong-cho-tam-than-co-han/bai_tap/Đề thi mẫu/De_Thi_Va_Cau_Truc_PTTKTT_Co_Thuong_Buoi_9.docx"
+    out_docx = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "bai_tap", "Đề thi mẫu", "De_Thi_Va_Cau_Truc_PTTKTT_Co_Thuong_Buoi_9.docx")
     doc.save(out_docx)
     print(f"✓ Saved DOCX to: {out_docx}")
 
