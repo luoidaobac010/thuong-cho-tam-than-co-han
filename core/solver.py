@@ -9,7 +9,6 @@ from __future__ import annotations
 import json
 import re
 import subprocess
-import sys
 import tempfile
 from pathlib import Path
 
@@ -66,13 +65,22 @@ def parse_pages(spec: str | None, total: int) -> list[int]:
     if not spec:
         return list(range(total))
     pages: list[int] = []
-    for part in spec.split(","):
-        part = part.strip()
-        if "-" in part:
-            a, b = part.split("-", 1)
-            pages.extend(range(int(a), int(b) + 1))
-        elif part:
-            pages.append(int(part))
+    try:
+        for part in spec.split(","):
+            part = part.strip()
+            if "-" in part:
+                a, b = (int(x) for x in part.split("-", 1))
+                if a > b:
+                    raise ValueError(f"❌ Khoảng trang '{part}' bị ngược, viết {b}-{a}.")
+                pages.extend(range(a, b + 1))
+            elif part:
+                pages.append(int(part))
+    except ValueError as e:
+        if str(e).startswith("❌"):
+            raise
+        raise ValueError(f"❌ --pages '{spec}' không hợp lệ, vd '19-26' hoặc '1,3,5'.") from None
+    if not pages:
+        raise ValueError(f"❌ --pages '{spec}' không chọn trang nào.")
     bad = [p for p in pages if not 1 <= p <= total]
     if bad:
         raise ValueError(f"❌ Trang {bad} ngoài phạm vi 1-{total}.")

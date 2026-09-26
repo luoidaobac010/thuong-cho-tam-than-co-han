@@ -85,6 +85,13 @@ class ConfigTest(unittest.TestCase):
             c = load_config()
         self.assertEqual((c.provider, c.model), ("gemini", DEFAULT_MODELS["gemini"]))
 
+    def test_env_provider_case_insensitive(self):
+        env = {"COTHUONG_PROVIDER": " Gemini ", "COTHUONG_MODEL": "", "GEMINI_API_KEY": ""}
+        with mock.patch.dict(os.environ, env), \
+                mock.patch("core.config.get_default_config_path", return_value=Path("/nonexistent")):
+            c = load_config()
+        self.assertEqual((c.provider, c.model), ("gemini", DEFAULT_MODELS["gemini"]))
+
 
 def fake_run(stdout: str, returncode: int = 0, stderr: str = ""):
     return subprocess.CompletedProcess(args=[], returncode=returncode, stdout=stdout, stderr=stderr)
@@ -180,6 +187,20 @@ class ParsePagesTest(unittest.TestCase):
     def test_out_of_range_raises(self):
         with self.assertRaisesRegex(ValueError, "ngoài phạm vi"):
             solver_mod.parse_pages("4", 3)
+
+    def test_reversed_range_raises_instead_of_empty(self):
+        # Trước đây '3-1' ra [] rồi vẫn gọi agy ~2 phút không giải trang nào
+        with self.assertRaisesRegex(ValueError, "bị ngược, viết 1-3"):
+            solver_mod.parse_pages("3-1", 4)
+
+    def test_garbage_gives_friendly_error(self):
+        for spec in ["a", "2-", "1,,x"]:
+            with self.assertRaisesRegex(ValueError, "không hợp lệ"):
+                solver_mod.parse_pages(spec, 4)
+
+    def test_only_commas_selects_nothing(self):
+        with self.assertRaisesRegex(ValueError, "không chọn trang nào"):
+            solver_mod.parse_pages(",", 4)
 
 
 def _has_pymupdf() -> bool:

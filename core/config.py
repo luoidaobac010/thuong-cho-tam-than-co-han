@@ -120,7 +120,7 @@ def load_config(config_path: Path | None = None) -> LLMConfig:
 
     # Override with env vars if present.
     # Đổi provider thì reset model về default của provider mới.
-    env_provider = os.environ.get("COTHUONG_PROVIDER", "")
+    env_provider = os.environ.get("COTHUONG_PROVIDER", "").strip().lower()
     if env_provider and env_provider != config.provider:
         config.provider = env_provider
         config.model = DEFAULT_MODELS.get(env_provider, "")

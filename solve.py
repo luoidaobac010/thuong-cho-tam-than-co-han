@@ -32,7 +32,7 @@ project_root = Path(__file__).resolve().parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from core.config import DEFAULT_MODELS, LLMConfig, load_config, get_default_config_path
+from core.config import DEFAULT_MODELS, load_config, get_default_config_path
 from core.solver import CoThuongSolver
 
 
