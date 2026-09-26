@@ -110,6 +110,7 @@ def main():
 Ví dụ:
   python solve.py --setup
   python solve.py --problem "So sánh n² và n·log(n)" --output bai1.tex
+  python solve.py --input-pdf "bai_tap/HW02.pdf" --pages 19-26 -o hw02.tex --pdf
   python solve.py --interactive
         """,
     )
@@ -137,6 +138,17 @@ Ví dụ:
         "--problem-file", "-f",
         type=str,
         help="Đường dẫn file chứa đề bài",
+    )
+    parser.add_argument(
+        "--input-pdf",
+        type=str,
+        help="File PDF đề bài: agy đọc ảnh từng trang và giải hết (chỉ provider agy)",
+    )
+    parser.add_argument(
+        "--pages",
+        type=str,
+        default=None,
+        help="Trang cần giải khi dùng --input-pdf, vd '19-26' hoặc '1,3,5' (mặc định: tất cả)",
     )
 
     # Output
@@ -181,6 +193,12 @@ Ví dụ:
         default=None,
         help="API key (override config)",
     )
+    parser.add_argument(
+        "--timeout",
+        type=str,
+        default=None,
+        help="Thời gian chờ agy tối đa, vd 5m, 20m (mặc định 5m, --input-pdf là 20m)",
+    )
 
     # Knowledge base
     parser.add_argument(
@@ -194,6 +212,8 @@ Ví dụ:
 
     if args.pdf and (not args.output or args.body_only):
         parser.error("--pdf cần --output và không dùng cùng --body-only")
+    if args.pages and not args.input_pdf:
+        parser.error("--pages chỉ dùng cùng --input-pdf")
 
     # --- Setup mode ---
     if args.setup:
@@ -209,6 +229,13 @@ Ví dụ:
         config.model = args.model
     if args.api_key:
         config.api_key = args.api_key
+    if args.timeout:
+        config.agy_timeout = args.timeout
+    elif args.input_pdf and config.agy_timeout == "5m":
+        # Nhiều trang, nhiều bài: 5m mặc định thường không đủ
+        config.agy_timeout = "20m"
+    if args.input_pdf and config.provider != "agy":
+        parser.error("--input-pdf hiện chỉ hỗ trợ provider agy")
 
     # --- Knowledge base path ---
     kb_path = None
@@ -230,7 +257,21 @@ Ví dụ:
 
     # --- Get problem text ---
     problem = None
-    if args.problem:
+    if args.input_pdf:
+        pdf_in = Path(args.input_pdf)
+        if not pdf_in.exists():
+            print(f"❌ File không tồn tại: {pdf_in}")
+            sys.exit(1)
+        print(f"📚 Đề bài PDF: {pdf_in.name} (trang: {args.pages or 'tất cả'})")
+        try:
+            result = solver.solve_pdf(
+                pdf_in, pages=args.pages, title=args.title,
+                wrap_template=not args.body_only,
+            )
+        except ValueError as e:
+            print(str(e))
+            sys.exit(1)
+    elif args.problem:
         problem = args.problem
     elif args.problem_file:
         problem_path = Path(args.problem_file)
@@ -241,17 +282,17 @@ Ví dụ:
             problem = f.read().strip()
     else:
         parser.print_help()
-        print("\n❌ Cần cung cấp đề bài qua --problem hoặc --problem-file")
+        print("\n❌ Cần cung cấp đề bài qua --problem, --problem-file hoặc --input-pdf")
         sys.exit(1)
 
     # --- Solve ---
-    print(f"📚 Đề bài: {problem[:100]}{'...' if len(problem) > 100 else ''}")
-
-    result = solver.solve(
-        problem=problem,
-        title=args.title,
-        wrap_template=not args.body_only,
-    )
+    if problem is not None:
+        print(f"📚 Đề bài: {problem[:100]}{'...' if len(problem) > 100 else ''}")
+        result = solver.solve(
+            problem=problem,
+            title=args.title,
+            wrap_template=not args.body_only,
+        )
 
     # --- Output ---
     if args.output:

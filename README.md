@@ -91,6 +91,13 @@ python solve.py --problem "Sắp xếp các hàm sau theo bậc tăng trưởng:
 ```
 *(Lưu `bai_giai.tex`, thêm `--pdf` để biên dịch luôn ra `bai_giai.pdf` bằng [tectonic](https://tectonic-typesetting.github.io): `brew install tectonic`. Lần đầu tectonic tải package mất vài phút.)*
 
+**Giải thẳng file PDF đề (không cần người trông, chỉ provider agy):**
+```bash
+python solve.py --input-pdf "bai_tap/Đề thi mẫu/Đề mẫu/CS112_De_Thi_Mau_So_01.pdf" -o de01.tex --pdf
+python solve.py --input-pdf "bai_tap/[HW#02] ....pdf" --pages 17-26 -o hw02.tex --pdf   # chỉ trang bài tập
+```
+*(Render từng trang thành ảnh cho agy đọc trong thư mục tạm, không cấp quyền shell. Timeout mặc định 20m, đổi bằng `--timeout 30m`. Cần `pymupdf` trong requirements. LaTeX do model sinh đôi khi vẫn lỗi cú pháp, lúc đó `.tex` vẫn được lưu để sửa tay.)*
+
 **Chạy test** (offline, không tốn quota): `python3 -m unittest discover -s tests -t .`
 
 **Giải bài từ một file text chứa đề dài:**

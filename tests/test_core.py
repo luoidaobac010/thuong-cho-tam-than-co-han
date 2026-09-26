@@ -132,6 +132,13 @@ class CallAgyTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "không phải JSON"):
             self._call(fake_run("", returncode=1, stderr="authentication required"))
 
+    def test_denied_tool_with_empty_output_raises_clear_error(self):
+        # Output thật khi model cố chạy python ở headless mode
+        payload = {"status": "SUCCESS", "response": "",
+                   "denied_actions": [{"action": "command", "display_name": "RunCommand"}]}
+        with self.assertRaisesRegex(RuntimeError, "tool bị chặn"):
+            self._call(fake_run(json.dumps(payload)))
+
 
 class SolveWrapTest(unittest.TestCase):
     def test_title_with_special_chars_is_escaped(self):
@@ -140,6 +147,89 @@ class SolveWrapTest(unittest.TestCase):
             doc = s.solve("CM n^2 + a_i thuộc Theta(n^2)")
         self.assertIn(r"n\textasciicircum{}2 + a\_i", doc)
         self.assertIn("\\section{X}", doc)
+
+
+class FixTabularTest(unittest.TestCase):
+    """Lỗi thật từ agy: khai 7 cột nhưng hàng có 8 ô -> XeTeX dừng, không ra PDF."""
+
+    def test_adds_missing_column_keeps_border_style(self):
+        src = "\\begin{tabular}{|c|c|}\n a & b & c \\\\\n\\end{tabular}"
+        self.assertIn("{|c|c|c|}", solver_mod._fix_tabular_columns(src))
+
+    def test_no_border_spec(self):
+        src = "\\begin{tabular}{cc|c}\n a & b & c & d \\\\\n\\end{tabular}"
+        self.assertIn("{cc|cc}", solver_mod._fix_tabular_columns(src))
+
+    def test_correct_table_untouched_including_p_width_and_escaped_amp(self):
+        src = "\\begin{tabular}{p{3cm}c}\n A \\& B & c \\\\\n\\end{tabular}"
+        self.assertEqual(solver_mod._fix_tabular_columns(src), src)
+
+    def test_clean_response_applies_fix(self):
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        out = s._clean_response("\\begin{tabular}{c}\n1 & 2 \\\\\n\\end{tabular}")
+        self.assertIn("{cc}", out)
+
+
+class ParsePagesTest(unittest.TestCase):
+    def test_all_when_empty(self):
+        self.assertEqual(solver_mod.parse_pages(None, 3), [0, 1, 2])
+
+    def test_ranges_and_dedup(self):
+        self.assertEqual(solver_mod.parse_pages("2-3, 1,3", 5), [1, 2, 0])
+
+    def test_out_of_range_raises(self):
+        with self.assertRaisesRegex(ValueError, "ngoài phạm vi"):
+            solver_mod.parse_pages("4", 3)
+
+
+def _has_pymupdf() -> bool:
+    try:
+        import pymupdf  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+@unittest.skipUnless(_has_pymupdf(), "cần pymupdf")
+class SolvePdfTest(unittest.TestCase):
+    """PDF thật -> ảnh được ghi vào thư mục tạm của agy, retrieval dùng text trích."""
+
+    def setUp(self):
+        import pymupdf
+        self.tmp = tempfile.TemporaryDirectory()
+        self.pdf = Path(self.tmp.name) / "de.pdf"
+        doc = pymupdf.open()
+        for text in ["Trang bia", "Bai 1: quy hoach dong cai tui"]:
+            doc.new_page().insert_text((72, 72), text)
+        doc.save(self.pdf)
+        self.addCleanup(self.tmp.cleanup)
+
+    def test_images_written_to_agy_cwd(self):
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        seen = {}
+
+        def fake(cmd, cwd, **kw):
+            seen["files"] = sorted(p.name for p in Path(cwd).iterdir())
+            seen["png"] = (Path(cwd) / "page_02.png").read_bytes()[:8]
+            seen["prompt"] = cmd[cmd.index("-p") + 1]
+            payload = {"status": "SUCCESS", "structured_output": {"latex_body": "\\section{B1}"}}
+            return fake_run(json.dumps(payload))
+
+        with mock.patch.object(solver_mod.subprocess, "run", side_effect=fake), \
+                mock.patch("builtins.print"):
+            doc = s.solve_pdf(self.pdf, pages="2")
+
+        self.assertEqual(seen["files"], ["page_02.png"])
+        self.assertEqual(seen["png"], b"\x89PNG\r\n\x1a\n")
+        self.assertIn("page_02.png", seen["prompt"])
+        self.assertIn("\\section{B1}", doc)
+        self.assertIn("Bài giải: de", doc)
+
+    def test_gemini_not_supported(self):
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        s.config.provider = "gemini"
+        with self.assertRaisesRegex(ValueError, "chỉ hỗ trợ provider agy"):
+            s.solve_pdf(self.pdf)
 
 
 @unittest.skipUnless(KB_PATH.exists(), "cần data/knowledge_base.json")

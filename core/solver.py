@@ -7,6 +7,7 @@ Nhận đề bài → Gọi LLM → Sinh lời giải LaTeX theo phong cách cô
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -34,6 +35,67 @@ _LATEX_SPECIAL = {
 def _escape_latex(text: str) -> str:
     """Escape ký tự đặc biệt để chèn text thô (đề bài) vào LaTeX."""
     return "".join(_LATEX_SPECIAL.get(ch, ch) for ch in text)
+
+
+_TABULAR_RE = re.compile(
+    r"(\\begin\{tabular\}\{)([^{}]*(?:\{[^{}]*\}[^{}]*)*)(\})(.*?)(\\end\{tabular\})",
+    re.DOTALL,
+)
+
+
+def _fix_tabular_columns(text: str) -> str:
+    """Thêm cột nếu hàng nhiều ô hơn spec (model hay khai thiếu 1 cột -> lỗi
+    'Extra alignment tab' làm hỏng cả PDF).
+    simplify: chỉ đếm & ở hàng, bỏ qua \\& và bảng lồng nhau."""
+    def fix(m: re.Match) -> str:
+        spec, body = m.group(2), m.group(4)
+        if "\\begin{tabular}" in body:
+            return m.group(0)
+        declared = len(re.findall(r"[lcrXpmb]", re.sub(r"[@<>!]?\{[^{}]*\}", "", spec)))
+        rows = re.split(r"\\\\", body)
+        needed = max(len(re.findall(r"(?<!\\)&", row)) + 1 for row in rows)
+        if needed <= declared:
+            return m.group(0)
+        extra = ("c|" if spec.rstrip().endswith("|") else "c") * (needed - declared)
+        return m.group(1) + spec + extra + m.group(3) + body + m.group(5)
+    return _TABULAR_RE.sub(fix, text)
+
+
+def parse_pages(spec: str | None, total: int) -> list[int]:
+    """'1-3,5' -> [0, 1, 2, 4] (0-based). None/'' -> tất cả trang."""
+    if not spec:
+        return list(range(total))
+    pages: list[int] = []
+    for part in spec.split(","):
+        part = part.strip()
+        if "-" in part:
+            a, b = part.split("-", 1)
+            pages.extend(range(int(a), int(b) + 1))
+        elif part:
+            pages.append(int(part))
+    bad = [p for p in pages if not 1 <= p <= total]
+    if bad:
+        raise ValueError(f"❌ Trang {bad} ngoài phạm vi 1-{total}.")
+    return [p - 1 for p in dict.fromkeys(pages)]
+
+
+def render_pdf_pages(pdf_path: Path, pages_spec: str | None = None,
+                     dpi: int = 110) -> tuple[dict[str, bytes], str]:
+    """Render các trang PDF thành PNG (tên -> bytes) + text trích được để retrieval."""
+    try:
+        import pymupdf
+    except ImportError:
+        raise RuntimeError("❌ Cần PyMuPDF để đọc PDF: pip install -r requirements.txt")
+
+    doc = pymupdf.open(pdf_path)
+    images: dict[str, bytes] = {}
+    texts: list[str] = []
+    for i in parse_pages(pages_spec, doc.page_count):
+        page = doc[i]
+        images[f"page_{i + 1:02d}.png"] = page.get_pixmap(dpi=dpi).tobytes("png")
+        texts.append(page.get_text())
+    doc.close()
+    return images, "\n".join(texts)
 
 
 # Chủ đề -> từ khoá. Đề bài khớp từ nào của chủ đề thì cả chủ đề được dùng để
@@ -128,8 +190,13 @@ class CoThuongSolver:
             raise RuntimeError("❌ Model không trả về kết quả. Kiểm tra lại API key và quota.")
         return response.text
 
-    def _call_agy(self, user_prompt: str) -> str:
-        """Gọi Antigravity CLI ở headless mode, trả về LaTeX body."""
+    def _call_agy(self, user_prompt: str,
+                  files: dict[str, bytes] | None = None) -> str:
+        """Gọi Antigravity CLI ở headless mode, trả về LaTeX body.
+
+        files: ghi vào thư mục làm việc tạm để agy tự đọc (vd ảnh trang đề).
+        Đọc file trong workspace không cần permission, khác với chạy lệnh shell.
+        """
         # agy không có flag system prompt nên ghép persona vào đầu prompt
         prompt = f"{self.system_prompt}\n\n---\n\n{user_prompt}"
         cmd = [
@@ -145,6 +212,8 @@ class CoThuongSolver:
         # agy là agent, được ghi file trong workspace: chạy trong thư mục tạm
         # để nó không đụng vào repo
         with tempfile.TemporaryDirectory(prefix="cothuong-agy-") as tmp:
+            for name, data in (files or {}).items():
+                (Path(tmp) / name).write_bytes(data)
             proc = subprocess.run(
                 cmd, cwd=tmp, capture_output=True, text=True, encoding="utf-8"
             )
@@ -165,6 +234,13 @@ class CoThuongSolver:
             )
 
         body = (result.get("structured_output") or {}).get("latex_body")
+        denied = result.get("denied_actions")
+        if not body and not result.get("response") and denied:
+            # Model cố chạy lệnh shell, headless tự từ chối nên dừng giữa chừng
+            raise RuntimeError(
+                f"❌ agy dừng vì model cố dùng tool bị chặn ({denied}). Chạy lại, "
+                f"hoặc chia nhỏ --pages để model tự tính không cần chạy lệnh."
+            )
         # Fallback nếu schema không được áp: dùng response thô
         return body or result.get("response", "")
 
@@ -212,7 +288,45 @@ class CoThuongSolver:
 
         return body_content
 
-    def _build_user_prompt(self, problem: str) -> str:
+    def solve_pdf(
+        self,
+        pdf_path: Path,
+        pages: str | None = None,
+        title: str | None = None,
+        subtitle: str = "Có lập luận/giải thích theo hướng dẫn giảng viên",
+        wrap_template: bool = True,
+    ) -> str:
+        """Giải toàn bộ bài tập trong file PDF đề (agy đọc ảnh từng trang)."""
+        if self.config.provider != "agy":
+            # simplify: chỉ agy. Gemini cần gửi ảnh qua types.Part.from_bytes nếu cần
+            raise ValueError("❌ --input-pdf hiện chỉ hỗ trợ provider agy.")
+
+        images, pdf_text = render_pdf_pages(Path(pdf_path), pages)
+        names = ", ".join(images)
+        problem = (
+            f"Đề bài nằm trong {len(images)} ảnh ở thư mục làm việc hiện tại: {names}.\n"
+            "Hãy mở và đọc KỸ từng ảnh theo thứ tự bằng công cụ xem file. Bạn KHÔNG có "
+            "quyền chạy lệnh shell/python (sẽ bị từ chối và mất hết kết quả): mọi phép "
+            "tính phải tự làm. Chỉ giải các trang là bài tập/đề thi, bỏ qua trang lý thuyết, "
+            "trang bìa. Giải ĐẦY ĐỦ mọi bài, mỗi bài một \\section{Bài ...} và chép lại "
+            "đề trước khi giải.\n"
+            "Trả toàn bộ LaTeX body vào field latex_body."
+        )
+        user_prompt = self._build_user_prompt(problem, retrieval_text=pdf_text)
+
+        print(f"🤖 Đang gọi {self.config.model} với {len(images)} trang...")
+        raw = self._call_agy(user_prompt, files=images)
+        if not raw.strip():
+            raise RuntimeError("❌ Model không trả về kết quả.")
+
+        body_content = self._clean_response(raw)
+        if wrap_template:
+            title = title or f"Bài giải: {_escape_latex(Path(pdf_path).stem)}"
+            return wrap_in_template(body_content, title=title, subtitle=subtitle)
+        return body_content
+
+    def _build_user_prompt(self, problem: str,
+                           retrieval_text: str | None = None) -> str:
         """Xây dựng user prompt từ đề bài."""
         prompt = f"""Hãy giải bài tập sau theo đúng phong cách của bạn (Cô Thương).
 Trình bày lời giải bằng LaTeX body (KHÔNG bao gồm preamble, \\documentclass, \\begin{{document}}).
@@ -230,7 +344,7 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
 
         # Thêm teaching context nếu có
         if self.knowledge_base:
-            relevant_segments = self._find_relevant_segments(problem)
+            relevant_segments = self._find_relevant_segments(retrieval_text or problem)
             if relevant_segments:
                 prompt += "\n## CONTEXT TỪ BÀI GIẢNG (để tham khảo phong cách):\n"
                 for seg in relevant_segments[:3]:
@@ -289,7 +403,6 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
             text = text[:-3].strip()
 
         # Remove preamble if model accidentally includes it
-        import re
         if r'\documentclass' in text:
             # Try to extract just the body
             body_match = re.search(
@@ -302,7 +415,7 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
                 text = re.sub(r'\\maketitle\s*', '', text)
                 text = re.sub(r'\\thispagestyle\{[^}]+\}\s*', '', text)
 
-        return text
+        return _fix_tabular_columns(text)
 
     def solve_interactive(self) -> None:
         """Chế độ tương tác: nhập đề bài từ terminal."""
