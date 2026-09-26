@@ -12,7 +12,6 @@ Playlist mặc định:
 
 import argparse
 import json
-import os
 import re
 import subprocess
 import sys
@@ -191,7 +190,7 @@ def download_subtitles(
     vtt_files = list(output_dir.glob("*.vi.vtt"))
     clean_files = list(output_dir.glob("*_clean.md"))
     print(f"\n{'='*60}")
-    print(f"📊 Summary:")
+    print("📊 Summary:")
     print(f"   Videos in playlist: {len(entries)}")
     print(f"   VTT files: {len(vtt_files)}")
     print(f"   Clean MD files: {len(clean_files)}")

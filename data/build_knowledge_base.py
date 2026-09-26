@@ -203,7 +203,7 @@ def build_knowledge_base(
         json.dump(knowledge_base, f, ensure_ascii=False, indent=2)
 
     print(f"\n{'='*60}")
-    print(f"📊 Knowledge Base Summary:")
+    print("📊 Knowledge Base Summary:")
     print(f"   Teaching segments: {len(knowledge_base['teaching_segments'])}")
     print(f"   LaTeX examples: {len(knowledge_base['latex_examples'])}")
     print(f"   Has LaTeX template: {knowledge_base['latex_template'] is not None}")

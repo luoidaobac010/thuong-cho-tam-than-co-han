@@ -91,10 +91,10 @@ class LLMConfig:
             raise ValueError(f"❌ Provider '{self.provider}' không hỗ trợ (dùng 'agy' hoặc 'gemini').")
         if not self.api_key:
             raise ValueError(
-                f"❌ API key chưa được cấu hình!\n"
-                f"   Cách 1: Set biến môi trường GEMINI_API_KEY\n"
-                f"   Cách 2: Chạy: python solve.py --setup\n"
-                f"   Cách 3: Sửa file config.json"
+                "❌ API key chưa được cấu hình!\n"
+                "   Cách 1: Set biến môi trường GEMINI_API_KEY\n"
+                "   Cách 2: Chạy: python solve.py --setup\n"
+                "   Cách 3: Sửa file config.json"
             )
 
 

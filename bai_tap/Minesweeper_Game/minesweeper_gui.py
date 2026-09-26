@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
 import random
 import sys
 
@@ -337,4 +336,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     game = MinesweeperGame(root)
     root.mainloop()
-

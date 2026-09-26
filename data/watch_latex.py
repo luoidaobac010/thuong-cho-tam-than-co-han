@@ -31,9 +31,9 @@ def watch_and_compile(tex_file):
                         break
 
                     if result.returncode == 0:
-                        print(f"[+] DONE! Biên dịch thành công ra file PDF.")
+                        print("[+] DONE! Biên dịch thành công ra file PDF.")
                     else:
-                        print(f"[!] LỖI BIÊN DỊCH! Xem chi tiết bên dưới:")
+                        print("[!] LỖI BIÊN DỊCH! Xem chi tiết bên dưới:")
                         # In ra 10 dòng cuối của log lỗi để dễ debug
                         lines = result.stdout.split('\n')
                         for line in lines[-15:]:

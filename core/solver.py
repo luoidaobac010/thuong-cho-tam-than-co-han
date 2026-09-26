@@ -93,7 +93,7 @@ def render_pdf_pages(pdf_path: Path, pages_spec: str | None = None,
     try:
         import pymupdf
     except ImportError:
-        raise RuntimeError("❌ Cần PyMuPDF để đọc PDF: pip install -r requirements.txt")
+        raise RuntimeError("❌ Cần PyMuPDF để đọc PDF: pip install -r requirements.txt") from None
 
     doc = pymupdf.open(pdf_path)
     images: dict[str, bytes] = {}
@@ -230,11 +230,11 @@ class CoThuongSolver:
 
         try:
             result = json.loads(proc.stdout)
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             raise RuntimeError(
                 f"❌ agy trả về output không phải JSON (exit={proc.returncode}).\n"
                 f"   stderr: {proc.stderr.strip()[:500]}"
-            )
+            ) from e
 
         if result.get("status") != "SUCCESS":
             raise RuntimeError(
