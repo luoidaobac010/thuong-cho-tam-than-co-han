@@ -37,3 +37,8 @@ config.json
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Video (nặng, không commit). File scratch/buoi9_intro.mp4.webm đã có
+# trong history, muốn gỡ hẳn phải rewrite history.
+*.webm
+*.mp4
