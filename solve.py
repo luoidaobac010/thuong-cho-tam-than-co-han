@@ -18,7 +18,10 @@ Sử dụng:
     python solve.py --model gemini-2.5-pro --problem "..."
 """
 
+from __future__ import annotations
+
 import argparse
+import re
 import shutil
 import subprocess
 import sys
@@ -33,8 +36,8 @@ from core.config import DEFAULT_MODELS, LLMConfig, load_config, get_default_conf
 from core.solver import CoThuongSolver
 
 
-def compile_pdf(tex_path: Path) -> bool:
-    """Biên dịch .tex -> .pdf bằng tectonic (fallback xelatex). Trả về True nếu thành công."""
+def _run_latex(tex_path: Path) -> tuple[bool, str]:
+    """Biên dịch .tex -> .pdf bằng tectonic (fallback xelatex). Trả về (ok, log)."""
     # Template dùng tiếng Việt: tectonic/xelatex xử lý UTF-8 ổn hơn pdflatex
     if shutil.which("tectonic"):
         cmd = ["tectonic", "-X", "compile", tex_path.name]
@@ -42,19 +45,64 @@ def compile_pdf(tex_path: Path) -> bool:
         cmd = ["xelatex", "-interaction=nonstopmode", "-halt-on-error", tex_path.name]
     else:
         print("⚠️  Không tìm thấy tectonic/xelatex. Cài: brew install tectonic")
-        return False
+        return False, ""
 
     print(f"📄 Đang biên dịch PDF bằng {cmd[0]} (lần đầu tectonic có thể mất vài phút tải package)...")
     proc = subprocess.run(cmd, cwd=tex_path.parent, capture_output=True, text=True)
     pdf_path = tex_path.with_suffix(".pdf")
+    log = (proc.stderr or "") + (proc.stdout or "")
     if proc.returncode == 0 and pdf_path.exists():
         print(f"✅ PDF: {pdf_path}")
-        return True
+        return True, log
 
     print(f"❌ Biên dịch lỗi (exit={proc.returncode}). 15 dòng cuối log:")
     for line in (proc.stderr or proc.stdout).strip().splitlines()[-15:]:
         print("   " + line)
-    return False
+    return False, log
+
+
+def compile_pdf(tex_path: Path) -> bool:
+    """Biên dịch .tex -> .pdf. Trả về True nếu thành công."""
+    return _run_latex(tex_path)[0]
+
+
+def parse_latex_error(log: str) -> tuple[int, str] | None:
+    """Lấy (dòng, thông báo) lỗi đầu tiên từ log tectonic hoặc xelatex."""
+    m = re.search(r"^error: [^\n]*?\.tex:(\d+): ([^\n]+)", log, re.M)  # tectonic
+    if m:
+        return int(m.group(1)), m.group(2).strip()
+    msg = re.search(r"^! ([^\n]+)", log, re.M)  # xelatex
+    line = re.search(r"^l\.(\d+)", log, re.M)
+    if msg and line:
+        return int(line.group(1)), msg.group(1).strip()
+    return None
+
+
+def compile_pdf_with_fix(tex_path: Path, solver) -> bool:
+    """Biên dịch, lỗi thì nhờ agy sửa đoạn quanh dòng lỗi rồi thử lại đúng 1 lần.
+    Bản gốc giữ ở *.orig.tex."""
+    ok, log = _run_latex(tex_path)
+    if ok:
+        return True
+    err = parse_latex_error(log)
+    if not err:
+        return False
+    line_no, msg = err
+    print(f"🔧 Nhờ agy sửa lỗi LaTeX dòng {line_no}: {msg}")
+    original = tex_path.read_text(encoding="utf-8")
+    try:
+        fixed = solver.fix_latex_error(original, line_no, msg)
+    except RuntimeError as e:
+        print(f"   Không sửa được: {e}")
+        return False
+    if not fixed or fixed == original:
+        print("   agy không đưa ra bản sửa dùng được.")
+        return False
+    orig_path = tex_path.with_suffix(".orig.tex")
+    orig_path.write_text(original, encoding="utf-8")
+    tex_path.write_text(fixed, encoding="utf-8")
+    print(f"   Đã sửa, bản gốc lưu ở {orig_path.name}. Biên dịch lại...")
+    return _run_latex(tex_path)[0]
 
 
 def setup_config():
@@ -302,7 +350,8 @@ Ví dụ:
             f.write(result)
         print(f"\n✅ Đã lưu lời giải vào: {output_path}")
         if args.pdf:
-            if not compile_pdf(output_path.resolve()):
+            if not compile_pdf_with_fix(output_path.resolve(), solver):
+                print(f"   .tex vẫn được lưu ở {output_path} để sửa tay.")
                 sys.exit(2)
         else:
             print(f"   Biên dịch: tectonic -X compile \"{output_path}\" (hoặc thêm --pdf)")

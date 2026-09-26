@@ -191,14 +191,16 @@ class CoThuongSolver:
         return response.text
 
     def _call_agy(self, user_prompt: str,
-                  files: dict[str, bytes] | None = None) -> str:
+                  files: dict[str, bytes] | None = None,
+                  persona: bool = True) -> str:
         """Gọi Antigravity CLI ở headless mode, trả về LaTeX body.
 
         files: ghi vào thư mục làm việc tạm để agy tự đọc (vd ảnh trang đề).
         Đọc file trong workspace không cần permission, khác với chạy lệnh shell.
+        persona: False cho tác vụ kỹ thuật (sửa LaTeX), khỏi gửi persona dài.
         """
         # agy không có flag system prompt nên ghép persona vào đầu prompt
-        prompt = f"{self.system_prompt}\n\n---\n\n{user_prompt}"
+        prompt = f"{self.system_prompt}\n\n---\n\n{user_prompt}" if persona else user_prompt
         cmd = [
             "agy", "-p", prompt,
             "--output-format", "json",
@@ -324,6 +326,47 @@ class CoThuongSolver:
             title = title or f"Bài giải: {_escape_latex(Path(pdf_path).stem)}"
             return wrap_in_template(body_content, title=title, subtitle=subtitle)
         return body_content
+
+    def fix_latex_error(self, tex: str, line_no: int, error: str,
+                        before: int = 20, after: int = 10) -> str | None:
+        """Nhờ agy sửa tối thiểu đoạn quanh dòng lỗi LaTeX, ghép lại vào file.
+
+        Chỉ gửi 1 đoạn (không gửi cả bài) để model không viết lại nội dung lời giải.
+        Trả về None nếu không sửa được.
+        """
+        if self.config.provider != "agy":
+            return None  # simplify: chỉ agy, gemini thì thêm nhánh _call_gemini nếu cần
+        lines = tex.split("\n")
+        if not 1 <= line_no <= len(lines):
+            return None
+        start = max(0, line_no - 1 - before)
+        end = min(len(lines), line_no + after)
+        snippet = "\n".join(lines[start:end])
+        prompt = (
+            "Bạn là chuyên gia LaTeX. Biên dịch XeLaTeX báo lỗi:\n"
+            f"  {error}\n"
+            f"tại dòng {line_no} của file. Dưới đây là đoạn từ dòng {start + 1} đến {end}:\n"
+            "<<<\n" f"{snippet}\n" ">>>\n"
+            "Sửa TỐI THIỂU để hết lỗi (vd thêm \\] hoặc \\end{...} bị thiếu, cân bằng ngoặc). "
+            "KHÔNG đổi nội dung chữ/toán, KHÔNG thêm preamble. KHÔNG chạy lệnh shell. "
+            "Trả về TOÀN BỘ đoạn đã sửa (cùng phạm vi dòng) trong field latex_body, "
+            "không kèm <<< >>>."
+        )
+        fixed = self._call_agy(prompt, persona=False).strip()
+        # Model đôi khi trả kèm dấu bao <<< >>> của prompt
+        if fixed.startswith("<<<"):
+            fixed = fixed[3:]
+        if fixed.endswith(">>>"):
+            fixed = fixed[:-3]
+        fixed = fixed.strip("\n")
+        # Chặn trường hợp model trả rỗng hoặc cắt mất phần lớn đoạn
+        if not fixed.strip() or len(fixed) < 0.5 * len(snippet):
+            return None
+        result = "\n".join(lines[:start] + fixed.split("\n") + lines[end:])
+        # Đoạn chạm cuối file thì model hay nuốt newline cuối: trả lại cho giống gốc
+        if tex.endswith("\n") and not result.endswith("\n"):
+            result += "\n"
+        return result
 
     def _build_user_prompt(self, problem: str,
                            retrieval_text: str | None = None) -> str:

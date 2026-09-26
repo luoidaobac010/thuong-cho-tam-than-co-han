@@ -297,5 +297,96 @@ class CompilePdfTest(unittest.TestCase):
         self.assertFalse(ok)
 
 
+# Lỗi thật gặp khi E2E: model quên đóng \[ trước \end{itemize}
+BROKEN_DISPLAY_MATH = (
+    "\\documentclass{article}\n\\begin{document}\n\\begin{itemize}\n"
+    "\\item A:\n\\[\n  f(n) \\le c \\cdot g(n).\n\\end{itemize}\n\\end{document}\n"
+)
+FIXED_SNIPPET = (
+    "\\documentclass{article}\n\\begin{document}\n\\begin{itemize}\n"
+    "\\item A:\n\\[\n  f(n) \\le c \\cdot g(n).\n\\]\n\\end{itemize}\n\\end{document}"
+)
+
+
+class ParseLatexErrorTest(unittest.TestCase):
+    def test_tectonic_format(self):
+        import solve
+        log = "note: x\nerror: de01.tex:106: LaTeX Error: Command \\end{equation*} invalid in math mode.\n"
+        self.assertEqual(solve.parse_latex_error(log),
+                         (106, "LaTeX Error: Command \\end{equation*} invalid in math mode."))
+
+    def test_xelatex_format(self):
+        import solve
+        log = "! Extra alignment tab has been changed to \\cr.\n<template> \\endtemplate\nl.63 ... & $B$\n"
+        self.assertEqual(solve.parse_latex_error(log),
+                         (63, "Extra alignment tab has been changed to \\cr."))
+
+    def test_no_error(self):
+        import solve
+        self.assertIsNone(solve.parse_latex_error("note: Writing `x.pdf`"))
+
+
+class FixLatexErrorTest(unittest.TestCase):
+    def setUp(self):
+        self.s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+
+    def test_splices_fixed_snippet_and_skips_persona(self):
+        tex = "\n".join(f"L{i}" for i in range(1, 101))  # 100 dòng
+        seen = {}
+
+        def fake(prompt, files=None, persona=True):
+            seen["prompt"], seen["persona"] = prompt, persona
+            return "<<<\n" + "\n".join(f"F{i}" for i in range(30, 61)) + "\n>>>"
+
+        with mock.patch.object(self.s, "_call_agy", side_effect=fake):
+            out = self.s.fix_latex_error(tex, 50, "Missing $", before=20, after=10)
+
+        self.assertFalse(seen["persona"])
+        self.assertIn("L30", seen["prompt"])
+        self.assertIn("L60", seen["prompt"])
+        self.assertNotIn("L29\n", seen["prompt"])
+        lines = out.split("\n")
+        self.assertEqual(lines[:29], [f"L{i}" for i in range(1, 30)])  # trước đoạn giữ nguyên
+        self.assertEqual(lines[29], "F30")
+        self.assertEqual(lines[-40:], [f"L{i}" for i in range(61, 101)])  # sau đoạn giữ nguyên
+
+    def test_rejects_truncated_answer(self):
+        tex = "\n".join(f"line number {i}" for i in range(1, 60))
+        with mock.patch.object(self.s, "_call_agy", return_value="x"):
+            self.assertIsNone(self.s.fix_latex_error(tex, 30, "err"))
+
+    def test_line_out_of_range(self):
+        self.assertIsNone(self.s.fix_latex_error("a\nb", 99, "err"))
+
+
+@unittest.skipUnless(shutil.which("tectonic"), "cần tectonic")
+class CompileWithFixTest(unittest.TestCase):
+    """tectonic thật + agy giả: lỗi -> sửa -> ra PDF, giữ bản gốc .orig.tex."""
+
+    def _run(self, fixed_value):
+        import solve
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        tex = Path(tmp.name) / "t.tex"
+        tex.write_text(BROKEN_DISPLAY_MATH, encoding="utf-8")
+        with mock.patch.object(s, "_call_agy", return_value=fixed_value) as call, \
+                mock.patch("builtins.print"):
+            ok = solve.compile_pdf_with_fix(tex, s)
+        return ok, tex, call
+
+    def test_fix_then_pdf(self):
+        ok, tex, call = self._run(FIXED_SNIPPET)
+        self.assertTrue(ok)
+        self.assertEqual(call.call_count, 1)
+        self.assertTrue(tex.with_suffix(".pdf").exists())
+        self.assertEqual(tex.with_suffix(".orig.tex").read_text(encoding="utf-8"), BROKEN_DISPLAY_MATH)
+
+    def test_bad_fix_fails_after_one_retry(self):
+        ok, tex, call = self._run(BROKEN_DISPLAY_MATH.strip())
+        self.assertFalse(ok)
+        self.assertEqual(call.call_count, 1)  # chỉ thử sửa đúng 1 lần
+
+
 if __name__ == "__main__":
     unittest.main()

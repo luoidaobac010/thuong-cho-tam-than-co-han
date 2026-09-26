@@ -96,7 +96,7 @@ python solve.py --problem "Sắp xếp các hàm sau theo bậc tăng trưởng:
 python solve.py --input-pdf "bai_tap/Đề thi mẫu/Đề mẫu/CS112_De_Thi_Mau_So_01.pdf" -o de01.tex --pdf
 python solve.py --input-pdf "bai_tap/[HW#02] ....pdf" --pages 17-26 -o hw02.tex --pdf   # chỉ trang bài tập
 ```
-*(Render từng trang thành ảnh cho agy đọc trong thư mục tạm, không cấp quyền shell. Timeout mặc định 20m, đổi bằng `--timeout 30m`. Cần `pymupdf` trong requirements. LaTeX do model sinh đôi khi vẫn lỗi cú pháp, lúc đó `.tex` vẫn được lưu để sửa tay.)*
+*(Render từng trang thành ảnh cho agy đọc trong thư mục tạm, không cấp quyền shell. Timeout mặc định 20m, đổi bằng `--timeout 30m`. Cần `pymupdf` trong requirements. LaTeX do model sinh đôi khi lỗi cú pháp: với `--pdf`, lỗi biên dịch sẽ được gửi (kèm đoạn quanh dòng lỗi) cho agy sửa và biên dịch lại 1 lần, bản gốc giữ ở `*.orig.tex`. Vẫn lỗi thì `.tex` được lưu để sửa tay.)*
 
 **Chạy test** (offline, không tốn quota): `python3 -m unittest discover -s tests -t .`
 
