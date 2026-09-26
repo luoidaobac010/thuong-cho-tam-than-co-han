@@ -132,22 +132,22 @@ def get_system_prompt_with_examples(latex_examples: list[dict]) -> str:
     Mở rộng system prompt với few-shot examples từ knowledge base.
     """
     prompt = SYSTEM_PROMPT
-    
+
     if latex_examples:
         prompt += "\n\n## CÁC BÀI GIẢI MẪU (FEW-SHOT EXAMPLES)\n"
         prompt += "Dưới đây là một số bài giải mẫu mà bạn đã từng làm. "
         prompt += "Hãy giữ đúng phong cách và format này:\n\n"
-        
+
         for i, ex in enumerate(latex_examples[:5], 1):  # Max 5 examples
             section = ex.get("section", "")
             subsection = ex.get("subsection", "")
             content = ex.get("latex_content", "")
-            
+
             title = section
             if subsection:
                 title += f" > {subsection}"
-            
+
             prompt += f"### Ví dụ {i}: {title}\n"
             prompt += f"```latex\n{content}\n```\n\n"
-    
+
     return prompt

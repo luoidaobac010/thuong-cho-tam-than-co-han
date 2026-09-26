@@ -72,7 +72,7 @@ def clean_vtt_file(vtt_path: Path, output_path: Path) -> None:
 def download_playlist_metadata(playlist_url: str, output_dir: Path) -> list[dict]:
     """Download playlist metadata using yt-dlp --dump-json."""
     print(f"📋 Fetching playlist metadata from:\n   {playlist_url}")
-    
+
     cmd = [
         sys.executable, "-m", "yt_dlp",
         "--flat-playlist",
@@ -80,26 +80,26 @@ def download_playlist_metadata(playlist_url: str, output_dir: Path) -> list[dict
         "--no-warnings",
         playlist_url,
     ]
-    
+
     result = subprocess.run(
         cmd, capture_output=True, text=True, encoding="utf-8"
     )
-    
+
     if result.returncode != 0:
         print(f"❌ Error fetching playlist: {result.stderr}")
         sys.exit(1)
-    
+
     entries = []
     for line in result.stdout.strip().split('\n'):
         if line.strip():
             entries.append(json.loads(line))
-    
+
     # Save playlist metadata
     playlist_path = output_dir / "playlist.json"
     with open(playlist_path, 'w', encoding='utf-8') as f:
         for entry in entries:
             f.write(json.dumps(entry, ensure_ascii=False) + '\n')
-    
+
     print(f"   Found {len(entries)} videos in playlist")
     return entries
 
@@ -114,15 +114,15 @@ def download_subtitles(
     Skips videos that already have VTT files unless force=True.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # Get playlist entries
     entries = download_playlist_metadata(playlist_url, output_dir)
-    
+
     for entry in entries:
         video_id = entry.get("id", "")
         title = entry.get("title", video_id)
         url = entry.get("url", "") or f"https://www.youtube.com/watch?v={video_id}"
-        
+
         # Determine buoi number from title
         buoi_match = re.search(r'[Bb]u[oổ][ỏií]\s*(\d+)', title)
         if buoi_match:
@@ -131,10 +131,10 @@ def download_subtitles(
         else:
             # Fallback: use video_id
             base_name = f"video_{video_id}"
-        
+
         vtt_path = output_dir / f"{base_name}.vi.vtt"
         clean_path = output_dir / f"{base_name}_clean.md"
-        
+
         # Skip if already exists
         if vtt_path.exists() and not force:
             print(f"⏭️  Skip (already exists): {base_name}.vi.vtt — {title}")
@@ -142,10 +142,10 @@ def download_subtitles(
             if not clean_path.exists():
                 clean_vtt_file(vtt_path, clean_path)
             continue
-        
+
         print(f"\n🔽 Downloading subtitle: {title}")
         print(f"   URL: {url}")
-        
+
         cmd = [
             sys.executable, "-m", "yt_dlp",
             "--write-auto-sub",
@@ -156,37 +156,37 @@ def download_subtitles(
             "-o", str(output_dir / f"{base_name}.%(ext)s"),
             url,
         ]
-        
+
         result = subprocess.run(
             cmd, capture_output=True, text=True, encoding="utf-8"
         )
-        
+
         if result.returncode != 0:
             print(f"   ⚠️  Warning: {result.stderr.strip()}")
-        
+
         # yt-dlp may save as .vi.vtt or .vtt — find the file
         possible_paths = [
             output_dir / f"{base_name}.vi.vtt",
             output_dir / f"{base_name}.vtt",
         ]
-        
+
         found_vtt = None
         for p in possible_paths:
             if p.exists():
                 found_vtt = p
                 break
-        
+
         if found_vtt:
             # Rename to standard format if needed
             if found_vtt != vtt_path:
                 found_vtt.rename(vtt_path)
             print(f"   ✓ Saved: {vtt_path.name}")
-            
+
             # Clean VTT → MD
             clean_vtt_file(vtt_path, clean_path)
         else:
             print(f"   ❌ No Vietnamese subtitle found for: {title}")
-    
+
     # Summary
     vtt_files = list(output_dir.glob("*.vi.vtt"))
     clean_files = list(output_dir.glob("*_clean.md"))
@@ -217,15 +217,15 @@ def main():
         action="store_true",
         help="Re-download even if files already exist",
     )
-    
+
     args = parser.parse_args()
-    
+
     if args.output_dir:
         output_dir = Path(args.output_dir)
     else:
         # Default: cothuong-ai/data/
         output_dir = Path(__file__).resolve().parent
-    
+
     download_subtitles(args.playlist_url, output_dir, force=args.force)
 
 

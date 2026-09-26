@@ -18,14 +18,14 @@ from pathlib import Path
 def clean_vtt(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as f:
         content = f.read()
-    
+
     # Remove WebVTT header
     content = re.sub(r'^WEBVTT.*\n+', '', content)
     # Remove timestamps and alignments like 00:00:00.000 --> 00:00:02.000 align:start position:0%
     content = re.sub(r'\d{2}:\d{2}:\d{2}\.\d{3} --> \d{2}:\d{2}:\d{2}\.\d{3}.*\n', '', content)
     # Remove HTML-like tags e.g. <c>
     content = re.sub(r'<[^>]+>', '', content)
-    
+
     # Extract lines, removing duplicates that are adjacent
     lines = content.split('\n')
     cleaned_lines = []
@@ -48,7 +48,7 @@ def clean_vtt(input_file, output_file):
             current_para = []
     if current_para:
         paragraphs.append(' '.join(current_para))
-        
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write('\n\n'.join(paragraphs))
 
@@ -64,7 +64,7 @@ if __name__ == "__main__":
         inputs = [Path(p) for p in sys.argv[1:]]
     else:
         inputs = sorted(Path(__file__).resolve().parent.glob("buoi*.vi.vtt"))
-    
+
     for vtt in inputs:
         out = output_path_for(vtt)
         clean_vtt(vtt, out)

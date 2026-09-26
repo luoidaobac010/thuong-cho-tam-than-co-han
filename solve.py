@@ -43,14 +43,14 @@ def compile_pdf(tex_path: Path) -> bool:
     else:
         print("⚠️  Không tìm thấy tectonic/xelatex. Cài: brew install tectonic")
         return False
-    
+
     print(f"📄 Đang biên dịch PDF bằng {cmd[0]} (lần đầu tectonic có thể mất vài phút tải package)...")
     proc = subprocess.run(cmd, cwd=tex_path.parent, capture_output=True, text=True)
     pdf_path = tex_path.with_suffix(".pdf")
     if proc.returncode == 0 and pdf_path.exists():
         print(f"✅ PDF: {pdf_path}")
         return True
-    
+
     print(f"❌ Biên dịch lỗi (exit={proc.returncode}). 15 dòng cuối log:")
     for line in (proc.stderr or proc.stdout).strip().splitlines()[-15:]:
         print("   " + line)
@@ -62,30 +62,30 @@ def setup_config():
     print("=" * 60)
     print("🔧 Thuong-cho-tam-than-co-han — Cấu hình ban đầu")
     print("=" * 60)
-    
+
     config = load_config()
-    
+
     # Provider
     print(f"\n📌 Chọn provider [agy/gemini] (Enter giữ '{config.provider}'):")
     new_provider = input("   Provider: ").strip().lower()
     if new_provider and new_provider != config.provider:
         config.provider = new_provider
         config.model = DEFAULT_MODELS.get(new_provider, "")
-    
+
     print(f"\nProvider hiện tại: {config.provider}")
     print(f"Model hiện tại: {config.model}")
-    
+
     # API Key (chỉ provider gemini cần, agy dùng đăng nhập Google)
     if config.provider == "gemini":
         print("\n📌 Nhập API key (nhấn Enter để giữ nguyên):")
         if config.api_key:
             masked = config.api_key[:8] + "..." + config.api_key[-4:]
             print(f"   Key hiện tại: {masked}")
-        
+
         new_key = input("   API Key: ").strip()
         if new_key:
             config.api_key = new_key
-    
+
     # Model
     print("\n📌 Chọn model (nhấn Enter để giữ mặc định):")
     if config.provider == "agy":
@@ -95,7 +95,7 @@ def setup_config():
     new_model = input(f"   Model [{config.model}]: ").strip()
     if new_model:
         config.model = new_model
-    
+
     # Save
     config_path = get_default_config_path()
     config.to_file(config_path)
@@ -113,7 +113,7 @@ Ví dụ:
   python solve.py --interactive
         """,
     )
-    
+
     # Mode selection
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument(
@@ -126,7 +126,7 @@ Ví dụ:
         action="store_true",
         help="Chế độ tương tác (nhập đề bài từ terminal)",
     )
-    
+
     # Problem input
     parser.add_argument(
         "--problem", "-p",
@@ -138,7 +138,7 @@ Ví dụ:
         type=str,
         help="Đường dẫn file chứa đề bài",
     )
-    
+
     # Output
     parser.add_argument(
         "--output", "-o",
@@ -161,7 +161,7 @@ Ví dụ:
         action="store_true",
         help="Biên dịch luôn ra PDF sau khi lưu .tex (cần --output, dùng tectonic)",
     )
-    
+
     # Model config
     parser.add_argument(
         "--provider",
@@ -181,7 +181,7 @@ Ví dụ:
         default=None,
         help="API key (override config)",
     )
-    
+
     # Knowledge base
     parser.add_argument(
         "--knowledge-base", "-kb",
@@ -189,17 +189,17 @@ Ví dụ:
         default=None,
         help="Đường dẫn file knowledge_base.json",
     )
-    
+
     args = parser.parse_args()
-    
+
     if args.pdf and (not args.output or args.body_only):
         parser.error("--pdf cần --output và không dùng cùng --body-only")
-    
+
     # --- Setup mode ---
     if args.setup:
         setup_config()
         return
-    
+
     # --- Load config ---
     config = load_config()
     if args.provider and args.provider != config.provider:
@@ -209,12 +209,12 @@ Ví dụ:
         config.model = args.model
     if args.api_key:
         config.api_key = args.api_key
-    
+
     # --- Knowledge base path ---
     kb_path = None
     if args.knowledge_base:
         kb_path = Path(args.knowledge_base)
-    
+
     # --- Initialize solver ---
     try:
         solver = CoThuongSolver(config=config, knowledge_base_path=kb_path)
@@ -222,12 +222,12 @@ Ví dụ:
         print(str(e))
         print("\n💡 Chạy 'python solve.py --setup' để cấu hình provider/model.")
         sys.exit(1)
-    
+
     # --- Interactive mode ---
     if args.interactive:
         solver.solve_interactive()
         return
-    
+
     # --- Get problem text ---
     problem = None
     if args.problem:
@@ -243,16 +243,16 @@ Ví dụ:
         parser.print_help()
         print("\n❌ Cần cung cấp đề bài qua --problem hoặc --problem-file")
         sys.exit(1)
-    
+
     # --- Solve ---
     print(f"📚 Đề bài: {problem[:100]}{'...' if len(problem) > 100 else ''}")
-    
+
     result = solver.solve(
         problem=problem,
         title=args.title,
         wrap_template=not args.body_only,
     )
-    
+
     # --- Output ---
     if args.output:
         output_path = Path(args.output)

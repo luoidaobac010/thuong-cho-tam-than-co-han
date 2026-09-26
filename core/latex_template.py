@@ -56,12 +56,12 @@ def wrap_in_template(
 ) -> str:
     """
     Wrap LaTeX body content vào template hoàn chỉnh.
-    
+
     Args:
         body_content: Nội dung LaTeX (sections, text, math...).
         title: Tiêu đề chính của document.
         subtitle: Dòng phụ dưới tiêu đề.
-    
+
     Returns:
         Full LaTeX document string, ready to compile with pdflatex.
     """
@@ -70,7 +70,7 @@ def wrap_in_template(
     if subtitle:
         title_block += f"\\\\[6pt]\n\\large ({subtitle})"
     title_block += "}\n\\author{}\n\\date{}"
-    
+
     document = f"""{LATEX_PREAMBLE}
 
 {title_block}
