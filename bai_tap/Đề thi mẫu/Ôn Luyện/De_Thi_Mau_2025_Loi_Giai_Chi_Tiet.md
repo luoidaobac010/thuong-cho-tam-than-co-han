@@ -48,18 +48,22 @@ $$\text{Nếu } g(n) \in O(f(n)) \text{ và } f(n) \in O(g(n)) \text{ thì } O(f
 
 ### b. (1.75 điểm) Phân lớp 07 hàm vào các “Big-O nhỏ nhất” và sắp xếp tăng dần:
 
+> **Đính chính (27/9/2026):** bản trước chép nhầm đề thành $f_1(n) = 4^{\log n} + \log\log n$ và $f_5(n) = n^5(\log n)^2$. Đề gốc (PDF đề HK1 2025-2026, trang 1) là $f_1(n) = 4\log n + \log\log n$ (nhân, không phải mũ) và $f_5(n) = n^{5(\log n)^2}$ (số mũ là $5(\log n)^2$). Thứ tự đúng khớp với lời giải cô chữa trên lớp (buổi 4).
+
 | Hàm ban đầu | Biến đổi đưa về dạng chuẩn | Big-O nhỏ nhất | Giải thích ngắn gọn |
 | :--- | :--- | :---: | :--- |
-| $f_1(n) = 4^{\log n} + \log \log n$ | $4^{\log_2 n} = n^{\log_2 4} = n^2 \implies n^2 + \log \log n$ | $O(n^2)$ | Áp dụng công thức $a^{\log_b n} = n^{\log_b a}$, bậc cao nhất là $n^2$. |
+| $f_1(n) = 4\log n + \log \log n$ | $\log\log n < \log n \implies$ giữ số hạng $4\log n$, bỏ hệ số 4 | $O(\log n)$ | Giữ số hạng lớn nhất, bỏ hệ số. $\log\log n < \log n$ vì lấy $\log$ hai vế của $\log n < n$. |
 | $f_2(n) = n \cdot \sqrt[3]{n}$ | $n \cdot n^{1/3} = n^{4/3} = n^{1.333}$ | $O(n^{4/3})$ | Tích hai lũy thừa cùng cơ số $n^{1 + 1/3} = n^{4/3}$. |
 | $f_3(n) = \sum_{i=1}^n \sum_{j=1}^n (i \cdot j)$ | $\left(\sum_{i=1}^n i\right)\left(\sum_{j=1}^n j\right) = \left[\frac{n(n+1)}{2}\right]^2 = \frac{n^4 + 2n^3 + n^2}{4}$ | $O(n^4)$ | Tách thành tích 2 cấp số cộng, số hạng cao nhất là $\frac{n^4}{4}$. |
 | $f_4(n) = n \cdot (\log n)^4$ | $n \cdot (\log n)^4$ | $O(n \log^4 n)$ | Đa thức bậc 1 nhân logarit bậc 4 (nhỏ hơn mọi $n^{1+\epsilon}$). |
-| $f_5(n) = n^5 (\log n)^2$ | $n^5 (\log n)^2$ | $O(n^5 \log^2 n)$ | Đa thức bậc 5 nhân logarit bậc 2. |
+| $f_5(n) = n^{5(\log n)^2}$ | $\left(2^{\log n}\right)^{5(\log n)^2} = 2^{5(\log n)^3}$ | $O\!\left(2^{5\log^3 n}\right)$ | Số mũ $5\log^3 n$ tăng nhanh hơn mọi $k\log n$ nên lớn hơn mọi đa thức, nhưng chậm hơn $\sqrt{n}$ nên nhỏ hơn $f_6$. |
 | $f_6(n) = \sqrt{3^{\sqrt{n}}}$ | $(3^{\sqrt{n}})^{1/2} = 3^{\frac{\sqrt{n}}{2}} = (\sqrt{3})^{\sqrt{n}}$ | $O(3^{\sqrt{n}/2})$ | Hàm mũ của căn bậc hai $\sqrt{n}$ (lớn hơn mọi $n^k$, nhỏ hơn $a^n$). |
 | $f_7(n) = \sqrt{n} \cdot 3^{n/2}$ | $\sqrt{n} \cdot (\sqrt{3})^n$ | $O(\sqrt{n} \cdot 3^{n/2})$ | Hàm mũ thực sự theo số mũ bậc nhất $n$, tăng nhanh nhất. |
 
+**So sánh nhanh:** nhóm nhỏ (đa thức trở xuống) có $f_1 = O(\log n) < f_4 = O(n\log^4 n) < f_2 = O(n^{4/3}) < f_3 = O(n^4)$. Nhóm lớn đưa về cùng cơ số 2 rồi so số mũ: $f_5$ có số mũ $5\log^3 n$, $f_6$ có $\frac{\log_2 3}{2}\sqrt{n}$, $f_7$ có $\frac{\log_2 3}{2}n + \frac{1}{2}\log n$. Vì $\log^3 n < \sqrt{n} < n$ khi $n$ đủ lớn nên $f_5 < f_6 < f_7$.
+
 **Kết luận Thứ tự các hàm tăng dần:**
-$$f_4(n) < f_2(n) < f_1(n) < f_3(n) < f_5(n) < f_6(n) < f_7(n)$$
+$$f_1(n) < f_4(n) < f_2(n) < f_3(n) < f_5(n) < f_6(n) < f_7(n)$$
 
 ---
 

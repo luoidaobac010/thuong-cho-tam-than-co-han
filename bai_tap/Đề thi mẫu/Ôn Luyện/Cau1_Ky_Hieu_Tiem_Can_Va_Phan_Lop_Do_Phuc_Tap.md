@@ -134,12 +134,14 @@ $$O(f(n)) = O(g(n)) \quad (\text{ĐPCM})$$
 # PHẦN 3: PHÂN LỚP VÀ SẮP XẾP HÀM THEO BIG-O NHỎ NHẤT (DẠNG 1B)
 
 ## Bài toán mẫu trong Đề thi 2025:
+> **Đính chính (27/9/2026):** bản trước chép nhầm $f_1$ và $f_5$ của đề HK1 2025-2026 nên ra thứ tự sai. Đề gốc (PDF đề, trang 1): $f_1(n) = 4\log n + \log\log n$ (nhân, không phải mũ) và $f_5(n) = n^{5(\log n)^2}$ (số mũ là $5(\log n)^2$). Đề ghi "Ký hiệu log là log cơ số 2". Thứ tự đúng khớp với lời giải cô chữa trên lớp (buổi 4).
+
 **Đề bài:** Phân lớp 07 hàm bên dưới vào các “Big-O nhỏ nhất”, có giải thích ngắn gọn cách xác định. Sắp xếp các hàm theo thứ tự tăng dần của Big-O:
-- $f_1(n) = 4^{\log n} + \log \log n$
+- $f_1(n) = 4\log n + \log \log n$
 - $f_2(n) = n \cdot \sqrt[3]{n}$
 - $f_3(n) = \sum_{i=1}^n \sum_{j=1}^n (i \cdot j)$
 - $f_4(n) = n \cdot (\log n)^4$
-- $f_5(n) = n^5 (\log n)^2$
+- $f_5(n) = n^{5(\log n)^2}$
 - $f_6(n) = \sqrt{3^{\sqrt{n}}}$
 - $f_7(n) = \sqrt{n} \cdot 3^{n/2}$
 
@@ -147,28 +149,30 @@ $$O(f(n)) = O(g(n)) \quad (\text{ĐPCM})$$
 
 | Hàm | Dạng biến đổi chuẩn | Big-O nhỏ nhất | Giải thích ngắn gọn |
 | :--- | :--- | :---: | :--- |
-| $f_1(n) = 4^{\log n} + \log \log n$ | $4^{\log_2 n} = n^{\log_2 4} = n^2$<br>$\implies n^2 + \log \log n$ | $O(n^2)$ | Áp dụng công thức đổi cơ số $a^{\log_b n} = n^{\log_b a}$, số hạng bậc cao nhất là $n^2$. |
+| $f_1(n) = 4\log n + \log \log n$ | $\log\log n < \log n$<br>$\implies$ giữ $4\log n$, bỏ hệ số 4 | $O(\log n)$ | Giữ số hạng lớn nhất, bỏ hệ số. $\log\log n < \log n$ vì lấy $\log$ hai vế của $\log n < n$. |
 | $f_2(n) = n \cdot \sqrt[3]{n}$ | $n \cdot n^{1/3} = n^{4/3} = n^{1.333}$ | $O(n^{4/3})$ | Tích hai lũy thừa cùng cơ số $n^{1 + 1/3} = n^{4/3}$. |
 | $f_3(n) = \sum_{i=1}^n \sum_{j=1}^n (i \cdot j)$ | $\left(\sum_{i=1}^n i\right)\left(\sum_{j=1}^n j\right) = \left[\frac{n(n+1)}{2}\right]^2 = \frac{n^4 + 2n^3 + n^2}{4}$ | $O(n^4)$ | Tổng hai vòng lặp độc lập thành tích hai cấp số cộng bậc 2, nhân lại thành đa thức bậc 4. |
 | $f_4(n) = n \cdot (\log n)^4$ | $n \cdot (\log n)^4$ | $O(n \log^4 n)$ | Hàm Polylogarithmic kết hợp tuyến tính, có tốc độ tăng nhỏ hơn mọi $n^{1+\epsilon}$ ($\epsilon = 1/3$). |
-| $f_5(n) = n^5 (\log n)^2$ | $n^5 (\log n)^2$ | $O(n^5 \log^2 n)$ | Đa thức bậc 5 nhân logarit bậc 2. |
+| $f_5(n) = n^{5(\log n)^2}$ | $\left(2^{\log n}\right)^{5(\log n)^2} = 2^{5(\log n)^3}$ | $O\!\left(2^{5\log^3 n}\right)$ | Số mũ $5\log^3 n$ tăng nhanh hơn mọi $k\log n$ nên lớn hơn mọi đa thức $n^k = 2^{k\log n}$, nhưng chậm hơn $\sqrt{n}$ nên nhỏ hơn $f_6$. |
 | $f_6(n) = \sqrt{3^{\sqrt{n}}}$ | $(3^{\sqrt{n}})^{1/2} = 3^{\frac{\sqrt{n}}{2}} = (\sqrt{3})^{\sqrt{n}}$ | $O(3^{\sqrt{n}/2})$ | Hàm mũ hạ căn bậc hai của số mũ $\sqrt{n}$, nhỏ hơn hàm mũ $a^n$ tuyến tính nhưng lớn hơn mọi đa thức $n^k$. |
 | $f_7(n) = \sqrt{n} \cdot 3^{n/2}$ | $\sqrt{n} \cdot (\sqrt{3})^n$ | $O(\sqrt{n} \cdot 3^{n/2})$ | Hàm mũ thực sự với số mũ bậc nhất $n/2$, tăng nhanh nhất trong các hàm đã cho. |
 
 ### SO SÁNH CÁC HÀM VÀ KẾT LUẬN THỨ TỰ TĂNG DẦN:
 
-1. **So sánh $f_4$ và $f_2$:**
+Chiến lược cô dạy khi có nhiều hàm: tách nhóm nhỏ (đa thức trở xuống) và nhóm lớn (hàm mũ trở lên) trước, trong nhóm lớn thì đưa về cùng một cơ số rồi so số mũ.
+
+1. **$f_1$ nhỏ nhất:** $f_1(n) = O(\log n)$, mà $\log n < n$, nên $f_1$ nhỏ hơn mọi hàm còn lại.
+2. **So sánh $f_4$ và $f_2$:**
    $f_4(n) = n \log^4 n$ và $f_2(n) = n^{4/3} = n \cdot n^{1/3}$. Vì với mọi $\epsilon > 0$, $(\log n)^4 = o(n^\epsilon)$, chọn $\epsilon = 1/3 \implies n \log^4 n < n \cdot n^{1/3} \implies f_4 < f_2$.
-2. **So sánh $f_2$ và $f_1$:**
-   $f_2(n) = O(n^{1.333}) < f_1(n) = O(n^2)$.
-3. **So sánh $f_1, f_3, f_5$:**
-   $f_1 = O(n^2) < f_3 = O(n^4) < f_5 = O(n^5 \log^2 n)$.
+3. **So sánh $f_2$ và $f_3$:**
+   $f_2(n) = O(n^{4/3}) < f_3(n) = O(n^4)$. Như vậy nhóm nhỏ xếp được $f_1 < f_4 < f_2 < f_3$.
 4. **So sánh $f_5, f_6, f_7$:**
-   - Mọi đa thức $n^k = o(a^{\sqrt{n}})$ với $a > 1 \implies f_5(n) = n^5 \log^2 n < f_6(n) = 3^{\sqrt{n}/2}$.
-   - Hàm mũ căn $3^{\sqrt{n}/2} <$ hàm mũ tuyến tính $3^{n/2} \implies f_6 < f_7$.
+   - Đưa về cùng cơ số 2: $f_5 = 2^{5\log^3 n}$, $f_6 = 2^{\frac{\log_2 3}{2}\sqrt{n}}$, $f_7 = 2^{\frac{\log_2 3}{2}n + \frac{1}{2}\log n}$.
+   - So số mũ: $5\log^3 n < \frac{\log_2 3}{2}\sqrt{n}$ khi $n$ đủ lớn (mọi lũy thừa của $\log n$ đều nhỏ hơn $n^{\epsilon}$), và $\sqrt{n} < n$. Suy ra $f_5 < f_6 < f_7$.
+   - $f_5 = 2^{5\log^3 n}$ lớn hơn mọi đa thức $n^k = 2^{k\log n}$, nên $f_3 < f_5$.
 
 ### 🏆 KẾT LUẬN: THỨ TỰ TĂNG DẦN CỦA CÁC HÀM LÀ:
-$$f_4(n) < f_2(n) < f_1(n) < f_3(n) < f_5(n) < f_6(n) < f_7(n)$$
+$$f_1(n) < f_4(n) < f_2(n) < f_3(n) < f_5(n) < f_6(n) < f_7(n)$$
 
 ---
 
