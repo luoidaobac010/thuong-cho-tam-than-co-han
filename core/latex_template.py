@@ -10,15 +10,35 @@ LATEX_PREAMBLE = r"""\documentclass[12pt,a4paper]{article}
 % ===== PACKAGES =====
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese]{babel}
+% babel vietnamese biến " thành shorthand, "chuỗi" trong \text{} làm hỏng compile
+\AtBeginDocument{\shorthandoff{"}}
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{geometry}
 \usepackage{enumitem}
+% Model đôi khi lồng list > 4 cấp ("Too deeply nested"): nâng giới hạn, cấp 1-4 giữ nhãn mặc định
+\setlistdepth{9}
+\renewlist{itemize}{itemize}{9}
+\renewlist{enumerate}{enumerate}{9}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\normalfont\bfseries\textendash}
+\setlist[itemize,3]{label=\textasteriskcentered}
+\setlist[itemize,4,5,6,7,8,9]{label=\textperiodcentered}
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label=(\alph*)}
+\setlist[enumerate,3]{label=\roman*.}
+\setlist[enumerate,4]{label=\Alph*.}
+\setlist[enumerate,5,6,7,8,9]{label=\arabic*.}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+% Đề thi hay có code/mã giả, model tự dùng các môi trường này
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\lstset{basicstyle=\ttfamily\small, breaklines=true, columns=fullflexible}
 
 \geometry{a4paper, margin=2.5cm}
 
