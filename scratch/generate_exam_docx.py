@@ -213,7 +213,7 @@ def create_document():
     r = p_w4.add_run("Định lý Thợ (Master Theorem)")
     r.font.bold = True
     p_w4.add_run(" và bỏ bài toán giải tối ưu bằng ")
-    r = p_w4.add_run("Thuật toán Ford-Fulkerson (tìm luồng cực đại)")
+    r = p_w4.add_run("Thuật toán Fourier-Motzkin (khử biến giải hệ bất phương trình, học ở buổi 6)")
     r.font.bold = True
     p_w4.add_run(" do tính toán dài mất nhiều thời gian.")
     

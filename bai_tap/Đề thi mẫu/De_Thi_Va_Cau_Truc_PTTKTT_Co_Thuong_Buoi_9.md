@@ -19,7 +19,7 @@
 1. **Tài liệu cho phép:** Sinh viên chỉ được phép sử dụng **DUY NHẤT 01 TỜ GIẤY A4 VIẾT TAY** (được viết cả 2 mặt trước và sau). Tuyệt đối không mang giấy in photo hay mang nhiều hơn 1 tờ.
 2. **Kỷ luật thi & Gian lận:** Cô Thương chấm bài trực tiếp và hậu kiểm từng bài. Tuyệt đối nghiêm cấm sử dụng điện thoại, AI giải đề hay trốn ra toilet tra tài liệu. Nếu bị phát hiện vi phạm: **0 ĐIỂM TOÀN BỘ BÀI THI VÀ 0 ĐIỂM TOÀN BỘ MÔN HỌC (RỚT MÔN, KHÔNG CỨU VỚT)**.
 3. **Quy định về Mã giả (Pseudo-code):** Môn này là Thiết kế thuật toán, KHÔNG ép buộc viết đúng cú pháp C++/Python/Java chuẩn. Chỉ cần viết Mã giả có đánh số bước (Bước 1, Bước 2,...), chú thích biến và cấu trúc dữ liệu rõ ràng. **Không vẽ lưu đồ (flowchart)**.
-4. **Nội dung giảm tải (Không thi):** Bỏ **Định lý Thợ (Master Theorem)** và bỏ bài toán giải tối ưu bằng **Thuật toán Ford-Fulkerson** (tìm luồng cực đại) do tính toán dài mất thời gian.
+4. **Nội dung giảm tải (Không thi):** Bỏ **Định lý Thợ (Master Theorem)** và bỏ bài toán giải tối ưu bằng **Thuật toán Fourier-Motzkin** (khử biến giải hệ bất phương trình, học ở buổi 6) do tính toán dài mất thời gian.
 
 ---
 
