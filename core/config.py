@@ -1,47 +1,59 @@
 """
 config.py
 Cấu hình LLM cho CoThuong-AI.
-Mặc định dùng Google Gemini, có thể đổi sang provider khác.
+Mặc định gọi qua Antigravity CLI (`agy`), fallback Google Gemini API.
 
 Cấu hình qua biến môi trường hoặc file config.json:
-    GEMINI_API_KEY=<your_key>
-    COTHUONG_MODEL=gemini-2.0-flash   (mặc định)
+    COTHUONG_PROVIDER=agy|gemini      (mặc định: agy)
+    COTHUONG_MODEL=<model slug>       (agy: xem `agy models`)
+    GEMINI_API_KEY=<your_key>         (chỉ cần cho provider gemini)
 """
+
+from __future__ import annotations
 
 import json
 import os
+import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
+
+DEFAULT_MODELS = {
+    "agy": "gemini-3.8-flash-medium",
+    "gemini": "gemini-2.0-flash",
+}
 
 
 @dataclass
 class LLMConfig:
     """Cấu hình cho LLM provider."""
     
-    # Provider: "gemini" hoặc "openai" (mở rộng sau)
-    provider: str = "gemini"
+    # Provider: "agy" (Antigravity CLI) hoặc "gemini" (API key)
+    provider: str = "agy"
     
-    # Model name
-    model: str = "gemini-2.0-flash"
+    # Model name, rỗng = default theo provider
+    model: str = ""
     
     # API key (from env or config)
     api_key: str = ""
     
-    # Generation parameters
+    # Generation parameters (agy không hỗ trợ temperature/top_p/max tokens)
     temperature: float = 0.3  # Thấp để output ổn định, nhất quán
     max_output_tokens: int = 8192
     top_p: float = 0.95
+    
+    # agy: thời gian chờ tối đa (--print-timeout)
+    agy_timeout: str = "5m"
     
     # Safety settings — cho phép nội dung học thuật
     safety_settings: dict = field(default_factory=dict)
     
     def __post_init__(self):
+        if not self.model:
+            self.model = DEFAULT_MODELS.get(self.provider, "")
         # Try to load API key from environment
         if not self.api_key:
             if self.provider == "gemini":
                 self.api_key = os.environ.get("GEMINI_API_KEY", "")
-            elif self.provider == "openai":
-                self.api_key = os.environ.get("OPENAI_API_KEY", "")
     
     @classmethod
     def from_file(cls, config_path: Path) -> "LLMConfig":
@@ -59,6 +71,7 @@ class LLMConfig:
             "temperature": self.temperature,
             "max_output_tokens": self.max_output_tokens,
             "top_p": self.top_p,
+            "agy_timeout": self.agy_timeout,
         }
         config_path.parent.mkdir(parents=True, exist_ok=True)
         with open(config_path, 'w', encoding='utf-8') as f:
@@ -66,6 +79,16 @@ class LLMConfig:
     
     def validate(self) -> None:
         """Kiểm tra config hợp lệ trước khi chạy."""
+        if self.provider == "agy":
+            if not shutil.which("agy"):
+                raise ValueError(
+                    "❌ Không tìm thấy lệnh `agy`!\n"
+                    "   Cài: brew install --cask antigravity-cli\n"
+                    "   Sau đó chạy `agy` 1 lần để đăng nhập Google."
+                )
+            return
+        if self.provider != "gemini":
+            raise ValueError(f"❌ Provider '{self.provider}' không hỗ trợ (dùng 'agy' hoặc 'gemini').")
         if not self.api_key:
             raise ValueError(
                 f"❌ API key chưa được cấu hình!\n"
@@ -95,11 +118,16 @@ def load_config(config_path: Path | None = None) -> LLMConfig:
     else:
         config = LLMConfig()
     
-    # Override with env vars if present
+    # Override with env vars if present.
+    # Đổi provider thì reset model về default của provider mới.
+    env_provider = os.environ.get("COTHUONG_PROVIDER", "")
+    if env_provider and env_provider != config.provider:
+        config.provider = env_provider
+        config.model = DEFAULT_MODELS.get(env_provider, "")
+    
     env_key = os.environ.get("GEMINI_API_KEY", "")
     if env_key:
         config.api_key = env_key
-        config.provider = "gemini"
     
     env_model = os.environ.get("COTHUONG_MODEL", "")
     if env_model:

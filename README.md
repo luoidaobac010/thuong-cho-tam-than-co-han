@@ -30,16 +30,24 @@ Cung cấp CLI (Command Line Interface) cho người dùng cuối tương tác v
 ## 🚀 Các lệnh cần biết (Commands)
 
 ### 1. Cài đặt và cấu hình ban đầu
-Mở terminal tại thư mục project và chạy:
+Mặc định solver gọi model qua **Antigravity CLI (`agy`)**, đăng nhập bằng tài khoản Google, không cần API key:
 
 ```bash
-# 1. Cài đặt thư viện
-pip install -r requirements.txt
+# 1. Cài agy và đăng nhập (chạy agy 1 lần, làm theo hướng dẫn login)
+brew install --cask antigravity-cli
+agy
 
-# 2. Cấu hình API Key lần đầu (Nhập Google Gemini API Key khi được hỏi)
+# 2. (Tuỳ chọn) chọn model, xem danh sách bằng: agy models
 python solve.py --setup
 ```
-*(Bạn có thể lấy API Key miễn phí tại [Google AI Studio](https://aistudio.google.com/apikey))*
+
+Muốn dùng Gemini API key thay cho agy (fallback):
+```bash
+pip install -r requirements.txt
+python solve.py --provider gemini --api-key <KEY> -p "..."
+# hoặc: export COTHUONG_PROVIDER=gemini GEMINI_API_KEY=<KEY>
+```
+*(API Key lấy tại [Google AI Studio](https://aistudio.google.com/apikey))*
 
 ### 2. Cập nhật dữ liệu (Data Pipeline)
 Khi playlist trên YouTube có video buổi học mới, bạn cần chạy 2 lệnh sau để hệ thống "học" thêm kiến thức mới:
@@ -67,19 +75,23 @@ Chỉ cần **1 đường dẫn PDF**, hệ thống tự động chạy pipeline
 | Bước | Hành động | Chi tiết |
 |------|----------|----------|
 | **1. Extract** | Render PDF → ảnh PNG | Đọc đề bài chính xác từ ảnh |
-| **2. Search** | Tìm transcript buổi 1-5 | Xác định bài nào cô đã giải trên lớp |
+| **2. Search** | Tìm transcript buổi 1-9 | Xác định bài nào cô đã giải trên lớp |
 | **3. Solve** | Giải theo `@co-thuong-style` | Đúng ký hiệu, cách lập luận, format cô dạy |
 | **4. Output** | Tạo file `_solved.tex` | Cùng thư mục với PDF gốc |
 
 > ⚠️ Workflow này dựa trên transcript thực tế từ buổi giảng của cô, không phải AI đoán mò.
 
+> ℹ️ `/solve` chạy trong IDE (hoặc `agy` interactive) để duyệt từng lệnh. Chạy headless `agy -p "/solve ..."` sẽ **không ra kết quả**: workflow cần chạy lệnh shell (render PDF), headless tự từ chối nếu chưa cấp quyền `command(...)` trong `~/.gemini/antigravity-cli/settings.json`. Không nên dùng `--dangerously-skip-permissions` trên repo thật.
+
 #### Cách 2: CLI truyền thống (`solve.py`)
 
 **Giải nhanh một bài từ Terminal:**
 ```bash
-python solve.py --problem "Sắp xếp các hàm sau theo bậc tăng trưởng: n², 2^n, n·log(n), n!" --output bai_giai.tex
+python solve.py --problem "Sắp xếp các hàm sau theo bậc tăng trưởng: n², 2^n, n·log(n), n!" --output bai_giai.tex --pdf
 ```
-*(Kết quả sẽ được lưu vào file `bai_giai.tex`. Bạn dùng `pdflatex bai_giai.tex` để biên dịch ra PDF)*
+*(Lưu `bai_giai.tex`, thêm `--pdf` để biên dịch luôn ra `bai_giai.pdf` bằng [tectonic](https://tectonic-typesetting.github.io): `brew install tectonic`. Lần đầu tectonic tải package mất vài phút.)*
+
+**Chạy test** (offline, không tốn quota): `python3 -m unittest discover -s tests -t .`
 
 **Giải bài từ một file text chứa đề dài:**
 ```bash
@@ -129,4 +141,3 @@ thuong-cho-tam-than-co-han/
 ├── requirements.txt
 └── README.md
 ```
-
