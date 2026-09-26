@@ -1,7 +1,7 @@
 # BỘ ĐỀ THI MẪU CUỐI KỲ - MÔN PHÂN TÍCH THIẾT KẾ THUẬT TOÁN (CS112)
 **Giảng viên phụ trách:** TS. Huỳnh Thị Thanh Thương  
 **Thời lượng:** 90 phút | **Thang điểm:** 12.0 điểm (Phần 1: 6.0đ, Phần 2: 6.0đ)  
-**Quy chế:** Được sử dụng 01 tờ A4 (2 mặt) viết tay/in sẵn nội dung.
+**Quy chế:** Chỉ được sử dụng 01 tờ A4 viết tay (2 mặt), không dùng bản in hay photo.
 
 ---
 
