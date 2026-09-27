@@ -8,7 +8,7 @@ Dự án này sử dụng mô hình ngôn ngữ lớn (Google Gemini) kết hợ
 
 ## 🏗 Kiến trúc hệ thống (Architecture)
 
-Hệ thống được thiết kế theo mô hình **Pipeline 3 lớp (3-Tier Pipeline)**, tập trung vào việc tiền xử lý dữ liệu để làm ngữ cảnh (context) cho LLM thay vì sử dụng RAG/Vector DB phức tạp do lượng dữ liệu hiện tại (5 buổi học) là tương đối nhỏ gọn.
+Hệ thống được thiết kế theo mô hình **Pipeline 3 lớp (3-Tier Pipeline)**, tập trung vào việc tiền xử lý dữ liệu để làm ngữ cảnh (context) cho LLM thay vì sử dụng RAG/Vector DB phức tạp do lượng dữ liệu hiện tại (10 buổi học) là tương đối nhỏ gọn.
 
 ### 1. Lớp Dữ liệu (Data Layer) - `data/`
 Chịu trách nhiệm thu thập và cấu trúc hóa "hành vi" và "phong cách" của giảng viên:
@@ -75,7 +75,7 @@ Chỉ cần **1 đường dẫn PDF**, hệ thống tự động chạy pipeline
 | Bước | Hành động | Chi tiết |
 |------|----------|----------|
 | **1. Extract** | Render PDF → ảnh PNG | Đọc đề bài chính xác từ ảnh |
-| **2. Search** | Tìm transcript buổi 1-9 | Xác định bài nào cô đã giải trên lớp |
+| **2. Search** | Tìm transcript buổi 1-10 | Xác định bài nào cô đã giải trên lớp |
 | **3. Solve** | Giải theo `@co-thuong-style` | Đúng ký hiệu, cách lập luận, format cô dạy |
 | **4. Output** | Tạo file `_solved.tex` | Cùng thư mục với PDF gốc |
 
