@@ -7,10 +7,12 @@
 
 ## 1. Định nghĩa chuẩn toán học các ký hiệu tiệm cận (MANDATORY)
 
-> 🔴 **QUY TẮC CÔ THƯƠNG:** Khi chứng minh theo định nghĩa:
+> 🔴 **NGUYÊN TẮC KHI ĐỀ GHI "DÙNG ĐỊNH NGHĨA":**
 > - **KHÔNG** sử dụng giới hạn ($\lim$).
 > - **KHÔNG** sử dụng các định lý tắt / l'Hôpital nếu đề bài yêu cầu "dùng định nghĩa".
 > - Phải chỉ ra cặp hằng số thực sự tồn tại $(c, n_0)$ hoặc $(c_1, c_2, n_0)$ với $c, c_1, c_2 > 0$ và $n_0 \in \mathbb{N}$ sao cho bất đẳng thức nghiệm đúng với mọi $n \ge n_0$.
+>
+> *Ghi chú (27/9/2026):* bản trước gọi đây là "quy tắc cô Thương", nhưng trong transcript 9 buổi không có câu cô cấm lim. Đây là yêu cầu suy ra từ chữ "dùng định nghĩa" trong đề. Khi so sánh hay phân lớp hàm (không bắt dùng định nghĩa), cô có dạy cách dùng định lý giới hạn: lấy lim của $t(n)/g(n)$ khi $n \to \infty$, ra $0$, hằng số khác $0$, hay $\infty$ thì kết luận được hàm nào thuộc lớp nào (buổi 5).
 
 ### a. Ký hiệu $O$ (Big-O - Giới hạn trên tiệm cận / Asymptotic Upper Bound)
 $$f(n) \in O(g(n)) \iff \exists c > 0, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le f(n) \le c \cdot g(n)$$
