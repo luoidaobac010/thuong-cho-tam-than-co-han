@@ -5,7 +5,7 @@
 - **Tài liệu:** Sinh viên chỉ được phép sử dụng **duy nhất 01 tờ giấy A4 viết tay** (được viết cả mặt trước và mặt sau). Tuyệt đối không mang nhiều hơn.
 - **Gian lận:** Cô Thương chấm bài rất kỹ. Tuyệt đối không gian lận (sử dụng điện thoại, dùng AI để giải, hay xin ra ngoài đi toilet để tra tài liệu). Nếu bị phát hiện, bài thi lập tức 0 điểm và **toàn bộ môn học 0 điểm** (không cứu vớt).
 - **Mã giả (Pseudo-code):** Môn này là Thiết kế thuật toán, KHÔNG yêu cầu sinh viên phải viết code hoàn chỉnh bằng C++, Python hay Java. Các em chỉ cần trình bày bằng Mã giả. Nếu tự tin với ngôn ngữ lập trình thì có thể viết, nhưng Mã giả có đánh số bước, giải thích rõ ràng là đủ và an toàn nhất.
-- **Thang điểm:** Đề thi chia làm 2 phần: Phân tích (6 điểm) + Thiết kế (6 điểm) = Tổng 12 điểm. Tuy nhiên, có thể giải thêm để nhận điểm bonus (có thể lên 14-15 điểm). Nhưng làm được 10 điểm là đã quá xuất sắc.
+- **Thang điểm:** Đề thi chia làm 2 phần: Phân tích (6 điểm) + Thiết kế (7 điểm) = Tổng 13 điểm (theo buổi ôn cuối 26/9, buổi 9 cô còn nói 12 điểm). Tuy nhiên, có thể giải thêm để nhận điểm bonus (đáp án chấm tới 15 điểm). Nhưng làm được 10 điểm là đã quá xuất sắc.
 
 ---
 

@@ -47,14 +47,15 @@ while i < len(lines):
         i += 1
 check("A", "mọi bảng đủ cột", not bad_tables, str(bad_tables))
 check("A", "không em dash/en dash", "—" not in raw and "–" not in raw)
-for p in ["data/buoi9_clean.md", "scratch/build_exact_exam_docx.py",
+for p in ["data/buoi9_clean.md", "data/buoi10_clean.md", "scratch/build_exact_exam_docx.py",
           "bai_tap/Đề thi mẫu/2025/DethiCK.HK1.2025.2026 (TX.F31.CN2.TTNT).pdf",
           "bai_tap/Đề thi mẫu/Ôn Luyện/De_Thi_Mau_2025_Loi_Giai_Chi_Tiet.md",
           "bai_tap/Đề thi mẫu/Ôn Luyện/Cau1_Ky_Hieu_Tiem_Can_Va_Phan_Lop_Do_Phuc_Tap.md"]:
     check("A", f"tồn tại: {p[-45:]}", os.path.exists(os.path.join(REPO, p)))
 
 # ---------------- B. tham chiếu transcript ----------------
-T = {b: open(os.path.join(REPO, f"data/buoi{b}_clean.md"), encoding="utf-8").read().splitlines() for b in range(1, 10)}
+T = {b: open(os.path.join(REPO, f"data/buoi{b}_clean.md"), encoding="utf-8").read().splitlines() for b in range(1, 11)}
+REF_RE = r"\bb(10|[1-9]):(\d+)(?:-(\d+))?"   # b1..b10, b10 phải đứng trước để không bị đọc thành b1
 REF_KW = {  # ref -> từ khóa phải xuất hiện trong khoảng dòng
  "b1:191": ["bước ba"], "b1:211": ["n + 1"], "b1:223": ["n + 1"], "b1:499": ["lúc có lúc không"],
  "b1:187-195": ["năm bước"],
@@ -83,13 +84,49 @@ REF_KW = {  # ref -> từ khóa phải xuất hiện trong khoảng dòng
  "b9:57": ["9 10 điểm"], "b9:61": ["master"], "b9:67": ["quy hoạch động"], "b9:77-85": ["overlapping"],
  "b9:177-199": ["top down"], "b9:195": ["một vài bài toán con"], "b9:247": ["optimal substructure"], "b9:317": ["bonus"],
  "b9:441": ["tham lam"], "b9:443": ["chuỗi ma trận"], "b9:455": ["thứ bảy"], "b9:461": ["tô màu đồ thị"], "b9:465": ["điền số"],
+ # buổi 10 (ôn tập cuối 26/9) và các dòng buổi 3, 7 thêm cùng đợt
+ 'b3:45': ['x chia cho 1 - x tất cả bình'], 'b3:165-167': ['1 chia cho 1 - y'], 'b3:169': ['1 chia 1 - x bình'], 'b7:13': ['tháng 10'],
+ 'b10:1': ['nội dung nào cũng thi'], 'b10:1-3': ['cấu trúc của đề thi', 'chọn một trong hai', 'đều có hỏi'],
+ 'b10:1-5': ['chọn một trong hai', 'hàm sinh'], 'b10:3-5': ['tủ phương pháp tri hồi', 'đoán nghiệm'],
+ 'b10:23-173': ['optimal substructure', 'tô màu bản đồ', 'chọn hoạt động'], 'b10:23-43': ['optimal substructure', 'tối ưu cục bộ'],
+ 'b10:35-37': ['hy vọng', 'không chắc chắn'], 'b10:43-49': ['mô hình mã giả của tham lam', 'hợp lệ'],
+ 'b10:53-173': ['tô màu bản đồ', 'chọn hoạt động'], 'b10:53-107': ['tô màu bản đồ', 'bậc'], 'b10:61-69': ['ma trận kề', 'bảng màu'],
+ 'b10:73-75': ['không chắc chắn là ít nhất'], 'b10:83-89': ['thuộc tính', 'bậc cao nhất'], 'b10:89-107': ['bậc có đỉnh cao nhất', 'màu mới', '-1'],
+ 'b10:109-173': ['chọn hoạt động', 'hoàn thành sớm nhất'], 'b10:109-119': ['chọn hoạt động', 'tương thích', 'càng nhiều'],
+ 'b10:127-143': ['thuộc tính', 'hoàn thành sớm nhất'], 'b10:131-143': ['sáu phương án', 'cách chọn tệ', 'hoàn thành sớm nhất'],
+ 'b10:153-171': ['f tăng dần', 'hd j'], 'b10:153-157': ['f tăng dần', 'sắp xếp'], 'b10:171-173': ['đứa tối ưu nhất'],
+ 'b10:179-183': ['optimal substructure', 'overlapping', 'mã giả', 'minh họa'], 'b10:183-233': ['chuỗi ma trận', 'bản s'],
+ 'b10:189-191': ['bảng tên là m'], 'b10:201-211': ['lấy min', 'bằng 0'], 'b10:213-215': ['5 x 6', 'b4 = 3'], 'b10:215-219': ['đường chéo'],
+ 'b10:233': ['bản s'], 'b10:235-323': ['chuỗi con chung dài nhất', 'lcs', 'ô cuối'],
+ 'b10:237-247': ['khác với dãy con', 'subsequent', 'độ dài của cái chuỗi con này là 5'], 'b10:285-287': ['dẹp luôn'],
+ 'b10:291-297': ['cộng 1', 'bằng nhau'], 'b10:299': ['minh họa'], 'b10:303-315': ['rỗng'], 'b10:321': ['truy ngược', 'ô cuối'],
+ 'b10:323-325': ['ô chéo', 'khác nhau'],
+ 'b10:321-323': ['ô cuối', 'max value'], 'b10:325': ['một trong hai bài này', 'nhiều đề'],
+ 'b10:327': ['quá trình tính vào trong bài làm', 'chấm điểm'], 'b10:329': ['ví dụ cô đã hướng dẫn trên lớp', 'chép mấy công thức'],
+ 'b10:329-331': ['viết tay', 'không gõ máy', 'một tờ là một tờ'], 'b10:331': ['trong đề cô viết một tờ giấy', 'đề nộp đi rồi'],
+ 'b10:333': ['hàm sinh là trong đề có hỏi', 'không biết đề nào'], 'b10:333-341': ['hàm sinh', 'mũ 3', 'đạo hàm', 'bốn công thức'],
+ 'b10:335-337': ['đạo hàm'], 'b10:343-349': ['cấp số cộng', 'y bình', 'cấp số nhân'], 'b10:345-349': ['1/7', '6/7'],
+ 'b10:345': ['phương trình đại quy', 'cấp số nhân'], 'b10:351': ['đổi số'], 'b10:355-373': ['theta', '1/n'],
+ 'b10:357-365': ['chọn cái số thoải mái', 'nhỏ hơn 1'], 'b10:367': ['đúng hay sai thì em phải chứng minh'],
+ 'b10:371-373': ['không có chọn một con c1 cụ thể'], 'b10:375': ['hai hai đề'],
+ 'b10:375-377': ['hai hai đề', 'chứng minh tính chất', '80%', 'sắp xếp cái group'], 'b10:379-391': ['lời gọi đệ quy', 'điều kiện dừng', 'c2n bình'],
+ 'b10:383': ['mũi tên'], 'b10:389-391': ['điều kiện dừng', 'khỏi giải thích'], 'b10:391': ['trong cái đề cô ghi rất rõ'],
+ 'b10:391-395': ['giải thích tại sao phân loại', 'có điểm'], 'b10:393': ['tổ hợp chập'], 'b10:395-399': ['3 mũ log', 'đơn thức lớn nhất'],
+ 'b10:399': ['ghi chú trong đề', 'log 2'], 'b10:401-405': ['ước lượng cái phần mũ', '2 mũ 2n'], 'b10:407': ['phải là tn phải là gn'],
+ 'b10:407-413': ['phải là tn phải là gn', 'không điểm'], 'b10:407-417': ['phải là tn phải là gn', 'là một điểm'],
+ 'b10:409': ['thuộc r+', 'tập số tự nhiên', 'thiếu cái cụm này'], 'b10:411-413': ['không điểm', 'không có chấm'],
+ 'b10:413-415': ['c2 bằng 1 chia cho c1'], 'b10:417': ['là một điểm'], 'b10:417-419': ['định nghĩa của ký hiệu tiệm cận', 'tờ giấy'],
+ 'b10:419': ['master', 'for mkin', 'hình học'], 'b10:419-431': ['biến đổi để trị', 'hip short'],
+ 'b10:421-425': ['biến đổi để trị', 'bài toán q', 'đồng dạng'], 'b10:431-433': ['biến chất', 'nó là tham'], 'b10:433': ['không gặp lại'],
+ 'b10:437-439': ['13 điểm', 'lên tới 15', '8 điểm'], 'b10:437': ['sáu điểm phần phân tích, bảy điểm phần thiết kế'],
+ 'b10:439': ['tổng điểm 13', '10 điểm'], 'b10:445-447': ['học là sao thi y chang vậy đổi số', 'hên xui'], 'b10:449-451': ['sáu điểm', 'qua môn'],
 }
-refs_in_khung = sorted(set(re.findall(r"\bb[1-9]:\d+(?:-\d+)?", raw)))
+refs_in_khung = sorted({f"b{b}:{a}" + (f"-{z}" if z else "") for b, a, z in re.findall(REF_RE, raw)})
 missing_kw = [r for r in refs_in_khung if r not in REF_KW]
 check("B", "mọi tham chiếu trong khung đều có từ khóa để kiểm", not missing_kw, str(missing_kw))
 for r in refs_in_khung:
     if r not in REF_KW: continue
-    b, span = r[1], r.split(":")[1]
+    b, span = r[1:].split(":")
     a, z = (map(int, span.split("-")) if "-" in span else (int(span), int(span)))
     seg = N(" ".join(T[int(b)][a-1:z]))
     kw = [k for k in REF_KW[r] if N(k) not in seg]
@@ -101,11 +138,13 @@ for r in refs_in_khung:
 TOPIC_ASR = {"fourier-motzkin": ["for maskin", "for moskin", "for mkin"], "cây khung": ["cây khung"],
              "vạch thước": ["thước"], "fibonacci": ["fibonacci", "fibonaci", "fibonacy"], "chuỗi ma trận": ["chuỗi ma trận"],
              "tô màu đồ thị": ["tô màu"], "mã giả": ["mã giả"], "lưu đồ": ["lưu đồ"], "640": ["640"], "master": ["master"],
-             "viết tay": ["viết tay"], "chèn": ["chèn", "chàn"], "không đệ quy": ["không đệ quy", "không để quy", "không đề quy"]}
+             "viết tay": ["viết tay"], "chèn": ["chèn", "chàn"], "không đệ quy": ["không đệ quy", "không để quy", "không đề quy"],
+             "tô màu bản đồ": ["tô màu bản đồ"], "chọn hoạt động": ["chọn hoạt động"], "lcs": ["lcs"],
+             "biến đổi để trị": ["biến đổi để trị"], "13 điểm": ["13"], "hàm sinh": ["hàm sinh"], "hình học": ["hình học"]}
 topic_bad = []
 for ln_no, line in enumerate(raw.splitlines(), 1):
     for sent in re.split(r"(?<=[.!?])\s+|\s\|\s", line):
-        cites = re.findall(r"\bb([1-9]):(\d+)(?:-(\d+))?", sent)
+        cites = re.findall(REF_RE, sent)
         if not cites:
             continue
         segs = [" ".join(T[int(b)][int(a)-1:int(z or a)]) for b, a, z in cites]
@@ -196,6 +235,27 @@ mul = lambda a, b: [sum(a[i]*b[k-i] for i in range(k+1)) for k in range(NN)]
 geo = lambda a: [a**k for k in range(NN)]
 check("C", "hàm sinh Hà Nội x/((1−x)(1−2x))", mul(mul([0, 1]+[0]*(NN-2), geo(1)), geo(2))[1:] == [2**n-1 for n in range(1, NN)])
 check("C", "1/(1−x)² = Σ(n+1)xⁿ", mul(geo(1), geo(1)) == [n+1 for n in range(NN)])
+# Con số thêm từ buổi 10: hàm sinh thứ 3, 4, ví dụ cấp số nhân, nhân chuỗi ma trận và LCS cô chữa
+check("C", "x/(1−x)² = Σ n·xⁿ, 1/(1−x)³ = Σ C(n+2,2)xⁿ",
+      [0] + mul(geo(1), geo(1))[:NN-1] == list(range(NN)) and mul(mul(geo(1), geo(1)), geo(1)) == [math.comb(n+2, 2) for n in range(NN)]
+      and has("x/(1−x)² = Σ n·xⁿ", "1/(1−x)³ = Σ C(n+2, 2)·xⁿ"))
+check("C", "Σ_{k=0}^{i} (1/7)ᵏ = 7/6·(1 − (1/7)^(i+1))",
+      all(sum(Fr(1, 7)**k for k in range(i+1)) == Fr(7, 6)*(1 - Fr(1, 7)**(i+1)) for i in range(30)) and has("7/6·(1 − (1/7)^(i+1))"))
+bm = [5, 6, 7, 2, 3]; nm = len(bm) - 1
+Mm = {(i, i): 0 for i in range(1, nm+1)}
+for Lm in range(2, nm+1):
+    for i in range(1, nm-Lm+2):
+        j = i+Lm-1; Mm[(i, j)] = min(Mm[(i, k)] + Mm[(k+1, j)] + bm[i-1]*bm[k]*bm[j] for k in range(i, j))
+check("C", "nhân chuỗi ma trận b = 5,6,7,2,3: M12..M14",
+      [Mm[(1, 2)], Mm[(2, 3)], Mm[(3, 4)], Mm[(1, 3)], Mm[(2, 4)], Mm[(1, 4)]] == [210, 84, 42, 144, 120, 174]
+      and has("M12 = 210, M23 = 84, M34 = 42, M13 = 144, M24 = 120, M14 = 174"))
+def _lcs(x, y):
+    M = [[0]*(len(y)+1) for _ in range(len(x)+1)]
+    for i in range(1, len(x)+1):
+        for j in range(1, len(y)+1):
+            M[i][j] = M[i-1][j-1]+1 if x[i-1] == y[j-1] else max(M[i-1][j], M[i][j-1])
+    return M[-1][-1]
+check("C", "LCS(ACBADKT, CBADT) = 5", _lcs("ACBADKT", "CBADT") == 5 and has("LCS = CBADT dài 5"))
 lg3 = lg(3)
 F = {"f1": lambda k: lg(4*k+lg(k)), "f4": lambda k: k+4*lg(k), "f2": lambda k: 4*k/3, "f3": lambda k: 4*k-2,
      "f5": lambda k: 5*k**3, "f6": lambda k: 2**(k/2)/2*lg3, "f7": lambda k: k/2+2**k/2*lg3}
