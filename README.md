@@ -13,7 +13,7 @@ Hệ thống được thiết kế theo mô hình **Pipeline 3 lớp (3-Tier Pip
 ### 1. Lớp Dữ liệu (Data Layer) - `data/`
 Chịu trách nhiệm thu thập và cấu trúc hóa "hành vi" và "phong cách" của giảng viên:
 - **`download_subtitles.py`**: Tự động đồng bộ hóa với [Playlist YouTube bài giảng](https://youtube.com/playlist?list=PLapjV_I0Y4vU&si=3h00kxl1mFBHzblm). Script tải các auto-generated subtitle (`.vtt`), sau đó tự động clean timestamp, tag HTML để chuyển thành text thuần (`_clean.md`).
-- **`build_knowledge_base.py`**: Quét toàn bộ transcript (`.md`) và các bài mẫu LaTeX (`.tex`), chấm điểm mức độ liên quan (relevance score) dựa trên keyword để trích xuất các **Teaching Segments** (đoạn cô giảng/giải bài) và **LaTeX Examples**.
+- **`build_knowledge_base.py`**: Quét toàn bộ transcript (`.md`) và các bài mẫu LaTeX (`.tex`), trích mọi đoạn từ 100 ký tự thành **Teaching Segments** (đoạn cô giảng/giải bài) kèm điểm liên quan (relevance score) theo keyword để xếp hạng, và trích **LaTeX Examples**.
 - **`knowledge_base.json`**: Đầu ra của lớp dữ liệu. Một cơ sở dữ liệu tĩnh được LLM load trực tiếp vào RAM mỗi khi chạy.
 
 ### 2. Lớp Cốt lõi AI (AI Core Layer) - `core/`

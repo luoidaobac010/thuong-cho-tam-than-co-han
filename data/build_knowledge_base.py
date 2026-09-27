@@ -19,8 +19,11 @@ from pathlib import Path
 
 def extract_teaching_segments(md_path: Path) -> list[dict]:
     """
-    Trích xuất các đoạn giảng dạy có giá trị từ transcript.
-    Tập trung vào các đoạn cô giải thích khái niệm hoặc giải bài tập.
+    Trích xuất các đoạn giảng dạy từ transcript (mọi đoạn từ 100 ký tự).
+
+    relevance_score (số keyword giảng dạy chung) chỉ dùng để xếp hạng, không dùng
+    để lọc: lúc chữa bài cô ít dùng các từ này, lọc >= 2 từng bỏ 43/45 đoạn cô chữa
+    LCS (b10:235-323) và 27/33 đoạn chọn hoạt động (b10:109-173).
     """
     with open(md_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -51,21 +54,20 @@ def extract_teaching_segments(md_path: Path) -> list[dict]:
         if len(para.strip()) < 100:
             continue
 
-        # Check if paragraph contains teaching content
+        # Điểm liên quan, solver dùng để xếp hạng (core/solver.py)
         relevance_score = sum(
             1 for kw in teaching_keywords if kw in para_lower
         )
 
-        if relevance_score >= 2:
-            segments.append({
-                "buoi": buoi_num,
-                "paragraph_index": i,
-                "content": para.strip(),
-                "relevance_score": relevance_score,
-                "keywords_found": [
-                    kw for kw in teaching_keywords if kw in para_lower
-                ],
-            })
+        segments.append({
+            "buoi": buoi_num,
+            "paragraph_index": i,
+            "content": para.strip(),
+            "relevance_score": relevance_score,
+            "keywords_found": [
+                kw for kw in teaching_keywords if kw in para_lower
+            ],
+        })
 
     # Sort by relevance and keep top segments
     segments.sort(key=lambda x: x["relevance_score"], reverse=True)

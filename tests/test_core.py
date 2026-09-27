@@ -268,7 +268,8 @@ class RetrievalTest(unittest.TestCase):
         self.assertLessEqual(self.buoi("Chứng minh 3n^2+5n+2 thuộc Theta(n^2)"), {3, 4, 5})
 
     def test_dynamic_programming(self):
-        self.assertLessEqual(self.buoi("Giải bài toán cái túi bằng quy hoạch động"), {8, 9})
+        # Buổi 10 ôn lại quy hoạch động (b10:175-325)
+        self.assertLessEqual(self.buoi("Giải bài toán cái túi bằng quy hoạch động"), {8, 9, 10})
 
     def test_backtracking_english_maps_to_vietnamese(self):
         self.assertLessEqual(self.buoi("Solve N-Queens using backtracking"), {6, 7, 8})
