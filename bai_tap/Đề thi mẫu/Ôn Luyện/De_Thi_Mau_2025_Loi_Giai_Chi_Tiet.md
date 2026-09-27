@@ -131,6 +131,8 @@ Biểu thức: $A = 1 + 2 \times 3 + 4$ với $x_0=1, x_1=2, x_2=3, x_3=4$ và $
   - $k = 2$: $DP[1][2] + DP[3][3] = 6 + 4 = 10$
   $\implies DP[1][3] = \max(14, 10) = 14$ (với $k = 1$).
 
+> **Lưu ý (27/9/2026):** phương trình trên chỉ lưu giá trị lớn nhất nên đúng khi mọi $x_i \ge 0$, như biểu thức $A$ và 2 ví dụ trong đề. Đề ghi "số thực" nên có thể có số âm, khi đó lớn nhất × lớn nhất chưa chắc lớn nhất (âm × âm ra dương). Phải lưu thêm $MIN[i][j]$ và xét cả 4 tích: với $o_k = +$ lấy $MAX[i][k] + MAX[k+1][j]$ (và $MIN + MIN$ cho bảng $MIN$), với $o_k = \times$ lấy lớn nhất và nhỏ nhất trong 4 tích $\{MAX, MIN\}[i][k] \times \{MAX, MIN\}[k+1][j]$. Ví dụ $2 \times (-1) \times (-3) + 3 \times (-4)$: đáp án đúng là $30 = 2 \times ((-1) \times ((-3) + 3 \times (-4)))$, nhưng chỉ lưu max thì ra $0$.
+
 ### c. Ý tưởng truy xuất lời giải tối ưu:
 - **Xác định giá trị lớn nhất:** Tra ô $DP[0][n]$.
 - **Truy vết dấu ngoặc:** Lưu vết $trace[i][j] = k$ tại điểm chia tối ưu. Dùng hàm đệ quy `Print_Parens(trace, i, j)` in dấu mở ngoặc `(`, gọi đệ quy nửa trái `(i, k)`, in toán tử $o_k$, gọi đệ quy nửa phải `(k+1, j)`, và in dấu đóng ngoặc `)`.
