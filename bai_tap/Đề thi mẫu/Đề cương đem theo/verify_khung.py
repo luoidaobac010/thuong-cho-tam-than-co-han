@@ -64,6 +64,7 @@ REF_KW = {  # ref -> từ khóa phải xuất hiện trong khoảng dòng
  "b4:407": ["rất nhiều lần"], "b4:413": ["ký hiệu khác"], "b4:417-429": ["k = c + d"],
  "b7:299-401": ["lấy đề thi ra giải", "không dùng phương pháp root for", "sort ban đầu", "tập hợp s1"],
  "b9:63": ["for maskin"], "b6:13": ["for moskin"],
+ "b9:1": ["viết tay"], "b7:447-449": ["chèn", "vị trí"],
  "b4:319": ["thế n"], "b4:321": ["nhóm hàm nhỏ"], "b4:325": ["không có điểm"], "b4:327": ["giữ lại"], "b4:339": ["cơ số"], "b4:345": ["cơ số 2"],
  "b5:103-111": ["giới hạn"], "b5:127-157": ["quy tắc cộng", "quy tắc nhân"], "b5:153-155": ["không cần đếm chính xác"], "b5:265-267": ["input"], "b5:349-383": ["radio"],
  "b5:417-451": ["đường thẳng"], "b6:7-11": ["nửa mặt phẳng", "miền chấp nhận được"], "b7:401": ["hai bài toán con trở lên"], "b9:53-55": ["câu c"],
@@ -99,7 +100,8 @@ for r in refs_in_khung:
 # các dẫn chứng của chính câu đó phải có ít nhất 1 dòng nhắc T (theo cách ASR ghi, vd "for maskin").
 TOPIC_ASR = {"fourier-motzkin": ["for maskin", "for moskin", "for mkin"], "cây khung": ["cây khung"],
              "vạch thước": ["thước"], "fibonacci": ["fibonacci", "fibonaci", "fibonacy"], "chuỗi ma trận": ["chuỗi ma trận"],
-             "tô màu đồ thị": ["tô màu"], "mã giả": ["mã giả"], "lưu đồ": ["lưu đồ"], "640": ["640"], "master": ["master"]}
+             "tô màu đồ thị": ["tô màu"], "mã giả": ["mã giả"], "lưu đồ": ["lưu đồ"], "640": ["640"], "master": ["master"],
+             "viết tay": ["viết tay"], "chèn": ["chèn", "chàn"], "không đệ quy": ["không đệ quy", "không để quy", "không đề quy"]}
 topic_bad = []
 for ln_no, line in enumerate(raw.splitlines(), 1):
     for sent in re.split(r"(?<=[.!?])\s+|\s\|\s", line):

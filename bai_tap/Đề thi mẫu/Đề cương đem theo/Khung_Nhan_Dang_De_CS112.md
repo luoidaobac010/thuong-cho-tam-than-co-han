@@ -23,7 +23,7 @@ Kiểm lại khung sau khi sửa: từ gốc repo chạy `.venv/bin/python "bai_
 
 ## 1. Mẹo chung trong phòng thi (có căn cứ)
 
-- Chỉ 1 tờ A4 viết tay, dùng cả 2 mặt (b9:3).
+- Chỉ 1 tờ A4 viết tay (b9:1), dùng cả 2 mặt (b9:3).
 - Đề ghi 12 điểm, thực tế chấm tới 14-15 điểm. Ý nào không biết thì bỏ qua (b9:15, b9:49). Cô nói làm tốt khoảng nửa đề là có thể được 9-10 (b9:57).
 - Khi nói về phần tự luận, cô nói câu đang chiếu được chia nhiều ý, "mấy cái câu C này là câu bonus", làm tốt 2 ý trên đã đủ điểm câu đó (b9:53-55). Transcript không cho biết đó là câu nào, nên đừng mặc định ý c ở mọi câu đều là bonus.
 - Làm bài trên đề, chỗ trống ít: nháp ra ngoài rồi mới viết vào (b9:35). Thiếu chỗ thì kẻ đôi trang, viết 2 cột (b9:29).
@@ -146,7 +146,7 @@ Trong đề thật duy nhất có trong repo, đa số câu ghi thẳng tên ph�
 | "Quy hoạch động", "Dynamic Programming", "DP[i][j]", "điền bảng", "dãy con tăng", "dấu ngoặc", "chuỗi ma trận", "tổ hợp chập" | QHĐ | Fibonacci (b8:119), LIS (từng thi, b8:307), C(n,k) top-down và bottom-up (b9:177-199), đặt ngoặc +× (HK1), nhân chuỗi ma trận (b9:443) |
 | "Tham lam", "Greedy", "có thể chia nhỏ", "được chia nhỏ (tách ra)", "lấy một phần xᵢ", "phân số" | Tham lam | Ba lô phân số (HK1 Câu 6). Cô có nhắc bài tham lam kiểu "phân công việc", "tô màu đồ thị" (b9:461), đề cụ thể chưa rõ |
 | "Chia để trị", "Divide and Conquer", "chia đôi", từ 2 bài toán con trở lên (b7:401) | Chia để trị | MergeSort (b7:259-263), vạch thước (b8:47-67), sắp hạng các điểm trong mặt phẳng khi đề cấm brute force (đề thi cũ cô chữa: sort theo hoành độ, chia 2 tập, giải đệ quy từng tập, b7:299-401) |
-| "Giảm để trị", "Decrease and Conquer", "bỏ bớt một phần tử", chỉ 1 bài toán con | Giảm để trị | Hoán vị bằng cách chèn (b7:421-437). Phân biệt với chia để trị: b8:137 |
+| "Giảm để trị", "Decrease and Conquer", "bỏ bớt một phần tử", chỉ 1 bài toán con | Giảm để trị | Hoán vị bằng cách chèn phần tử mới vào mọi vị trí của các hoán vị cũ (b7:421-437, cách chèn ở b7:447-449). Phân biệt với chia để trị: b8:137 |
 | "theo 02 cách ... so sánh", "dùng một cách giải khác" | 2 chiến lược | HK1 Câu 4, đề cũ ở b7:497 |
 | "hàm mục tiêu", "ràng buộc", "phương án sản xuất", 2 biến | Tối ưu bằng hình học (b5:407-451) | Bài radio (số liệu ở b5:349-383): max 30x₁ + 20x₂ với x₁ ≤ 60, x₂ ≤ 75, 10x₁ + 8x₂ ≤ 800. Tối ưu tại giao điểm đường 1 và đường 3 (b5:451), mình tính ra (60, 25), lãi 2300 |
 
