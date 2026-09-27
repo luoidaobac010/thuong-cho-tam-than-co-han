@@ -150,6 +150,23 @@ BAI_KEYWORDS = {
     "lcs": ["dãy con chung", "chuỗi con chung", "xâu con chung", "lcs", "longest common"],
 }
 
+# Chiến lược cô dùng khi chữa từng bài trong BAI_KEYWORDS
+BAI_STRATEGY = {
+    "chon_hoat_dong": "tham_lam", "to_mau": "tham_lam",
+    "nhan_chuoi_ma_tran": "qhd", "lcs": "qhd",
+}
+# Tên chiến lược mà đề hay ghi. Đề ghi chiến lược mà không có chiến lược cô dùng cho bài
+# (vd "tô màu đồ thị bằng quay lui") thì không ưu tiên đoạn cô chữa bài đó.
+# simplify: đề dùng bài làm ví dụ cho chiến lược khác (vd "chọn hoạt động bằng quy hoạch
+# động", "LCS bằng quay lui") cũng mất ưu tiên bài. Nâng cấp nếu cần: hạ bài xuống sau chủ đề
+# thay vì bỏ hẳn. Không có chữ "vét cạn": đề MCM hay so vét cạn với QHĐ.
+STRATEGY_NAMES = {
+    "tham_lam": ["tham lam", "greedy"],
+    "qhd": ["quy hoạch động", "dynamic programming"],
+    "quay_lui": ["quay lui", "backtrack"],
+    "chia_de_tri": ["chia để trị", "giảm để trị", "divide and conquer", "decrease and conquer"],
+}
+
 
 class CoThuongSolver:
     """
@@ -438,10 +455,15 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
             topic for topic, words in TOPIC_KEYWORDS.items()
             if any(w in problem_lower for w in words)
         ]
-        # Bài cô chữa nào được đề nhắc tới
+        # Bài cô chữa nào được đề nhắc tới, bỏ bài mà đề ghi làm bằng chiến lược khác
+        asked = {
+            s for s, names in STRATEGY_NAMES.items()
+            if any(n in problem_lower for n in names)
+        }
         matched_bai = [
-            words for words in BAI_KEYWORDS.values()
+            words for bai, words in BAI_KEYWORDS.items()
             if any(w in problem_lower for w in words)
+            and (not asked or BAI_STRATEGY[bai] in asked)
         ]
         bai_words = {w for words in matched_bai for w in words}
 

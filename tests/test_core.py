@@ -332,6 +332,22 @@ class RetrievalTest(unittest.TestCase):
             "Tìm cách đặt ngoặc sao cho số phép nhân vô hướng ít nhất.",
             [(9, 323, 443), (10, 183, 233)])
 
+    def test_other_strategy_skips_lesson(self):
+        # Mục "Dạng 9: tô màu đồ thị" trong tài liệu quay lui: cô chữa tô màu bằng tham lam
+        # (b10:51-107), đề hỏi quay lui thì phải lấy đoạn dạy quay lui (buổi 6-8)
+        got = self.lines("Tô màu đồ thị bằng quay lui (m-coloring): mỗi đỉnh 1 trong m màu, "
+                         "hai đỉnh kề khác màu")
+        self.assertEqual(len(got), 3)
+        self.assertFalse([x for x in got if x[0] == 10 and 51 <= x[1] <= 107], got)
+        self.assertLessEqual({b for b, _ in got}, {6, 7, 8})
+        # Đề ghi đúng chiến lược cô dùng thì vẫn lấy bài cô chữa
+        self.assert_from_lesson("Tô màu đồ thị bằng thuật toán tham lam, dùng ít màu nhất",
+                                [(10, 51, 107)])
+
+    def test_every_lesson_has_strategy(self):
+        self.assertEqual(set(solver_mod.BAI_STRATEGY), set(solver_mod.BAI_KEYWORDS))
+        self.assertLessEqual(set(solver_mod.BAI_STRATEGY.values()), set(solver_mod.STRATEGY_NAMES))
+
     def test_square_matrix_product_is_not_matrix_chain(self):
         # "ma trận" không phải tên bài: câu đếm phép nhân 2 ma trận vuông không lấy bài nhân chuỗi ma trận
         got = self.lines("Đếm số phép nhân của giải thuật nhân hai ma trận vuông A, B kích thước n x n")
