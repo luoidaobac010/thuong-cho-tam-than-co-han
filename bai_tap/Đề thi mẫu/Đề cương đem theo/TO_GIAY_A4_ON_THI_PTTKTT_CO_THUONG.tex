@@ -43,6 +43,9 @@
 \pagestyle{empty}
 
 \begin{document}
+% Thu khoảng trống quanh công thức hiển thị cho vừa 2 trang (phải đặt sau \begin{document}, cỡ chữ đặt lại các giá trị này)
+\setlength{\abovedisplayskip}{2pt}\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{1pt}\setlength{\belowdisplayshortskip}{1pt}
 
 % ==========================================
 % TRANG 1: MẶT 1 (KÝ HIỆU TIỆM CẬN & PHÂN TÍCH THUẬT TOÁN)
@@ -56,7 +59,7 @@
 \begin{multicols*}{2}
 
 \mysec{1. ĐỊNH NGHĨA TOÁN HỌC KÝ HIỆU TIỆM CẬN}
-\textbf{[!] Bắt buộc ghi đủ lượng từ ($\exists, \forall, \in \mathbb{R}^+, \in \mathbb{N}$), KHÔNG dùng lim:}
+\textbf{[!] Ghi đủ lượng từ ($\exists, \forall, \in \mathbb{R}^+, \in \mathbb{N}$), luôn viết $T(n), g(n)$. Suy ra từ định nghĩa mà thiếu cụm $\exists c, \exists n_0, \forall n \ge n_0$ (vd $T(n) \in O(g(n)) \implies T(n) \le c \cdot g(n)$) là 0 điểm cả câu:}
 \begin{itemize}
   \item \textbf{Big-O ($O$):} $f(n) \in O(g(n)) \iff \exists c \in \mathbb{R}^+, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le f(n) \le c \cdot g(n)$.
   \item \textbf{Big-Omega ($\Omega$):} $f(n) \in \Omega(g(n)) \iff \exists c \in \mathbb{R}^+, \exists n_0 \in \mathbb{N}, \forall n \ge n_0: 0 \le c \cdot g(n) \le f(n)$.
@@ -85,19 +88,25 @@
 \mysec{3. CÁC BÀI CHỨNG MINH ĐỊNH NGHĨA KINH ĐIỂN}
 \begin{itemize}
   \item \textbf{$f+g \in O(\max(f, g))$:} $f+g \le 2\max(f, g) \implies c=2, n_0=1$.
+  \item \textbf{$T_1 \in O(f), T_2 \in O(g) \implies T_1+T_2 \in O(\max(f, g))$:} 2 giả thiết lấy hằng số khác tên $(c_1, n_1), (c_2, n_2)$. Chọn $c = c_1 + c_2, n_0 = \max(n_1, n_2)$.
+  \item \textbf{Hạng tử âm ở vế bị so sánh (vd $7n^2 \in O(n^2 - 80n)$):} chọn $c$ lớn hơn hệ số, $7n^2 \le 8(n^2 - 80n) \iff n \ge 640 \implies c = 8, n_0 = 640$.
   \item \textbf{$(n+a)^b \in \Theta(n^b)$ ($b>0$):} Xét $n \ge 2|a| \implies n/2 \le n+a \le 2n \implies (1/2)^b n^b \le (n+a)^b \le 2^b n^b \implies c_1=(1/2)^b, c_2=2^b, n_0=\lceil 2|a| \rceil$.
   \item \textbf{$\log(n!) \in \Theta(n \log n)$:} Có $n! \le n^n \implies \log(n!) \le n\log n$. Mặt khác $n! \ge (n/2)^{n/2} \implies \log(n!) \ge \frac{1}{4}n\log n$ ($\forall n \ge 4$). Chọn $c_1=1/4, c_2=1, n_0=4$.
 \end{itemize}
 
 \mysec{4. CHUỖI PHÂN LỚP BIG-O \& CÔNG THỨC BIẾN ĐỔI}
 \textbf{Chuỗi chuẩn tăng dần:}
-$$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \prec n \log n \prec n^2 \prec n^k \prec a^{\sqrt{n}} \prec a^n \prec n! \prec n^n$$
+\begin{gather*}
+1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \prec n \log n \\
+\prec n^2 \prec n^k \prec a^{\sqrt{n}} \prec a^n \prec n! \prec n^n
+\end{gather*}
 \textbf{Công thức biến đổi đưa về dạng chuẩn:}
 \begin{itemize}
   \item $a^{\log_b n} = n^{\log_b a}$ (Vd: $4^{\log_2 n} = n^{\log_2 4} = n^2$).
-  \item $\sqrt{a^b} = a^{b/2}$ (Vd: $\sqrt{3^{\sqrt{n}}} = 3^{\frac{\sqrt{n}}{2}}$); $\sqrt{n} \cdot 3^{n/2} = \sqrt{n}(\sqrt{3})^n$.
-  \item $\sum_{i=1}^n i = \frac{n(n+1)}{2} = \Theta(n^2)$; $\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} = \Theta(n^3)$.
+  \item $\sqrt{a^b} = a^{b/2}$ (Vd: $\sqrt{3^{\sqrt{n}}} = 3^{\frac{\sqrt{n}}{2}}$), $\sqrt{n} \cdot 3^{n/2} = \sqrt{n}(\sqrt{3})^n$.
+  \item $\sum_{i=1}^n i = \frac{n(n+1)}{2} = \Theta(n^2)$, $\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} = \Theta(n^3)$.
   \item $\sum_{i=1}^n \sum_{j=1}^n (i \cdot j) = [\frac{n(n+1)}{2}]^2 = \frac{n^4+2n^3+n^2}{4} = \Theta(n^4)$.
+  \item Cấp số nhân: $\sum_{i=0}^{k} a^i = \frac{a^{k+1}-1}{a-1}$ ($a \ne 1$).
 \end{itemize}
 
 \mysec{5. PHÂN TÍCH THUẬT TOÁN LẶP \& THÁP HÀ NỘI}
@@ -107,7 +116,8 @@ $$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \pre
     $$\begin{cases} T(1) = 1 & \text{(chuyển 1 đĩa trực tiếp } A \to C) \\ T(n) = 2T(n-1) + 1 & (n > 1: A \to B, A \to C, B \to C) \end{cases}$$
 \end{itemize}
 
-\mysec{6. BỘ 3 PHƯƠNG PHÁP GIẢI PT ĐỆ QUY (CẤM MASTER)}
+\columnbreak
+\mysec{6. BỘ 3 CÁCH GIẢI PT ĐỆ QUY (MASTER KHÔNG THI)}
 \textbf{Giải hệ thức Tháp Hà Nội: $T(1)=1, T(n)=2T(n-1)+1$:}
 \begin{enumerate}
   \item \textbf{Phương pháp 1: Thế ngược (Backward Substitution):}
@@ -124,9 +134,12 @@ $$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \pre
   \end{itemize}
   \item \textbf{Phương pháp 3: Hàm sinh (Generating Functions):}
   \begin{itemize}
-    \item Đặt $G(x) = \sum_{n=1}^\infty T_n x^n$. Nhân $x^n$ vào $T_n - 2T_{n-1} = 1$ và lấy tổng $\sum_{n=2}^\infty$:
-      $$(G(x) - T_1 x) - 2x G(x) = \frac{x^2}{1-x} \implies G(x)(1-2x) = \frac{x}{1-x}$$
-    \item Tách phân thức: $G(x) = \frac{x}{(1-x)(1-2x)} = \frac{1}{1-2x} - \frac{1}{1-x} = \sum_{n=0}^\infty (2^n - 1)x^n \implies T_n = 2^n - 1 \implies O(2^n)$.
+    \item Đặt $G(x) = \sum T_n x^n$, nhân $x^n$ vào 2 vế, lấy tổng, rút $G(x)$, tách phân thức rồi đọc hệ số của $x^n$.
+    \item 4 công thức: $\frac{1}{1-x} = \sum_{n \ge 0} x^n$, $\frac{1}{(1-x)^2} = \sum_{n \ge 0} (n+1) x^n$, $\frac{x}{(1-x)^2} = \sum_{n \ge 0} n x^n$, $\frac{1}{(1-x)^3} = \sum_{n \ge 0} \frac{(n+1)(n+2)}{2} x^n$. Thay $x$ bằng $ax$: $\frac{1}{1-ax} = \sum_{n \ge 0} a^n x^n$. Quên thì đạo hàm 2 vế công thức trước.
+    \item Vd Hà Nội: $G(x) = \sum_{n \ge 1} T_n x^n$. Nhân $x^n$ vào $T_n - 2T_{n-1} = 1$ rồi lấy tổng $n \ge 2$:
+      $$(G(x) - T_1 x) - 2x G(x) = \frac{x^2}{1-x}$$
+      $$\implies G(x) = \frac{x}{(1-x)(1-2x)} = \frac{1}{1-2x} - \frac{1}{1-x}$$
+      $\implies T_n = 2^n - 1 \implies O(2^n)$.
   \end{itemize}
 \end{enumerate}
 
@@ -152,33 +165,45 @@ $$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \pre
   \item \textbf{B4 (Truy vết):} Dùng bảng vết $trace[i][j]=k$ (hoặc $S[i]$) để in nghiệm.
 \end{itemize}
 
-\mysec{2. CÔNG THỨC 5 BÀI TOÁN QUY HOẠCH ĐỘNG}
+\mysec{2. CÔNG THỨC 6 BÀI TOÁN QUY HOẠCH ĐỘNG}
 \begin{itemize}
   \item \textbf{(1) Đặt dấu ngoặc biểu thức số thực ($x_0 o_0 x_1 \dots x_n$):}
-    $$DP[i][i] = x_i; \quad DP[i][j] = \max_{i \le k < j} \{ DP[i][k] \circ_k DP[k+1][j] \}$$
+    $$DP[i][i] = x_i, \quad DP[i][j] = \max_{i \le k < j} \{ DP[i][k] \circ_k DP[k+1][j] \}$$
     Bảng vết $trace[i][j]=k$. Giá trị lớn nhất: $DP[0][n]$.
-  \item \textbf{(2) Dãy con tăng dài nhất (LIS - Buổi 8):}
+    \textbf{Có số âm:} lưu cả $MAX[i][j]$ và $MIN[i][j]$. Phép $+$: $MAX = MAX + MAX$, $MIN = MIN + MIN$. Phép $\times$: $MAX$ (và $MIN$) là max (và min) của 4 tích $MAX \cdot MAX, MAX \cdot MIN, MIN \cdot MAX, MIN \cdot MIN$ của 2 nửa.
+  \item \textbf{(2) Dãy con tăng dài nhất (LIS - Buổi 8):} $M[i]$ là độ dài dãy con tăng dài nhất kết thúc tại $a_i$, cơ sở $M[i] = 1$.
     $$M[i] = 1 + \max_{0 \le j < i, a_j < a_i} \{ M[j] \}, \quad S[i] = j^*$$
     Kết quả: $L_{max} = \max_{0 \le i < n} M[i]$ (ô lớn nhất mảng $M$, không phải ô cuối).
   \item \textbf{(3) Nhân chuỗi ma trận (MCM):}
-    $$m[i][i] = 0; \quad m[i][j] = \min_{i \le k < j} \{ m[i][k] + m[k+1][j] + p_{i-1}p_kp_j \}$$
+    $$m[i][i] = 0, \quad m[i][j] = \min_{i \le k < j} \{ m[i][k] + m[k+1][j] + p_{i-1}p_kp_j \}$$
     Bảng vết $s[i][j]=k$. Độ phức tạp: $O(n^3)$ thời gian, $O(n^2)$ bộ nhớ.
-  \item \textbf{(4) Tính tổ hợp $C_n^k$ / Pascal:} $C[i][0]=1, C[i][i]=1$; $C[i][j] = C[i-1][j-1] + C[i-1][j]$.
-  \item \textbf{(5) Cái túi 0/1 (Knapsack):} $DP[i][w] = \max(DP[i-1][w], DP[i-1][w-w_i] + v_i)$ khi $w_i \le w$; ngược lại bằng $DP[i-1][w]$.
+  \item \textbf{(4) Tính tổ hợp $C_n^k$ / Pascal:} $C[i][0]=1, C[i][i]=1$, $C[i][j] = C[i-1][j-1] + C[i-1][j]$. Top-down có ghi nhớ chỉ điền ô cần tới, ô được ghi khi lời gọi trả về: $C(3,2)$ điền lần lượt $C(1,0), C(1,1), C(2,1), C(2,2), C(3,2)$.
+  \item \textbf{(5) Cái túi 0/1 (Knapsack):} $DP[i][w] = \max(DP[i-1][w], DP[i-1][w-w_i] + v_i)$ khi $w_i \le w$, ngược lại bằng $DP[i-1][w]$.
+  \item \textbf{(6) Dãy con chung dài nhất LCS ($|X| = n, |Y| = m$):} $M[i][j]$ là độ dài LCS của $X[1..i]$ và $Y[1..j]$, cơ sở $M[i][0] = M[0][j] = 0$.
+    $$M[i][j] = \begin{cases} M[i-1][j-1] + 1 & x_i = y_j \\ \max(M[i-1][j], M[i][j-1]) & x_i \ne y_j \end{cases}$$
+    Đáp án ở ô cuối $M[n][m]$, không lấy max cả bảng. Truy vết từ ô cuối: bằng nhau thì ghi ký tự rồi đi chéo, khác nhau thì đi về ô lớn hơn.
 \end{itemize}
 
 \mysec{3. THAM LAM (GREEDY) - BA LÔ PHÂN SỐ}
 \begin{itemize}
   \item \textbf{Mô hình hóa:} $\max \sum p_i x_i$ thỏa $\sum w_i x_i \le M, 0 \le x_i \le 1$.
   \item \textbf{Chiến lược:} Tính đơn giá $v_i = p_i/w_i$, sắp xếp giảm dần.
-  \item \textbf{Mã giả:} Nếu $w_i \le cap \implies x_i = 1.0, cap -= w_i$; Ngược lại $x_i = cap/w_i, cap = 0$. Độ phức tạp: $O(n\log n)$.
+  \item \textbf{Mã giả:}
+  \begin{enumerate}
+    \item Tính $v[i] = p[i]/w[i]$, sắp xếp đồ vật theo $v[i]$ giảm dần. Gán $cap = M$, $max\_p = 0$.
+    \item Với $i = 1..n$: nếu $cap = 0$ thì dừng.
+    \item Nếu $w[i] \le cap$: $x[i] = 1$, $cap = cap - w[i]$, $max\_p = max\_p + p[i]$.
+    \item Ngược lại: $x[i] = cap/w[i]$, $max\_p = max\_p + p[i] \cdot x[i]$, $cap = 0$.
+    \item Trả về $(x, max\_p)$. Độ phức tạp: $O(n\log n)$ do bước sắp xếp.
+  \end{enumerate}
 \end{itemize}
 
+\columnbreak
 \mysec{4. KHUNG QUAY LUI (BACKTRACKING) \& WECODE}
 \textbf{Khung mã giả Quay lui chuẩn:}
 \begin{enumerate}
   \item Với mỗi $v \in S_k$: Nếu $IsValid(v, k, State)$ thì:
-  \item Gán $X[k] = v$; Cập nhật $State$.
+  \item Gán $X[k] = v$, cập nhật $State$.
   \item Nếu $k == n$ thì: In nghiệm $X[1..n]$.
   \item Ngược lại: Gọi đệ quy $Backtrack(k+1, n, State)$.
   \item Hoàn tác $State$ (\textbf{Quay lui / Undo}).
@@ -191,8 +216,8 @@ $$1 \prec \log \log n \prec \log n \prec \log^k n \prec \sqrt[c]{n} \prec n \pre
   \item \textbf{3. Tách chuỗi đối xứng (Palindrome):} Cắt $S[start..end]$, nếu $IsPalindrome \implies$ thêm vào list, đệ quy $end+1$, quay lui xóa phần tử cuối. $O(n \cdot 2^n)$.
   \item \textbf{4. Tìm từ trong ô chữ (Word Search):} DFS 4 hướng, gán tạm $Board[r][c] = '\#'$ để đánh dấu, quay lui trả lại ký tự cũ. $O(M \cdot N \cdot 4^L)$.
   \item \textbf{5. Giải Sudoku 9x9:} Thử điền $1..9$ vào ô trống, kiểm tra Hàng, Cột, Khối $3 \times 3$, quay lui $Board[r][c]=0$. $O(9^{81})$.
-  \item \textbf{6. Sinh hoán vị:} Dùng $X[1..n]$ và $used[1..n]$. Quay lui $O(n \cdot n!)$, bộ nhớ $O(n)$. So với Giảm để trị tốn $O(n \cdot n!)$ RAM.
-  \item \textbf{7. Dò mìn (Minesweeper):} Click trúng $'M' \to 'X'$; ô có mìn lân cận $\to$ ghi số; ô rỗng $\to 'B'$ và lan truyền đệ quy 8 hướng. $O(M \cdot N)$.
+  \item \textbf{6. Sinh hoán vị:} Dùng $X[1..n]$ và $used[1..n]$. Quay lui $O(n \cdot n!)$, bộ nhớ $O(n)$. So với Giảm để trị (chèn $a_n$ vào mọi vị trí của các hoán vị $n-1$ phần tử) tốn $O(n \cdot n!)$ RAM.
+  \item \textbf{7. Dò mìn (Minesweeper):} Click trúng $'M' \to 'X'$, ô có mìn lân cận $\to$ ghi số, ô rỗng $\to 'B'$ và lan truyền đệ quy 8 hướng. $O(M \cdot N)$.
   \item \textbf{8. Mã đi tuần (Knight's Tour):} 8 hướng $(\pm 1, \pm 2), (\pm 2, \pm 1)$. $Board[u][v] = step + 1$, hoàn tác gán 0. Warnsdorff: ưu tiên ô có bậc đi tiếp nhỏ nhất. $O(8^{n^2})$.
   \item \textbf{9. N-Queens:} 3 mảng đánh dấu: $col[j], diag_1[i+j], diag_2[i-j+n]$. $O(n!)$.
   \item \textbf{10. Tô màu đồ thị:} Thử màu $1..M$ cho đỉnh $u$, kiểm tra không trùng màu đỉnh kề, đệ quy $u+1$, hoàn tác gán 0. $O(M^n)$.
