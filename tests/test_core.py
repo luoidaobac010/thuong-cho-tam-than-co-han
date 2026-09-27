@@ -264,6 +264,19 @@ class RetrievalTest(unittest.TestCase):
     def buoi(self, problem):
         return {seg["buoi"] for seg in self.s._find_relevant_segments(problem)}
 
+    def lines(self, problem):
+        # Mỗi đoạn trong buoi*_clean.md là 1 dòng, các đoạn cách nhau 1 dòng trống
+        return [(seg["buoi"], 2 * seg["paragraph_index"] + 1)
+                for seg in self.s._find_relevant_segments(problem)]
+
+    def assert_from_lesson(self, problem, ranges):
+        """Cả 3 đoạn phải nằm trong phần cô chữa bài đó: ranges = [(buổi, dòng đầu, dòng cuối)]."""
+        got = self.lines(problem)
+        self.assertEqual(len(got), 3)
+        for buoi, line in got:
+            self.assertTrue(any(buoi == b and lo <= line <= hi for b, lo, hi in ranges),
+                            f"b{buoi}:{line} không thuộc {ranges}")
+
     def test_asymptotic(self):
         self.assertLessEqual(self.buoi("Chứng minh 3n^2+5n+2 thuộc Theta(n^2)"), {3, 4, 5})
 
@@ -276,6 +289,54 @@ class RetrievalTest(unittest.TestCase):
 
     def test_greedy(self):
         self.assertLessEqual(self.buoi("Thuật toán tham lam cho ba lô phân số"), {7, 8, 9})
+
+    def test_activity_selection_uses_lesson(self):
+        # Chép từ đề dự thảo buổi 9, Bài toán 3.2
+        self.assert_from_lesson(
+            "Bài toán Lựa chọn công việc (Activity Selection) - Cho n công việc với thời gian "
+            "bắt đầu s_i và kết thúc f_i. Tìm tập công việc tương thích tối đa bằng chiến lược "
+            "Tham lam (Greedy).", [(10, 109, 173)])
+        # Chép từ mock_exam_pttktt.md câu 4a: không có chữ "hoạt động", "tương thích"
+        self.assert_from_lesson(
+            "Dựa trên ý tưởng ở Câu 3, hãy viết Mã giả (Pseudo-code) hoàn chỉnh cho bài toán "
+            "Xếp lịch họp. Đánh số bước rõ ràng.", [(10, 109, 173)])
+
+    def test_map_coloring_uses_lesson(self):
+        self.assert_from_lesson("Tô màu bản đồ bằng tham lam sao cho số màu ít nhất",
+                                [(10, 51, 107)])
+
+    def test_matrix_chain_uses_lesson(self):
+        self.assert_from_lesson(
+            "Nhân chuỗi ma trận (Matrix Chain Multiplication - MCM): điền bảng m và bảng s",
+            [(9, 323, 443), (10, 183, 233)])
+
+    def test_lcs_uses_lesson(self):
+        self.assert_from_lesson("Tìm dãy con chung dài nhất (LCS) của hai chuỗi X và Y",
+                                [(10, 235, 325)])
+
+    def test_lesson_alternative_names(self):
+        # Cách ghi theo CLRS (có gạch nối) và "dãy ma trận" thay cho "chuỗi ma trận"
+        for problem, ranges in [
+            ("Viết mã giả GREEDY-ACTIVITY-SELECTOR(s, f) và phân tích độ phức tạp.", [(10, 109, 173)]),
+            ("Matrix-chain multiplication: compute m[i][j] and s[i][j].", [(9, 323, 443), (10, 183, 233)]),
+            ("Bài toán nhân dãy ma trận: tìm cách đặt dấu ngoặc để số phép nhân ít nhất.",
+             [(9, 323, 443), (10, 183, 233)]),
+        ]:
+            with self.subTest(problem=problem[:40]):
+                self.assert_from_lesson(problem, ranges)
+
+    def test_matrix_chain_with_compatible_sizes_is_not_activity_selection(self):
+        # Đề nhân chuỗi ma trận hay ghi "kích thước tương thích": không được lấy bài chọn hoạt động
+        self.assert_from_lesson(
+            "Cho chuỗi 4 ma trận có kích thước tương thích p = (10, 20, 5, 15, 30). "
+            "Tìm cách đặt ngoặc sao cho số phép nhân vô hướng ít nhất.",
+            [(9, 323, 443), (10, 183, 233)])
+
+    def test_square_matrix_product_is_not_matrix_chain(self):
+        # "ma trận" không phải tên bài: câu đếm phép nhân 2 ma trận vuông không lấy bài nhân chuỗi ma trận
+        got = self.lines("Đếm số phép nhân của giải thuật nhân hai ma trận vuông A, B kích thước n x n")
+        self.assertFalse([x for x in got if (x[0] == 9 and 323 <= x[1] <= 443)
+                          or (x[0] == 10 and 183 <= x[1] <= 233)])
 
     def test_no_match_falls_back_to_top_relevance(self):
         segs = self.s._find_relevant_segments("in hello world")

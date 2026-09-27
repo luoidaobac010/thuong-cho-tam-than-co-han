@@ -128,6 +128,28 @@ TOPIC_KEYWORDS = {
             "dãy con", "fibonacci", "knapsack", "dynamic programming"],
 }
 
+# Bài cô chữa trên lớp -> từ khoá chỉ bài đó dùng (tên bài, thuật ngữ riêng).
+# Đề nhắc bài nào thì đoạn chứa từ khoá của bài đó xếp trước đoạn chỉ khớp chủ đề,
+# vì từ khoá chủ đề đông hơn (vd "tối ưu", "bảng") nên đếm chung sẽ lấn đoạn chữa bài.
+# Chỉ lấy từ gần như không có ngoài đoạn chữa bài (đếm trên data/buoi*_clean.md).
+# Không dùng từ chung như "ma trận" (đề đếm phép nhân 2 ma trận vuông), "màu", hay
+# "tương thích" đứng riêng (đề nhân chuỗi ma trận hay ghi "kích thước tương thích").
+BAI_KEYWORDS = {
+    # b10:109-173. "activity-select" bắt cả cách ghi CLRS "activity-selection",
+    # "GREEDY-ACTIVITY-SELECTOR" (slide của cô là tiếng Anh, b10:109)
+    "chon_hoat_dong": ["chọn hoạt động", "hoạt động tương thích", "công việc tương thích",
+                       "activity selection", "activity-select", "interval scheduling",
+                       "lựa chọn công việc", "thời gian bắt đầu", "thời gian kết thúc",
+                       "thời điểm bắt đầu", "thời điểm kết thúc", "lịch họp", "cuộc họp"],
+    # b10:51-107
+    "to_mau": ["tô màu", "số màu", "coloring"],
+    # b9:323-443, b10:183-233
+    "nhan_chuoi_ma_tran": ["chuỗi ma trận", "dãy ma trận", "matrix chain", "matrix-chain",
+                           "mcm", "nhân vô hướng"],
+    # b10:235-325
+    "lcs": ["dãy con chung", "chuỗi con chung", "xâu con chung", "lcs", "longest common"],
+}
+
 
 class CoThuongSolver:
     """
@@ -404,7 +426,7 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
         return prompt
 
     def _find_relevant_segments(self, problem: str, top_k: int = 3) -> list[dict]:
-        """Tìm các đoạn transcript liên quan đến đề bài theo chủ đề."""
+        """Tìm các đoạn transcript liên quan đến đề bài theo bài cô chữa và chủ đề."""
         if not self.knowledge_base:
             return []
 
@@ -416,11 +438,17 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
             topic for topic, words in TOPIC_KEYWORDS.items()
             if any(w in problem_lower for w in words)
         ]
+        # Bài cô chữa nào được đề nhắc tới
+        matched_bai = [
+            words for words in BAI_KEYWORDS.values()
+            if any(w in problem_lower for w in words)
+        ]
+        bai_words = {w for words in matched_bai for w in words}
 
         def by_relevance(seg: dict) -> int:
             return seg.get("relevance_score", 0)
 
-        if not matched_topics:
+        if not matched_topics and not bai_words:
             # KB không sort sẵn theo relevance_score nên phải sort ở đây
             return sorted(segments, key=by_relevance, reverse=True)[:top_k]
 
@@ -428,17 +456,18 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
         scored = []
         for seg in segments:
             seg_lower = seg["content"].lower()
-            # Ưu tiên đoạn phủ nhiều chủ đề, rồi đến nhiều từ khoá
+            # Ưu tiên đoạn cô chữa đúng bài, rồi đoạn phủ nhiều chủ đề, rồi nhiều từ khoá
+            bai_hits = sum(1 for w in bai_words if w in seg_lower)
             topic_hits = sum(
                 1 for t in matched_topics
                 if any(w in seg_lower for w in TOPIC_KEYWORDS[t])
             )
             word_hits = sum(1 for w in search_words if w in seg_lower)
-            if word_hits:
-                scored.append((topic_hits, word_hits, by_relevance(seg), seg))
+            if bai_hits or word_hits:
+                scored.append((bai_hits, topic_hits, word_hits, by_relevance(seg), seg))
 
-        scored.sort(key=lambda x: x[:3], reverse=True)
-        return [s[3] for s in scored[:top_k]]
+        scored.sort(key=lambda x: x[:4], reverse=True)
+        return [s[4] for s in scored[:top_k]]
 
     def _clean_response(self, response_text: str) -> str:
         """Loại bỏ markdown code fences nếu model trả về."""
