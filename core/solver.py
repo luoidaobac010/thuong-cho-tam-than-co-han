@@ -455,16 +455,52 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
             topic for topic, words in TOPIC_KEYWORDS.items()
             if any(w in problem_lower for w in words)
         ]
-        # Bài cô chữa nào được đề nhắc tới, bỏ bài mà đề ghi làm bằng chiến lược khác
-        asked = {
-            s for s, names in STRATEGY_NAMES.items()
-            if any(n in problem_lower for n in names)
-        }
-        matched_bai = [
-            words for bai, words in BAI_KEYWORDS.items()
-            if any(w in problem_lower for w in words)
-            and (not asked or BAI_STRATEGY[bai] in asked)
-        ]
+        # Bài cô chữa nào được đề nhắc tới, bỏ bài mà đề ghi làm bằng chiến lược khác.
+        # Chỉ xét tên chiến lược trong cùng mục với tên bài. Mục bắt đầu ở dòng tiêu đề ("#", "Câu N")
+        # hoặc dòng in đậm sau dòng trống. Mục không ghi chiến lược thì lấy của tiêu đề cha gần nhất
+        # có ghi (cha = tiêu đề cấp nhỏ hơn, dòng in đậm là cấp sâu nhất).
+        # simplify: gạch đầu dòng cùng mục vẫn tính chung. Tách riêng từng gạch đầu dòng thì tờ A4
+        # hỏng: "10. Tô màu đồ thị" nằm trong danh sách quay lui nhưng không ghi chữ "quay lui".
+        sections, prev = [], ""  # [cấp, chữ của mục]
+        for ln in problem_lower.split("\n"):
+            m = re.match(r"\s*(#{1,6})\s", ln)
+            if m:
+                level = len(m.group(1))
+            elif re.match(r"\s*câu\s*\d", ln):
+                level = 3
+            elif re.match(r"\s*\*\*", ln) and not prev.strip():
+                level = 7
+            else:
+                level = None
+            if level or not sections:
+                sections.append([level or 8, ln])
+            else:
+                sections[-1][1] += "\n" + ln
+            prev = ln
+
+        def strategies(text):
+            return {s for s, names in STRATEGY_NAMES.items() if any(n in text for n in names)}
+
+        def asked_for(words):
+            found = set()
+            for k, (level, text) in enumerate(sections):
+                if any(w in text for w in words):
+                    own = strategies(text)
+                    for j in range(k - 1, -1, -1):
+                        if own:
+                            break
+                        if sections[j][0] < level:
+                            level = sections[j][0]
+                            own = strategies(sections[j][1])
+                    found |= own
+            return found
+
+        matched_bai = []
+        for bai, words in BAI_KEYWORDS.items():
+            if any(w in problem_lower for w in words):
+                asked = asked_for(words)
+                if not asked or BAI_STRATEGY[bai] in asked:
+                    matched_bai.append(words)
         bai_words = {w for words in matched_bai for w in words}
 
         def by_relevance(seg: dict) -> int:

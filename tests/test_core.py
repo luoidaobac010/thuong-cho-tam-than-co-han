@@ -348,6 +348,43 @@ class RetrievalTest(unittest.TestCase):
         self.assertEqual(set(solver_mod.BAI_STRATEGY), set(solver_mod.BAI_KEYWORDS))
         self.assertLessEqual(set(solver_mod.BAI_STRATEGY.values()), set(solver_mod.STRATEGY_NAMES))
 
+    def test_strategy_of_next_section_keeps_lesson(self):
+        # Tờ A4 (Đề cương đem theo, mục 6): LCS xong là tới tiêu đề "## 3. THAM LAM" của mục sau.
+        # Tên chiến lược nằm xa tên bài thì không được làm mất đoạn cô chữa LCS
+        self.assert_from_lesson(
+            "- **(6) Dãy con chung dài nhất LCS ($|X| = n, |Y| = m$):** $c[i][j] = c[i-1][j-1] + 1$ "
+            "nếu $x_i = y_j$, ngược lại $\\max(c[i-1][j], c[i][j-1])$. Cơ sở $c[i][0] = c[0][j] = 0$, "
+            "đáp án ở ô cuối $c[n][m]$. Truy vết: bằng nhau thì ghi ký tự rồi đi chéo, "
+            "khác nhau thì đi về ô lớn hơn.\n\n## 3. THAM LAM (GREEDY) - BA LÔ PHÂN SỐ",
+            [(10, 235, 325)])
+
+    def test_strategy_of_other_question_keeps_lesson(self):
+        # Trang đề có 2 câu: câu 4 ghi quay lui, câu 5 nhân chuỗi ma trận không ghi chiến lược.
+        # Chiến lược của câu 4 không được làm mất đoạn cô chữa nhân chuỗi ma trận
+        self.assert_from_lesson(
+            "### Câu 4 (2.0 điểm) Thiết kế thuật toán Quay lui\n"
+            "Liệt kê tất cả hoán vị của n phần tử.\n\n"
+            "### Câu 5 (2.0 điểm) Thiết kế thuật toán\n"
+            "Cho dãy 4 ma trận A1 (5 x 6), A2 (6 x 7), A3 (7 x 2), A4 (2 x 3). "
+            "Tìm cách nhân chuỗi ma trận với số phép nhân vô hướng ít nhất.",
+            [(9, 323, 443), (10, 183, 233)])
+
+    def test_bold_line_follows_its_heading(self):
+        # Dòng in đậm ngay dưới tiêu đề, hoặc ý a) in đậm sau dòng trống, thuộc câu có tiêu đề đó:
+        # tiêu đề ghi quay lui thì không lấy đoạn cô chữa tô màu bằng tham lam
+        for problem in (
+            ("## Câu 4 (2.0 điểm): Thiết kế thuật toán Quay lui\n**Bài toán: Tô màu đồ thị**\n"
+             "Cho đồ thị G gồm n đỉnh và m màu. Liệt kê mọi cách tô."),
+            ("### Câu 4 (2.0 điểm) Thiết kế thuật toán Quay lui\n\n"
+             "**a) (1.0đ)** Liệt kê mọi cách tô màu đồ thị G bằng m màu."),
+        ):
+            got = self.lines(problem)
+            self.assertFalse([x for x in got if x[0] == 10 and 51 <= x[1] <= 107], got)
+        # Dòng in đậm sau dòng trống ở ngoài cùng là mục mới: chiến lược của nó không làm mất bài
+        got = self.lines("- Tô màu bản đồ: mỗi bước chọn đỉnh bậc cao nhất, thử các màu đã dùng.\n\n"
+                         "**Quay lui** (b6:157-209)\n- Mô hình Try(i): thử ứng viên, gọi Try(i+1), hoàn tác.")
+        self.assertGreaterEqual(sum(1 for b, ln in got if b == 10 and 51 <= ln <= 107), 2, got)
+
     def test_square_matrix_product_is_not_matrix_chain(self):
         # "ma trận" không phải tên bài: câu đếm phép nhân 2 ma trận vuông không lấy bài nhân chuỗi ma trận
         got = self.lines("Đếm số phép nhân của giải thuật nhân hai ma trận vuông A, B kích thước n x n")
