@@ -63,6 +63,7 @@ REF_KW = {  # ref -> từ khóa phải xuất hiện trong khoảng dòng
  "b4:213-215": ["định nghĩa của B"], "b4:223-231": ["640"], "b4:317-349": ["nhóm nhỏ"],
  "b4:407": ["rất nhiều lần"], "b4:413": ["ký hiệu khác"], "b4:417-429": ["k = c + d"],
  "b7:299-401": ["lấy đề thi ra giải", "không dùng phương pháp root for", "sort ban đầu", "tập hợp s1"],
+ "b9:63": ["for maskin"], "b6:13": ["for moskin"],
  "b4:319": ["thế n"], "b4:321": ["nhóm hàm nhỏ"], "b4:325": ["không có điểm"], "b4:327": ["giữ lại"], "b4:339": ["cơ số"], "b4:345": ["cơ số 2"],
  "b5:103-111": ["giới hạn"], "b5:127-157": ["quy tắc cộng", "quy tắc nhân"], "b5:153-155": ["không cần đếm chính xác"], "b5:265-267": ["input"], "b5:349-383": ["radio"],
  "b5:417-451": ["đường thẳng"], "b6:7-11": ["nửa mặt phẳng", "miền chấp nhận được"], "b7:401": ["hai bài toán con trở lên"], "b9:53-55": ["câu c"],
@@ -92,6 +93,25 @@ for r in refs_in_khung:
     seg = N(" ".join(T[int(b)][a-1:z]))
     kw = [k for k in REF_KW[r] if N(k) not in seg]
     check("B", f"{r} chứa {REF_KW[r]}", not kw)
+
+# B2. Dẫn chứng theo chủ đề: REF_KW chỉ kiểm dòng được dẫn có một từ khóa chung chung (b9:61 chỉ cần "master"),
+# nên bỏ lọt câu nhắc Fourier-Motzkin mà dẫn b9:61. Ở đây mỗi câu trong khung nhắc chủ đề T thì trong số
+# các dẫn chứng của chính câu đó phải có ít nhất 1 dòng nhắc T (theo cách ASR ghi, vd "for maskin").
+TOPIC_ASR = {"fourier-motzkin": ["for maskin", "for moskin", "for mkin"], "cây khung": ["cây khung"],
+             "vạch thước": ["thước"], "fibonacci": ["fibonacci", "fibonaci", "fibonacy"], "chuỗi ma trận": ["chuỗi ma trận"],
+             "tô màu đồ thị": ["tô màu"], "mã giả": ["mã giả"], "lưu đồ": ["lưu đồ"], "640": ["640"], "master": ["master"]}
+topic_bad = []
+for ln_no, line in enumerate(raw.splitlines(), 1):
+    for sent in re.split(r"(?<=[.!?])\s+|\s\|\s", line):
+        cites = re.findall(r"\bb([1-9]):(\d+)(?:-(\d+))?", sent)
+        if not cites:
+            continue
+        segs = [" ".join(T[int(b)][int(a)-1:int(z or a)]) for b, a, z in cites]
+        segs = [N(s) for s in segs]
+        for topic, asr in TOPIC_ASR.items():
+            if topic in N(sent) and not any(v in s for s in segs for v in asr):
+                topic_bad.append(f"khung:{ln_no} '{topic}' nhưng dẫn {['b%s:%s' % (b, a + ('-' + z if z else '')) for b, a, z in cites]}")
+check("B", "câu nhắc chủ đề nào thì có dẫn chứng nhắc đúng chủ đề đó", not topic_bad, "; ".join(topic_bad))
 
 # ---------------- C. tính lại con số trong khung ----------------
 check("C", "640: 7n² ≤ 8(n²−80n) ⟺ n ≥ 640",

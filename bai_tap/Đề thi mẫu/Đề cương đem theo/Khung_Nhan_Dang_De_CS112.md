@@ -17,9 +17,9 @@ Kiểm lại khung sau khi sửa: từ gốc repo chạy `.venv/bin/python "bai_
 | File `CS112.DE_THI_CK.HK3.2025-2026.*` | Trung bình | Do script `scratch/build_exact_exam_docx.py` dựng lại. Nhãn "Câu 5 = QHĐ" là suy đoán của script |
 | 3 đề mẫu trong `Đề mẫu/` | Thấp | AI soạn, chỉ dùng để luyện tay |
 | `mock_exam_pttktt.md` | Thấp | AI soạn. Có câu bắt dùng định lý Thợ (Master), trái với lời cô là không thi (b9:61) |
-| `Ôn Luyện/De_Thi_Mau_2025_Loi_Giai_Chi_Tiet.*` và `Ôn Luyện/Cau1_Ky_Hieu_Tiem_Can_...*` (cả .md, .docx, .pdf) | Đã sửa Câu 1b ngày 27/9 | Bản cũ chép nhầm f₁ và f₅ của đề HK1 nên ra thứ tự sai. Đã sửa theo đề gốc, có ô "Đính chính" trong file. Các câu còn lại của file lời giải HK1 (1a, 2, 3, 4, 5, 6b) mình đã soát, khớp đáp án |
+| `Ôn Luyện/De_Thi_Mau_2025_Loi_Giai_Chi_Tiet.*` và `Ôn Luyện/Cau1_Ky_Hieu_Tiem_Can_...*` (cả .md, .docx, .pdf) | Đã sửa Câu 1b ngày 27/9 | Bản cũ chép nhầm f₁ và f₅ của đề HK1 nên ra thứ tự sai. Đã sửa theo đề gốc, có ô "Đính chính" trong file. Các câu còn lại của file lời giải HK1 (1a, 2, 3, 4, 5, 6b) mình đã soát, khớp đáp án. Câu 3b có thêm ô "Lưu ý" về trường hợp số âm |
 
-**Không thi:** định lý Master và thuật toán Fourier-Motzkin (khử biến giải bài toán tối ưu, dạy ở buổi 6). Còn lại "đọc nhiêu là thi nhiêu" (b9:61).
+**Không thi:** định lý Master (b9:61) và thuật toán Fourier-Motzkin, transcript ghi là "for maskin" (b9:63) và "for moskin" (b6:13), tức thuật toán khử dần từng biến trong hệ bất phương trình dạy ở buổi 6 (b6:11-27). Còn lại "đọc nhiêu là thi nhiêu" (b9:61).
 
 ## 1. Mẹo chung trong phòng thi (có căn cứ)
 
@@ -154,7 +154,7 @@ Trong đề thật duy nhất có trong repo, đa số câu ghi thẳng tên ph�
 
 **Khi đề không ghi tên chiến lược** thì bảng cụm từ ở trên dễ hụt (đo trên câu hỏi đề cũ cô đọc trong transcript, khung chỉ bắt đúng khoảng một nửa). Khi đó dùng dấu hiệu của cô thay cho cụm từ:
 - QHĐ: bài toán tối ưu (lớn nhất, nhỏ nhất, dài nhất, ít nhất), hoặc có công thức truy hồi như Fibonacci (b8:115-119). Giải bằng đệ quy thấy bài con bị giải lặp là dấu hiệu mạnh (b9:77-85). Đề thi QHĐ của cô hay cho trên mảng (b8:293).
-- Quay lui: đề đòi tất cả các lời giải, hoặc lời giải xây từng bước mà mỗi bước phải thử nhiều lựa chọn (tìm đường đi, cây khung, cách chia chuỗi) (b7:31-41, b6:303-309).
+- Quay lui: đề đòi tất cả các lời giải, hoặc lời giải xây từng bước mà mỗi bước phải thử nhiều lựa chọn (tìm đường đi, cây khung, cách chia chuỗi) (b7:31-41, b6:303-309, b7:43-149).
 - Chia để trị: chia bài thành từ 2 bài con cùng dạng. Giảm để trị: chỉ còn 1 bài con (b8:137).
 - Biến thể của bài đã học vẫn là QHĐ cùng khung. Vd đề cũ "dãy con dài nhất mà 2 phần tử liền kề hơn kém nhau 1 đơn vị" (b8:389-393): giữ nguyên LIS, đổi điều kiện a_j < a_i thành |a_i − a_j| = 1. Cô nói làm được câu này mới có cơ hội qua môn (b8:391).
 Cẩn thận chữ "tất cả": dấu hiệu quay lui là đề đòi **tất cả các lời giải** (tất cả các cách chia, các địa chỉ, các hành trình). Còn "tính tất cả các giá trị DP[i][j]" (HK1 Câu 3) là điền bảng QHĐ, không phải quay lui. Đề đã ghi tên phương pháp thì theo tên đó.
@@ -206,7 +206,7 @@ Bẫy ba lô 0/1: tham lam theo đơn giá sai. Ví dụ M = 50, (w, p) = (10, 6
 1. Mỗi ràng buộc bỏ dấu ≤ thành = rồi vẽ đường thẳng, chọn nửa mặt phẳng đúng. Giao các nửa mặt phẳng được miền chấp nhận được.
 2. Vẽ đường mức của hàm mục tiêu, tịnh tiến ra xa. Điểm cuối cùng còn chạm miền là nghiệm tối ưu (b5:441).
 3. Giải hệ 2 phương trình của 2 đường thẳng qua điểm đó, thế vào hàm mục tiêu.
-4. Cách này chủ yếu dùng khi có 2 biến (b6:21). Thuật toán Fourier-Motzkin cho nhiều biến thì không thi (b9:61).
+4. Cách này chủ yếu dùng khi có 2 biến (b6:21). Thuật toán Fourier-Motzkin cho nhiều biến thì không thi (b9:63).
 
 **QHĐ** (b9:77-85, b9:177-199, b9:247, b9:317, b9:465)
 1. Cấu trúc con tối ưu: lời giải tối ưu của bài cha chứa lời giải tối ưu của bài con.
