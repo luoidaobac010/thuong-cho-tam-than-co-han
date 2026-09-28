@@ -30,6 +30,8 @@ LATEX_PREAMBLE = r"""\documentclass[12pt,a4paper]{article}
 \setlist[enumerate,5,6,7,8,9]{label=\arabic*.}
 \usepackage{array}
 \usepackage{booktabs}
+% Model hay dùng \multirow khi điền bảng QHĐ, thiếu gói thì cả file không ra PDF
+\usepackage{multirow}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{xcolor}

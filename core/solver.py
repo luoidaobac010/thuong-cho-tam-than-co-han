@@ -541,6 +541,8 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
 - Đóng khung kết quả cuối cùng trong \\begin{{resultbox}}...\\end{{resultbox}}.
 - Nếu có lưu ý quan trọng, dùng \\begin{{notebox}}...\\end{{notebox}}.
 - Output CHỈNH LaTeX body content, không có preamble.
+- KHÔNG chạy lệnh shell/python, kể cả `ls`: lệnh bị từ chối và mất hết kết quả. Đề đã
+  nằm đủ ở trên, mọi phép tính tự làm.
 """
 
         # Thêm teaching context nếu có

@@ -155,6 +155,12 @@ class SolveWrapTest(unittest.TestCase):
         self.assertIn(r"n\textasciicircum{}2 + a\_i", doc)
         self.assertIn("\\section{X}", doc)
 
+    def test_text_prompt_forbids_shell_commands(self):
+        # 4/19 lần gọi agy thật dừng vì model chạy `ls -la` ở bước đầu, headless từ chối
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        prompt = s._build_user_prompt("Tìm LCS của X = ACB và Y = CB")
+        self.assertIn("KHÔNG chạy lệnh shell/python, kể cả `ls`", prompt)
+
 
 class SolveInteractiveTest(unittest.TestCase):
     """Hết stdin (pipe, Ctrl-D) mà chưa nhập gì thì thoát, không in "Đề bài:" mãi."""
@@ -528,6 +534,14 @@ class CompilePdfTest(unittest.TestCase):
     def test_broken_document_returns_false(self):
         ok, _ = self._compile("\\documentclass{article}\\begin{document}\\title{n^2}\\end{document}")
         self.assertFalse(ok)
+
+    def test_template_has_multirow(self):
+        # Lỗi thật: model điền bảng LCS bằng \multirow, template thiếu gói -> "Undefined control sequence"
+        from core.latex_template import wrap_in_template
+        body = "\\begin{tabular}{|c|c|}\\hline \\multirow{2}{*}{$M[i][j]$} & 1 \\\\ & 2 \\\\ \\hline\\end{tabular}"
+        ok, has_pdf = self._compile(wrap_in_template(body, title="Bài thử"))
+        self.assertTrue(ok)
+        self.assertTrue(has_pdf)
 
 
 class CleanVttCliTest(unittest.TestCase):
