@@ -220,6 +220,50 @@ class FixTabularTest(unittest.TestCase):
         self.assertIn("{cc}", out)
 
 
+class FixEnvNestingTest(unittest.TestCase):
+    """Lỗi thật từ agy (2/32 output): mở \\[ rồi viết \\end{enumerate} thay cho \\], các \\end
+    sau đó lệch 1 bậc -> tectonic báo "\\begin{enumerate} ended by \\end{itemize}"."""
+
+    def fix(self, text):
+        return solver_mod._fix_env_nesting(text)
+
+    def test_end_written_instead_of_display_math_close(self):
+        # rút gọn từ output thật agy3/R05 dòng 130-147
+        src = ("\\begin{itemize}\n\\item B2:\n\\begin{enumerate}\n\\item Tập màu cấm:\n\\[\nU = \\{c\\}\n"
+               "\\end{enumerate}\n\\item Tìm màu nhỏ nhất.\n\\end{itemize}\n\\item B3.\n\\end{itemize}")
+        want = ("\\begin{itemize}\n\\item B2:\n\\begin{enumerate}\n\\item Tập màu cấm:\n\\[\nU = \\{c\\}\n"
+                "\\]\n\\item Tìm màu nhỏ nhất.\n\\end{enumerate}\n\\item B3.\n\\end{itemize}")
+        self.assertEqual(self.fix(src), want)
+
+    def test_correct_latex_untouched(self):
+        src = ("\\title{A\\\\[6pt] B}\n\\begin{itemize}\n\\item Lãi 50\\% % ghi chú \\end{itemize}\n"
+               "\\item $\\begin{cases} 0 \\\\ 1 \\end{cases}$\n\\[ x \\]\n\\end{itemize}\n"
+               "\\begin{lstlisting}\nif a: \\end{itemize}\n\\end{lstlisting}")
+        self.assertEqual(self.fix(src), src)
+
+    def test_stray_end_dropped_and_unclosed_closed(self):
+        self.assertEqual(self.fix("a\n\\end{itemize}\nb"), "a\n\nb")
+        self.assertEqual(self.fix("\\begin{itemize}\n\\item a\n\\[ x"), "\\begin{itemize}\n\\item a\n\\[ x\n\\]\n\\end{itemize}")
+
+    def test_repo_latex_samples_untouched(self):
+        for p in (Path(__file__).resolve().parent.parent / "data").glob("*.tex"):
+            text = p.read_text(encoding="utf-8")
+            self.assertEqual(self.fix(text), text, p.name)
+
+    @unittest.skipUnless(shutil.which("tectonic"), "cần tectonic")
+    def test_fixed_output_compiles(self):
+        import solve
+        from core.latex_template import wrap_in_template
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        body = ("\\begin{itemize}\n\\item B2:\n\\begin{enumerate}\n\\item Tập màu cấm:\n\\[\nU = \\{c\\}\n"
+                "\\end{enumerate}\n\\item Tìm màu nhỏ nhất.\n\\end{itemize}\n\\item B3.\n\\end{itemize}")
+        with tempfile.TemporaryDirectory() as tmp:
+            tex = Path(tmp) / "t.tex"
+            tex.write_text(wrap_in_template(s._clean_response(body), title="Bài thử"), encoding="utf-8")
+            with mock.patch("builtins.print"):
+                self.assertTrue(solve.compile_pdf(tex))
+
+
 class ParsePagesTest(unittest.TestCase):
     def test_all_when_empty(self):
         self.assertEqual(solver_mod.parse_pages(None, 3), [0, 1, 2])

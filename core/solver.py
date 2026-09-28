@@ -62,6 +62,48 @@ def _fix_tabular_columns(text: str) -> str:
     return _TABULAR_RE.sub(fix, text)
 
 
+# "\\" (xuống dòng) tách riêng để "\\[6pt]" không bị coi là "\[". "\%" không phải comment.
+_ENV_TOKEN = re.compile(r"\\\\|\\[\[\]%]|\\(begin|end)\s*\{([^{}]+)\}|%[^\n]*")
+_RAW_ENVS = ("lstlisting", "verbatim", "comment")
+
+
+def _fix_env_nesting(text: str) -> str:
+    """Sửa \\begin/\\end đóng lệch, bài đúng thì không đổi byte nào.
+    Lỗi thật từ agy (2/32 output): mở \\[ rồi viết \\end{enumerate} thay cho \\], các \\end
+    sau đó lệch 1 bậc -> "\\begin{enumerate} ended by \\end{itemize}", không ra PDF.
+    Trong \\[ mà gặp \\end của môi trường mở trước \\[ thì đổi thành \\]. \\end không khớp
+    môi trường trong cùng thì đổi tên cho khớp, \\end thừa thì bỏ, cuối bài còn mở thì đóng.
+    simplify: \\end lệch vì model quên \\end ở giữa (không phải đóng nhầm ở trên) thì phần
+    sau bị thụt vào list cũ nhưng vẫn ra PDF."""
+    out, pos, stack, math_at = [], 0, [], None
+    while m := _ENV_TOKEN.search(text, pos):
+        kind, name, new, end = m.group(1), m.group(2), m.group(0), m.end()
+        if kind == "begin" and name in _RAW_ENVS:
+            close = text.find("\\end{" + name + "}", end)  # nội dung giữ nguyên
+            end = len(text) if close < 0 else close + len(name) + 6
+            new = text[m.start():end]
+        elif kind == "begin":
+            stack.append(name)
+        elif kind == "end":
+            if math_at is not None and len(stack) <= math_at:
+                new, math_at = "\\]", None
+            elif stack and stack[-1] == name:
+                stack.pop()
+            else:
+                new = "\\end{" + stack.pop() + "}" if stack else ""
+        elif new == "\\[":
+            math_at = len(stack)
+        elif new == "\\]":
+            math_at = None
+        out.append(text[pos:m.start()] + new)
+        pos = end
+    out.append(text[pos:])
+    if math_at is not None:
+        out.append("\n\\]")
+    out += ["\n\\end{" + env + "}" for env in reversed(stack)]
+    return "".join(out)
+
+
 def parse_pages(spec: str | None, total: int) -> list[int]:
     """'1-3,5' -> [0, 1, 2, 4] (0-based). None/'' -> tất cả trang."""
     if not spec:
@@ -666,7 +708,7 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
                 text = re.sub(r'\\maketitle\s*', '', text)
                 text = re.sub(r'\\thispagestyle\{[^}]+\}\s*', '', text)
 
-        return _fix_tabular_columns(text)
+        return _fix_tabular_columns(_fix_env_nesting(text))
 
     def solve_interactive(self) -> None:
         """Chế độ tương tác: nhập đề bài từ terminal."""
