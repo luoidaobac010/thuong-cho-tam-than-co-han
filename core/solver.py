@@ -10,6 +10,8 @@ import json
 import re
 import subprocess
 import tempfile
+import unicodedata
+from collections import Counter
 from pathlib import Path
 
 from .config import LLMConfig, load_config
@@ -87,6 +89,116 @@ def parse_pages(spec: str | None, total: int) -> list[int]:
     return [p - 1 for p in dict.fromkeys(pages)]
 
 
+# Chữ PDF cho retrieval. page.get_text() của PDF xuất từ XeTeX/pandoc dính chữ tiếng Việt
+# ("đểtrị", "kếthuật": 13 lần "giảm để trị" trong md, 0 lần trong chữ PDF), bẻ tiêu đề
+# thành 2 dòng ("Quay" / "lui") và không có dòng "#"/"**" nên cả trang thành 1 mục khi
+# xét tên chiến lược. Dựng lại từng dòng từ toạ độ ký tự, dòng đậm đầu block thành tiêu đề.
+_MATH_ALNUM = range(0x1D400, 0x1D800)  # chữ toán (𝑛, 𝑇): khoảng hở của chúng không phải dấu cách
+_LIST_MARK = re.compile(r"\s*(\d+\.|[•\-])\s*")
+
+
+def _letter(ch: str) -> bool:
+    return ch.isalpha() and ord(ch) not in _MATH_ALNUM
+
+
+def _line_text(line: dict) -> str:
+    """Nối ký tự của 1 dòng, chèn dấu cách giữa 2 chữ cái hở > 0.15 cỡ chữ.
+    Trên PDF của repo, chữ cùng từ hở <= 0.12, ranh giới từ bị dính hở ~0.2 trở lên."""
+    out, prev = [], None
+    for span in line["spans"]:
+        for ch in span["chars"]:
+            c = ch["c"]
+            if prev and _letter(prev[0]) and _letter(c) and ch["bbox"][0] - prev[1] > 0.15 * prev[2]:
+                out.append(" ")
+            out.append(c)
+            prev = (c, ch["bbox"][2], span["size"])
+    return unicodedata.normalize("NFC", "".join(out)).strip()
+
+
+def _glue(a: str, b: str) -> str:
+    return a[:-1] + b if a.endswith("-") else a + " " + b
+
+
+def _join(lines: list[str]) -> list[str]:
+    """Dòng bắt đầu bằng chữ thường là phần tiếp của dòng trước (xuống dòng trong câu)."""
+    out: list[str] = []
+    for s in lines:
+        if out and s[0].islower():
+            out[-1] = _glue(out[-1], s)
+        else:
+            out.append(s)
+    return out
+
+
+def _is_bold(span: dict) -> bool:
+    return bool(span["flags"] & 16) or "bold" in span["font"].lower()
+
+
+def _alnum_spans(line: dict) -> list[dict]:
+    return [s for s in line["spans"] if any(c["c"].isalnum() for c in s["chars"])]
+
+
+def _all_bold(line: dict) -> bool:
+    """Mọi span có chữ/số đều đậm. Dấu mục đứng đầu ("6.", "•") được phép không đậm."""
+    spans = _alnum_spans(line)
+    if spans and not _is_bold(spans[0]) and _LIST_MARK.fullmatch("".join(c["c"] for c in spans[0]["chars"])):
+        spans = spans[1:]
+    return bool(spans) and all(_is_bold(s) for s in spans)
+
+
+def _page_items(page) -> tuple[list[tuple[str, str, float]], Counter]:
+    """[(loại, chữ, cỡ)] của 1 trang: "head" = các dòng đậm liền nhau ở đầu 1 block."""
+    items: list[tuple[str, str, float]] = []
+    sizes: Counter = Counter()
+    for b in page.get_text("rawdict")["blocks"]:
+        if b.get("type") != 0:
+            continue
+        lines = []
+        for ln in b["lines"]:
+            t = _line_text(ln)
+            if t:
+                lines.append((ln, t))
+                for s in ln["spans"]:
+                    sizes[round(s["size"], 1)] += sum(not c["c"].isspace() for c in s["chars"])
+        k = 0
+        while k < len(lines) and _all_bold(lines[k][0]):
+            k += 1
+        if k:
+            head = lines[0][1]
+            for _, t in lines[1:k]:
+                head = _glue(head, t)
+            size = max(round(s["size"], 1) for ln, _ in lines[:k] for s in _alnum_spans(ln))
+            items.append(("head", head, size))
+        items += [("text", t, 0.0) for t in _join([t for _, t in lines[k:]])]
+    return items, sizes
+
+
+def _pdf_text(doc, order: list[int]) -> str:
+    """Chữ các trang trong order, tiêu đề viết lại như md để _find_relevant_segments chia mục:
+    cỡ lớn hơn chữ thân -> "#" theo hạng cỡ, "Câu N" giữ nguyên, còn lại -> dòng in đậm.
+    simplify: chọn --pages từ giữa tài liệu thì mất tiêu đề của các trang trước. Mang tiêu đề
+    đang mở sang trang sau (đã thử) sửa được trang giữa chuyên đề nhưng kéo đoạn chữa bài vào
+    3 trang đề không liên quan, nên bỏ."""
+    items, sizes = {}, Counter()
+    for i in range(doc.page_count):
+        items[i], sz = _page_items(doc[i])
+        sizes += sz
+    body = sizes.most_common(1)[0][0] if sizes else 0.0
+    big = sorted({s for v in items.values() for kind, _, s in v if kind == "head" and s > body + 0.5}, reverse=True)
+    rank = {s: min(r + 1, 6) for r, s in enumerate(big)}
+
+    def render(kind: str, t: str, s: float) -> str:
+        if kind == "text":
+            return t
+        if s > body + 0.5:
+            return "#" * rank[s] + " " + t
+        if re.match(r"câu\s*\d", t, re.IGNORECASE):
+            return t
+        return "\n**" + t + "**"
+
+    return "\n".join("\n".join(render(*it) for it in items[i]) for i in order)
+
+
 def render_pdf_pages(pdf_path: Path, pages_spec: str | None = None,
                      dpi: int = 110) -> tuple[dict[str, bytes], str]:
     """Render các trang PDF thành PNG (tên -> bytes) + text trích được để retrieval."""
@@ -96,14 +208,13 @@ def render_pdf_pages(pdf_path: Path, pages_spec: str | None = None,
         raise RuntimeError("❌ Cần PyMuPDF để đọc PDF: pip install -r requirements.txt") from None
 
     doc = pymupdf.open(pdf_path)
+    order = parse_pages(pages_spec, doc.page_count)
     images: dict[str, bytes] = {}
-    texts: list[str] = []
-    for i in parse_pages(pages_spec, doc.page_count):
-        page = doc[i]
-        images[f"page_{i + 1:02d}.png"] = page.get_pixmap(dpi=dpi).tobytes("png")
-        texts.append(page.get_text())
+    for i in order:
+        images[f"page_{i + 1:02d}.png"] = doc[i].get_pixmap(dpi=dpi).tobytes("png")
+    text = _pdf_text(doc, order)
     doc.close()
-    return images, "\n".join(texts)
+    return images, text
 
 
 # Chủ đề -> từ khoá. Đề bài khớp từ nào của chủ đề thì cả chủ đề được dùng để

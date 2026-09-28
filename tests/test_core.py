@@ -290,6 +290,66 @@ class SolvePdfTest(unittest.TestCase):
             s.solve_pdf(self.pdf)
 
 
+EXAMS_DIR = Path(__file__).resolve().parent.parent / "bai_tap" / "Đề thi mẫu"
+
+
+@unittest.skipUnless(_has_pymupdf(), "cần PyMuPDF")
+class PdfRetrievalTextTest(unittest.TestCase):
+    """Chữ PDF gửi retrieval: tách chữ dính, nối dòng bị bẻ, dòng đậm đầu block thành tiêu đề."""
+
+    def make_pdf(self, lines):
+        """lines: [(chữ, cỡ, đậm)], mỗi dòng 1 block riêng. Chữ nhập từng từ để điều khiển khoảng hở."""
+        import pymupdf
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = Path(tmp.name) / "de.pdf"
+        doc = pymupdf.open()
+        page = doc.new_page()
+        y = 60
+        for text, size, bold in lines:
+            page.insert_text((72, y), text, fontsize=size, fontname="hebo" if bold else "helv")
+            y += size * 2.5
+        doc.save(path)
+        return path
+
+    def test_heading_bold_bigger_becomes_markdown_heading(self):
+        # font helv không có dấu tiếng Việt nên dùng chữ không dấu ("Câu N" có dấu: test PDF thật bên dưới)
+        path = self.make_pdf([("PHAN 2: QUAY LUI", 14, True), ("Muc 4 (2 diem) Thiet ke", 10, True),
+                              ("Liet ke moi cach to mau", 10, False), ("Tong ket", 10, True), ("than bai", 10, False)])
+        text = solver_mod.render_pdf_pages(path)[1]
+        self.assertEqual(text.splitlines()[0], "# PHAN 2: QUAY LUI")
+        # đậm cỡ bằng chữ thân -> dòng in đậm sau dòng trống (cách _find_relevant_segments chia mục)
+        self.assertIn("\n\n**Muc 4 (2 diem) Thiet ke**\nLiet ke moi cach to mau\n", text)
+        self.assertIn("\n\n**Tong ket**\nthan bai", text)
+
+    def test_lowercase_line_joins_previous(self):
+        self.assertEqual(solver_mod._join(["Thiết kế theo phương pháp Quay", "lui cho bài", "Câu 5"]),
+                         ["Thiết kế theo phương pháp Quay lui cho bài", "Câu 5"])
+        self.assertEqual(solver_mod._join(["Dynamic Program-", "ming - MCM"]), ["Dynamic Programming - MCM"])
+
+    @unittest.skipUnless((EXAMS_DIR / "De_Thi_Va_Cau_Truc_PTTKTT_Co_Thuong_Buoi_9.pdf").exists(), "cần PDF đề buổi 9")
+    def test_real_pdf_glued_words_split(self):
+        # get_text() trả "Chia đểtrị", "Thiết kếthuật" nên từ khoá "chia để trị" không khớp
+        pdf = EXAMS_DIR / "De_Thi_Va_Cau_Truc_PTTKTT_Co_Thuong_Buoi_9.pdf"
+        text = solver_mod.render_pdf_pages(pdf, "3")[1]
+        self.assertIn("chia để trị", text.lower())
+        self.assertIn("thiết kế thuật toán", text.lower())
+        self.assertNotIn("đểtrị", text.lower())
+        lines = text.splitlines()
+        self.assertIn("## PHẦN II: THIẾT KẾ THUẬT TOÁN (6.0 ĐIỂM)", lines)
+        self.assertIn("Câu 4: Triển khai Mã giả thuật toán & Đánh giá (2.0 điểm)", lines)
+
+    @unittest.skipUnless((EXAMS_DIR / "Ôn Luyện/Chuyen_De_Thuat_Toan_Quay_Lui_Backtracking.pdf").exists(),
+                         "cần PDF chuyên đề quay lui")
+    def test_real_pdf_headings_rebuilt(self):
+        pdf = EXAMS_DIR / "Ôn Luyện/Chuyen_De_Thuat_Toan_Quay_Lui_Backtracking.pdf"
+        heads = [ln for ln in solver_mod.render_pdf_pages(pdf)[1].splitlines() if ln.startswith("#")]
+        # chỉ chèn cách giữa 2 chữ cái, "THỊ(" giữ nguyên như PDF
+        self.assertIn("## DẠNG 9: BÀI TOÁN TÔ MÀU ĐỒ THỊ(M-COLORING PROBLEM)", heads)
+        # tiêu đề bị bẻ 2 dòng ("... QUAY" / "LUI") được nối lại
+        self.assertIn("# PHẦN 3: BẢNG TỔNG HỢP SO SÁNH ĐỘ PHỨC TẠP CÁC BÀI TOÁN QUAY LUI", heads)
+
+
 @unittest.skipUnless(KB_PATH.exists(), "cần data/knowledge_base.json")
 class RetrievalTest(unittest.TestCase):
     """Đề thuộc chủ đề nào thì phải lấy đoạn transcript của buổi dạy chủ đề đó."""
