@@ -567,10 +567,12 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
             print("\n📝 Đề bài:")
             lines = []
             empty_count = 0
+            eof = False
             while True:
                 try:
                     line = input()
                 except EOFError:
+                    eof = True
                     break
                 if line.strip() == "":
                     empty_count += 1
@@ -586,6 +588,11 @@ Giải thích từng bước rõ ràng, dùng ngôn ngữ bình dân.
 
             problem = "\n".join(lines).strip()
             if not problem:
+                if eof:
+                    # Ctrl-D ở dòng trống hoặc hết stdin (pipe, file): thoát. Nếu quay lại
+                    # vòng lặp thì stdin pipe trả EOF ngay, in "Đề bài:" mãi không dừng.
+                    print("👋 Tạm biệt!")
+                    return
                 continue
 
             try:

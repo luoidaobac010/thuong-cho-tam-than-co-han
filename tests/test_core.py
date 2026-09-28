@@ -156,6 +156,43 @@ class SolveWrapTest(unittest.TestCase):
         self.assertIn("\\section{X}", doc)
 
 
+class SolveInteractiveTest(unittest.TestCase):
+    """Hết stdin (pipe, Ctrl-D) mà chưa nhập gì thì thoát, không in "Đề bài:" mãi."""
+
+    def run_with(self, *inputs):
+        s = make_agy_solver(knowledge_base_path=Path("/nonexistent"))
+        feed = iter(inputs)
+        eofs = []
+
+        def fake_input():
+            try:
+                return next(feed)
+            except StopIteration:
+                eofs.append(1)
+                if len(eofs) > 3:  # báo lỗi thay vì để test treo
+                    raise AssertionError("vẫn gọi input() sau EOF, vòng lặp không dừng") from None
+                raise EOFError from None
+
+        with mock.patch("builtins.input", side_effect=fake_input), \
+             mock.patch.object(s, "_call_agy", return_value="\\section{X}") as agy, \
+             mock.patch("builtins.print") as out:
+            s.solve_interactive()
+        prompts = sum("Đề bài:" in str(c.args[0]) for c in out.call_args_list if c.args)
+        return agy.call_count, prompts
+
+    def test_eof_after_one_problem_solves_then_exits(self):
+        self.assertEqual(self.run_with("Tô màu đồ thị bằng quay lui", "", ""), (1, 2))
+
+    def test_eof_with_unfinished_problem_still_solves_it(self):
+        self.assertEqual(self.run_with("Tô màu đồ thị bằng quay lui"), (1, 2))
+
+    def test_eof_right_away_exits(self):
+        self.assertEqual(self.run_with(), (0, 1))
+
+    def test_quit_still_works(self):
+        self.assertEqual(self.run_with("quit"), (0, 1))
+
+
 class FixTabularTest(unittest.TestCase):
     """Lỗi thật từ agy: khai 7 cột nhưng hàng có 8 ô -> XeTeX dừng, không ra PDF."""
 
