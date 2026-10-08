@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS112 - Minesweeper Solver Visualizer | UIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0c0f17;
+      --bg-surface: #141923;
+      --bg-surface-elevated: #1b2230;
+      --bg-cell: #1f2737;
+      --bg-cell-hover: #2a3449;
+      
+      --border-subtle: #242d3d;
+      --border-strong: #334155;
+      
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-tertiary: #64748b;
+      
+      /* Clue Colors */
+      --clue-0: #475569;
+      --clue-1: #38bdf8;
+      --clue-2: #4ade80;
+      --clue-3: #f87171;
+      --clue-4: #c084fc;
+      
+      --cross-center: #38bdf8;
+      --cross-neighbor: rgba(56, 189, 248, 0.25);
+      --cross-neighbor-border: #38bdf8;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      
+      --cell-size: 50px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 20px;
+      gap: 16px;
+    }
+
+    /* Top Bar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: #e2e8f0;
+      color: #0f172a;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .header-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    .tag-highlight {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+
+    /* App Layout */
+    .app-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr 340px;
+      gap: 16px;
+      flex: 1;
+    }
+
+    @media (max-width: 1200px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .panel-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    select, input[type="number"] {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      padding: 7px 10px;
+      font-size: 0.84rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    select:focus, input:focus {
+      border-color: #38bdf8;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-run {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-run:hover { background: #0369a1; }
+
+    .btn-pause {
+      background: #d97706;
+      color: #ffffff;
+    }
+    .btn-pause:hover { background: #b45309; }
+
+    .btn-subtle {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-subtle);
+      color: var(--text-primary);
+    }
+    .btn-subtle:hover {
+      background: #273144;
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline-danger {
+      background: transparent;
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+    .btn-outline-danger:hover {
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    /* Speed */
+    .speed-box {
+      background: var(--bg-surface-elevated);
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .speed-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      background: var(--border-strong);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .metric-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metric-label {
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: #38bdf8;
+    }
+
+    /* Stage */
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 20px;
+      min-height: 380px;
+      background: #090c13;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .boards-row {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .board-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .board-caption {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .board-grid {
+      display: grid;
+      gap: 4px;
+      background: var(--bg-surface);
+      padding: 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Cells */
+    .cell {
+      width: var(--cell-size);
+      height: var(--cell-size);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      user-select: none;
+      position: relative;
+      transition: all 0.12s ease;
+    }
+
+    .cell-clue {
+      background: var(--bg-cell);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .cell-clue[data-val="0"] { color: var(--clue-0); }
+    .cell-clue[data-val="1"] { color: var(--clue-1); }
+    .cell-clue[data-val="2"] { color: var(--clue-2); }
+    .cell-clue[data-val="3"] { color: var(--clue-3); }
+    .cell-clue[data-val="4"] { color: var(--clue-4); }
+
+    /* Cross Hover Effect (Chữ Thập) */
+    .cell.cross-center {
+      border: 2px solid var(--cross-center) !important;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      z-index: 5;
+    }
+
+    .cell.cross-arm {
+      background: var(--cross-neighbor) !important;
+      border: 1px dashed var(--cross-neighbor-border) !important;
+    }
+
+    .cell-sol {
+      background: #111622;
+      border: 1px solid var(--border-subtle);
+      color: #475569;
+    }
+
+    /* Sol Cell States */
+    .cell-sol.testing {
+      background: #0369a1;
+      border-color: #38bdf8;
+      color: #e0f2fe;
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .cell-sol.confirmed-mine {
+      background: #7f1d1d;
+      border: 1px solid #ef4444;
+      color: #fee2e2;
+    }
+
+    .cell-sol.confirmed-safe {
+      background: #064e3b;
+      border: 1px solid #10b981;
+      color: #a7f3d0;
+    }
+
+    .cell-sol.conflict {
+      background: #991b1b;
+      border: 1px solid #f87171;
+      animation: shake 0.25s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      33% { transform: translateX(-3px); }
+      66% { transform: translateX(3px); }
+    }
+
+    /* Status Pill */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+    .status-dot.running { background: #f59e0b; }
+    .status-dot.success { background: #10b981; }
+    .status-dot.failed { background: #ef4444; }
+
+    /* Code View */
+    .code-box {
+      background: #090c13;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+    }
+
+    .code-row {
+      padding: 3px 8px;
+      color: #64748b;
+      display: flex;
+      gap: 8px;
+    }
+
+    .code-row.active {
+      background: rgba(2, 132, 199, 0.15);
+      border-left: 3px solid #38bdf8;
+      color: #f8fafc;
+    }
+
+    /* Log Stream */
+    .log-stream {
+      background: #090c13;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      height: 100px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 3px;
+    }
+
+    .log-item { line-height: 1.35; }
+    .log-item.info { color: #94a3b8; }
+    .log-item.warn { color: #f59e0b; }
+    .log-item.err { color: #f87171; }
+    .log-item.succ { color: #34d399; }
+
+    /* Cross Notice */
+    .cross-legend {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      font-size: 0.74rem;
+      color: #93c5fd;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="brand-wrap">
+      <div class="brand-icon">💣</div>
+      <div class="brand-text">
+        <h1>Minesweeper Solver & Visualizer</h1>
+        <p>Thuật toán Quay lui (Backtracking) kết hợp Ràng buộc Lan truyền Chữ Thập (WeCode CS112)</p>
+      </div>
+    </div>
+    <div class="header-tags">
+      <div class="tag">CS112 - PTTKTT</div>
+      <div class="tag tag-highlight">Quy Tắc Chữ Thập ➕ (4 Hướng)</div>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <div class="app-layout">
+
+    <!-- Left: Controls -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Cấu Hình Bài Toán</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Chọn Bộ Test Mẫu (Đã Verified):</label>
+        <select id="presetSelect" onchange="loadPreset(this.value)">
+          <option value="test1">Test 1: Ma trận 3x3 Chuẩn (Có 3 Lời Giải)</option>
+          <option value="test2">Test 2: Ma trận 4x4 Đầy Đủ Nghiệm</option>
+          <option value="test3">Test 3: Ma trận 5x5 Phức Tạp</option>
+          <option value="test4">Test 4: Ma trận Vô Nghiệm (Kiểm Thử Cắt Tỉa)</option>
+          <option value="custom">Tự Nhập (Custom Grid)...</option>
+        </select>
+      </div>
+
+      <div class="grid-2col">
+        <div class="field-group">
+          <label class="field-label">Số hàng (N):</label>
+          <input type="number" id="inputN" min="1" max="8" value="3" onchange="onSizeChange()">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Số cột (M):</label>
+          <input type="number" id="inputM" min="1" max="8" value="3" onchange="onSizeChange()">
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <button class="btn btn-run" id="btnPlay" onclick="togglePlay()">▶ Bắt Đầu Giải</button>
+        <button class="btn btn-subtle" id="btnStep" onclick="stepAlgorithm()">⏭ Từng Bước</button>
+      </div>
+
+      <div class="grid-2col">
+        <button class="btn btn-subtle" onclick="generateSolvableGrid()">🎲 Tạo Grid Có Nghiệm</button>
+        <button class="btn btn-outline-danger" onclick="resetState()">↺ Đặt Lại</button>
+      </div>
+
+      <div class="speed-box">
+        <div class="speed-header">
+          <span>Tốc độ giải:</span>
+          <span id="speedVal" style="font-family: 'JetBrains Mono'; color: #38bdf8;">150ms</span>
+        </div>
+        <input type="range" id="speedRange" min="10" max="600" step="10" value="150" oninput="updateSpeed(this.value)">
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Số lần Backtrack</span>
+          <span class="metric-value" id="statBacktracks">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Nhánh đã tỉa</span>
+          <span class="metric-value" id="statPruned">0</span>
+        </div>
+      </div>
+
+      <div class="cross-legend">
+        ➕ <b>Quy tắc Chữ Thập:</b> Rà chuột (hover) vào bất kỳ ô nào trên bảng để thấy <b>4 ô lân cận (Trên, Dưới, Trái, Phải)</b> tạo thành tổng số mìn của ô đó.
+      </div>
+    </div>
+
+    <!-- Center: Visual Boards -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Bàn Cờ Trực Quan Hóa</span>
+        <div class="status-pill">
+          <div class="status-dot" id="statusDot"></div>
+          <span id="statusText">Sẵn sàng</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="boards-row">
+          
+          <!-- Board A -->
+          <div class="board-column">
+            <div class="board-caption">
+              <span>Bảng Gợi Ý <i>A</i> (Input)</span>
+            </div>
+            <div class="board-grid" id="clueBoard"></div>
+          </div>
+
+          <!-- Board B -->
+          <div class="board-column">
+            <div class="board-caption">
+              <span>Bảng Mìn <i>B</i> (0 / 💣)</span>
+            </div>
+            <div class="board-grid" id="mineBoard"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Execution Log -->
+      <div class="field-group">
+        <label class="field-label">Nhật Ký Từng Bước (Live Log):</label>
+        <div class="log-stream" id="logBox">
+          <div class="log-item info">Hệ thống sẵn sàng. Nhấn "Bắt Đầu Giải" hoặc "Từng Bước".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Algorithm Logic -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Thuật Toán CS112</span>
+      </div>
+
+      <div class="code-box">
+        <div class="code-row" id="l1"><span>1</span><span>def backtrack(c):</span></div>
+        <div class="code-row" id="l2"><span>2</span><span>  if c == M: return check_and_fill()</span></div>
+        <div class="code-row" id="l3"><span>3</span><span>  # Nhánh cận: Tính lo, hi cho B[0][c]</span></div>
+        <div class="code-row" id="l4"><span>4</span><span>  lo, hi = get_bounds(c)</span></div>
+        <div class="code-row" id="l5"><span>5</span><span>  for val in range(lo, hi + 1):</span></div>
+        <div class="code-row" id="l6"><span>6</span><span>    B[0][c] = val</span></div>
+        <div class="code-row" id="l7"><span>7</span><span>    # Lan truyền đường chéo (r, c-r)</span></div>
+        <div class="code-row" id="l8"><span>8</span><span>    if not propagate_diagonal(c):</span></div>
+        <div class="code-row" id="l9"><span>9</span><span>      prune(); continue</span></div>
+        <div class="code-row" id="l10"><span>10</span><span>    backtrack(c + 1)</span></div>
+      </div>
+
+      <div class="field-group" style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5;">
+        <label class="field-label">Đặc Tả Mô Hình:</label>
+        <div style="background: var(--bg-surface-elevated); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div>• <b>Input:</b> <i>A</i><sub>N×M</sub> với <i>a<sub>ij</sub></i> ∈ {0..4}</div>
+          <div>• <b>Output:</b> <i>B</i><sub>N×M</sub> với <i>b<sub>ij</sub></i> ∈ {0, 1} sao cho:</div>
+          <div style="font-family: 'JetBrains Mono'; color: #38bdf8; margin: 4px 0; font-size: 0.74rem;">
+            b[r-1][c] + b[r+1][c] + b[r][c-1] + b[r][c+1] = a[r][c]
+          </div>
+          <div>• <b>Độ phức tạp:</b> O(2<sup>M</sup> · N · M) (Duyệt hàng 0 và suy diễn nghiệm các hàng tiếp theo).</div>
+        </div>
+      </div>
+
+      <button class="btn btn-subtle" onclick="copySolution()">📋 Copy Lời Giải (Ma Trận)</button>
+    </div>
+
+  </div>
+
+  <script>
+    // PRESETS: 100% mathematically solvable test cases with 4-neighbor cross shape
+    const PRESETS = {
+      test1: {
+        N: 3, M: 3,
+        A: [
+          [1, 2, 1],
+          [2, 3, 2],
+          [2, 2, 2]
+        ]
+      },
+      test2: {
+        N: 4, M: 4,
+        A: [
+          [2, 1, 3, 0],
+          [2, 3, 0, 3],
+          [1, 1, 3, 0],
+          [1, 1, 0, 2]
+        ]
+      },
+      test3: {
+        N: 5, M: 5,
+        A: [
+          [1, 3, 2, 2, 0],
+          [2, 3, 4, 2, 2],
+          [1, 3, 4, 3, 2],
+          [2, 2, 3, 4, 1],
+          [0, 3, 2, 1, 2]
+        ]
+      },
+      test4: {
+        N: 3, M: 3,
+        A: [
+          [4, 4, 4],
+          [4, 4, 4],
+          [4, 4, 4]
+        ]
+      }
+    };
+
+    let N = 3, M = 3;
+    let A = [];
+    let B = [];
+    let isRunning = false;
+    let speed = 150;
+    let stepGen = null;
+    let stats = { backtracks: 0, pruned: 0 };
+
+    function init() {
+      loadPreset('test1');
+    }
+
+    function loadPreset(key) {
+      if (key === 'custom') return;
+      const p = PRESETS[key];
+      N = p.N;
+      M = p.M;
+      document.getElementById('inputN').value = N;
+      document.getElementById('inputM').value = M;
+      A = p.A.map(r => [...r]);
+      resetState();
+    }
+
+    function onSizeChange() {
+      N = Math.max(1, Math.min(8, parseInt(document.getElementById('inputN').value) || 3));
+      M = Math.max(1, Math.min(8, parseInt(document.getElementById('inputM').value) || 3));
+      document.getElementById('inputN').value = N;
+      document.getElementById('inputM').value = M;
+      document.getElementById('presetSelect').value = 'custom';
+      generateSolvableGrid();
+    }
+
+    // Solvable Grid Generator for 4-neighbor cross rule
+    function generateSolvableGrid() {
+      const tempB = Array.from({ length: N }, () => 
+        Array.from({ length: M }, () => Math.random() > 0.55 ? 1 : 0)
+      );
+      
+      A = Array.from({ length: N }, () => Array(M).fill(0));
+      const orthogonalDirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < M; c++) {
+          let count = 0;
+          for (let [dr, dc] of orthogonalDirs) {
+            let nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
+              count += tempB[nr][nc];
+            }
+          }
+          A[r][c] = count;
+        }
+      }
+
+      document.getElementById('presetSelect').value = 'custom';
+      resetState();
+      log(`Đã tạo ngẫu nhiên ma trận ${N}x${M} (Chắc chắn có nghiệm)`, 'succ');
+    }
+
+    function resetState() {
+      isRunning = false;
+      const playBtn = document.getElementById('btnPlay');
+      playBtn.textContent = '▶ Bắt Đầu Giải';
+      playBtn.className = 'btn btn-run';
+
+      B = Array.from({ length: N }, () => Array(M).fill(null));
+      stats = { backtracks: 0, pruned: 0 };
+      updateStats();
+      setStatus('Sẵn sàng', '');
+      renderBoards();
+      highlightLine(0);
+      stepGen = null;
+    }
+
+    function renderBoards() {
+      const clueBox = document.getElementById('clueBoard');
+      const mineBox = document.getElementById('mineBoard');
+
+      clueBox.style.gridTemplateColumns = `repeat(${M}, var(--cell-size))`;
+      mineBox.style.gridTemplateColumns = `repeat(${M}, var(--cell-size))`;
+
+      clueBox.innerHTML = '';
+      mineBox.innerHTML = '';
+
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < M; c++) {
+          // Clue
+          const cc = document.createElement('div');
+          cc.className = 'cell cell-clue';
+          cc.dataset.val = A[r][c];
+          cc.dataset.r = r;
+          cc.dataset.c = c;
+          cc.textContent = A[r][c];
+          cc.title = `Ô (${r},${c}): Tổng 4 hướng lân cận = ${A[r][c]}. Click để chỉnh sửa.`;
+          
+          cc.onmouseenter = () => highlightCross(r, c, true);
+          cc.onmouseleave = () => highlightCross(r, c, false);
+
+          cc.onclick = () => {
+            if (isRunning) return;
+            A[r][c] = (A[r][c] + 1) % 5;
+            cc.dataset.val = A[r][c];
+            cc.textContent = A[r][c];
+            document.getElementById('presetSelect').value = 'custom';
+            if (stepGen) resetState();
+          };
+          clueBox.appendChild(cc);
+
+          // Sol
+          const mc = document.createElement('div');
+          mc.className = 'cell cell-sol';
+          mc.id = `sol_${r}_${c}`;
+          mc.dataset.r = r;
+          mc.dataset.c = c;
+          mc.onmouseenter = () => highlightCross(r, c, true);
+          mc.onmouseleave = () => highlightCross(r, c, false);
+          updateSolCell(mc, B[r][c]);
+          mineBox.appendChild(mc);
+        }
+      }
+    }
+
+    // Cross Highlighter (Tương tác trực quan hình chữ thập)
+    function highlightCross(targetR, targetC, active) {
+      const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      
+      // Target Center Cell
+      const clueCenter = document.querySelector(`.cell-clue[data-r="${targetR}"][data-c="${targetC}"]`);
+      const solCenter = document.getElementById(`sol_${targetR}_${targetC}`);
+      if (clueCenter) clueCenter.classList.toggle('cross-center', active);
+      if (solCenter) solCenter.classList.toggle('cross-center', active);
+
+      // Neighbor 4 Arms
+      for (let [dr, dc] of dirs) {
+        let nr = targetR + dr, nc = targetC + dc;
+        if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
+          const clueArm = document.querySelector(`.cell-clue[data-r="${nr}"][data-c="${nc}"]`);
+          const solArm = document.getElementById(`sol_${nr}_${nc}`);
+          if (clueArm) clueArm.classList.toggle('cross-arm', active);
+          if (solArm) solArm.classList.toggle('cross-arm', active);
+        }
+      }
+    }
+
+    function updateSolCell(el, val, state = '') {
+      el.className = 'cell cell-sol';
+      if (state) el.classList.add(state);
+
+      if (val === 1) {
+        el.classList.add('confirmed-mine');
+        el.textContent = '💣';
+      } else if (val === 0) {
+        el.classList.add('confirmed-safe');
+        el.textContent = '0';
+      } else {
+        el.textContent = '';
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('statBacktracks').textContent = stats.backtracks;
+      document.getElementById('statPruned').textContent = stats.pruned;
+    }
+
+    function updateSpeed(v) {
+      speed = parseInt(v);
+      document.getElementById('speedVal').textContent = `${speed}ms`;
+    }
+
+    function setStatus(text, dotClass) {
+      document.getElementById('statusText').textContent = text;
+      const dot = document.getElementById('statusDot');
+      dot.className = 'status-dot ' + dotClass;
+    }
+
+    function highlightLine(num) {
+      for (let i = 1; i <= 10; i++) {
+        const el = document.getElementById(`l${i}`);
+        if (el) el.classList.remove('active');
+      }
+      if (num > 0) {
+        const el = document.getElementById(`l${num}`);
+        if (el) el.classList.add('active');
+      }
+    }
+
+    function log(msg, type = 'info') {
+      const box = document.getElementById('logBox');
+      const item = document.createElement('div');
+      item.className = `log-item ${type}`;
+      item.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      box.prepend(item);
+    }
+
+    // Exact JavaScript Port of WeCode Python Backtracking Algorithm
+    function* solveGenerator() {
+      let found = false;
+      B = Array.from({ length: N }, () => Array(M).fill(null));
+      renderBoards();
+
+      function checkAndFillFinal() {
+        for (let r = 1; r < N; r++) {
+          for (let c = 0; c < M; c++) {
+            let val = A[r-1][c];
+            if (r >= 2) val -= B[r-2][c];
+            if (c > 0) val -= B[r-1][c-1];
+            if (c < M - 1) val -= B[r-1][c+1];
+            if (val < 0 || val > 1) return false;
+            B[r][c] = val;
+          }
+        }
+        for (let c = 0; c < M; c++) {
+          let sum_val = 0;
+          if (N >= 2) sum_val += B[N-2][c];
+          if (c > 0) sum_val += B[N-1][c-1];
+          if (c < M - 1) sum_val += B[N-1][c+1];
+          if (sum_val !== A[N-1][c]) return false;
+        }
+        return true;
+      }
+
+      function* backtrack(c) {
+        if (found) return;
+        stats.backtracks++;
+        updateStats();
+
+        if (c === M) {
+          highlightLine(2);
+          log(`Duyệt xong hàng 0. Đang suy diễn & kiểm tra các hàng còn lại...`, 'info');
+          if (checkAndFillFinal()) {
+            found = true;
+            highlightLine(2);
+            log(`🎉 Tìm thấy lời giải hợp lệ thỏa mãn 100% ràng buộc!`, 'succ');
+          } else {
+            stats.pruned++;
+            updateStats();
+            log(`Không khớp điều kiện biên hàng cuối. Cắt tỉa nhánh.`, 'warn');
+          }
+          yield { type: 'complete', ok: found };
+          return;
+        }
+
+        let lo = 0, hi = 1;
+        if (c >= 1) {
+          let base = A[0][c-1];
+          if (c >= 2) base -= B[0][c-2];
+          if (N === 1) {
+            if (base < 0 || base > 1) {
+              stats.pruned++;
+              updateStats();
+              return;
+            }
+            lo = hi = base;
+          } else {
+            lo = Math.max(0, base - 1);
+            hi = Math.min(1, base);
+            if (lo > hi) {
+              stats.pruned++;
+              updateStats();
+              return;
+            }
+          }
+        }
+
+        highlightLine(4);
+        for (let val = lo; val <= hi; val++) {
+          B[0][c] = val;
+          highlightLine(6);
+          log(`Thử đặt B[0][${c}] = ${val}`, 'info');
+          yield { type: 'set', r: 0, c: c, val: val, state: 'testing' };
+
+          let ok = true;
+          let max_r = Math.min(c, N - 1);
+          for (let r = 1; r <= max_r; r++) {
+            let col = c - r;
+            let rv = A[r-1][col];
+            if (r >= 2) rv -= B[r-2][col];
+            if (col > 0) rv -= B[r-1][col-1];
+            rv -= B[r-1][col+1];
+
+            if (rv < 0 || rv > 1) {
+              ok = false;
+              stats.pruned++;
+              updateStats();
+              highlightLine(9);
+              log(`❌ Vi phạm ràng buộc tại ô (${r}, ${col}) (rv = ${rv}). Tỉa nhánh!`, 'err');
+              yield { type: 'conflict', r: r, c: col };
+              break;
+            } else {
+              B[r][col] = rv;
+              yield { type: 'set', r: r, c: col, val: rv, state: 'testing' };
+            }
+          }
+
+          if (!ok) continue;
+
+          highlightLine(10);
+          yield* backtrack(c + 1);
+          if (found) return;
+
+          // Cleanup backtrack state
+          B[0][c] = null;
+          for (let r = 1; r <= max_r; r++) {
+            B[r][c - r] = null;
+          }
+          yield { type: 'cleanup' };
+        }
+      }
+
+      yield* backtrack(0);
+      return found;
+    }
+
+    async function togglePlay() {
+      const btn = document.getElementById('btnPlay');
+      if (isRunning) {
+        isRunning = false;
+        btn.textContent = '▶ Tiếp Tục';
+        btn.className = 'btn btn-run';
+        setStatus('Tạm dừng', 'running');
+        return;
+      }
+
+      isRunning = true;
+      btn.textContent = '⏸ Tạm Dừng';
+      btn.className = 'btn btn-pause';
+      setStatus('Đang chạy...', 'running');
+
+      if (!stepGen) {
+        stats = { backtracks: 0, pruned: 0 };
+        updateStats();
+        stepGen = solveGenerator();
+      }
+
+      while (isRunning) {
+        const next = stepGen.next();
+        if (next.done) {
+          isRunning = false;
+          stepGen = null;
+          btn.textContent = '▶ Giải Lại';
+          btn.className = 'btn btn-run';
+
+          if (next.value) {
+            setStatus('Đã tìm thấy nghiệm', 'success');
+          } else {
+            setStatus('Vô nghiệm', 'failed');
+            log('Kết thúc: Không tồn tại ma trận thỏa mãn.', 'err');
+          }
+          refreshAllMineCells();
+          break;
+        }
+
+        applyStepEvent(next.value);
+        await new Promise(r => setTimeout(r, speed));
+      }
+    }
+
+    function stepAlgorithm() {
+      if (isRunning) return;
+      if (!stepGen) {
+        stats = { backtracks: 0, pruned: 0 };
+        updateStats();
+        stepGen = solveGenerator();
+      }
+      setStatus('Từng bước', 'running');
+      const next = stepGen.next();
+      if (next.done) {
+        if (next.value) {
+          setStatus('Đã tìm thấy nghiệm', 'success');
+        } else {
+          setStatus('Vô nghiệm', 'failed');
+        }
+        refreshAllMineCells();
+        stepGen = null;
+      } else {
+        applyStepEvent(next.value);
+      }
+    }
+
+    function applyStepEvent(e) {
+      if (!e) return;
+      if (e.type === 'set') {
+        const el = document.getElementById(`sol_${e.r}_${e.c}`);
+        if (el) updateSolCell(el, e.val, e.state);
+      } else if (e.type === 'conflict' || e.type === 'cleanup' || e.type === 'complete') {
+        refreshAllMineCells();
+      }
+    }
+
+    function refreshAllMineCells() {
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < M; c++) {
+          const el = document.getElementById(`sol_${r}_${c}`);
+          if (el) updateSolCell(el, B[r][c]);
+        }
+      }
+    }
+
+    function copySolution() {
+      if (B.some(row => row.includes(null))) {
+        alert('Chưa có lời giải hoàn chỉnh! Vui lòng nhấn "Bắt Đầu Giải" trước.');
+        return;
+      }
+      const text = B.map(row => row.join(' ')).join('\n');
+      navigator.clipboard.writeText(text);
+      alert('Đã copy ma trận lời giải vào Clipboard:\n\n' + text);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

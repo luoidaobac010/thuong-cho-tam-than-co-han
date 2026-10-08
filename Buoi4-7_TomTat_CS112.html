@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS112 – Buổi 4-7: Chia Để Trị, QHĐ, Tham Lam, Đồ Thị</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --orange: #ea580c;
+      --orange-light: #fff7ed;
+      --purple: #7c3aed;
+      --purple-light: #f3e8ff;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --yellow: #f59e0b;
+      --yellow-light: #fffbeb;
+      --teal: #0d9488;
+      --teal-light: #f0fdfa;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-800);
+      line-height: 1.7;
+      background: white;
+      font-size: 11pt;
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { font-size: 10pt; }
+      .page-break { page-break-before: always; }
+      .no-break { page-break-inside: avoid; }
+      .cover { page-break-after: always; }
+      section { page-break-inside: avoid; }
+    }
+
+    /* ===== COVER ===== */
+    .cover {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+      color: white; padding: 3rem;
+    }
+    .cover h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
+    .cover h2 { font-size: 1.6rem; font-weight: 500; opacity: 0.9; margin-bottom: 2rem; }
+    .cover .subtitle { font-size: 1.1rem; opacity: 0.8; max-width: 500px; line-height: 1.8; }
+    .cover .badge {
+      display: inline-block; padding: 0.5rem 1.5rem; border-radius: 999px;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+      font-weight: 600; font-size: 0.95rem; margin-top: 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* ===== LAYOUT ===== */
+    .content { max-width: 800px; margin: 0 auto; padding: 2rem 2.5rem; }
+
+    h1.section-title {
+      font-size: 1.8rem; font-weight: 800; color: var(--blue);
+      border-bottom: 3px solid var(--blue); padding-bottom: 0.5rem;
+      margin: 2.5rem 0 1.5rem; letter-spacing: -0.5px;
+    }
+    h1.section-title.green { color: var(--green); border-color: var(--green); }
+
+    h2 {
+      font-size: 1.25rem; font-weight: 700; color: var(--gray-900);
+      margin: 2rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    h3 {
+      font-size: 1.05rem; font-weight: 600; color: var(--gray-700);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p { margin-bottom: 0.7rem; }
+    ul, ol { padding-left: 1.5rem; margin-bottom: 0.8rem; }
+    li { margin-bottom: 0.3rem; }
+
+    /* ===== CARDS ===== */
+    .card {
+      border: 1px solid var(--gray-200); border-radius: 12px;
+      padding: 1.2rem 1.5rem; margin-bottom: 1.2rem;
+      background: white;
+    }
+    .card.blue { border-left: 4px solid var(--blue); background: var(--blue-light); }
+    .card.green { border-left: 4px solid var(--green); background: var(--green-light); }
+    .card.orange { border-left: 4px solid var(--orange); background: var(--orange-light); }
+    .card.purple { border-left: 4px solid var(--purple); background: var(--purple-light); }
+    .card.red { border-left: 4px solid var(--red); background: var(--red-light); }
+    .card.yellow { border-left: 4px solid var(--yellow); background: var(--yellow-light); }
+    .card.teal { border-left: 4px solid var(--teal); background: var(--teal-light); }
+
+    .card-title {
+      font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+      border-collapse: collapse; width: 100%; margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid var(--gray-300); padding: 0.4rem 0.6rem;
+      text-align: center; min-width: 38px;
+    }
+    th { background: var(--gray-100); font-weight: 600; }
+    .cell-highlight { background: #fef08a; font-weight: 700; }
+    .cell-answer { background: #bbf7d0; font-weight: 700; color: var(--green); }
+    .cell-empty { background: var(--gray-100); color: var(--gray-300); }
+    .cell-base { background: var(--blue-light); }
+    .cell-trace { background: #c4b5fd; font-weight: 600; }
+    .row-header { background: var(--gray-50); font-weight: 600; text-align: left; }
+
+    /* ===== CODE ===== */
+    .pseudo {
+      background: var(--gray-900); color: #e5e7eb; border-radius: 10px;
+      padding: 1rem 1.5rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem; line-height: 1.8; margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .pseudo .kw { color: #c084fc; font-weight: 600; }
+    .pseudo .fn { color: #67e8f9; }
+    .pseudo .cm { color: #6b7280; font-style: italic; }
+    .pseudo .str { color: #86efac; }
+    .pseudo .num { color: #fbbf24; }
+
+    /* ===== STEP BOX ===== */
+    .step-box {
+      border: 2px solid var(--blue); border-radius: 10px;
+      margin: 1rem 0; overflow: hidden;
+    }
+    .step-box.green { border-color: var(--green); }
+    .step-box .step-header {
+      background: var(--blue); color: white; padding: 0.5rem 1rem;
+      font-weight: 700; font-size: 0.95rem;
+    }
+    .step-box.green .step-header { background: var(--green); }
+    .step-box .step-body { padding: 1rem 1.2rem; }
+
+    /* ===== TIPS ===== */
+    .tip {
+      display: flex; gap: 0.7rem; padding: 0.8rem 1rem;
+      background: var(--yellow-light); border: 1px solid #fde68a;
+      border-radius: 8px; margin: 0.8rem 0; font-size: 0.92rem;
+    }
+    .tip .icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    .warning {
+      display: flex; gap: 0.7rem; padding: 0.8rem 1rem;
+      background: var(--red-light); border: 1px solid #fca5a5;
+      border-radius: 8px; margin: 0.8rem 0; font-size: 0.92rem;
+    }
+    .warning .icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    /* ===== FLOW ===== */
+    .flow {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+      margin: 0.8rem 0; font-size: 0.9rem;
+    }
+    .flow-step {
+      background: var(--blue-light); color: var(--blue); padding: 0.3rem 0.8rem;
+      border-radius: 6px; font-weight: 600; white-space: nowrap;
+    }
+    .flow-step.green { background: var(--green-light); color: var(--green); }
+    .flow-arrow { color: var(--gray-400); font-size: 1.2rem; }
+
+    /* ===== COMPARISON TABLE ===== */
+    .cmp-table td:first-child { font-weight: 600; text-align: left; background: var(--gray-50); }
+
+    /* ===== TOC ===== */
+    .toc {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: 12px; padding: 1.5rem 2rem; margin: 1.5rem 0;
+    }
+    .toc h3 { margin-top: 0; color: var(--gray-900); }
+    .toc ol { counter-reset: toc; list-style: none; padding-left: 0; }
+    .toc > ol > li { margin-bottom: 0.3rem; }
+    .toc ol li::before {
+      counter-increment: toc; content: counter(toc) ". ";
+      font-weight: 700; color: var(--blue);
+    }
+    .toc .sub { padding-left: 1.5rem; font-size: 0.9rem; color: var(--gray-600); }
+
+    .divider { border: none; border-top: 2px dashed var(--gray-200); margin: 2rem 0; }
+
+    strong { color: var(--gray-900); }
+    em { color: var(--gray-600); }
+
+    .tag {
+      display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+    }
+    .tag.blue { background: var(--blue-light); color: var(--blue); }
+    .tag.green { background: var(--green-light); color: var(--green); }
+    .tag.orange { background: var(--orange-light); color: var(--orange); }
+    .tag.red { background: var(--red-light); color: var(--red); }
+  </style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="badge">📖 Tài liệu ôn tập nhanh</div>
+  <h1>CS112 – Buổi 4 → 7</h1>
+  <h2>Chia Để Trị • QHĐ • Tham Lam • Đồ Thị</h2>
+  <p class="subtitle">
+    Tóm tắt lý thuyết cốt lõi • Ví dụ giải chi tiết từng bước<br>
+    Bảng QHĐ tô màu • Thuật toán đồ thị • Mẹo nhớ nhanh & tránh sai
+  </p>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="content">
+  <div class="toc">
+    <h3>📑 Mục Lục</h3>
+    <ol>
+      <li><strong>PHẦN 1: CHIA ĐỂ TRỊ (Buổi 4)</strong>
+        <div class="sub">Lý thuyết 3 bước • Ví dụ 1: Merge Sort • Ví dụ 2: Quick Sort • Ví dụ 3: Tìm Min-Max</div>
+      </li>
+      <li><strong>PHẦN 2: QUY HOẠCH ĐỘNG (Buổi 5)</strong>
+        <div class="sub">Lý thuyết • 6 bước giải • Ví dụ 1: LCS • Ví dụ 2: Ba lô 0/1 • Ví dụ 3: Nhân chuỗi ma trận</div>
+      </li>
+      <li><strong>PHẦN 3: THAM LAM (Buổi 6)</strong>
+        <div class="sub">Lý thuyết • Khung mã giả • Ví dụ 1: Ba lô phân số • Ví dụ 2: Chọn hoạt động • Ví dụ 3: Tô màu đồ thị</div>
+      </li>
+      <li><strong>PHẦN 4: ĐỒ THỊ (Buổi 7)</strong>
+        <div class="sub">BFS • DFS • Dijkstra • Prim/Kruskal • Ví dụ giải từng bước</div>
+      </li>
+      <li><strong>BẢNG SO SÁNH TỔNG & MẸO PHÂN BIỆT</strong></li>
+    </ol>
+  </div>
+  <!-- ============================================================ -->
+  <!--          PHẦN 0A: KÝ HIỆU TIỆM CẬN (Big-O, Ω, Θ)          -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--red); border-color: var(--red);">🔢 KÝ HIỆU TIỆM CẬN — Big-O, Ω, Θ</h1>
+
+  <div class="card red">
+    <div class="card-title">💡 Bản chất — "Hàm này lớn cỡ nào khi n → ∞?"</div>
+    <p>Ký hiệu tiệm cận dùng để <strong>so sánh tốc độ tăng</strong> của các hàm. Không quan tâm hằng số, chỉ quan tâm <strong>dạng tăng</strong>.</p>
+  </div>
+
+  <h2>📋 3 Ký Hiệu Chính</h2>
+  <table>
+    <tr><th style="width:15%">Ký hiệu</th><th style="width:30%">Tên</th><th style="width:25%">Ý nghĩa</th><th style="width:30%">Định nghĩa chính thức</th></tr>
+    <tr>
+      <td><strong>$O(g(n))$</strong></td>
+      <td>Big-O (cận trên)</td>
+      <td>$f(n)$ tăng <strong>chậm hơn hoặc bằng</strong> $g(n)$</td>
+      <td>$\exists c > 0, n_0 > 0$: $f(n) \le c \cdot g(n)$, $\forall n \ge n_0$</td>
+    </tr>
+    <tr>
+      <td><strong>$\Omega(g(n))$</strong></td>
+      <td>Big-Omega (cận dưới)</td>
+      <td>$f(n)$ tăng <strong>nhanh hơn hoặc bằng</strong> $g(n)$</td>
+      <td>$\exists c > 0, n_0 > 0$: $f(n) \ge c \cdot g(n)$, $\forall n \ge n_0$</td>
+    </tr>
+    <tr>
+      <td><strong>$\Theta(g(n))$</strong></td>
+      <td>Big-Theta (cận chặt)</td>
+      <td>$f(n)$ tăng <strong>cùng tốc độ</strong> với $g(n)$</td>
+      <td>$\exists c_1, c_2, n_0 > 0$: $c_1 g(n) \le f(n) \le c_2 g(n)$</td>
+    </tr>
+  </table>
+
+  <div class="tip">
+    <span class="icon">💡</span>
+    <div><strong>Mẹo nhớ:</strong> O = "tối đa bằng" (≤) | Ω = "tối thiểu bằng" (≥) | Θ = "đúng bằng" (=). Nếu vừa $O$ vừa $\Omega$ → thì là $\Theta$.</div>
+  </div>
+
+  <h2>📝 Cách CM bằng định nghĩa (dạng hay thi)</h2>
+  <div class="card no-break">
+    <div class="card-title">Ví dụ: CM $3n^2 + 5n = O(n^2)$</div>
+    <p><strong>Cần tìm:</strong> $c > 0$ và $n_0 > 0$ sao cho $3n^2 + 5n \le c \cdot n^2$, $\forall n \ge n_0$.</p>
+    <p><strong>Lời giải:</strong> $3n^2 + 5n \le 3n^2 + 5n^2 = 8n^2$ (vì $n \le n^2$ khi $n \ge 1$)</p>
+    <p>Chọn $c = 8$, $n_0 = 1$ → $3n^2 + 5n \le 8n^2$, $\forall n \ge 1$. ∎</p>
+  </div>
+
+  <div class="pseudo" style="font-size:0.88rem; line-height:2.2">
+    <span class="cm">// Khung CM chuẩn (ghi vào bài thi):</span><br>
+    <span class="num">1.</span> Ghi: <span class="str">"Cần tìm c > 0, n₀ > 0 sao cho f(n) ≤ c·g(n), ∀n ≥ n₀"</span><br>
+    <span class="num">2.</span> Biến đổi: <span class="fn">thay hạng nhỏ bằng hạng lớn nhất</span> (n ≤ n², log n ≤ n, ...)<br>
+    <span class="num">3.</span> Thu gọn: f(n) ≤ <span class="fn">(tổng hệ số) · g(n)</span><br>
+    <span class="num">4.</span> Kết luận: <span class="str">"Chọn c = ..., n₀ = ... → QED ∎"</span>
+  </div>
+
+  <h2>📊 Thứ tự hàm phổ biến (nhỏ → lớn)</h2>
+  <div class="flow">
+    <span class="flow-step" style="background:var(--green-light);color:var(--green)">$O(1)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--green-light);color:var(--green)">$O(\log n)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--blue-light);color:var(--blue)">$O(n)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--blue-light);color:var(--blue)">$O(n\log n)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--orange-light);color:var(--orange)">$O(n^2)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--orange-light);color:var(--orange)">$O(n^3)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--red-light);color:var(--red)">$O(2^n)$</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:var(--red-light);color:var(--red)">$O(n!)$</span>
+  </div>
+  <div class="tip">
+    <span class="icon">📌</span>
+    <div><strong>Mẹo phân lớp:</strong> Bỏ hệ số + bỏ hạng nhỏ. VD: $5n^2 + 3n\log n + 7$ → $O(n^2)$.</div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--          PHẦN 0B: PHÂN TÍCH THUẬT TOÁN                       -->
+  <!-- ============================================================ -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--red); border-color: var(--red);">🔍 PHÂN TÍCH THUẬT TOÁN — Đếm phép toán &amp; Đệ quy</h1>
+
+  <h2>📋 Dạng 1: Đếm phép toán (vòng lặp)</h2>
+  <div class="card no-break">
+    <div class="card-title">Đếm từ trong ra ngoài</div>
+    <table>
+      <tr><th style="width:40%">Dạng vòng lặp</th><th style="width:30%">Số lần chạy</th><th style="width:30%">Kết luận</th></tr>
+      <tr><td><code>for i = 1 to n</code></td><td>$n$ lần</td><td>$O(n)$</td></tr>
+      <tr><td><code>for i..n { for j..n }</code></td><td>$n \times n$</td><td>$O(n^2)$</td></tr>
+      <tr><td><code>for i..n { for j..i }</code></td><td>$1+2+...+n = \frac{n(n+1)}{2}$</td><td>$O(n^2)$</td></tr>
+      <tr><td><code>while i &lt; n: i *= 2</code></td><td>$\log_2 n$ lần</td><td>$O(\log n)$</td></tr>
+      <tr><td><code>for i..n { while j&lt;n: j*=2 }</code></td><td>$n \times \log n$</td><td>$O(n\log n)$</td></tr>
+    </table>
+  </div>
+
+  <h2>📋 Dạng 2: Lập phương trình đệ quy</h2>
+  <div class="card no-break">
+    <div class="card-title">4 bước lập PT</div>
+    <ol>
+      <li><strong>Base case:</strong> Khi nào dừng? → $T(1) = O(1)$</li>
+      <li><strong>Phần đệ quy:</strong> Gọi lại bao nhiêu lần? Kích thước con bao nhiêu?</li>
+      <li><strong>Phần không đệ quy:</strong> Ngoài lời gọi đệ quy, còn làm gì? → $f(n)$</li>
+      <li><strong>Viết PT:</strong> $T(n) = (\text{số lần gọi}) \times T(\text{kích thước con}) + f(n)$</li>
+    </ol>
+  </div>
+
+  <h2>📋 Dạng 3: Giải PT đệ quy — Master Theorem</h2>
+  <div class="card blue no-break">
+    <div class="card-title">Master Theorem — $T(n) = aT(n/b) + f(n)$</div>
+    <p>So sánh $f(n)$ với $n^{\log_b a}$:</p>
+    <table>
+      <tr><th>Case</th><th>Điều kiện</th><th>Kết luận</th><th>Ví dụ</th></tr>
+      <tr>
+        <td class="cell-highlight"><strong>1</strong></td>
+        <td>$f(n)$ <strong>nhỏ hơn</strong> $n^{\log_b a}$</td>
+        <td>$T(n) = \Theta(n^{\log_b a})$</td>
+        <td>$8T(n/2)+n^2$: $\log_2 8=3>2$ → $\Theta(n^3)$</td>
+      </tr>
+      <tr>
+        <td class="cell-highlight"><strong>2</strong></td>
+        <td>$f(n)$ <strong>bằng</strong> $n^{\log_b a}$</td>
+        <td>$T(n) = \Theta(n^{\log_b a} \log n)$</td>
+        <td>$2T(n/2)+n$: $\log_2 2=1=1$ → $\Theta(n\log n)$</td>
+      </tr>
+      <tr>
+        <td class="cell-highlight"><strong>3</strong></td>
+        <td>$f(n)$ <strong>lớn hơn</strong> $n^{\log_b a}$</td>
+        <td>$T(n) = \Theta(f(n))$</td>
+        <td>$2T(n/2)+n^2$: $\log_2 2=1<2$ → $\Theta(n^2)$</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="pseudo" style="font-size:0.88rem; line-height:2.2">
+    <span class="cm">// Cách dùng Master Theorem (3 bước):</span><br>
+    <span class="num">1.</span> Xác định: a = <span class="fn">?</span>, b = <span class="fn">?</span>, f(n) = <span class="fn">?</span><br>
+    <span class="num">2.</span> Tính: $n^{\log_b a}$ = <span class="fn">?</span><br>
+    <span class="num">3.</span> So sánh f(n) với $n^{\log_b a}$:<br>
+    &nbsp;&nbsp;<span class="kw">nhỏ hơn</span> → Case 1 → $\Theta(n^{\log_b a})$<br>
+    &nbsp;&nbsp;<span class="kw">bằng</span> &nbsp;&nbsp;&nbsp;→ Case 2 → $\Theta(n^{\log_b a} \cdot \log n)$<br>
+    &nbsp;&nbsp;<span class="kw">lớn hơn</span> → Case 3 → $\Theta(f(n))$
+  </div>
+
+  <!-- ============================================================ -->
+  <!--          PHẦN 0C: THIẾT KẾ THUẬT TOÁN (MÃ GIẢ)              -->
+  <!-- ============================================================ -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--red); border-color: var(--red);">✍️ THIẾT KẾ THUẬT TOÁN — Viết mã giả &amp; Đánh giá</h1>
+
+  <div class="card red">
+    <div class="card-title">🎯 Câu này hỏi gì? (Câu 4 trong đề)</div>
+    <p>Cho bài toán → <strong>(1) Viết mã giả</strong> + <strong>(2) Đánh giá độ phức tạp</strong>.</p>
+    <p><em>Không nghĩ ra hoàn chỉnh → vẫn nên trình bày ý tưởng để lấy điểm.</em></p>
+  </div>
+
+  <h2>🔧 Khung mã giả theo từng mô hình</h2>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Mã giả — Chia để trị</div>
+    <div class="step-body">
+      <div class="pseudo" style="font-size:0.85rem; line-height:2">
+        <span class="kw">function</span> <span class="fn">SOLVE_DC</span>(A, left, right):<br>
+        &nbsp;&nbsp;<span class="kw">if</span> left == right: <span class="kw">return</span> base_case<br>
+        &nbsp;&nbsp;mid = (left + right) / <span class="num">2</span><br>
+        &nbsp;&nbsp;L = <span class="fn">SOLVE_DC</span>(A, left, mid)<br>
+        &nbsp;&nbsp;R = <span class="fn">SOLVE_DC</span>(A, mid+1, right)<br>
+        &nbsp;&nbsp;<span class="kw">return</span> <span class="fn">COMBINE</span>(L, R)
+      </div>
+      <p><strong>ĐPT:</strong> $T(n) = 2T(n/2) + f_{\text{combine}}(n)$ → Master Theorem.</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break green">
+    <div class="step-header">Mã giả — Tham lam</div>
+    <div class="step-body">
+      <div class="pseudo" style="font-size:0.85rem; line-height:2">
+        <span class="kw">function</span> <span class="fn">SOLVE_GREEDY</span>(candidates):<br>
+        &nbsp;&nbsp;S ← ∅<br>
+        &nbsp;&nbsp;<span class="fn">SORT</span>(candidates theo tiêu_chí)<br>
+        &nbsp;&nbsp;<span class="kw">for each</span> x <span class="kw">in</span> candidates:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> <span class="fn">IS_FEASIBLE</span>(S ∪ {x}): S ← S ∪ {x}<br>
+        &nbsp;&nbsp;<span class="kw">return</span> S
+      </div>
+      <p><strong>ĐPT:</strong> Thường $O(n \log n)$ (sắp xếp chi phối).</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Mã giả — Quy hoạch động</div>
+    <div class="step-body">
+      <div class="pseudo" style="font-size:0.85rem; line-height:2">
+        <span class="kw">function</span> <span class="fn">SOLVE_DP</span>(input):<br>
+        &nbsp;&nbsp;T ← bảng [0..n][0..m], fill <span class="num">0</span><br>
+        &nbsp;&nbsp;T[0][*] = ..., T[*][0] = ... <span class="cm">// cơ sở</span><br>
+        &nbsp;&nbsp;<span class="kw">for</span> i = <span class="num">1</span> <span class="kw">to</span> n:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">for</span> j = <span class="num">1</span> <span class="kw">to</span> m:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T[i][j] = <span class="fn">FORMULA</span>(...)<br>
+        &nbsp;&nbsp;<span class="kw">return</span> T[n][m]
+      </div>
+      <p><strong>ĐPT:</strong> Thường $O(n \times m)$ hoặc $O(n \times W)$ = kích thước bảng.</p>
+    </div>
+  </div>
+
+  <h2>✅ Checklist viết mã giả khi thi</h2>
+  <div class="card yellow no-break">
+    <div class="card-title">Trước khi nộp</div>
+    <ul>
+      <li>☐ Có <strong>tên hàm + tham số</strong>?</li>
+      <li>☐ Có chú thích <strong>Input/Output</strong>?</li>
+      <li>☐ Có <strong>base case</strong> (điều kiện dừng)?</li>
+      <li>☐ Có <strong>comment giải thích</strong> từng dòng quan trọng?</li>
+      <li>☐ Có phần <strong>đánh giá ĐPT</strong> riêng ở cuối + giải thích cách suy ra?</li>
+    </ul>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⚠️</span>
+    <div><strong>Đề thi nói rõ:</strong> <em>"Không xây dựng được thuật toán → trình bày ý tưởng để được xem xét cho điểm."</em> → <strong>Không bỏ trống!</strong></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--                    PHẦN 1: CHIA ĐỂ TRỊ                       -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--orange); border-color: var(--orange);">📙 PHẦN 1: CHIA ĐỂ TRỊ (Divide and Conquer) — Buổi 4</h1>
+
+  <div class="card orange">
+    <div class="card-title">💡 Bản chất — "Chia nhỏ, trị riêng, gộp lại"</div>
+    <p>Chia bài toán lớn thành <strong>các bài toán con nhỏ hơn cùng dạng</strong>, giải đệ quy từng bài con, rồi <strong>kết hợp</strong> kết quả lại thành lời giải cho bài toán ban đầu.</p>
+  </div>
+
+  <h2>🔧 Khung 3 Bước Chuẩn</h2>
+  <div class="flow">
+    <span class="flow-step" style="background:#fff7ed;color:var(--orange)">DIVIDE: Chia nhỏ</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:#fff7ed;color:var(--orange)">CONQUER: Giải đệ quy</span><span class="flow-arrow">→</span>
+    <span class="flow-step" style="background:#fff7ed;color:var(--orange)">COMBINE: Gộp kết quả</span>
+  </div>
+
+  <div class="pseudo">
+    <span class="kw">function</span> <span class="fn">DIVIDE_AND_CONQUER</span>(problem):<br>
+    &nbsp;&nbsp;<span class="kw">if</span> problem đủ nhỏ (base case):<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> giải trực tiếp<br>
+    &nbsp;&nbsp;<span class="cm">// DIVIDE</span><br>
+    &nbsp;&nbsp;subproblems ← chia problem thành các bài con<br>
+    &nbsp;&nbsp;<span class="cm">// CONQUER</span><br>
+    &nbsp;&nbsp;<span class="kw">for each</span> sub <span class="kw">in</span> subproblems:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;results[sub] ← <span class="fn">DIVIDE_AND_CONQUER</span>(sub)<br>
+    &nbsp;&nbsp;<span class="cm">// COMBINE</span><br>
+    &nbsp;&nbsp;<span class="kw">return</span> <span class="fn">COMBINE</span>(results)
+  </div>
+
+  <div class="card">
+    <div class="card-title">📐 Công thức đệ quy tổng quát (Master Theorem)</div>
+    <p>$$T(n) = aT(n/b) + f(n)$$</p>
+    <p>Trong đó: $a$ = số bài con, $b$ = tỉ lệ chia, $f(n)$ = chi phí chia + gộp.</p>
+    <ul>
+      <li><strong>Merge Sort:</strong> $T(n) = 2T(n/2) + O(n)$ → $O(n \log n)$</li>
+      <li><strong>Quick Sort (TB):</strong> $T(n) = 2T(n/2) + O(n)$ → $O(n \log n)$ (worst: $O(n^2)$)</li>
+      <li><strong>Binary Search:</strong> $T(n) = T(n/2) + O(1)$ → $O(\log n)$</li>
+    </ul>
+  </div>
+
+  <div class="tip">
+    <span class="icon">💡</span>
+    <div><strong>Phân biệt với QHĐ:</strong> Chia để trị các bài con <strong>KHÔNG gối nhau</strong> (mỗi bài con độc lập). Nếu bài con trùng lặp → chuyển sang QHĐ.</div>
+  </div>
+
+  <!-- ===== VÍ DỤ 1: MERGE SORT ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 1: Merge Sort</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Sắp xếp mảng $A = [38, 27, 43, 3, 9, 82, 10]$ bằng Merge Sort.</p>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Bước DIVIDE: Chia đôi mảng đến khi còn 1 phần tử</div>
+    <div class="step-body">
+      <pre style="font-family:'JetBrains Mono',monospace; font-size:0.85rem; line-height:2">
+              [38, 27, 43, 3, 9, 82, 10]
+                 /                    \
+         [38, 27, 43]            [3, 9, 82, 10]
+          /       \                /          \
+       [38]    [27, 43]       [3, 9]      [82, 10]
+                /    \         /   \         /    \
+             [27]   [43]    [3]   [9]    [82]   [10]
+      </pre>
+    </div>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Bước CONQUER + COMBINE: Gộp (merge) từ dưới lên, giữ thứ tự tăng</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Mức</th><th>Gộp</th><th>Kết quả</th></tr>
+        <tr><td>3</td><td>[27] + [43]</td><td class="cell-highlight">[27, 43]</td></tr>
+        <tr><td>3</td><td>[3] + [9]</td><td class="cell-highlight">[3, 9]</td></tr>
+        <tr><td>3</td><td>[82] + [10]</td><td class="cell-highlight">[10, 82]</td></tr>
+        <tr><td>2</td><td>[38] + [27, 43]</td><td class="cell-highlight">[27, 38, 43]</td></tr>
+        <tr><td>2</td><td>[3, 9] + [10, 82]</td><td class="cell-highlight">[3, 9, 10, 82]</td></tr>
+        <tr><td>1</td><td>[27, 38, 43] + [3, 9, 10, 82]</td><td class="cell-answer">[3, 9, 10, 27, 38, 43, 82]</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ Phân tích</div>
+    <ul>
+      <li><strong>Thời gian:</strong> $O(n \log n)$ — mọi trường hợp (best = worst = average)</li>
+      <li><strong>Không gian:</strong> $O(n)$ — cần mảng phụ khi merge</li>
+      <li><strong>Ổn định:</strong> ✅ Có (phần tử bằng nhau giữ thứ tự cũ)</li>
+    </ul>
+  </div>
+
+  <!-- ===== VÍ DỤ 2: QUICK SORT ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 2: Quick Sort (Partition chi tiết)</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Sắp xếp mảng $A = [5, 3, 8, 4, 2, 7, 1, 6]$ bằng Quick Sort. Chọn pivot = phần tử cuối.</p>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Lượt 1: Partition với pivot = 6</div>
+    <div class="step-body">
+      <p><strong>Mảng ban đầu:</strong> $[5, 3, 8, 4, 2, 7, 1, \mathbf{6}]$</p>
+      <p>Duyệt từ trái, nếu $A[j] \le pivot$ thì swap vào vùng trái:</p>
+      <table>
+        <tr><th>j</th><th>A[j]</th><th>≤ pivot (6)?</th><th>Hành động</th><th>Mảng sau swap</th></tr>
+        <tr><td>0</td><td>5</td><td>✅</td><td>swap A[0]↔A[0]</td><td>[5, 3, 8, 4, 2, 7, 1, 6]</td></tr>
+        <tr><td>1</td><td>3</td><td>✅</td><td>swap A[1]↔A[1]</td><td>[5, 3, 8, 4, 2, 7, 1, 6]</td></tr>
+        <tr><td>2</td><td>8</td><td>❌</td><td>bỏ qua</td><td>[5, 3, 8, 4, 2, 7, 1, 6]</td></tr>
+        <tr><td>3</td><td>4</td><td>✅</td><td>swap A[2]↔A[3]</td><td>[5, 3, <strong>4</strong>, <strong>8</strong>, 2, 7, 1, 6]</td></tr>
+        <tr><td>4</td><td>2</td><td>✅</td><td>swap A[3]↔A[4]</td><td>[5, 3, 4, <strong>2</strong>, <strong>8</strong>, 7, 1, 6]</td></tr>
+        <tr><td>5</td><td>7</td><td>❌</td><td>bỏ qua</td><td>[5, 3, 4, 2, 8, 7, 1, 6]</td></tr>
+        <tr><td>6</td><td>1</td><td>✅</td><td>swap A[4]↔A[6]</td><td>[5, 3, 4, 2, <strong>1</strong>, 7, <strong>8</strong>, 6]</td></tr>
+      </table>
+      <p>Cuối cùng swap pivot vào vị trí $i+1 = 5$: swap A[5]↔A[7]</p>
+      <p class="cell-highlight" style="padding:0.3rem 0.6rem; border-radius:6px; display:inline-block">
+        Kết quả: $[5, 3, 4, 2, 1, \mathbf{\underline{6}}, 8, 7]$ — pivot 6 đã đúng chỗ!
+      </p>
+      <p>Vùng trái $[5,3,4,2,1]$ < 6 &nbsp;|&nbsp; Vùng phải $[8,7]$ > 6</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Các lượt tiếp: Đệ quy vùng trái & phải</div>
+    <div class="step-body">
+      <p>Áp dụng tương tự cho $[5,3,4,2,1]$ (pivot=1) và $[8,7]$ (pivot=7)...</p>
+      <p>✅ <strong>Kết quả cuối cùng: $[1, 2, 3, 4, 5, 6, 7, 8]$</strong></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ Phân tích</div>
+    <ul>
+      <li><strong>Best / Average:</strong> $O(n \log n)$</li>
+      <li><strong>Worst (mảng đã sắp):</strong> $O(n^2)$ — pivot luôn là min/max</li>
+      <li><strong>Không gian:</strong> $O(\log n)$ — in-place, chỉ tốn stack đệ quy</li>
+      <li><strong>Ổn định:</strong> ❌ Không</li>
+    </ul>
+  </div>
+
+  <!-- ===== VÍ DỤ 3: TÌM MIN-MAX ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 3: Tìm Min-Max bằng Chia Để Trị</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Tìm giá trị nhỏ nhất và lớn nhất trong mảng $A = [3, 5, 1, 8, 2, 7]$ bằng chia để trị.</p>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--orange)">
+    <div class="step-header" style="background:var(--orange)">Giải theo 3 bước Chia để trị</div>
+    <div class="step-body">
+      <pre style="font-family:'JetBrains Mono',monospace; font-size:0.85rem; line-height:2">
+  MinMax([3, 5, 1, 8, 2, 7])
+   ├─ DIVIDE: chia thành [3, 5, 1] và [8, 2, 7]
+   │
+   ├─ CONQUER:
+   │   ├─ MinMax([3, 5, 1])
+   │   │   ├─ MinMax([3]) → (min=3, max=3)
+   │   │   ├─ MinMax([5, 1]) → so sánh: (min=1, max=5)
+   │   │   └─ COMBINE: min(3,1)=1, max(3,5)=5 → <strong>(1, 5)</strong>
+   │   │
+   │   ├─ MinMax([8, 2, 7])
+   │   │   ├─ MinMax([8]) → (min=8, max=8)
+   │   │   ├─ MinMax([2, 7]) → so sánh: (min=2, max=7)
+   │   │   └─ COMBINE: min(8,2)=2, max(8,7)=8 → <strong>(2, 8)</strong>
+   │
+   └─ COMBINE: min(1,2)=<strong>1</strong>, max(5,8)=<strong>8</strong>
+      </pre>
+      <p>✅ <strong>Kết quả: Min = 1, Max = 8</strong></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ So sánh số phép so sánh</div>
+    <table>
+      <tr><th>Phương pháp</th><th>Số phép so sánh</th><th>Với $n=6$</th></tr>
+      <tr><td class="row-header">Brute force (duyệt 2 lần)</td><td>$2(n-1)$</td><td>10</td></tr>
+      <tr><td class="row-header">Chia để trị</td><td>$\frac{3n}{2} - 2$</td><td class="cell-answer">7</td></tr>
+    </table>
+    <p><em>Chia để trị tiết kiệm ~25% số phép so sánh!</em></p>
+  </div>
+
+  <div class="tip">
+    <span class="icon">📌</span>
+    <div><strong>Bài tủ Chia để trị thường gặp:</strong> Merge Sort, Quick Sort, Binary Search, Tìm Min-Max, Nhân ma trận Strassen, Tìm cặp điểm gần nhất.</div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--                    PHẦN 2: QUY HOẠCH ĐỘNG                    -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title">📘 PHẦN 2: QUY HOẠCH ĐỘNG (Dynamic Programming) — Buổi 5</h1>
+
+  <div class="card blue">
+    <div class="card-title">💡 Bản chất QHĐ — "Tính 1 lần, xài n lần"</div>
+    <p>Giống đệ quy nhưng <strong>lưu kết quả các bài toán con vào bảng</strong> để không tính lại. Thay vì gọi đệ quy lặp, ta tra bảng lấy kết quả ngay.</p>
+  </div>
+
+  <h2>🔑 Hai Đặc Trưng Bắt Buộc</h2>
+  <div class="card">
+    <div class="card-title">1. Cấu trúc con tối ưu (Optimal Substructure)</div>
+    <p>Lời giải tối ưu của bài toán lớn <strong>chứa</strong> lời giải tối ưu của bài toán con.</p>
+    <p><strong>Cách lập luận "Cắt-Dán":</strong> Giả sử lời giải con không tối ưu → thay bằng cái tốt hơn → bài toán cha tốt hơn → mâu thuẫn với giả thiết cha đã tối ưu. ∎</p>
+  </div>
+  <div class="card">
+    <div class="card-title">2. Bài toán con trùng lặp (Overlapping Subproblems)</div>
+    <p>Vẽ cây đệ quy sẽ thấy cùng một bài con bị gọi <strong>nhiều lần</strong>. QHĐ giải mỗi bài con <strong>đúng 1 lần</strong> rồi lưu vào bảng.</p>
+  </div>
+
+  <h2>📋 Quy Trình 6 Bước Giải Bài QHĐ</h2>
+  <div class="flow">
+    <span class="flow-step">B1: Chọn bảng</span><span class="flow-arrow">→</span>
+    <span class="flow-step">B2: Ô lưu gì?</span><span class="flow-arrow">→</span>
+    <span class="flow-step">B3: Cơ sở & PTQHĐ</span><span class="flow-arrow">→</span>
+    <span class="flow-step">B4: Điền bảng</span><span class="flow-arrow">→</span>
+    <span class="flow-step">B5: Đáp án</span><span class="flow-arrow">→</span>
+    <span class="flow-step">B6: Truy vết</span>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⛔</span>
+    <div>
+      <strong>Lưu ý chết người khi điền bảng:</strong><br>
+      Với bảng tam giác trên (LCS, Nhân ma trận), các ô $i > j$ (nửa dưới đường chéo) <strong>phải để trống</strong>. Điền số hay dấu X vào đó = mất điểm cả bảng!
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="icon">💡</span>
+    <div><strong>Mẹo "Ô lưu gì?":</strong> Luôn là <strong>một con số tính được</strong> (giá trị lớn nhất, độ dài, số phép nhân tối thiểu...). Không bao giờ lưu "vị trí" hay "cả dãy con".</div>
+  </div>
+
+  <!-- ===== VÍ DỤ 1: LCS ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 1: Dãy Con Chung Dài Nhất (LCS)</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho $X = \langle A, B, C, B \rangle$ (độ dài $m=4$) và $Y = \langle B, A, C, B \rangle$ (độ dài $n=4$).</p>
+    <p>Tìm dãy con chung dài nhất của $X$ và $Y$.</p>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 1–2: Chọn bảng & Ô lưu gì?</div>
+    <div class="step-body">
+      <p><strong>Bảng 2 chiều</strong> $M[0..m][0..n]$ kích thước $(m+1) \times (n+1) = 5 \times 5$.</p>
+      <p><strong>Ô $M[i][j]$</strong> lưu: <em>Độ dài LCS của $X[1..i]$ và $Y[1..j]$</em>.</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 3: Cơ sở & Phương trình QHĐ</div>
+    <div class="step-body">
+      <p><strong>Cơ sở:</strong> $M[i][0] = 0$ và $M[0][j] = 0$ (so sánh với dãy rỗng → LCS = 0).</p>
+      <p><strong>Phương trình:</strong></p>
+      $$M[i][j] = \begin{cases} M[i-1][j-1] + 1 & \text{nếu } X[i] = Y[j] \\ \max(M[i-1][j], \; M[i][j-1]) & \text{nếu } X[i] \ne Y[j] \end{cases}$$
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 4: Điền bảng (từ trái sang, trên xuống)</div>
+    <div class="step-body">
+      <table>
+        <tr>
+          <th>M</th><th></th><th>B</th><th>A</th><th>C</th><th>B</th>
+        </tr>
+        <tr>
+          <th></th>
+          <td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td>
+        </tr>
+        <tr>
+          <th>A</th>
+          <td class="cell-base">0</td>
+          <td>0</td>
+          <td class="cell-highlight">1 ↖</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th>B</th>
+          <td class="cell-base">0</td>
+          <td class="cell-highlight">1 ↖</td>
+          <td>1</td>
+          <td>1</td>
+          <td class="cell-highlight">2 ↖</td>
+        </tr>
+        <tr>
+          <th>C</th>
+          <td class="cell-base">0</td>
+          <td>1</td>
+          <td>1</td>
+          <td class="cell-highlight">2 ↖</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <th>B</th>
+          <td class="cell-base">0</td>
+          <td class="cell-highlight">1 ↖</td>
+          <td>1</td>
+          <td>2</td>
+          <td class="cell-answer">3 ↖</td>
+        </tr>
+      </table>
+      <p><em>Quá trình tính ô [4][4]: $X[4]=B = Y[4]=B$ → $M[3][3]+1 = 2+1 = $ <strong>3</strong></em></p>
+    </div>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-title">🧭 Cách điền từng ô bảng LCS — Giải thích dễ hiểu</div>
+
+    <h3>📌 Trước hết: mỗi ô lưu gì?</h3>
+    <p>Ô <strong>M[i][j]</strong> trả lời câu hỏi: <em>"Nếu mình chỉ xét $i$ chữ đầu của X và $j$ chữ đầu của Y, thì chúng <strong>giống nhau được tối đa bao nhiêu chữ</strong>?"</em></p>
+    <p>Ví dụ: M[2][4] = <em>"Xét X chỉ có A,B và Y đầy đủ B,A,C,B → chung được mấy chữ?"</em> → 2 chữ (A và B).</p>
+
+    <h3>🔵 Hàng 0 và Cột 0: luôn = 0</h3>
+    <p>Đây là trường hợp <em>"chưa có chữ nào"</em> → so dãy rỗng với bất kỳ ai → chung = <strong>0</strong>. Điền <strong>0</strong> ngay, không cần nghĩ.</p>
+
+    <h3>🟡 Các ô còn lại: chỉ cần hỏi <strong>1 câu</strong></h3>
+    <p>Nhìn chữ ở <strong>hàng</strong> (X[i]) và chữ ở <strong>cột</strong> (Y[j]), hỏi: <em>"2 chữ này có giống nhau không?"</em></p>
+
+    <div class="pseudo" style="font-size:0.88rem; line-height:2.2">
+      <span class="cm">// Đang ở ô M[i][j], nhìn X[i] và Y[j]:</span><br>
+      <br>
+      <span class="kw">if</span> X[i] <span class="str">==</span> Y[j]: &nbsp;&nbsp;<span class="cm">// 2 chữ GIỐNG nhau</span><br>
+      &nbsp;&nbsp;→ Lấy ô <span class="fn">CHÉO ↖</span> + <span class="num">1</span><br>
+      &nbsp;&nbsp;→ Tô <span class="str">VÀNG</span>, ghi mũi tên ↖<br>
+      &nbsp;&nbsp;→ <span class="cm">"Bắt cặp thành công! Tăng thêm 1"</span><br>
+      <br>
+      <span class="kw">else</span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// 2 chữ KHÁC nhau</span><br>
+      &nbsp;&nbsp;→ Lấy <span class="fn">MAX</span>(ô <span class="fn">TRÊN ↑</span>, ô <span class="fn">TRÁI ←</span>)<br>
+      &nbsp;&nbsp;→ Để <span class="str">TRẮNG</span>, không mũi tên<br>
+      &nbsp;&nbsp;→ <span class="cm">"Không match, giữ kết quả tốt nhất cũ"</span>
+    </div>
+
+    <h3>🔍 Đi qua từng hàng để hiểu tại sao</h3>
+
+    <p><strong>Hàng A</strong> (xét X chỉ có "A"):</p>
+    <table>
+      <tr><th>Ô</th><th>Hàng</th><th>Cột</th><th>Giống?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>M[1][1]</td><td>A</td><td>B</td><td>❌ A≠B</td><td>max(trên 0, trái 0)</td><td>0 ⬜</td></tr>
+      <tr><td>M[1][2]</td><td>A</td><td>A</td><td class="cell-highlight">✅ A=A!</td><td>chéo M[0][1] + 1 = 0+1</td><td class="cell-highlight"><strong>1 ↖</strong></td></tr>
+      <tr><td>M[1][3]</td><td>A</td><td>C</td><td>❌ A≠C</td><td>max(trên 0, trái 1) = 1</td><td>1 ⬜ <em>(nhớ đã tìm được 1)</em></td></tr>
+      <tr><td>M[1][4]</td><td>A</td><td>B</td><td>❌ A≠B</td><td>max(trên 0, trái 1) = 1</td><td>1 ⬜</td></tr>
+    </table>
+
+    <p><strong>Hàng B</strong> (xét X có "A, B"):</p>
+    <table>
+      <tr><th>Ô</th><th>Hàng</th><th>Cột</th><th>Giống?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>M[2][1]</td><td>B</td><td>B</td><td class="cell-highlight">✅ B=B!</td><td>chéo M[1][0] + 1 = 0+1</td><td class="cell-highlight"><strong>1 ↖</strong></td></tr>
+      <tr><td>M[2][2]</td><td>B</td><td>A</td><td>❌ B≠A</td><td>max(trên 1, trái 1) = 1</td><td>1 ⬜</td></tr>
+      <tr><td>M[2][3]</td><td>B</td><td>C</td><td>❌ B≠C</td><td>max(trên 1, trái 1) = 1</td><td>1 ⬜</td></tr>
+      <tr><td>M[2][4]</td><td>B</td><td>B</td><td class="cell-highlight">✅ B=B!</td><td>chéo M[1][3] + 1 = 1+1</td><td class="cell-highlight"><strong>2 ↖</strong> <em>(A chung + thêm B = 2!)</em></td></tr>
+    </table>
+
+    <p><strong>Hàng C</strong> (xét X có "A, B, C"):</p>
+    <table>
+      <tr><th>Ô</th><th>Hàng</th><th>Cột</th><th>Giống?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>M[3][1]</td><td>C</td><td>B</td><td>❌</td><td>max(1, 0) = 1</td><td>1 ⬜</td></tr>
+      <tr><td>M[3][2]</td><td>C</td><td>A</td><td>❌</td><td>max(1, 1) = 1</td><td>1 ⬜</td></tr>
+      <tr><td>M[3][3]</td><td>C</td><td>C</td><td class="cell-highlight">✅ C=C!</td><td>chéo M[2][2] + 1 = 1+1</td><td class="cell-highlight"><strong>2 ↖</strong></td></tr>
+      <tr><td>M[3][4]</td><td>C</td><td>B</td><td>❌</td><td>max(2, 2) = 2</td><td>2 ⬜</td></tr>
+    </table>
+
+    <p><strong>Hàng B cuối</strong> (xét X đầy đủ "A, B, C, B"):</p>
+    <table>
+      <tr><th>Ô</th><th>Hàng</th><th>Cột</th><th>Giống?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>M[4][1]</td><td>B</td><td>B</td><td class="cell-highlight">✅ B=B!</td><td>chéo M[3][0] + 1 = 0+1</td><td class="cell-highlight"><strong>1 ↖</strong></td></tr>
+      <tr><td>M[4][2]</td><td>B</td><td>A</td><td>❌</td><td>max(1, 1) = 1</td><td>1 ⬜</td></tr>
+      <tr><td>M[4][3]</td><td>B</td><td>C</td><td>❌</td><td>max(2, 1) = 2</td><td>2 ⬜</td></tr>
+      <tr><td>M[4][4]</td><td>B</td><td>B</td><td class="cell-highlight">✅ B=B!</td><td>chéo M[3][3] + 1 = 2+1</td><td class="cell-answer"><strong>3 ↖</strong> ĐÁP ÁN!</td></tr>
+    </table>
+
+    <h3>📝 Tóm tắt siêu ngắn — ghi vào đầu khi thi</h3>
+    <table>
+      <tr><th style="width:30%">Tình huống</th><th style="width:35%">Cách tính</th><th style="width:35%">Ghi trên bảng</th></tr>
+      <tr>
+        <td class="cell-base">Hàng 0 / Cột 0</td>
+        <td>= <strong>0</strong></td>
+        <td>🔵 Tô xanh nhạt</td>
+      </tr>
+      <tr>
+        <td class="cell-highlight">X[i] <strong>= giống =</strong> Y[j]</td>
+        <td><strong>Chéo ↖ + 1</strong></td>
+        <td>🟡 Tô vàng + ghi ↖</td>
+      </tr>
+      <tr>
+        <td>X[i] <strong>≠ khác ≠</strong> Y[j]</td>
+        <td><strong>max(trên ↑, trái ←)</strong></td>
+        <td>⬜ Trắng, không mũi tên</td>
+      </tr>
+      <tr>
+        <td class="cell-answer">Ô cuối M[m][n]</td>
+        <td>Đây là <strong>đáp án</strong>!</td>
+        <td>🟢 Tô xanh lá, khoanh đậm</td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 5: Đáp án</div>
+    <div class="step-body">
+      <p>Đáp án nằm ở ô <strong>$M[m][n] = M[4][4] = 3$</strong>. Vậy LCS dài <strong>3</strong> ký tự.</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 6: Truy vết (đi ngược từ M[4][4])</div>
+    <div class="step-body">
+      <div class="flow">
+        <span class="flow-step">M[4][4]=3 ↖ lấy B</span><span class="flow-arrow">→</span>
+        <span class="flow-step">M[3][3]=2 ↖ lấy C</span><span class="flow-arrow">→</span>
+        <span class="flow-step">M[2][2]=1 ← bỏ</span><span class="flow-arrow">→</span>
+        <span class="flow-step">M[2][1]=1 ↖ lấy B</span><span class="flow-arrow">→</span>
+        <span class="flow-step">M[1][0]=0 STOP</span>
+      </div>
+      <p>Đọc ngược: <strong>LCS = ⟨B, C, B⟩</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== VÍ DỤ 2: BA LÔ 0/1 ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 2: Bài Toán Ba Lô 0/1</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Ba lô chứa tối đa $W = 5$ kg. Có 4 đồ vật:</p>
+    <table>
+      <tr><th>Đồ vật $i$</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+      <tr><td class="row-header">Trọng lượng $w_i$</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+      <tr><td class="row-header">Giá trị $p_i$</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    </table>
+    <p>Chọn đồ vật sao cho <strong>tổng giá trị lớn nhất</strong>, mỗi vật chỉ chọn hoặc không (không cắt nhỏ).</p>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⚠️</span>
+    <div><strong>Ba lô 0/1 = BẮT BUỘC dùng QHĐ.</strong> Dùng Tham lam cho bài này là SAI! (Tham lam chỉ đúng cho Ba lô phân số).</div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 1–2: Chọn bảng & Ô lưu gì?</div>
+    <div class="step-body">
+      <p><strong>Bảng 2 chiều</strong> $K[0..n][0..W] = K[0..4][0..5]$, kích thước $5 \times 6$.</p>
+      <p><strong>Ô $K[i][w]$</strong> lưu: <em>Giá trị lớn nhất đạt được khi xét $i$ vật đầu tiên với sức chứa $w$</em>.</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 3: Cơ sở & Phương trình QHĐ</div>
+    <div class="step-body">
+      <p><strong>Cơ sở:</strong> $K[0][w] = 0$ (không có vật nào) và $K[i][0] = 0$ (ba lô không chứa được).</p>
+      <p><strong>Phương trình:</strong></p>
+      $$K[i][w] = \begin{cases} K[i-1][w] & \text{nếu } w_i > w \text{ (vật } i \text{ quá nặng)} \\ \max\big(K[i-1][w], \; K[i-1][w - w_i] + p_i\big) & \text{nếu } w_i \le w \end{cases}$$
+      <p><em>Nghĩa là: hoặc bỏ vật $i$ (lấy hàng trên), hoặc lấy vật $i$ (lấy giá trị $p_i$ + phần còn lại).</em></p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 4: Điền bảng</div>
+    <div class="step-body">
+      <table>
+        <tr>
+          <th>K[i][w]</th><th>w=0</th><th>w=1</th><th>w=2</th><th>w=3</th><th>w=4</th><th>w=5</th>
+        </tr>
+        <tr>
+          <th>i=0</th>
+          <td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td><td class="cell-base">0</td>
+        </tr>
+        <tr>
+          <th>i=1 (w₁=2, p₁=3)</th>
+          <td class="cell-base">0</td><td>0</td><td>3</td><td>3</td><td>3</td><td>3</td>
+        </tr>
+        <tr>
+          <th>i=2 (w₂=3, p₂=4)</th>
+          <td class="cell-base">0</td><td>0</td><td>3</td><td>4</td><td>4</td><td class="cell-highlight">7</td>
+        </tr>
+        <tr>
+          <th>i=3 (w₃=4, p₃=5)</th>
+          <td class="cell-base">0</td><td>0</td><td>3</td><td>4</td><td>5</td><td class="cell-highlight">7</td>
+        </tr>
+        <tr>
+          <th>i=4 (w₄=5, p₄=6)</th>
+          <td class="cell-base">0</td><td>0</td><td>3</td><td>4</td><td>5</td><td class="cell-answer">7</td>
+        </tr>
+      </table>
+      <p><em>Ô $K[2][5]$: $\max(K[1][5], K[1][5-3]+4) = \max(3, 0+4)$... sai! Kiểm tra: $K[1][2]+4 = 3+4 = 7$. Vậy $K[2][5] = 7$.</em></p>
+    </div>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-title">🧭 Cách điền từng ô bảng Ba Lô 0/1 — Giải thích dễ hiểu</div>
+
+    <h3>📌 Mỗi ô lưu gì?</h3>
+    <p>Ô <strong>K[i][w]</strong> trả lời câu hỏi: <em>"Nếu mình chỉ được xét $i$ vật đầu tiên, và ba lô chứa được $w$ kg, thì <strong>nhét được tối đa bao nhiêu tiền</strong>?"</em></p>
+    <p>Ví dụ: K[2][5] = <em>"Xét vật 1 (2kg, 3đ) và vật 2 (3kg, 4đ), ba lô chứa 5kg → nhét được tối đa bao nhiêu?"</em> → 7đ (lấy cả 2 vật).</p>
+
+    <h3>🔵 Hàng 0 và Cột 0: luôn = 0</h3>
+    <p>Hàng 0 = <em>"không có vật nào → nhét được 0đ"</em>. Cột 0 = <em>"ba lô chứa 0kg → không nhét được gì"</em>.</p>
+
+    <h3>🟡 Các ô còn lại: hỏi <strong>2 câu</strong></h3>
+
+    <div class="pseudo" style="font-size:0.88rem; line-height:2.2">
+      <span class="cm">// Đang ở ô K[i][w], xét vật i (nặng wᵢ, giá pᵢ):</span><br>
+      <br>
+      <span class="kw">if</span> wᵢ <span class="str">&gt;</span> w: &nbsp;&nbsp;<span class="cm">// Vật i NẶNG HƠN sức chứa</span><br>
+      &nbsp;&nbsp;→ <span class="fn">Copy ô TRÊN ↑</span> nguyên xi<br>
+      &nbsp;&nbsp;→ <span class="cm">"Vật quá nặng, bỏ không đc → giữ kết quả cũ"</span><br>
+      <br>
+      <span class="kw">else</span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// Vật i BỎ VỪA ba lô</span><br>
+      &nbsp;&nbsp;→ Tính 2 phương án:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;bỏ_vật = ô <span class="fn">TRÊN ↑</span> = K[i-1][w]<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;lấy_vật = K[i-1][w - wᵢ] + pᵢ<br>
+      &nbsp;&nbsp;→ Lấy <span class="fn">MAX</span>(bỏ_vật, lấy_vật)<br>
+      &nbsp;&nbsp;→ Nếu lấy_vật thắng → 🟡 <span class="str">TÔ VÀNG</span> <span class="cm">"Vật này đáng lấy!"</span><br>
+      &nbsp;&nbsp;→ Nếu bỏ_vật thắng → ⬜ <span class="str">TRẮNG</span> <span class="cm">"Bỏ vật có lợi hơn"</span>
+    </div>
+
+    <h3>🔍 Đi qua từng hàng để hiểu</h3>
+
+    <p><strong>Hàng i=1</strong> (vật 1: nặng 2kg, giá 3đ):</p>
+    <table>
+      <tr><th>Ô</th><th>Sức chứa w</th><th>Vật 1 vừa không?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>K[1][1]</td><td>1 kg</td><td>❌ 2kg > 1kg</td><td>Copy trên: K[0][1] = 0</td><td>0 ⬜ <em>(quá nặng)</em></td></tr>
+      <tr><td>K[1][2]</td><td>2 kg</td><td class="cell-highlight">✅ 2kg ≤ 2kg</td><td>max(bỏ: 0, lấy: K[0][0]+3 = 3)</td><td class="cell-highlight"><strong>3</strong> <em>(lấy vật 1!)</em></td></tr>
+      <tr><td>K[1][3]</td><td>3 kg</td><td class="cell-highlight">✅ 2kg ≤ 3kg</td><td>max(bỏ: 0, lấy: K[0][1]+3 = 3)</td><td><strong>3</strong> <em>(vẫn lấy vật 1)</em></td></tr>
+      <tr><td>K[1][4]</td><td>4 kg</td><td>✅</td><td>max(0, K[0][2]+3 = 3)</td><td><strong>3</strong></td></tr>
+      <tr><td>K[1][5]</td><td>5 kg</td><td>✅</td><td>max(0, K[0][3]+3 = 3)</td><td><strong>3</strong></td></tr>
+    </table>
+
+    <p><strong>Hàng i=2</strong> (vật 2: nặng 3kg, giá 4đ):</p>
+    <table>
+      <tr><th>Ô</th><th>Sức chứa w</th><th>Vật 2 vừa không?</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>K[2][1]</td><td>1 kg</td><td>❌ 3 > 1</td><td>Copy trên: 0</td><td>0 ⬜</td></tr>
+      <tr><td>K[2][2]</td><td>2 kg</td><td>❌ 3 > 2</td><td>Copy trên: 3</td><td>3 ⬜</td></tr>
+      <tr><td>K[2][3]</td><td>3 kg</td><td class="cell-highlight">✅ 3 ≤ 3</td><td>max(bỏ: 3, lấy: K[1][0]+4 = 4)</td><td><strong>4</strong> <em>(lấy vật 2 tốt hơn!)</em></td></tr>
+      <tr><td>K[2][4]</td><td>4 kg</td><td>✅ 3 ≤ 4</td><td>max(bỏ: 3, lấy: K[1][1]+4 = 4)</td><td><strong>4</strong></td></tr>
+      <tr><td>K[2][5]</td><td>5 kg</td><td class="cell-highlight">✅ 3 ≤ 5</td><td>max(bỏ: 3, lấy: K[1][2]+4 = <strong>7</strong>)</td><td class="cell-highlight"><strong>7</strong> 🟡 <em>(lấy cả vật 1+2!)</em></td></tr>
+    </table>
+    <p><em>Ô K[2][5] = 7 vì: ba lô 5kg → lấy vật 2 (3kg, 4đ) → còn 2kg → nhét vật 1 (2kg, 3đ) = 4+3 = <strong>7</strong></em></p>
+
+    <h3>📝 Tóm tắt siêu ngắn</h3>
+    <table>
+      <tr><th style="width:30%">Tình huống</th><th style="width:35%">Cách tính</th><th style="width:35%">Ghi trên bảng</th></tr>
+      <tr>
+        <td class="cell-base">Hàng 0 / Cột 0</td>
+        <td>= <strong>0</strong></td>
+        <td>🔵 Tô xanh nhạt</td>
+      </tr>
+      <tr>
+        <td>Vật $i$ <strong>quá nặng</strong> ($w_i > w$)</td>
+        <td><strong>Copy ô trên ↑</strong></td>
+        <td>⬜ Trắng, giống hệt hàng trên</td>
+      </tr>
+      <tr>
+        <td class="cell-highlight">Vật $i$ vừa + <strong>lấy có lợi hơn</strong></td>
+        <td>K[i-1][w-wᵢ] + pᵢ</td>
+        <td>🟡 Tô vàng — giá trị <strong>lớn hơn</strong> ô trên</td>
+      </tr>
+      <tr>
+        <td>Vật $i$ vừa nhưng <strong>bỏ có lợi hơn</strong></td>
+        <td>K[i-1][w] (giữ nguyên)</td>
+        <td>⬜ Trắng, giá trị = ô trên</td>
+      </tr>
+      <tr>
+        <td class="cell-answer">Ô cuối K[n][W]</td>
+        <td>Đây là <strong>đáp án</strong>!</td>
+        <td>🟢 Tô xanh lá, khoanh đậm</td>
+      </tr>
+    </table>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <div><strong>Mẹo truy vết:</strong> Đi từ K[n][W] lên. Nếu giá trị <strong>= ô trên</strong> → không chọn vật đó (đi lên). Nếu <strong>≠ ô trên</strong> → chọn vật đó, nhảy lên K[i-1][w - wᵢ].</div>
+    </div>
+  </div>
+
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 5–6: Đáp án & Truy vết</div>
+    <div class="step-body">
+      <p><strong>Đáp án:</strong> $K[4][5] = $ <strong>7</strong> (giá trị tối đa).</p>
+      <p><strong>Truy vết:</strong></p>
+      <ul>
+        <li>$K[4][5] = K[3][5] = 7$ → <strong>Không chọn vật 4</strong> (giá trị không thay đổi)</li>
+        <li>$K[3][5] = K[2][5] = 7$ → <strong>Không chọn vật 3</strong></li>
+        <li>$K[2][5] \ne K[1][5]$ (7 ≠ 3) → <strong>Chọn vật 2</strong> ($p_2=4$), còn lại $w = 5-3 = 2$</li>
+        <li>$K[1][2] \ne K[0][2]$ (3 ≠ 0) → <strong>Chọn vật 1</strong> ($p_1=3$)</li>
+      </ul>
+      <p>✅ <strong>Nghiệm: Chọn vật {1, 2}</strong> → Tổng trọng lượng = 2+3 = 5 ≤ 5, Tổng giá trị = 3+4 = <strong>7</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ===== VÍ DỤ 3: NHÂN CHUỖI MA TRẬN ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 3: Nhân Chuỗi Ma Trận</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho 4 ma trận $A_1(2 \times 3), A_2(3 \times 4), A_3(4 \times 2), A_4(2 \times 5)$.</p>
+    <p>Mảng kích thước: $d = \langle 2, 3, 4, 2, 5 \rangle$. Tìm cách đặt ngoặc sao cho <strong>số phép nhân vô hướng ít nhất</strong>.</p>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 1–2: Chọn bảng & Ô lưu gì?</div>
+    <div class="step-body">
+      <p><strong>Bảng tam giác trên</strong> $M[1..4][1..4]$.</p>
+      <p><strong>Ô $M[i][j]$</strong> lưu: <em>Số phép nhân tối thiểu để tính tích $A_i \cdot A_{i+1} \cdots A_j$</em>.</p>
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 3: Cơ sở & Phương trình</div>
+    <div class="step-body">
+      <p><strong>Cơ sở:</strong> $M[i][i] = 0$ (nhân 1 ma trận = 0 phép tính).</p>
+      <p><strong>Phương trình:</strong></p>
+      $$M[i][j] = \min_{i \le k < j} \big\{ M[i][k] + M[k+1][j] + d_{i-1} \cdot d_k \cdot d_j \big\}$$
+    </div>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 4: Điền bảng (theo đường chéo, từ ngắn → dài)</div>
+    <div class="step-body">
+      <p><strong>Đường chéo len=1 (cơ sở):</strong></p>
+      <p>$M[1][1] = M[2][2] = M[3][3] = M[4][4] = 0$</p>
+
+      <p><strong>Đường chéo len=2:</strong></p>
+      <ul>
+        <li>$M[1][2]$: $k=1$: $0 + 0 + d_0 \cdot d_1 \cdot d_2 = 2 \cdot 3 \cdot 4 = $ <strong>24</strong></li>
+        <li>$M[2][3]$: $k=2$: $0 + 0 + 3 \cdot 4 \cdot 2 = $ <strong>24</strong></li>
+        <li>$M[3][4]$: $k=3$: $0 + 0 + 4 \cdot 2 \cdot 5 = $ <strong>40</strong></li>
+      </ul>
+
+      <p><strong>Đường chéo len=3:</strong></p>
+      <ul>
+        <li>$M[1][3]$: $k=1$: $0 + 24 + 2 \cdot 3 \cdot 2 = 36$; $k=2$: $24 + 0 + 2 \cdot 4 \cdot 2 = 40$ → min = <strong>36</strong></li>
+        <li>$M[2][4]$: $k=2$: $0 + 40 + 3 \cdot 4 \cdot 5 = 100$; $k=3$: $24 + 0 + 3 \cdot 2 \cdot 5 = 54$ → min = <strong>54</strong></li>
+      </ul>
+
+      <p><strong>Đường chéo len=4:</strong></p>
+      <ul>
+        <li>$M[1][4]$:<br>
+          $k=1$: $0 + 54 + 2 \cdot 3 \cdot 5 = 84$<br>
+          $k=2$: $24 + 40 + 2 \cdot 4 \cdot 5 = 104$<br>
+          $k=3$: $36 + 0 + 2 \cdot 2 \cdot 5 = 56$ → min = <strong>56</strong>
+        </li>
+      </ul>
+
+      <table>
+        <tr><th>M</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+        <tr>
+          <th>1</th>
+          <td class="cell-base">0</td><td>24</td><td>36</td><td class="cell-answer">56</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td class="cell-empty"></td><td class="cell-base">0</td><td>24</td><td>54</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td class="cell-empty"></td><td class="cell-empty"></td><td class="cell-base">0</td><td>40</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td class="cell-empty"></td><td class="cell-empty"></td><td class="cell-empty"></td><td class="cell-base">0</td>
+        </tr>
+      </table>
+      <p><em>Các ô trống ở nửa dưới đường chéo – KHÔNG ĐƯỢC điền gì!</em></p>
+    </div>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-title">🧭 Cách điền từng ô bảng Nhân Chuỗi Ma Trận — Giải thích dễ hiểu</div>
+
+    <h3>📌 Mỗi ô lưu gì?</h3>
+    <p>Ô <strong>M[i][j]</strong> trả lời câu hỏi: <em>"Nhân chuỗi ma trận từ $A_i$ đến $A_j$ thì tốn <strong>ít nhất bao nhiêu phép nhân</strong>?"</em></p>
+    <p>Ví dụ: M[1][3] = <em>"Nhân $A_1 \cdot A_2 \cdot A_3$ tốn ít nhất mấy phép?"</em> → 36.</p>
+
+    <h3>⚠️ KHÁC BIỆT LỚN: Bảng này KHÔNG điền theo hàng!</h3>
+    <p>LCS, Ba lô → điền <strong>trái→phải, trên→dưới</strong>. Nhân MT → điền <strong>theo đường chéo</strong>, từ ngắn đến dài.</p>
+    <p>Hình dung: đường chéo chính (len=1) → đường chéo kế (len=2) → len=3 → ... → len=n.</p>
+
+    <h3>🔵 Đường chéo chính (len=1): luôn = 0</h3>
+    <p><em>"Nhân 1 ma trận thì tốn 0 phép tính"</em> → M[1][1] = M[2][2] = M[3][3] = M[4][4] = <strong>0</strong>.</p>
+
+    <h3>🟡 Đường chéo len=2: chỉ có 1 cách tách</h3>
+    <p>Nhân 2 ma trận liền kề → chỉ có <strong>1 cách duy nhất</strong> → nhân kích thước thôi.</p>
+
+    <div class="pseudo" style="font-size:0.88rem; line-height:2.2">
+      <span class="cm">// Đang ở ô M[i][j], muốn tính: nhân Aᵢ...Aⱼ tốn ít nhất bao nhiêu?</span><br>
+      <br>
+      <span class="kw">if</span> i <span class="str">==</span> j: &nbsp;&nbsp;<span class="cm">// Đường chéo chính</span><br>
+      &nbsp;&nbsp;→ <span class="num">0</span> <span class="cm">"1 ma trận = 0 phép tính"</span><br>
+      <br>
+      <span class="kw">else</span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// Thử TẤT CẢ các vị trí tách k</span><br>
+      &nbsp;&nbsp;→ <span class="kw">for</span> k = i <span class="kw">to</span> j-1:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chi_phí(k) = M[i][k] + M[k+1][j] + <span class="fn">dᵢ₋₁ × dₖ × dⱼ</span><br>
+      &nbsp;&nbsp;→ M[i][j] = <span class="fn">MIN</span> của tất cả chi_phí(k)<br>
+      &nbsp;&nbsp;→ <span class="cm">"Thử tách ở mọi vị trí, chọn chỗ tách rẻ nhất"</span>
+    </div>
+
+    <h3>🔍 Đi qua từng đường chéo</h3>
+
+    <p>Nhắc lại: $d = \langle 2, 3, 4, 2, 5 \rangle$ (kích thước ma trận).</p>
+
+    <p><strong>Đường chéo len=2</strong> (nhân 2 ma trận kề nhau — chỉ 1 cách):</p>
+    <table>
+      <tr><th>Ô</th><th>Nhân gì?</th><th>Tách tại k</th><th>Tính</th><th>Kết quả</th></tr>
+      <tr><td>M[1][2]</td><td>$A_1 \cdot A_2$</td><td>k=1 (cách duy nhất)</td><td>$0 + 0 + d_0 \times d_1 \times d_2 = 2 \times 3 \times 4$</td><td><strong>24</strong></td></tr>
+      <tr><td>M[2][3]</td><td>$A_2 \cdot A_3$</td><td>k=2</td><td>$0 + 0 + 3 \times 4 \times 2$</td><td><strong>24</strong></td></tr>
+      <tr><td>M[3][4]</td><td>$A_3 \cdot A_4$</td><td>k=3</td><td>$0 + 0 + 4 \times 2 \times 5$</td><td><strong>40</strong></td></tr>
+    </table>
+
+    <p><strong>Đường chéo len=3</strong> (nhân 3 ma trận — thử 2 cách tách, chọn rẻ nhất):</p>
+    <table>
+      <tr><th>Ô</th><th>Nhân gì?</th><th>Thử k=?</th><th>Chi phí mỗi cách</th><th>Kết quả</th></tr>
+      <tr>
+        <td>M[1][3]</td><td>$A_1 A_2 A_3$</td>
+        <td>k=1, k=2</td>
+        <td>k=1: $0 + 24 + 2 \times 3 \times 2 = $ <strong>36</strong> ✅<br>k=2: $24 + 0 + 2 \times 4 \times 2 = 40$</td>
+        <td class="cell-highlight"><strong>36</strong> <em>(k=1 rẻ hơn)</em></td>
+      </tr>
+      <tr>
+        <td>M[2][4]</td><td>$A_2 A_3 A_4$</td>
+        <td>k=2, k=3</td>
+        <td>k=2: $0 + 40 + 3 \times 4 \times 5 = 100$<br>k=3: $24 + 0 + 3 \times 2 \times 5 = $ <strong>54</strong> ✅</td>
+        <td class="cell-highlight"><strong>54</strong> <em>(k=3 rẻ hơn)</em></td>
+      </tr>
+    </table>
+
+    <p><strong>Đường chéo len=4</strong> (nhân tất cả — thử 3 cách tách):</p>
+    <table>
+      <tr><th>Ô</th><th>Thử k=?</th><th>Chi phí</th><th>Kết quả</th></tr>
+      <tr>
+        <td>M[1][4]</td>
+        <td>k=1, k=2, k=3</td>
+        <td>k=1: $0 + 54 + 2 \times 3 \times 5 = 84$<br>k=2: $24 + 40 + 2 \times 4 \times 5 = 104$<br>k=3: $36 + 0 + 2 \times 2 \times 5 = $ <strong>56</strong> ✅</td>
+        <td class="cell-answer"><strong>56</strong> ĐÁP ÁN!</td>
+      </tr>
+    </table>
+
+    <h3>⛔ Nửa dưới đường chéo: CẤM ĐIỀN</h3>
+    <p>Ô $i > j$ (ví dụ M[3][1]) <strong>không có ý nghĩa</strong> — vì không thể nhân "từ ma trận 3 đến ma trận 1". <strong>Để trống</strong> hoặc gạch chéo. Điền số vào = mất điểm cả bảng!</p>
+
+    <h3>📝 Tóm tắt siêu ngắn</h3>
+    <table>
+      <tr><th style="width:30%">Tình huống</th><th style="width:35%">Cách tính</th><th style="width:35%">Ghi trên bảng</th></tr>
+      <tr>
+        <td class="cell-base">$i = j$ (đường chéo chính)</td>
+        <td>= <strong>0</strong></td>
+        <td>🔵 Tô xanh nhạt</td>
+      </tr>
+      <tr>
+        <td>$i < j$ (nửa trên)</td>
+        <td>Thử tất cả k, chọn <strong>MIN</strong></td>
+        <td>Ghi quá trình + kết quả</td>
+      </tr>
+      <tr>
+        <td class="cell-empty">$i > j$ (nửa dưới)</td>
+        <td>🚫 KHÔNG TÍNH</td>
+        <td>⛔ ĐỂ TRỐNG</td>
+      </tr>
+      <tr>
+        <td class="cell-answer">Ô M[1][n] (góc trên phải)</td>
+        <td>Đây là <strong>đáp án</strong>!</td>
+        <td>🟢 Tô xanh lá, khoanh đậm</td>
+      </tr>
+    </table>
+
+    <div class="warning">
+      <span class="icon">⛔</span>
+      <div><strong>3 khác biệt quan trọng so với LCS/Ba lô:</strong><br>
+        • Chiều điền: LCS/Ba lô theo <strong>hàng</strong> (trái→phải, trên→dưới). Nhân MT theo <strong>đường chéo</strong>.<br>
+        • Đáp án: LCS/Ba lô ở <strong>góc dưới phải</strong>. Nhân MT ở <strong>góc trên phải</strong>.<br>
+        • Bảng: LCS/Ba lô điền <strong>hết</strong>. Nhân MT chỉ điền <strong>nửa trên</strong>, nửa dưới CẤM ĐIỀN.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="step-box no-break">
+    <div class="step-header">Bước 5–6: Đáp án & Truy vết</div>
+    <div class="step-body">
+      <p><strong>Đáp án:</strong> $M[1][4] = $ <strong>56</strong> phép nhân.</p>
+      <p><strong>Truy vết:</strong> $M[1][4]$ min tại $k=3$ → tách thành $(A_1 A_2 A_3) \cdot A_4$.</p>
+      <p>$M[1][3]$ min tại $k=1$ → tách thành $A_1 \cdot (A_2 A_3)$.</p>
+      <p>✅ <strong>Cách đặt ngoặc tối ưu: $(A_1 \cdot (A_2 \cdot A_3)) \cdot A_4$</strong></p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="icon">📌</span>
+    <div><strong>Vị trí đáp án theo bài:</strong> LCS → $M[m][n]$ (góc dưới phải) | Nhân ma trận → $M[1][n]$ (góc trên phải) | LIS → Max toàn bảng | Ba lô → $K[n][W]$ (góc dưới phải).</div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!--                     PHẦN 2: THAM LAM                         -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title green">📗 PHẦN 2: THAM LAM (Greedy Algorithm)</h1>
+
+  <div class="card green">
+    <div class="card-title">💡 Bản chất Tham Lam — "Thấy ngon gắp liền"</div>
+    <p>Ở mỗi bước, luôn chọn phương án <strong>tốt nhất ngay tại thời điểm đó</strong> (tối ưu cục bộ). Không quay lui, không xét lại. Hy vọng cuối cùng sẽ ra tối ưu toàn cục.</p>
+  </div>
+
+  <h2>🔧 Khung Mã Giả Chuẩn (Mô hình cô Thương)</h2>
+  <div class="pseudo">
+    <span class="kw">function</span> <span class="fn">GREEDY</span>(candidates):<br>
+    &nbsp;&nbsp;S ← ∅ &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// Tập lời giải</span><br>
+    &nbsp;&nbsp;<span class="kw">SORT</span>(candidates theo tiêu chí chọn) &nbsp;<span class="cm">// Bước quan trọng!</span><br>
+    &nbsp;&nbsp;<span class="kw">for each</span> x <span class="kw">in</span> candidates:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> <span class="fn">IS_FEASIBLE</span>(S ∪ {x}): &nbsp;<span class="cm">// x thỏa ràng buộc?</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S ← S ∪ {x}<br>
+    &nbsp;&nbsp;<span class="kw">return</span> S
+  </div>
+
+  <div class="tip">
+    <span class="icon">🎯</span>
+    <div>
+      <strong>Mẹo "Chọn tiêu chí":</strong><br>
+      1. Liệt kê tất cả thuộc tính (sớm/muộn, to/nhỏ, đơn giá cao/thấp...)<br>
+      2. Dùng <strong>phản ví dụ</strong> loại bỏ tiêu chí sai<br>
+      3. Tiêu chí còn sống sót cuối cùng mới là đáp án
+    </div>
+  </div>
+
+  <!-- ===== VÍ DỤ 1: BA LÔ PHÂN SỐ ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 1: Ba Lô Phân Số (Fractional Knapsack)</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Ba lô chứa tối đa $W = 15$ kg. Có 5 đồ vật (có thể cắt nhỏ):</p>
+    <table>
+      <tr><th>Đồ vật</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td class="row-header">Trọng lượng $w_i$</td><td>12</td><td>1</td><td>4</td><td>1</td><td>2</td></tr>
+      <tr><td class="row-header">Giá trị $p_i$</td><td>24</td><td>2</td><td>12</td><td>1</td><td>4</td></tr>
+    </table>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 1: Chọn tiêu chí — Đơn giá giảm dần (pᵢ / wᵢ)</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Đồ vật</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+        <tr><td class="row-header">Đơn giá $p_i/w_i$</td><td>2.0</td><td>2.0</td><td class="cell-highlight">3.0</td><td>1.0</td><td>2.0</td></tr>
+      </table>
+      <p><strong>Sắp xếp theo đơn giá giảm dần:</strong> Vật 3 (3.0) → Vật 1 (2.0) → Vật 2 (2.0) → Vật 5 (2.0) → Vật 4 (1.0)</p>
+    </div>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 2: Chọn lần lượt</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Lượt</th><th>Chọn vật</th><th>Lấy bao nhiêu?</th><th>Trọng lượng còn</th><th>Giá trị cộng dồn</th></tr>
+        <tr>
+          <td>1</td><td><strong>Vật 3</strong> (đơn giá 3.0)</td>
+          <td>Lấy hết 4 kg</td><td>15 − 4 = <strong>11</strong></td><td>12</td>
+        </tr>
+        <tr>
+          <td>2</td><td><strong>Vật 1</strong> (đơn giá 2.0)</td>
+          <td>Cần 12 kg nhưng chỉ còn 11 → lấy <strong>11/12</strong></td>
+          <td>11 − 11 = <strong>0</strong></td>
+          <td>12 + 24×(11/12) = 12 + 22 = <strong>34</strong></td>
+        </tr>
+        <tr><td colspan="5"><em>Ba lô đầy → DỪNG</em></td></tr>
+      </table>
+      <p>✅ <strong>Kết quả: Giá trị tối đa = 34</strong>. Chọn toàn bộ vật 3 + 11/12 vật 1.</p>
+    </div>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⚠️</span>
+    <div>Nếu đề bài nói "không cắt nhỏ được" → đó là <strong>Ba lô 0/1</strong>, phải dùng QHĐ! Tham lam chỉ đúng khi vật <strong>cắt nhỏ được</strong>.</div>
+  </div>
+
+  <!-- ===== VÍ DỤ 2: CHỌN HOẠT ĐỘNG ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 2: Chọn Hoạt Động (Activity Selection)</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho 6 hoạt động, mỗi hoạt động có thời gian bắt đầu $s_i$ và kết thúc $f_i$. Chọn <strong>nhiều hoạt động nhất</strong> sao cho không có 2 hoạt động nào chồng giờ.</p>
+    <table>
+      <tr><th>Hoạt động</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+      <tr><td class="row-header">Bắt đầu $s_i$</td><td>1</td><td>3</td><td>0</td><td>5</td><td>3</td><td>8</td></tr>
+      <tr><td class="row-header">Kết thúc $f_i$</td><td>4</td><td>5</td><td>6</td><td>7</td><td>9</td><td>10</td></tr>
+    </table>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 1: Tiêu chí — Kết thúc sớm nhất (Earliest Finish Time)</div>
+    <div class="step-body">
+      <p><strong>Sắp xếp theo $f_i$ tăng dần:</strong></p>
+      <table>
+        <tr><th>Thứ tự</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+        <tr><td class="row-header">$[s_i, f_i)$</td><td>[1, 4)</td><td>[3, 5)</td><td>[0, 6)</td><td>[5, 7)</td><td>[3, 9)</td><td>[8, 10)</td></tr>
+      </table>
+      <p><em>(Đã sắp xếp xong vì $f_A=4 < f_B=5 < f_C=6 < f_D=7 < f_E=9 < f_F=10$)</em></p>
+    </div>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 2: Chọn lần lượt</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Lượt</th><th>Xét</th><th>Điều kiện $s_i \ge f_{\text{last}}$?</th><th>Quyết định</th><th>$f_{\text{last}}$</th></tr>
+        <tr><td>1</td><td>A [1,4)</td><td>$1 \ge 0$ ✓ (khởi tạo)</td><td class="cell-highlight">✅ Chọn A</td><td>4</td></tr>
+        <tr><td>2</td><td>B [3,5)</td><td>$3 \ge 4$? ❌</td><td>❌ Bỏ (chồng giờ với A)</td><td>4</td></tr>
+        <tr><td>3</td><td>C [0,6)</td><td>$0 \ge 4$? ❌</td><td>❌ Bỏ</td><td>4</td></tr>
+        <tr><td>4</td><td>D [5,7)</td><td>$5 \ge 4$? ✓</td><td class="cell-highlight">✅ Chọn D</td><td>7</td></tr>
+        <tr><td>5</td><td>E [3,9)</td><td>$3 \ge 7$? ❌</td><td>❌ Bỏ</td><td>7</td></tr>
+        <tr><td>6</td><td>F [8,10)</td><td>$8 \ge 7$? ✓</td><td class="cell-highlight">✅ Chọn F</td><td>10</td></tr>
+      </table>
+      <p>✅ <strong>Kết quả: Chọn {A, D, F} — tối đa 3 hoạt động</strong> không chồng giờ.</p>
+    </div>
+  </div>
+
+  <!-- ===== VÍ DỤ 3: TÔ MÀU ĐỒ THỊ ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 3: Tô Màu Đồ Thị</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho đồ thị vô hướng $G$ có 5 đỉnh {A, B, C, D, E} với các cạnh:</p>
+    <p>$E = \{(A,B), (A,C), (B,C), (B,D), (C,E), (D,E)\}$</p>
+    <p>Tô màu các đỉnh sao cho 2 đỉnh kề nhau khác màu, dùng <strong>ít màu nhất</strong>.</p>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 1: Tính bậc & Sắp xếp — Bậc cao nhất trước</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Đỉnh</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+        <tr><td class="row-header">Bậc (số hàng xóm)</td><td>2</td><td class="cell-highlight">3</td><td class="cell-highlight">3</td><td>2</td><td>2</td></tr>
+      </table>
+      <p><strong>Thứ tự tô:</strong> B (bậc 3) → C (bậc 3) → A (bậc 2) → D (bậc 2) → E (bậc 2)</p>
+    </div>
+  </div>
+
+  <div class="step-box green no-break">
+    <div class="step-header">Bước 2: Tô lần lượt — Luôn dùng màu có chỉ số nhỏ nhất khả dụng</div>
+    <div class="step-body">
+      <p>Các màu đánh số: <span class="tag blue">Màu 1</span> <span class="tag green">Màu 2</span> <span class="tag orange">Màu 3</span></p>
+      <table>
+        <tr><th>Lượt</th><th>Tô đỉnh</th><th>Hàng xóm đã tô</th><th>Màu đã dùng bởi hàng xóm</th><th>Chọn màu</th></tr>
+        <tr><td>1</td><td><strong>B</strong></td><td>—</td><td>—</td><td><span class="tag blue">Màu 1</span></td></tr>
+        <tr><td>2</td><td><strong>C</strong></td><td>B(<span class="tag blue">1</span>)</td><td>{1}</td><td><span class="tag green">Màu 2</span></td></tr>
+        <tr><td>3</td><td><strong>A</strong></td><td>B(<span class="tag blue">1</span>), C(<span class="tag green">2</span>)</td><td>{1, 2}</td><td><span class="tag orange">Màu 3</span></td></tr>
+        <tr><td>4</td><td><strong>D</strong></td><td>B(<span class="tag blue">1</span>), E(chưa)</td><td>{1}</td><td><span class="tag green">Màu 2</span></td></tr>
+        <tr><td>5</td><td><strong>E</strong></td><td>C(<span class="tag green">2</span>), D(<span class="tag green">2</span>)</td><td>{2}</td><td><span class="tag blue">Màu 1</span></td></tr>
+      </table>
+      <p>✅ <strong>Kết quả: Dùng 3 màu.</strong> A=Màu 3, B=Màu 1, C=Màu 2, D=Màu 2, E=Màu 1.</p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="icon">💡</span>
+    <div><strong>Lưu ý:</strong> Tham lam tô màu <strong>không đảm bảo tối ưu</strong> trong mọi trường hợp. Nhưng trong chương trình cô Thương, đây là cách giải chuẩn.</div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--                     PHẦN 4: ĐỒ THỊ                          -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--purple); border-color: var(--purple);">📕 PHẦN 4: ĐỒ THỊ (Graph Algorithms) — Buổi 7</h1>
+
+  <div class="card purple">
+    <div class="card-title">💡 Hai cách biểu diễn đồ thị</div>
+    <table>
+      <tr><th style="width:30%">Tiêu chí</th><th style="width:35%">Ma trận kề</th><th style="width:35%">Danh sách kề</th></tr>
+      <tr><td class="row-header">Lưu trữ</td><td>Bảng $n \times n$</td><td>Mảng danh sách liên kết</td></tr>
+      <tr><td class="row-header">Bộ nhớ</td><td>$O(n^2)$</td><td>$O(n + m)$</td></tr>
+      <tr><td class="row-header">Kiểm tra $(u,v)$?</td><td>$O(1)$ ✅</td><td>$O(\text{bậc}(u))$</td></tr>
+      <tr><td class="row-header">Duyệt hàng xóm</td><td>$O(n)$</td><td>$O(\text{bậc}(u))$ ✅</td></tr>
+      <tr><td class="row-header">Phù hợp</td><td>Đồ thị dày ($m \approx n^2$)</td><td>Đồ thị thưa ($m \ll n^2$)</td></tr>
+    </table>
+  </div>
+
+  <h2>🔍 BFS vs DFS — Hai cách duyệt cơ bản</h2>
+  <div class="card">
+    <table>
+      <tr><th style="width:20%"></th><th style="width:40%">BFS (Rộng trước)</th><th style="width:40%">DFS (Sâu trước)</th></tr>
+      <tr><td class="row-header">Cấu trúc</td><td>Hàng đợi (Queue)</td><td>Ngăn xếp (Stack) / Đệ quy</td></tr>
+      <tr><td class="row-header">Thứ tự</td><td>Theo tầng (gần trước, xa sau)</td><td>Đi sâu nhất rồi quay lui</td></tr>
+      <tr><td class="row-header">Ứng dụng</td><td>Đường đi ngắn nhất (không trọng số)</td><td>Phát hiện chu trình, Topo sort</td></tr>
+      <tr><td class="row-header">Độ phức tạp</td><td>$O(V + E)$</td><td>$O(V + E)$</td></tr>
+    </table>
+  </div>
+
+  <!-- ===== VÍ DỤ 1: BFS ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 1: BFS — Duyệt theo chiều rộng</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho đồ thị vô hướng 6 đỉnh {A, B, C, D, E, F} với các cạnh:</p>
+    <p>$E = \{(A,B), (A,C), (B,D), (B,E), (C,F), (E,F)\}$</p>
+    <p>Duyệt BFS từ đỉnh <strong>A</strong>. (Khi có nhiều đỉnh kề, chọn theo thứ tự ABC).</p>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Quá trình BFS từ A (dùng Queue)</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Bước</th><th>Dequeue</th><th>Hàng xóm chưa thăm</th><th>Enqueue</th><th>Trạng thái Queue</th><th>Đã thăm</th></tr>
+        <tr>
+          <td>0</td><td>—</td><td>—</td><td>A</td>
+          <td>[A]</td><td>{A}</td>
+        </tr>
+        <tr>
+          <td>1</td><td class="cell-highlight">A</td><td>B, C</td><td>B, C</td>
+          <td>[B, C]</td><td>{A, B, C}</td>
+        </tr>
+        <tr>
+          <td>2</td><td class="cell-highlight">B</td><td>D, E</td><td>D, E</td>
+          <td>[C, D, E]</td><td>{A, B, C, D, E}</td>
+        </tr>
+        <tr>
+          <td>3</td><td class="cell-highlight">C</td><td>F</td><td>F</td>
+          <td>[D, E, F]</td><td>{A, B, C, D, E, F}</td>
+        </tr>
+        <tr>
+          <td>4</td><td class="cell-highlight">D</td><td>—</td><td>—</td>
+          <td>[E, F]</td><td>—</td>
+        </tr>
+        <tr>
+          <td>5</td><td class="cell-highlight">E</td><td>F (đã thăm)</td><td>—</td>
+          <td>[F]</td><td>—</td>
+        </tr>
+        <tr>
+          <td>6</td><td class="cell-highlight">F</td><td>—</td><td>—</td>
+          <td>[ ] rỗng → STOP</td><td>—</td>
+        </tr>
+      </table>
+      <p>✅ <strong>Thứ tự duyệt BFS: A → B → C → D → E → F</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== VÍ DỤ 2: DFS ===== -->
+  <hr class="divider">
+  <h2>📝 Ví Dụ 2: DFS — Duyệt theo chiều sâu</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cùng đồ thị trên, duyệt DFS từ đỉnh <strong>A</strong> (dùng đệ quy).</p>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Quá trình DFS từ A (đệ quy)</div>
+    <div class="step-body">
+      <pre style="font-family:'JetBrains Mono',monospace; font-size:0.85rem; line-height:2">
+  DFS(A) → thăm A
+   ├─ DFS(B) → thăm B
+   │   ├─ DFS(D) → thăm D
+   │   │   └─ (hàng xóm B đã thăm → quay lui)
+   │   └─ DFS(E) → thăm E
+   │       └─ DFS(F) → thăm F
+   │           └─ (hàng xóm C chưa thăm)
+   │               └─ DFS(C) → thăm C
+   │                   └─ (hàng xóm A,F đã thăm → quay lui)
+   └─ (C đã thăm → quay lui → DONE)
+      </pre>
+      <p>✅ <strong>Thứ tự duyệt DFS: A → B → D → E → F → C</strong></p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="icon">📌</span>
+    <div><strong>Mẹo nhớ:</strong> BFS = <strong>B</strong>ảng (Queue, tầng lớp) | DFS = <strong>D</strong>i sâu (Stack/đệ quy, đào hang). Cùng đồ thị nhưng <strong>thứ tự duyệt khác nhau</strong>!</div>
+  </div>
+
+  <!-- ===== VÍ DỤ 3: DIJKSTRA ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 3: Dijkstra — Đường đi ngắn nhất</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho đồ thị có hướng, có trọng số với 5 đỉnh {S, A, B, C, D}:</p>
+    <table>
+      <tr><th>Cạnh</th><th>S→A</th><th>S→B</th><th>A→B</th><th>A→C</th><th>B→C</th><th>B→D</th><th>C→D</th></tr>
+      <tr><td class="row-header">Trọng số</td><td>4</td><td>2</td><td>1</td><td>5</td><td>3</td><td>7</td><td>1</td></tr>
+    </table>
+    <p>Tìm đường đi ngắn nhất từ <strong>S</strong> đến tất cả các đỉnh.</p>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⚠️</span>
+    <div><strong>Dijkstra CHỈ hoạt động với trọng số ≥ 0.</strong> Nếu có cạnh âm → dùng Bellman-Ford.</div>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Quá trình Dijkstra từ S</div>
+    <div class="step-body">
+      <p><strong>Khởi tạo:</strong> $d[S]=0$, $d[A]=\infty$, $d[B]=\infty$, $d[C]=\infty$, $d[D]=\infty$</p>
+      <table>
+        <tr><th>Bước</th><th>Chọn đỉnh</th><th>d[S]</th><th>d[A]</th><th>d[B]</th><th>d[C]</th><th>d[D]</th><th>Cập nhật</th></tr>
+        <tr>
+          <td>1</td><td class="cell-highlight">S (d=0)</td>
+          <td class="cell-answer">0</td><td>4</td><td>2</td><td>∞</td><td>∞</td>
+          <td>d[A]=0+4=4, d[B]=0+2=2</td>
+        </tr>
+        <tr>
+          <td>2</td><td class="cell-highlight">B (d=2)</td>
+          <td>0</td><td>3</td><td class="cell-answer">2</td><td>5</td><td>9</td>
+          <td>d[A]=min(4, 2+1)=<strong>3</strong>, d[C]=2+3=5, d[D]=2+7=9</td>
+        </tr>
+        <tr>
+          <td>3</td><td class="cell-highlight">A (d=3)</td>
+          <td>0</td><td class="cell-answer">3</td><td>2</td><td>5</td><td>9</td>
+          <td>d[C]=min(5, 3+5)=5 (không đổi)</td>
+        </tr>
+        <tr>
+          <td>4</td><td class="cell-highlight">C (d=5)</td>
+          <td>0</td><td>3</td><td>2</td><td class="cell-answer">5</td><td>6</td>
+          <td>d[D]=min(9, 5+1)=<strong>6</strong></td>
+        </tr>
+        <tr>
+          <td>5</td><td class="cell-highlight">D (d=6)</td>
+          <td>0</td><td>3</td><td>2</td><td>5</td><td class="cell-answer">6</td>
+          <td>—</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Kết quả & Truy vết</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Đỉnh</th><th>d[ ]</th><th>Đường đi ngắn nhất</th></tr>
+        <tr><td>S</td><td class="cell-answer">0</td><td>S</td></tr>
+        <tr><td>A</td><td class="cell-answer">3</td><td>S → B → A</td></tr>
+        <tr><td>B</td><td class="cell-answer">2</td><td>S → B</td></tr>
+        <tr><td>C</td><td class="cell-answer">5</td><td>S → B → C</td></tr>
+        <tr><td>D</td><td class="cell-answer">6</td><td>S → B → C → D</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ Phân tích Dijkstra</div>
+    <ul>
+      <li><strong>Dùng mảng:</strong> $O(V^2)$ — phù hợp đồ thị dày</li>
+      <li><strong>Dùng min-heap:</strong> $O((V+E) \log V)$ — phù hợp đồ thị thưa</li>
+    </ul>
+  </div>
+
+  <!-- ===== VÍ DỤ 4: KRUSKAL ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📝 Ví Dụ 4: Kruskal — Cây Khung Nhỏ Nhất (MST)</h2>
+  <div class="card teal">
+    <div class="card-title">Đề bài</div>
+    <p>Cho đồ thị vô hướng, có trọng số với 6 đỉnh {A, B, C, D, E, F}:</p>
+    <table>
+      <tr><th>Cạnh</th><th>A-B</th><th>A-C</th><th>B-C</th><th>B-D</th><th>C-E</th><th>D-E</th><th>D-F</th><th>E-F</th></tr>
+      <tr><td class="row-header">Trọng số</td><td>4</td><td>3</td><td>5</td><td>2</td><td>6</td><td>1</td><td>8</td><td>7</td></tr>
+    </table>
+    <p>Tìm cây khung nhỏ nhất (MST).</p>
+  </div>
+
+  <div class="card green">
+    <div class="card-title">💡 Kruskal vs Prim</div>
+    <table>
+      <tr><th></th><th>Kruskal</th><th>Prim</th></tr>
+      <tr><td class="row-header">Ý tưởng</td><td>Sắp xếp <strong>cạnh</strong>, chọn cạnh nhẹ nhất không tạo chu trình</td><td>Mở rộng <strong>cây</strong> từ 1 đỉnh, chọn cạnh nhẹ nhất nối ra ngoài</td></tr>
+      <tr><td class="row-header">Cấu trúc</td><td>Union-Find</td><td>Min-heap / Mảng ưu tiên</td></tr>
+      <tr><td class="row-header">Phù hợp</td><td>Đồ thị thưa</td><td>Đồ thị dày</td></tr>
+      <tr><td class="row-header">Độ phức tạp</td><td>$O(E \log E)$</td><td>$O(E \log V)$ (heap) / $O(V^2)$ (mảng)</td></tr>
+    </table>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Bước 1: Sắp xếp cạnh theo trọng số tăng dần</div>
+    <div class="step-body">
+      <div class="flow">
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">D-E: 1</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">B-D: 2</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">A-C: 3</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">A-B: 4</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">B-C: 5</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">C-E: 6</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">E-F: 7</span><span class="flow-arrow">→</span>
+        <span class="flow-step" style="background:var(--purple-light);color:var(--purple)">D-F: 8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-box no-break" style="border-color:var(--purple)">
+    <div class="step-header" style="background:var(--purple)">Bước 2: Chọn cạnh lần lượt (không tạo chu trình)</div>
+    <div class="step-body">
+      <table>
+        <tr><th>Lượt</th><th>Cạnh</th><th>Trọng số</th><th>Tạo chu trình?</th><th>Quyết định</th><th>Các thành phần liên thông</th></tr>
+        <tr>
+          <td>1</td><td><strong>D-E</strong></td><td>1</td><td>❌</td>
+          <td class="cell-highlight">✅ Chọn</td><td>{D,E}, {A}, {B}, {C}, {F}</td>
+        </tr>
+        <tr>
+          <td>2</td><td><strong>B-D</strong></td><td>2</td><td>❌</td>
+          <td class="cell-highlight">✅ Chọn</td><td>{B,D,E}, {A}, {C}, {F}</td>
+        </tr>
+        <tr>
+          <td>3</td><td><strong>A-C</strong></td><td>3</td><td>❌</td>
+          <td class="cell-highlight">✅ Chọn</td><td>{A,C}, {B,D,E}, {F}</td>
+        </tr>
+        <tr>
+          <td>4</td><td><strong>A-B</strong></td><td>4</td><td>❌</td>
+          <td class="cell-highlight">✅ Chọn</td><td>{A,B,C,D,E}, {F}</td>
+        </tr>
+        <tr>
+          <td>5</td><td>B-C</td><td>5</td><td>✅ (B,C cùng nhóm)</td>
+          <td>❌ Bỏ</td><td>—</td>
+        </tr>
+        <tr>
+          <td>6</td><td>C-E</td><td>6</td><td>✅ (C,E cùng nhóm)</td>
+          <td>❌ Bỏ</td><td>—</td>
+        </tr>
+        <tr>
+          <td>7</td><td><strong>E-F</strong></td><td>7</td><td>❌</td>
+          <td class="cell-highlight">✅ Chọn</td><td>{A,B,C,D,E,F} → DONE!</td>
+        </tr>
+      </table>
+      <p>✅ <strong>MST = {D-E, B-D, A-C, A-B, E-F}</strong> — Tổng trọng số = 1+2+3+4+7 = <strong>17</strong></p>
+      <p><em>Dừng khi đã chọn đủ $V-1 = 5$ cạnh.</em></p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="icon">📌</span>
+    <div>
+      <strong>Thuộc lòng các thuật toán đồ thị:</strong><br>
+      • <strong>Duyệt:</strong> BFS (Queue) / DFS (Stack/đệ quy)<br>
+      • <strong>Đường đi ngắn nhất:</strong> Dijkstra (trọng số ≥ 0) / Bellman-Ford (có cạnh âm) / Floyd (mọi cặp đỉnh)<br>
+      • <strong>Cây khung nhỏ nhất:</strong> Kruskal (sắp cạnh) / Prim (mở rộng cây)
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--           BẢNG SO SÁNH TỔNG & MẸO PHÂN BIỆT                 -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--teal); border-color: var(--teal);">⚡ BẢNG SO SÁNH TỔNG & MẸO PHÂN BIỆT</h1>
+
+  <table class="cmp-table">
+    <tr>
+      <th style="width:16%">Tiêu chí</th>
+      <th style="width:21%">Chia Để Trị</th>
+      <th style="width:21%">Quy Hoạch Động</th>
+      <th style="width:21%">Tham Lam</th>
+      <th style="width:21%">Đồ Thị</th>
+    </tr>
+    <tr>
+      <td>Ý tưởng</td>
+      <td>Chia nhỏ, giải riêng, gộp lại</td>
+      <td>Lưu kết quả bài con vào bảng</td>
+      <td>Chọn tốt nhất ngay lập tức</td>
+      <td>Duyệt/tìm đường trên đồ thị</td>
+    </tr>
+    <tr>
+      <td>Bài con</td>
+      <td>Độc lập, không gối nhau</td>
+      <td>Trùng lặp, gối nhau</td>
+      <td>Không xét lại</td>
+      <td>Tuỳ thuật toán</td>
+    </tr>
+    <tr>
+      <td>Đảm bảo tối ưu?</td>
+      <td>✅ (với bài sắp xếp)</td>
+      <td>✅ Luôn luôn</td>
+      <td>⚠️ Chỉ với bài có CM</td>
+      <td>✅ (Dijkstra, MST)</td>
+    </tr>
+    <tr>
+      <td>Cấu trúc dữ liệu</td>
+      <td>Đệ quy</td>
+      <td>Bảng 1D/2D</td>
+      <td>Sắp xếp + duyệt</td>
+      <td>Queue/Stack/Heap</td>
+    </tr>
+    <tr>
+      <td>Độ phức tạp</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n^2)$ / $O(nW)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(V+E)$ ~ $O(V^2)$</td>
+    </tr>
+    <tr>
+      <td>Bài tiêu biểu</td>
+      <td>Merge Sort, Quick Sort, Min-Max</td>
+      <td>Ba lô 0/1, LCS, LIS, Nhân MT</td>
+      <td>Ba lô phân số, Hoạt động, Tô màu</td>
+      <td>BFS, DFS, Dijkstra, Kruskal/Prim</td>
+    </tr>
+  </table>
+
+  <h2>🎯 Mẹo Phân Biệt Nhanh — Đọc Đề Là Biết Dùng Gì</h2>
+
+  <div class="card purple no-break">
+    <div class="card-title">🔑 Từ khóa trong đề → Thuật toán</div>
+    <ul>
+      <li><strong>"Sắp xếp mảng"</strong> / "chia đôi" / "merge" / "partition" → <span class="tag orange">Chia để trị</span></li>
+      <li><strong>"Liệt kê tất cả"</strong> / "tìm mọi cách" → <span class="tag red">Quay lui (Backtracking)</span></li>
+      <li><strong>"Không chia nhỏ được"</strong> / "lấy hoặc không" / "0/1" → <span class="tag blue">Quy hoạch động</span></li>
+      <li><strong>"Chia nhỏ được"</strong> / "phân số" / "fractional" → <span class="tag green">Tham lam</span></li>
+      <li><strong>"Dãy con chung/tăng"</strong> / "LCS" / "LIS" → <span class="tag blue">Quy hoạch động</span></li>
+      <li><strong>"Đặt ngoặc"</strong> / "nhân chuỗi ma trận" → <span class="tag blue">Quy hoạch động</span></li>
+      <li><strong>"Không chồng giờ"</strong> / "nhiều hoạt động nhất" → <span class="tag green">Tham lam</span></li>
+      <li><strong>"Tô màu đồ thị"</strong> / "ít màu nhất" → <span class="tag green">Tham lam</span></li>
+      <li><strong>"Đường đi ngắn nhất"</strong> / "khoảng cách" / "trọng số" → <span class="tag" style="background:var(--purple-light);color:var(--purple)">Dijkstra / Bellman-Ford</span></li>
+      <li><strong>"Cây khung nhỏ nhất"</strong> / "MST" / "nối tất cả" → <span class="tag" style="background:var(--purple-light);color:var(--purple)">Kruskal / Prim</span></li>
+      <li><strong>"Duyệt đồ thị"</strong> / "thành phần liên thông" → <span class="tag" style="background:var(--purple-light);color:var(--purple)">BFS / DFS</span></li>
+    </ul>
+  </div>
+
+  <div class="card yellow no-break">
+    <div class="card-title">⚡ Checklist Trước Khi Nộp Bài</div>
+    <ul>
+      <li>☐ <strong>Chia để trị:</strong> Đã vẽ cây chia + ghi rõ bước COMBINE?</li>
+      <li>☐ <strong>Bảng QHĐ:</strong> Các ô nửa dưới đường chéo đã <strong>để trống</strong>?</li>
+      <li>☐ Đã ghi <strong>quá trình tính</strong> (không chỉ số cuối cùng)?</li>
+      <li>☐ Đáp án đúng ô? (LCS → $M[m][n]$, Ba lô → $K[n][W]$, Nhân MT → $M[1][n]$, LIS → Max toàn bảng)</li>
+      <li>☐ <strong>Truy vết:</strong> Đã liệt kê từng bước đi ngược?</li>
+      <li>☐ <strong>Tham lam:</strong> Đã sắp xếp trước khi chọn? Tiêu chí đúng?</li>
+      <li>☐ <strong>Ba lô:</strong> Xác nhận đúng loại (0/1 → QHĐ, Phân số → Tham lam)?</li>
+      <li>☐ <strong>Dijkstra:</strong> Trọng số ≥ 0? (có âm → Bellman-Ford)</li>
+      <li>☐ <strong>Kruskal:</strong> Đã sắp cạnh? Dừng khi đủ $V-1$ cạnh?</li>
+      <li>☐ <strong>BFS/DFS:</strong> Ghi rõ thứ tự duyệt? Đánh dấu đỉnh đã thăm?</li>
+    </ul>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!--     DẤU HIỆU NHẬN BIẾT & CÁCH ĐIỀN KHUNG                   -->
+  <!-- ============================================================ -->
+  <div class="page-break"></div>
+  <h1 class="section-title" style="color: var(--red); border-color: var(--red);">🧭 DẤU HIỆU NHẬN BIẾT & CÁCH ĐIỀN KHUNG</h1>
+
+  <div class="card red">
+    <div class="card-title">🎯 Tại sao phần này quan trọng?</div>
+    <p>Khi đọc đề, bạn cần trả lời <strong>2 câu hỏi</strong> theo thứ tự:</p>
+    <ol>
+      <li><strong>Dùng thuật toán gì?</strong> → Nhìn từ khóa trong đề.</li>
+      <li><strong>Kẻ khung / bảng ra sao?</strong> → Mỗi thuật toán có một "khuôn" trình bày riêng.</li>
+    </ol>
+    <p><em>Sai bước 1 → cả bài sai. Đúng bước 1 nhưng sai bước 2 → mất điểm trình bày.</em></p>
+  </div>
+
+  <!-- ===== 1. CHIA ĐỂ TRỊ ===== -->
+  <hr class="divider">
+  <h2>📙 1. Dấu Hiệu → Chia Để Trị</h2>
+
+  <div class="card orange no-break">
+    <div class="card-title">🔎 Từ khóa trong đề</div>
+    <ul>
+      <li>"<strong>Sắp xếp</strong> mảng bằng Merge Sort / Quick Sort"</li>
+      <li>"<strong>Chia đôi</strong>" / "chia thành 2 nửa"</li>
+      <li>"Tìm <strong>Min-Max</strong> bằng phương pháp chia để trị"</li>
+      <li>"<strong>Merge</strong>" / "<strong>Partition</strong>"</li>
+      <li>Đề yêu cầu viết <strong>công thức đệ quy $T(n)$</strong></li>
+    </ul>
+  </div>
+
+  <div class="card orange no-break">
+    <div class="card-title">📝 Cách điền khung — Khung 3 bước chuẩn</div>
+    <p>Bài làm <strong>bắt buộc</strong> phải thể hiện đủ 3 phần:</p>
+    <table>
+      <tr><th style="width:20%">Phần</th><th style="width:35%">Nội dung cần điền</th><th style="width:45%">Hình thức trình bày</th></tr>
+      <tr>
+        <td class="row-header" style="background:var(--orange-light)">DIVIDE</td>
+        <td>Vẽ cây chia nhỏ bài toán, mỗi nhánh là một bài con</td>
+        <td>Sơ đồ cây phân cấp (vẽ bằng ký tự <code>/</code> <code>\</code> hoặc mũi tên). Chia đến khi chạm <strong>base case</strong> (1 phần tử)</td>
+      </tr>
+      <tr>
+        <td class="row-header" style="background:var(--orange-light)">CONQUER</td>
+        <td>Ghi kết quả trả về từ mỗi base case</td>
+        <td>Ghi ngay bên cạnh lá cây. Ví dụ: <code>[3] → (min=3, max=3)</code></td>
+      </tr>
+      <tr>
+        <td class="row-header" style="background:var(--orange-light)">COMBINE</td>
+        <td>Gộp kết quả từ dưới lên, ghi rõ phép gộp</td>
+        <td>Kẻ <strong>bảng theo từng mức</strong>: Mức | Gộp gì + gì | Kết quả. Hoặc ghi trực tiếp trên cây</td>
+      </tr>
+    </table>
+    <div class="tip">
+      <span class="icon">💡</span>
+      <div><strong>Mẹo:</strong> Với Merge Sort, bảng COMBINE nên kẻ rõ: <code>[27] + [43] → [27, 43]</code>. Với Min-Max thì ghi: <code>min(3,1)=1, max(3,5)=5</code>. Bước COMBINE là nơi <strong>cho thấy bạn hiểu bài</strong>, không bao giờ được bỏ qua.</div>
+    </div>
+  </div>
+
+  <!-- ===== 2. QUY HOẠCH ĐỘNG ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📘 2. Dấu Hiệu → Quy Hoạch Động</h2>
+
+  <div class="card blue no-break">
+    <div class="card-title">🔎 Từ khóa trong đề</div>
+    <ul>
+      <li>"<strong>Lấy hoặc không lấy</strong>" / "chọn hoặc bỏ" / "0/1" → <strong>Ba lô 0/1</strong></li>
+      <li>"Không được <strong>chia nhỏ</strong>" đồ vật</li>
+      <li>"<strong>Dãy con chung</strong> dài nhất" → <strong>LCS</strong></li>
+      <li>"<strong>Dãy con tăng</strong> dài nhất" → <strong>LIS</strong></li>
+      <li>"<strong>Đặt ngoặc</strong>" / "<strong>nhân chuỗi ma trận</strong>" / "số phép nhân tối thiểu"</li>
+      <li>Đề cho <strong>2 dãy ký tự / số</strong> và hỏi "chung", "giống nhau", "dài nhất"</li>
+      <li>Bất kỳ khi nào bạn nhận ra <strong>bài toán con trùng lặp</strong> (cùng tham số bị tính lại nhiều lần)</li>
+    </ul>
+  </div>
+
+  <div class="card blue no-break">
+    <div class="card-title">📝 Cách điền khung — Quy trình 6 bước + Bảng QHĐ</div>
+    <p>Bài làm phải trình bày <strong>đủ 6 bước</strong>, kẻ bảng rõ ràng:</p>
+    <table>
+      <tr><th style="width:12%">Bước</th><th style="width:25%">Tên</th><th style="width:63%">Cần điền gì?</th></tr>
+      <tr>
+        <td class="cell-base"><strong>B1</strong></td>
+        <td>Chọn bảng</td>
+        <td>Ghi rõ kích thước bảng. Ví dụ: <em>"Bảng 2 chiều $M[0..m][0..n]$, kích thước $(m+1) \times (n+1)$"</em></td>
+      </tr>
+      <tr>
+        <td class="cell-base"><strong>B2</strong></td>
+        <td>Ô lưu gì?</td>
+        <td>Ghi rõ ý nghĩa của mỗi ô. Ví dụ: <em>"$M[i][j]$ = độ dài LCS của $X[1..i]$ và $Y[1..j]$"</em>. Luôn là <strong>một con số</strong> tính được, KHÔNG bao giờ lưu "vị trí" hay "dãy con"</td>
+      </tr>
+      <tr>
+        <td class="cell-base"><strong>B3</strong></td>
+        <td>Cơ sở & PTQHĐ</td>
+        <td>Ghi cơ sở (hàng 0 / cột 0 = bao nhiêu) + viết công thức truy hồi đầy đủ với <strong>điều kiện rẽ nhánh</strong></td>
+      </tr>
+      <tr>
+        <td class="cell-highlight"><strong>B4</strong></td>
+        <td>Điền bảng</td>
+        <td>⭐ <strong>Phần QUAN TRỌNG NHẤT.</strong> Kẻ bảng và điền số vào. Xem hướng dẫn chi tiết bên dưới</td>
+      </tr>
+      <tr>
+        <td class="cell-base"><strong>B5</strong></td>
+        <td>Đáp án</td>
+        <td>Chỉ ra ô nào chứa đáp án và giá trị. Ví dụ: <em>"$M[4][4] = 3$, vậy LCS dài 3"</em></td>
+      </tr>
+      <tr>
+        <td class="cell-base"><strong>B6</strong></td>
+        <td>Truy vết</td>
+        <td>Đi ngược từ ô đáp án, liệt kê từng bước. Kết luận nghiệm cụ thể. Ví dụ: <em>"LCS = ⟨B, C, B⟩"</em></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="step-box no-break">
+    <div class="step-header">⭐ Hướng dẫn chi tiết: Kẻ & Điền bảng QHĐ (Bước 4)</div>
+    <div class="step-body">
+      <h3>📐 Loại bảng nào cho bài nào?</h3>
+      <table>
+        <tr><th>Bài toán</th><th>Hình dạng bảng</th><th>Chiều điền</th><th>Ô đáp án</th></tr>
+        <tr>
+          <td class="row-header">LCS</td>
+          <td>Hình chữ nhật $(m+1) \times (n+1)$, điền <strong>hết</strong></td>
+          <td>Trái → phải, trên → dưới</td>
+          <td class="cell-answer">$M[m][n]$ (góc dưới phải)</td>
+        </tr>
+        <tr>
+          <td class="row-header">Ba lô 0/1</td>
+          <td>Hình chữ nhật $(n+1) \times (W+1)$, điền <strong>hết</strong></td>
+          <td>Trái → phải, trên → dưới</td>
+          <td class="cell-answer">$K[n][W]$ (góc dưới phải)</td>
+        </tr>
+        <tr>
+          <td class="row-header">Nhân chuỗi MT</td>
+          <td><strong>Tam giác trên</strong> $n \times n$, nửa dưới <strong>ĐỂ TRỐNG</strong></td>
+          <td>Theo đường chéo (len=1 → len=n)</td>
+          <td class="cell-answer">$M[1][n]$ (góc trên phải)</td>
+        </tr>
+        <tr>
+          <td class="row-header">LIS</td>
+          <td>Mảng 1 chiều $L[1..n]$</td>
+          <td>Trái → phải</td>
+          <td class="cell-answer">$\max$ toàn mảng</td>
+        </tr>
+      </table>
+
+      <h3>🎨 Quy ước tô màu / đánh dấu ô</h3>
+      <table>
+        <tr><th>Loại ô</th><th>Ý nghĩa</th><th>Cách đánh dấu khi viết tay</th></tr>
+        <tr>
+          <td class="cell-base">Ô cơ sở (base)</td>
+          <td>Hàng 0 / cột 0, giá trị khởi tạo</td>
+          <td>Tô nhạt hoặc gạch chân</td>
+        </tr>
+        <tr>
+          <td class="cell-highlight">Ô đặc biệt</td>
+          <td>Ô mà $X[i] = Y[j]$ (LCS) hoặc giá trị thay đổi quan trọng</td>
+          <td>Ghi mũi tên ↖ kèm giá trị, khoanh tròn</td>
+        </tr>
+        <tr>
+          <td class="cell-answer">Ô đáp án</td>
+          <td>Ô chứa kết quả cuối cùng</td>
+          <td><strong>Tô đậm / khoanh vuông đôi</strong></td>
+        </tr>
+        <tr>
+          <td class="cell-empty">Ô trống (tam giác)</td>
+          <td>Ô nửa dưới đường chéo — CẤM ĐIỀN</td>
+          <td>Gạch chéo nhẹ hoặc để trống hoàn toàn</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⛔</span>
+    <div>
+      <strong>3 LỖI CHẾT NGƯỜI khi điền bảng QHĐ:</strong><br>
+      1. <strong>Điền số vào nửa dưới đường chéo</strong> (bảng tam giác) → mất điểm cả bảng!<br>
+      2. <strong>Chỉ ghi số cuối</strong> mà không ghi quá trình tính (ví dụ: $k=1$: 36, $k=2$: 40, min = 36) → bị trừ điểm trình bày.<br>
+      3. <strong>Nhầm ô đáp án:</strong> LCS lấy ở $M[m][n]$ (dưới phải) nhưng Nhân ma trận lấy ở $M[1][n]$ (trên phải) — nhầm là mất!
+    </div>
+  </div>
+
+  <!-- ===== 3. THAM LAM ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📗 3. Dấu Hiệu → Tham Lam</h2>
+
+  <div class="card green no-break">
+    <div class="card-title">🔎 Từ khóa trong đề</div>
+    <ul>
+      <li>"Có thể <strong>chia nhỏ / cắt nhỏ</strong>" đồ vật → <strong>Ba lô phân số</strong></li>
+      <li>"<strong>Fractional</strong>" knapsack</li>
+      <li>"Chọn <strong>nhiều nhất</strong>" / "<strong>không chồng giờ</strong>" → <strong>Chọn hoạt động</strong></li>
+      <li>"<strong>Tô màu</strong> đồ thị" / "ít màu nhất"</li>
+      <li>Đề bài cho bảng các ứng viên + yêu cầu <strong>chọn theo tiêu chí</strong></li>
+      <li>Bài toán có tính chất: chọn xong → <strong>không quay lại</strong></li>
+    </ul>
+  </div>
+
+  <div class="card green no-break">
+    <div class="card-title">📝 Cách điền khung — 2 Bảng Bắt Buộc</div>
+    <p>Khung Tham lam <strong>luôn có 2 phần</strong>:</p>
+
+    <h3>🔹 Bảng 1: Sắp xếp theo tiêu chí</h3>
+    <table>
+      <tr><th>Bài toán</th><th>Tiêu chí sắp xếp</th><th>Thứ tự</th></tr>
+      <tr>
+        <td class="row-header">Ba lô phân số</td>
+        <td>Đơn giá $p_i / w_i$</td>
+        <td><strong>Giảm dần</strong> (đắt nhất trước)</td>
+      </tr>
+      <tr>
+        <td class="row-header">Chọn hoạt động</td>
+        <td>Thời gian kết thúc $f_i$</td>
+        <td><strong>Tăng dần</strong> (kết thúc sớm trước)</td>
+      </tr>
+      <tr>
+        <td class="row-header">Tô màu đồ thị</td>
+        <td>Bậc đỉnh (số hàng xóm)</td>
+        <td><strong>Giảm dần</strong> (bậc cao trước)</td>
+      </tr>
+    </table>
+    <p><em>⚠️ Bảng này PHẢI có. Không sắp xếp trước = sai phương pháp.</em></p>
+
+    <h3>🔹 Bảng 2: Xét duyệt lần lượt</h3>
+    <p>Kẻ bảng có các cột tùy bài:</p>
+    <table>
+      <tr><th>Bài toán</th><th>Các cột cần kẻ</th></tr>
+      <tr>
+        <td class="row-header">Ba lô phân số</td>
+        <td>Lượt | Chọn vật | Lấy bao nhiêu? | Trọng lượng còn | Giá trị cộng dồn</td>
+      </tr>
+      <tr>
+        <td class="row-header">Chọn hoạt động</td>
+        <td>Lượt | Xét hoạt động $[s_i, f_i)$ | Điều kiện $s_i \ge f_{\text{last}}$? | Quyết định (✅/❌) | Cập nhật $f_{\text{last}}$</td>
+      </tr>
+      <tr>
+        <td class="row-header">Tô màu đồ thị</td>
+        <td>Lượt | Tô đỉnh | Hàng xóm đã tô (+ màu gì) | Màu đã bị chiếm | Chọn màu nhỏ nhất khả dụng</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="tip">
+    <span class="icon">💡</span>
+    <div>
+      <strong>Mẹo phân biệt Ba lô:</strong> Đề nói "cắt nhỏ được" → <span class="tag green">Tham lam</span> (Ba lô phân số). Đề nói "lấy nguyên / 0-1 / không cắt" → <span class="tag blue">QHĐ</span> (Ba lô 0/1). <strong>Nhầm là mất toàn bộ bài!</strong>
+    </div>
+  </div>
+
+  <!-- ===== 4. ĐỒ THỊ ===== -->
+  <hr class="divider">
+  <div class="page-break"></div>
+  <h2>📕 4. Dấu Hiệu → Đồ Thị</h2>
+
+  <div class="card purple no-break">
+    <div class="card-title">🔎 Từ khóa trong đề → Chọn đúng thuật toán</div>
+    <table>
+      <tr><th style="width:50%">Từ khóa / Dạng đề</th><th style="width:50%">Thuật toán</th></tr>
+      <tr>
+        <td class="row-header">"Duyệt đồ thị" / "thành phần liên thông" / "tầng" / "mức"</td>
+        <td><strong>BFS</strong> (nếu đề nói "theo tầng") hoặc <strong>DFS</strong> (nếu đề nói "sâu" / "đệ quy")</td>
+      </tr>
+      <tr>
+        <td class="row-header">"Đường đi ngắn nhất" từ 1 đỉnh + trọng số <strong>≥ 0</strong></td>
+        <td><strong>Dijkstra</strong></td>
+      </tr>
+      <tr>
+        <td class="row-header">"Đường đi ngắn nhất" + có <strong>cạnh âm</strong></td>
+        <td><strong>Bellman-Ford</strong></td>
+      </tr>
+      <tr>
+        <td class="row-header">"Đường đi ngắn nhất" giữa <strong>mọi cặp</strong> đỉnh</td>
+        <td><strong>Floyd-Warshall</strong></td>
+      </tr>
+      <tr>
+        <td class="row-header">"Cây khung nhỏ nhất" / "MST" / "nối tất cả đỉnh, chi phí nhỏ nhất"</td>
+        <td><strong>Kruskal</strong> (sắp cạnh) hoặc <strong>Prim</strong> (mở rộng cây)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card purple no-break">
+    <div class="card-title">📝 Cách điền khung — Theo từng thuật toán</div>
+
+    <h3>🔹 BFS — Bảng mô phỏng Queue</h3>
+    <p>Kẻ bảng với các cột:</p>
+    <p><strong>Bước | Dequeue (lấy ra) | Hàng xóm chưa thăm | Enqueue (đưa vào) | Trạng thái Queue | Đã thăm</strong></p>
+    <p><em>Bắt đầu: Enqueue đỉnh nguồn. Kết thúc: Queue rỗng. Ghi rõ thứ tự duyệt cuối cùng.</em></p>
+
+    <h3>🔹 DFS — Sơ đồ đệ quy dạng cây</h3>
+    <p>Vẽ cây đệ quy bằng ký tự <code>├─</code> <code>└─</code>:</p>
+    <p><code>DFS(A) → thăm A</code><br>
+    <code>&nbsp;&nbsp;├─ DFS(B) → thăm B</code><br>
+    <code>&nbsp;&nbsp;│&nbsp;&nbsp; └─ DFS(D) → thăm D</code><br>
+    <code>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ (quay lui)</code><br>
+    <code>&nbsp;&nbsp;└─ ...</code></p>
+    <p><em>Ghi rõ khi nào "quay lui" (hàng xóm đã thăm hết). Kết luận thứ tự duyệt.</em></p>
+
+    <h3>🔹 Dijkstra — Bảng cập nhật khoảng cách</h3>
+    <p>Kẻ bảng với các cột:</p>
+    <p><strong>Bước | Chọn đỉnh (d nhỏ nhất) | d[v₁] | d[v₂] | ... | Cập nhật gì?</strong></p>
+    <p><em>Khởi tạo: $d[\text{nguồn}]=0$, tất cả còn lại $= \infty$. Mỗi bước: chọn đỉnh chưa xét có $d[\ ]$ nhỏ nhất, cập nhật hàng xóm bằng <code>d[u] + w(u,v)</code>. Đánh dấu đỉnh đã fix bằng tô đậm.</em></p>
+
+    <h3>🔹 Kruskal — Bảng xét cạnh</h3>
+    <p>Kẻ bảng với các cột:</p>
+    <p><strong>Lượt | Cạnh | Trọng số | Tạo chu trình? | Quyết định | Các thành phần liên thông</strong></p>
+    <p><em>Sắp tất cả cạnh tăng dần trước. Xét lần lượt. Dừng khi chọn đủ $V-1$ cạnh.</em></p>
+
+    <h3>🔹 Prim — Bảng mở rộng cây</h3>
+    <p>Kẻ bảng với các cột:</p>
+    <p><strong>Bước | Tập cây hiện tại | Cạnh nhẹ nhất nối ra ngoài | Chọn cạnh | Thêm đỉnh</strong></p>
+    <p><em>Bắt đầu từ 1 đỉnh. Mỗi bước: chọn cạnh nhẹ nhất nối từ cây đến đỉnh ngoài cây. Dừng khi tất cả đỉnh đã vào cây.</em></p>
+  </div>
+
+  <div class="warning">
+    <span class="icon">⚠️</span>
+    <div>
+      <strong>Lỗi hay gặp với đồ thị:</strong><br>
+      1. <strong>BFS quên đánh dấu "đã thăm"</strong> khi Enqueue → duyệt trùng đỉnh → sai.<br>
+      2. <strong>Dijkstra dùng cho cạnh âm</strong> → kết quả sai (phải dùng Bellman-Ford).<br>
+      3. <strong>Kruskal quên kiểm tra chu trình</strong> → kết quả không phải cây.<br>
+      4. <strong>Không ghi thứ tự duyệt</strong> ở cuối bài BFS/DFS → thiếu kết luận.
+    </div>
+  </div>
+
+  <!-- ===== SƠ ĐỒ TỔNG HỢP ===== -->
+  <hr class="divider">
+  <h2>🗺️ Sơ Đồ Chọn Nhanh — Đọc Đề → Chọn Khung</h2>
+
+  <div class="card no-break" style="border: 2px solid var(--teal); background: var(--teal-light);">
+    <div class="card-title" style="font-size: 1.1rem;">🧠 Flowchart Trong Đầu</div>
+    <pre style="font-family:'JetBrains Mono',monospace; font-size:0.82rem; line-height:2.2; white-space:pre-wrap;">
+Đọc đề xong → Tự hỏi:
+
+1. Đề có <strong>đồ thị</strong> (đỉnh, cạnh, trọng số)?
+   ├─ CÓ → Hỏi tiếp: Yêu cầu gì?
+   │   ├─ "Duyệt" / "liên thông"      → <strong>BFS / DFS</strong>         → Khung Queue / Cây đệ quy
+   │   ├─ "Đường đi ngắn nhất"          → <strong>Dijkstra</strong>          → Khung bảng d[v]
+   │   └─ "Cây khung nhỏ nhất / MST"   → <strong>Kruskal / Prim</strong>    → Khung bảng xét cạnh
+   │
+   └─ KHÔNG → Hỏi tiếp:
+
+2. Đề yêu cầu <strong>"sắp xếp"</strong> hoặc <strong>"chia đôi"</strong>?
+   ├─ CÓ →                              → <strong>Chia để trị</strong>      → Khung 3 bước (Divide/Conquer/Combine)
+   │
+   └─ KHÔNG → Hỏi tiếp:
+
+3. Đề cho <strong>chọn từ tập ứng viên</strong>, không quay lại?
+   ├─ CÓ "chia nhỏ được" / "phân số"   → <strong>Tham lam</strong>         → Khung 2 bảng (Sắp xếp + Xét duyệt)
+   ├─ CÓ "không chồng giờ"             → <strong>Tham lam</strong>         → Khung 2 bảng
+   ├─ CÓ "tô màu đồ thị"              → <strong>Tham lam</strong>         → Khung 2 bảng
+   │
+   └─ KHÔNG → Hỏi tiếp:
+
+4. Đề có <strong>bài con trùng lặp</strong>? ("0/1", "LCS", "LIS", "đặt ngoặc")
+   └─ CÓ →                              → <strong>Quy hoạch động</strong>  → Khung 6 bước + Bảng QHĐ
+    </pre>
+  </div>
+
+  <br>
+  <p style="text-align:center; color: var(--gray-400); font-size: 0.85rem; margin-top: 2rem;">
+    — Hết —<br>
+    <em>Mở file này bằng trình duyệt → Ctrl+P → Save as PDF</em>
+  </p>
+
+</div>
+
+</body>
+</html>

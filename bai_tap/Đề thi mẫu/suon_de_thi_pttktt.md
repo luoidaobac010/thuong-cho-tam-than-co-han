@@ -7,6 +7,7 @@
 - **Mã giả (Pseudo-code):** Môn này là Thiết kế thuật toán, KHÔNG yêu cầu sinh viên phải viết code hoàn chỉnh bằng C++, Python hay Java. Các em chỉ cần trình bày bằng Mã giả. Nếu tự tin với ngôn ngữ lập trình thì có thể viết, nhưng Mã giả có đánh số bước, giải thích rõ ràng là đủ và an toàn nhất.
 - **Thang điểm:** Đề thi chia làm 2 phần: Phân tích (6 điểm) + Thiết kế (7 điểm) = Tổng 13 điểm (theo buổi ôn cuối 26/9, buổi 9 cô còn nói 12 điểm). Tuy nhiên, có thể giải thêm để nhận điểm bonus (đáp án chấm tới 15 điểm). Nhưng làm được 10 điểm là đã quá xuất sắc.
 
+
 ---
 
 ## 📝 2. SƯỜN ĐỀ THI CHI TIẾT (Khoảng 5 - 6 Câu)
